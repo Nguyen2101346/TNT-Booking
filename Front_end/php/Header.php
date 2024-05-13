@@ -19,7 +19,7 @@
 
                          <!-- Phần sau khi đăng nhập -->
                              <li class="Member-id">
-                                <a href = "#">Koi</a>
+                                <a href = "#" class="user-id">Koi</a>
                                 <span class="img-id"><img src="./img/avatar.jpg" alt=""></span> 
                                 <ul class="miniMember-menu">
                                      <li><a href="#">Thông tin</a></li>

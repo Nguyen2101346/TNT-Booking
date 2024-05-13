@@ -21,6 +21,20 @@ exitBtn.addEventListener('click',() => {
      mininav.classList.remove('toggle');
      hamOpen = false;    
      }); 
+
+// Phần chỉnh nút menu
+     const userID = document.querySelector('.user-id');
+     const MemberMenu = document.querySelector('.miniMember-menu')
+     let MemberOpen = false;
+     userID.addEventListener('click',() => {
+          if(MemberOpen != true){
+               MemberMenu.classList.add('active');
+               MemberOpen = true;
+          }else{
+               MemberMenu.classList.remove('active');
+               MemberOpen = false;
+          }
+     });
 // Phần thu gọn chữ cho Trang chủ 
 var paragraphs = document.querySelectorAll('.img_list p');
      var maxLength = 100; // Số ký tự tối đa bạn muốn hiển thị

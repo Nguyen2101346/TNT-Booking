@@ -33,17 +33,17 @@
                     </div>
                     <div id="booking-table">
                          <table>
-                         <tr>
-                              <th>Số lượng phòng</th>
-                         </tr>
-                         <tr>
-                              <td class="quantity_contain">
-                              <button class="quantity-control" onclick="decrementRoom()">-</button>
-                              <span id="room-quantity">0</span>
-                              <button class="quantity-control" onclick="incrementRoom()">+</button>
-                              </td>
-                         </tr>
-                         </table>
+                              <tr>
+                                   <th>Số lượng phòng</th>
+                              </tr>
+                              <tr>
+                                   <td class="quantity_contain">
+                                   <button class="quantity-control" onclick="decrementRoom()">-</button>
+                                   <span id="room-quantity">0</span>
+                                   <button class="quantity-control" onclick="incrementRoom()">+</button>
+                                   </td>
+                              </tr>
+                              </table>
                          <div id="booking-info"></div>
                          
                     </div>
