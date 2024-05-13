@@ -95,13 +95,13 @@ a{
 }
 .content{
      position: relative;
-     font-size: 14px;
+     font-size: 16px;
      padding: 10px;
 }
 .content.note {
      position: relative;
      display: grid;
-     font-size: 12px;
+     font-size: 13px;
      display: flex;
 }
 .mini_btn{
@@ -217,8 +217,8 @@ a{
 }
 /* Phần giữa logo */
 .head_logo{
-     width: 70px;
-     height: 70px;
+     width: 100px;
+     height: 100px;
 }
 /* Phần bên phải của header */
 .head_container .head_right{
@@ -470,6 +470,7 @@ a{
      font-size: 23px;
 }
 .Srch .title{
+     font-size: 18px;
      font-weight: bold;
      color: var(--grey0);
 }

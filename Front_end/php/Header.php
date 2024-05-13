@@ -2,30 +2,30 @@
     <div class="head_container desktop">
          <div class="head_left">
               <ul>
-                   <li><a href="#">Trang chủ</a></li>
-                   <li><a href="#">Đặt phòng</a></li>
-                   <li><a href="#">Hội họp</a></li>
+                   <li><a href="index.php" class="title">Trang chủ</a></li>
+                   <li><a href="#" class="title">Đặt phòng</a></li>
+                   <li><a href="Event.php" class="title">Hội họp</a></li>
               </ul>
          </div>
          <div class="head_mid">
-              <div class="head_logo"><a href="#"><img src="./img/LogoTNT.png" alt="" width="70px" height="70px"></a></div>
+              <div class="head_logo"><a href="index.php"><img src="./img/LogoTNT.png" alt="" width="100px" height="100px"></a></div>
          </div>
          <div class="head_right">
               <ul>
-                   <li><a href="#">Ưu đãi khuyến mãi</a></li>
-                   <!-- <li><a href="Login.php">Đăng nhập</a><span>
-                    /</span><a href="Login.php?from=signup">Đăng ký</a>
-                    </li> -->
+                   <li><a href="#" class="title">Ưu đãi khuyến mãi</a></li>
+                   <li><a href="Login.php" class="title">Đăng nhập</a><span>
+                    /</span><a href="Login.php?from=signup" class="title">Đăng ký</a>
+                    </li>
 
                          <!-- Phần sau khi đăng nhập -->
-                             <li class="Member-id">
-                                <a href = "#" class="user-id">Koi</a>
+                             <!-- <li class="Member-id">
+                                <a href = "#" class="user-id title">Koi</a>
                                 <span class="img-id"><img src="./img/avatar.jpg" alt=""></span> 
                                 <ul class="miniMember-menu">
-                                     <li><a href="#">Thông tin</a></li>
-                                     <li><a href="#">Đăng xuất</a></li>
+                                     <li><a href="#" class="title">Thông tin</a></li>
+                                     <li><a href="#" class="title">Đăng xuất</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
               </ul>
          </div>
     </div>

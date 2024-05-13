@@ -20,60 +20,9 @@
           <!-- Được chia ra làm 3 phần bên trái, giữa và phải -->
           <!-- Phần trái, gồm các mục ở 2 bên -->
           <!-- Phần mid được sử dụng để làm logo-->
-          <div class="header">
-               <div class="head_container desktop">
-                    <div class="head_left">
-                         <ul>
-                              <li><a href="#">Trang chủ</a></li>
-                              <li><a href="#">Đặt phòng</a></li>
-                              <li><a href="#">Hội họp</a></li>
-                         </ul>
-                    </div>
-                    <div class="head_mid">
-                         <div class="head_logo"><a href="#"><img src="./img/LogoTNT.png" alt="" width="70px" height="70px"></a></div>
-                    </div>
-                    <div class="head_right">
-                         <ul>
-                              <li><a href="#">Ưu đãi khuyến mãi</a></li>
-                              <li><a href="#">Đăng nhập</a><span>/</span><a href="#">Đăng ký</a></li>
-                         </ul>
-                    </div>
-               </div>
-               <!-- Phần chỉnh header theo định dạng iphone 14 Pro Max  -->
-               <div class="head_container phone">
-                    <div class="head_left">
-                         <div class="MiniMenu">
-                              <div class="MiniMenu_button">
-                                   <div class="ham-btn__burger"><i class="fa-solid fa-bars"></i></div>
-                              </div>
-                              <div id="test">
-                                   <ul class="mini_nav" >
-                                        <div class="MiniMenu_button exit">
-                                             <div class="ham-btn__burger"><i class="fa-solid fa-xmark"></i></div>
-                                        </div>
-                                        <li><a href="#">Trang chủ</a></li>
-                                        <li><a href="#">Đặt phòng</a></li>
-                                        <li><a href="#">Hội họp</a></li>
-                                        <li><a href="#">Ưu đãi khuyến mãi</a></li>
-                                        <li>
-                                             <a href="#">Đăng nhập</a>
-                                        </li>
-                                        <li>
-                                             <a href="#">Đăng ký</a>
-                                        </li>
-                                   </ul>
-                              </div>
-                         </div>
-                    </div>
-                    <div class="head_mid">
-                         <div class="head_logo"><a href="#"><img src="./img/LogoTNT.png" alt="" width="100px" height="100px"></a></div>
-                    </div>
-                    <div class="head_right">
-                    </div>
-               </div>
-               <!-- Phần script cho header -->
-               <script src="./js/ultils.js"></script>
-          </div>
+          <?php 
+               include "./php/Header.php"
+          ?>
           <!-- Phần Banner -->
           <div class="Banner_Container Meeting">
                <img src="./img/banner2.jpg" alt="" class="">

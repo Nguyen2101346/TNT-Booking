@@ -22,7 +22,7 @@
 }
 .card_head{
      width: 100%;
-     height: 70px;
+     height: 100px;
      display: flex;
      justify-content: center;
      background: #000;
@@ -38,7 +38,7 @@
 .card_Login,
 .card_SignUp {
      position: absolute;
-     top: 70px;
+     top: 100px;
      left: 0;
      width: 100%;
      transition: transform 0.5s ease;
@@ -136,7 +136,7 @@ form span{
 }
 .card_Login ~ .card_footer{
      position: absolute;
-     bottom: 120px;
+     bottom: 150px;
      width: 100%;
      display: grid;
      justify-content: center;

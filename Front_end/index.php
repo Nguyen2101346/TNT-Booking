@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/slider.css">
     <link rel="stylesheet" href="./css/eat.css">
+    <link rel="stylesheet" href="./css/footer.css">
     <!-- Sử dụng fontawsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
@@ -95,11 +96,9 @@
             </div>
         </div>
         <!-- Phần footer -->
-        <div class="footer">
-            <div class="footer_container">
-
-            </div>
-        </div>
+        <?php
+            include "./php/Footer.php"
+        ?>
     </div>
     <script src="./js/Main.js"></script>
     <script src="./js/slider.js"></script>
