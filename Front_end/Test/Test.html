@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+     <style>
+     #booking-container{
+      display: none;
+     }
+     #booking-container.Open{
+          display: block;
+     }
+     </style>
+</head>
+<body>
+     <div id="booking"><span id="room_num">1</span> Phòng - <span  id="adults_num">1</span> người</div>
+
+     <div id="booking-container" > 
+          <div class="quantity">
+            <button class="quantity-control" onclick="decrementRoom()">-</button>
+            <span id="room-quantity">0</span>
+            <button class="quantity-control" onclick="incrementRoom()">+</button>
+          </div>
+     </div>
+     <div id="booking-info">
+
+     </div>
+     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+     <script>
+          var roomQuantity = 0;
+          var adultsQuantity = 1;
+
+          const Booking = document.querySelector('#booking')
+          const Table = document.querySelector('#booking-container')
+          const TabOpen = false
+          Booking.addEventListener('click', () =>{
+               if(!TabOpen == true){
+                    Table.classList.add('Open');
+                    TabOpen = true;
+               }else
+               {
+                    Table.classList.remove('Open');
+                    TabOpen = false;
+               }
+          })
+
+          function incrementRoom() {
+               roomQuantity++;
+               updateRooms();
+               document.getElementById("room_num").textContent = roomQuantity;
+               updateAdults();
+          }
+
+          function decrementRoom() {
+               if (roomQuantity > 1) {
+                    roomQuantity--;
+                    updateRooms();
+                    document.getElementById("room_num").textContent = roomQuantity;
+                    updateAdults();
+               }
+          }
+
+          function incrementQuantity(element) {
+               var quantityElement = element.previousElementSibling;
+               var currentQuantity = parseInt(quantityElement.textContent);
+               currentQuantity++;
+               quantityElement.textContent = currentQuantity;
+               updateAdults();
+          }
+
+          function decrementQuantity(element) {
+               var quantityElement = element.nextElementSibling;
+               var currentQuantity = parseInt(quantityElement.textContent);
+               if (currentQuantity > 0) {
+                    currentQuantity--;
+                    quantityElement.textContent = currentQuantity;
+                    updateAdults();
+               }
+          }
+
+          function updateRooms() {
+               var bookingContainer = document.getElementById("booking-info");
+               bookingContainer.innerHTML = '';
+               for (var i = 1; i <= roomQuantity; i++) {
+                    var roomDiv = document.createElement("div");
+                    roomDiv.className = "room-container";
+                    roomDiv.innerHTML = '<h3>Phòng ' + i + '</h3>' +
+                                        '<label>Số lượng người:</label>' +
+                                        '<button class="quantity-control" onclick="decrementQuantity(this)">-</button>' +
+                                        '<span class="quantity adults" data-type="adults">1</span>' +
+                                        '<button class="quantity-control" onclick="incrementQuantity(this)">+</button>';
+                    bookingContainer.appendChild(roomDiv);
+                    document.getElementById("room-quantity").textContent = roomQuantity;
+               }
+               updateAdults();
+          }
+
+          function updateAdults() {
+               var totalAdults = 0;
+               var quantityElements = document.querySelectorAll('.quantity[data-type="adults"]');
+               quantityElements.forEach(function(element) {
+                    totalAdults += parseInt(element.textContent);
+               });
+               document.getElementById("adults_num").textContent = totalAdults;
+          }
+
+          // Khởi tạo phòng ban đầu
+          updateRooms();
+     </script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+<body>
+     <div class="Srch Person">
+          <div class="icon"><i class="fa-solid fa-user"></i></div>
+          <div class="content">
+               <div class="title">Số phòng - Số người</div>
+               <div class="content note" id="booking"><span><span id="room_num">1</span> Phòng</span> - <span><span  id="adults_num">1</span> người</span></div>
+          </div>
+          <div id="booking-table">
+               <table>
+               <tr>
+                    <th>Số lượng phòng</th>
+               </tr>
+               <tr>
+                    <td class="quantity_contain">
+                    <button class="quantity-control" onclick="decrementRoom()">-</button>
+                    <span id="room-quantity">0</span>
+                    <button class="quantity-control" onclick="incrementRoom()">+</button>
+                    </td>
+               </tr>
+               </table>
+               <div id="booking-info"></div>
+               
+          </div>
+     </div>
+
+     <div class="navbar">
+          <h3 class="content"> Tìm kiếm theo ưu đãi</h3>
+          <h3 class="content">Đã chọn <span id="Numroom">0</span>/<span id="limit_room">1</span></h3>
+     </div>
+
+     <div class="Room_container">
+          <div class="room" data-bed-type="single">
+               <div class="img">
+                    <div class="sale-icon">
+                         <img src="./img/sale_icon.png" alt="">
+                    </div>
+                    <img src="./img/phòng1.jpg" alt="">
+               </div>
+               <div class="content">
+                    <div class="title"><a href="#">Deluxe 2 Giường Đơn</a></div>
+                    <div class="appraise">
+                         <div class="content">
+                              <div class="rating">
+                                   <span class="star">&#9733;</span>
+                                   <span class="star">&#9733;</span>
+                                   <span class="star">&#9733;</span>
+                                   <span class="star">&#9733;</span>
+                                   <span class="star">&#9733;</span>
+                              </div>
+                              <p id="result" class="sale"></p>
+                         </div>
+                    </div>
+                    <div class="category">
+                         <div class="content note">
+                              <span>
+                                   <i class="fa-solid fa-user"></i>
+                              </span>
+                              4 Người</div>
+                         <div class="content note"><span>
+                              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                         </span>45 m&sup2</div>
+                    </div>
+                    <div class="prices">
+                         <div class="prices_absolute">
+                              <div class="discountsale"></div>
+                              <div class="content">Giá: 3.130.000 VNĐ</div>
+                         </div>
+                    </div>
+                    <div class="Choose_btn">
+                         <a href="#" class="medium_btn" onclick="chooseRoom(0)">Chọn</a>
+                    </div>
+               </div>
+          </div>
+          <div class="room" data-bed-type="double">
+               <div class="img">
+                    <div class="sale-icon">
+                         <img src="./img/sale_icon.png" alt="">
+                    </div>
+                    <img src="./img/phòng1.jpg" alt="">
+               </div>
+               <div class="content">
+                    <div class="title"><a href="#">Deluxe 2 Giường Đôi</a></div>
+                    <div class="appraise">
+                         <div class="content">
+                              <div class="rating">
+                                   <span class="star">&#9733;</span>
+                                   <span class="star">&#9733;</span>
+                                   <span class="star">&#9733;</span>
+                                   <span class="star">&#9733;</span>
+                                   <span class="star">&#9733;</span>
+                              </div>
+                              <p id="result" class="sale"></p>
+                         </div>
+                    </div>
+                    <div class="category">
+                         <div class="content note">
+                              <span>
+                                   <i class="fa-solid fa-user"></i>
+                              </span>
+                              4 Người</div>
+                         <div class="content note"><span>
+                              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                         </span>45 m&sup2</div>
+                    </div>
+                    <div class="prices">
+                         <div class="prices_absolute">
+                              <div class="discountsale">Giảm: 5%</div>
+                              <div class="content">Giá: 3.130.000 VNĐ</div>
+                         </div>
+                    </div>
+                    <div class="Choose_btn">
+                         <a href="#" class="medium_btn" onclick="chooseRoom(0)">Chọn</a>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+     <div class="room_container">
+          <!-- <div class="room mini">
+               <div class="RoomNum"></div>
+               <div class="Room title"></div>
+               <div class="RoomPrice"></div>
+               <div class="Roomfix_btn">
+                    <a href="#" class="mini_btn">Chỉnh sửa</a>
+               </div> 
+          </div> -->
+     </div>
+     <div class="TotalBill">
+          <div class="title">Tổng cộng</div>
+          <div id="TotalPrice"></div>
+     </div>
+     <script>
+     var roomQuantity = 1;
+     var adultsQuantity = 1;
+
+     const Booking = document.querySelector('#booking')
+     const Table = document.querySelector('#booking-table')
+     let TabShow = false;
+     Booking.addEventListener('click', () =>{
+          if(!TabShow == true){
+               Table.classList.add('open');
+               TabShow = true;
+          }else
+          {
+               Table.classList.remove('open');
+               TabShow = false;
+          }
+     })
+
+     function incrementRoom() {
+          roomQuantity++;
+          updateRooms();
+          document.getElementById("room_num").textContent = roomQuantity;
+          updateAdults();
+     }
+     function decrementRoom() {
+          if (roomQuantity > 1) {
+               roomQuantity--;
+               updateRooms();
+               document.getElementById("room_num").textContent = roomQuantity;
+               updateAdults();
+          }
+     }
+
+     function incrementQuantity(element) {
+          var quantityElement = element.previousElementSibling;
+          var currentQuantity = parseInt(quantityElement.textContent);
+          currentQuantity++;
+          quantityElement.textContent = currentQuantity;
+          updateAdults();
+     }
+     function decrementQuantity(element) {
+          var quantityElement = element.nextElementSibling;
+          var currentQuantity = parseInt(quantityElement.textContent);
+          if (currentQuantity > 0) {
+               currentQuantity--;
+               quantityElement.textContent = currentQuantity;
+               updateAdults();
+          }
+     }
+
+     function updateRooms() {
+          var bookingContainer = document.getElementById("booking-info");
+          bookingContainer.innerHTML = '';
+          for (var i = 1; i <= roomQuantity; i++) {
+               var roomDiv = document.createElement("div");
+               roomDiv.className = "room-container";
+               roomDiv.innerHTML = '<h3>Phòng ' + i + '</h3>' +
+                                   '<div class="content">' +
+                                   '<label>Số lượng người:</label>' +
+                                   '<div class="quantity_contain">' +
+                                   '<button class="quantity-control" onclick="decrementQuantity(this)">-</button>' +
+                                   '<span class="quantity adults" data-type="adults">1</span>' +
+                                   '<button class="quantity-control" onclick="incrementQuantity(this)">+</button>' +
+                                   '</div>' + '</div>';
+               bookingContainer.appendChild(roomDiv);
+               document.getElementById("room-quantity").textContent = roomQuantity;
+               document.getElementById('limit_room').innerText = roomQuantity;
+          }
+          updateAdults();
+     }
+
+     function updateAdults() {
+          var totalAdults = 0;
+          var quantityElements = document.querySelectorAll('.quantity[data-type="adults"]');
+          quantityElements.forEach(function(element) {
+               totalAdults += parseInt(element.textContent);
+          });
+          document.getElementById("adults_num").textContent = totalAdults;
+     }
+
+     // Khởi tạo phòng ban đầu
+     updateRooms();      
+
+var selectedRooms = []; // Mảng lưu trữ thông tin của các phòng đã chọn
+
+function chooseRoom(roomIndex) {
+    var limitRoom = parseInt(document.getElementById('limit_room').innerText);
+
+    if (selectedRooms.length < limitRoom) {
+          var selectedRoom = document.querySelectorAll(".Room_container .room")[roomIndex];
+          var roomTitle = selectedRoom.querySelector(".content .title a").innerText;
+          var roomPrice = selectedRoom.querySelector(".content .prices .content").innerText;
+          var bedType = selectedRoom.dataset.bedType;
+
+          // Lấy phần số từ chuỗi giá
+          var price = parseInt(roomPrice.replace(/\D/g, '')); // Loại bỏ tất cả các ký tự không phải số
+
+        selectedRooms.push({
+            roomNum: selectedRooms.length + 1,
+            roomTitle: roomTitle,
+            roomPrice: roomPrice,
+            bedType: bedType,
+            price: price
+        });
+
+          updateSelectedRooms(); // Cập nhật hiển thị các phòng đã chọn
+          updateTotalBill();
+    } else {
+        alert("Đã đạt đến giới hạn số phòng cho phép!");
+    }
+}
+
+function updateSelectedRooms() {
+    var roomMiniContainer = document.querySelector(".room_container");
+    roomMiniContainer.innerHTML = ""; // Xóa nội dung hiện tại để cập nhật lại
+
+    selectedRooms.forEach(function(room, index) {
+        var roomMini = document.createElement("div");
+        roomMini.className = "roomMini";
+        roomMini.innerHTML = `
+            <div class="RoomNum">Phòng ${room.roomNum}</div>
+            <div class="RoomTitle">${room.roomTitle}</div>
+            <div class="RoomPrice">${room.roomPrice}</div>
+            <div class="RoomFix_btn">
+                <a href="#" class="mini_btn" onclick="editRoom(${index})">Chỉnh sửa</a>
+            </div>
+        `;
+        roomMiniContainer.appendChild(roomMini);
+    });
+
+    var roomNum = document.getElementById("Numroom");
+    roomNum.textContent = selectedRooms.length; // Cập nhật số phòng đã chọn
+}
+
+function editRoom(roomIndex) {
+    // Loại bỏ phòng đã chọn khỏi mảng selectedRooms
+    selectedRooms.splice(roomIndex, 1);
+    
+    // Cập nhật lại hiển thị các phòng đã chọn
+    updateSelectedRooms();
+    updateTotalBill();
+}
+function calculateTotalBill() {
+    var totalPrice = 0;
+    selectedRooms.forEach(function(room) {
+     totalPrice += room.price
+    });
+    return totalPrice;
+}
+
+function updateTotalBill() {
+    var totalPrice = calculateTotalBill();
+    document.getElementById("TotalPrice").textContent = "Giá : " + formatCurrency(totalPrice) ;
+}
+
+function formatCurrency(amount) {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VND";
+}
+      </script>
+</body>
+</html>

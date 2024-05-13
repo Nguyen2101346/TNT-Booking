@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <title></title>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link href="css/style.css" rel="stylesheet">
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+     </head>
+     <body>
+     
+     <div class="Srch Day">
+          <div class="icon"><i class="fa-solid fa-calendar-days" ></i></div>
+          <div class="content" >
+               <div class="title">Ngày nhận - trả phòng</div>
+               <div class="content note" id="GetDate"><span id="start">21/02/2024</span> - <span id="end">23/02/2024</span></div>
+          </div>
+          <!-- Phần Lịch ẩn gồm 2 phần -->
+          <div class="Calander">
+               <label for="start_date">Từ ngày:</label>
+               <input type="text" id="start_date">
+          
+               <label for="end_date">Đến : </label>
+               <input type="text" id="end_date">
+          </div>
+     </div>
+
+     <div class="Main_item Short">
+          <div class="Checktime">
+               <div class="title">Thời gian</div>
+               <div class="timeShow_Start"></div>
+               <div class="timeShow_End"></div>
+          </div>
+     </div>
+
+     <script>
+//      $(function() {
+//      $("#start_date").datepicker({
+//      dateFormat: 'dd/mm/yy',
+//      minDate: 0,
+//      onSelect: function(selectedDate) {
+//           $("#end_date").datepicker("option", "minDate", selectedDate);
+//           $("#start").text(selectedDate.replace(/-/g, '/'));
+//      }
+//      });
+
+//      $("#end_date").datepicker({
+//      dateFormat: 'dd/mm/yy',
+//      minDate:0,
+//      onSelect: function(selectedDate) {
+//           $("#start_date").datepicker("option", "maxDate", selectedDate);
+//           $("#end").text(selectedDate.replace(/-/g, '/'));
+//      }
+//      });
+// });
+
+// var text = document.querySelector('#start').innerText;
+
+// // Biểu thức chính quy để tìm kiếm ngày và tháng
+// var regex = /(\d{1,2})\/(\d{1,2})\/(\d{4})/;
+
+// // Sử dụng phương thức match để tìm kiếm ngày và tháng trong văn bản
+// var match = text.match(regex);
+
+// if (match !== null) {
+//     // match[0] là toàn bộ chuỗi phù hợp với biểu thức chính quy
+//     var day = parseInt(match[1], 10); // Ngày
+//     var month = parseInt(match[2], 10); // Tháng
+//     var year = parseInt(match[3], 10); // Năm
+
+//     // Tạo một đối tượng Date từ ngày, tháng và năm
+//     var date = new Date(year, month - 1, day);
+
+//     // Lấy thứ của ngày được tạo
+//     var dayOfWeek = date.getDay();
+
+//     // Mảng chứa các tên của các ngày trong tuần
+//     var days = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
+
+//     // Hiển thị ngày, thứ, tháng và năm trong phần tử có class là "result"
+//     var resultElement = document.querySelector('timeShow_Start');
+//     resultElement.innerHTML = ' Từ ' + days[dayOfWeek] + ' ngày ' + day + ' tháng ' + month + ' năm ' + year ;
+// } else {
+//     console.log('Không tìm thấy ngày và tháng trong văn bản.');  
+// }\
+$(function() {
+    $("#start_date").datepicker({
+        dateFormat: 'dd/mm/yy',
+        minDate: 0,
+        onSelect: function(selectedDate) {
+            $("#end_date").datepicker("option", "minDate", selectedDate);
+            $("#start").text(selectedDate.replace(/-/g, '/'));
+            displayDayOfWeek(selectedDate, '.timeShow_Start');
+        }
+    });
+});
+function displayDayOfWeek(dateString, targetElement) {
+    var match = dateString.match(/\d{2}\/\d{2}\/\d{4}/);
+    if (match !== null) {
+        var parts = match[0].split('/');
+        var day = parseInt(parts[0], 10);
+        var month = parseInt(parts[1], 10);
+        var year = parseInt(parts[2], 10);
+
+        // Tạo một đối tượng Date từ ngày, tháng và năm
+        var date = new Date(year, month - 1, day);
+
+        // Mảng chứa các tên của các ngày trong tuần
+        var daysOfWeek = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
+        var dayOfWeek = date.getDay(); // Lấy thứ của ngày
+
+        // Chuỗi hiển thị sẽ bao gồm thông tin về thứ, ngày, tháng và năm
+        var displayString = daysOfWeek[dayOfWeek] + ', Ngày ' + day + ' tháng ' + month + ' năm ' + year;
+
+        $(targetElement).text(displayString);
+    } else {
+        console.log('Không tìm thấy ngày hợp lệ.');
+    }
+}
+     </script>
+     </body>
+</html>

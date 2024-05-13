@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load RoomManagement.html</title>
+</head>
+<body>
+
+<div id="loadRoom" style="cursor: pointer; border: 1px solid black; padding: 10px;">
+    Nhấn vào đây để load RoomManagement.html
+</div>
+
+<div id="roomContent"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+     $(document).ready(function() {
+          $('#loadRoom').click(function() {
+              // Load RoomManagement.html
+              $.ajax({
+                  url: '../RoomManagement.html',
+                  type: 'GET',
+                  dataType: 'html',
+                  success: function(response) {
+                      // Tìm và lấy phần cần hiển thị từ response
+                      var roomContent = $(response).find('#CreRoom').html();
+                      
+                      // Hiển thị phần đã lấy trong div#roomContent
+                      $('#roomContent').html(roomContent);
+                  },
+                  error: function() {
+                      alert('Có lỗi xảy ra khi tải RoomManagement.html.');
+                  }
+              });
+          });
+      });
+</script>
+
+</body>
+</html>

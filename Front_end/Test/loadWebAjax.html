@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AJAX Example</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="../Meeting.html">
+</head>
+<body>
+
+<<h2>Load nội dung từ trang Meeting</h2>
+
+<button onclick="loadMeetingContent()">Tải nội dung Meeting</button>
+<button onclick="loadWeddingContent()">Tải nội dung Wedding</button>
+
+
+<div id="content"></div>
+
+
+<script>
+     function loadMeetingContent() {
+          $.ajax({
+               url: '../Meeting.html',  // URL của trang web bạn muốn load
+               type: 'GET',
+               dataType: 'html',
+               success: function(response) {
+                    // Lọc và lấy phần nội dung cần thiết từ response
+                    const filteredContent = $(response).find('.Event_bottom').html();
+                    
+                    // Hiển thị phần nội dung đã lọc trong div có id là "content"
+                    $('#content').html(filteredContent);
+               },
+               error: function(error) {
+                    console.log('Đã xảy ra lỗi:', error);
+               }
+          });
+     }
+     
+     function loadWeddingContent() {
+          $.ajax({
+               url: '../Wedding.html',  // URL của trang web bạn muốn load
+               type: 'GET',
+               dataType: 'html',
+               success: function(response) {
+                    // Lọc và lấy phần nội dung cần thiết từ response
+                    const filteredContent = $(response).find('.Event_bottom').html();
+                    
+                    // Hiển thị phần nội dung đã lọc trong div có id là "content"
+                    $('#content').html(filteredContent);
+               },
+               error: function(error) {
+                    console.log('Đã xảy ra lỗi:', error);
+               }
+          });
+     }
+     </script>
+
+</body>
+</html>

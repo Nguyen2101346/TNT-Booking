@@ -1,0 +1,121 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root{
+  --gray:#868080;
+  --hover:#554545;
+  --scroll:#ccc;
+}
+.img_item a h1{
+  padding: 10px 0;
+}
+.container{
+  width: 1050px;
+  padding: 0 50px;
+  margin: auto;
+  position: relative;
+}
+.slider_wrapper{
+  width: 100%;
+  margin: auto;
+}
+.slider_wrapper .slide-button{
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  top:30%;
+  color: #fff;
+  outline: none;
+  border: none;
+  background-color:var(--gray);
+  font-size: 2.2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.slider_wrapper .slide-button#prev-slide{
+  left: -0px;
+}
+.slider_wrapper .slide-button#next-slide{
+  right: -0px;
+}
+
+.slider_wrapper .slide-button:hover{
+  background-color: var(--hover);
+}
+.slider_wrapper .img_list{
+  width: 100%;
+  display: grid;
+  gap: 50px;
+  margin-bottom: 20px;
+  grid-template-columns: repeat(7, 1fr);
+  overflow-x: auto; 
+  scrollbar-width: none;
+}
+.slider_wrapper .img_list::-webkit-scrollbar{
+  display: none;
+}
+.slider_wrapper .img_list .img_item>img{
+ width: 450px;
+ height: 300px;
+ object-fit: cover;
+}
+.container .slider_scrollbar{
+  height: 24px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  /* background: red; */
+}
+.slider_scrollbar .scrollbar_track{
+  height: 2px;
+  width: 100%;
+  margin: auto;
+  background: var(--scroll);
+  position: relative;
+  border-radius: 4px;
+}
+.slider_scrollbar:hover .scrollbar_track{
+  height: 4px;
+}
+.slider_scrollbar .scrollbar_thumb{
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  margin: auto;
+  background: #000;
+  border-radius: inherit;
+  cursor: grab;
+}
+.slider_scrollbar .scrollbar_thumb:active{
+  cursor: grab;
+  height: 8px;
+  top:-2px;
+}
+.slider_scrollbar .scrollbar_thumb::after{
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  top:-10px;
+  bottom: -10px;
+}
+@media (max-width: 1023px){
+  .slider_wrapper .slide-button{
+    display: none !important;
+  }
+  .slider_wrapper .img_list{
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .slider_wrapper .img_list .img_item>img{
+    width: 480px;
+    height: 380px;
+  }
+  .slider_scrollbar .scrollbar_thumb {
+    width: 20%;
+  }
+}

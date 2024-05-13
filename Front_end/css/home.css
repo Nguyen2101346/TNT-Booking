@@ -1,0 +1,26 @@
+/* Đoiều chỉnh các phần bên trong trang chủ */
+.content_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.SlideRoombook_container,.SlideRoomeat_container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.SlideRoomeat_container{
+    background: var(--bgSearch);
+}
+.content_title{
+    width:var(--container-w-px);
+    padding: 30px 50px;
+}
+.room_eat,.room_book{
+    width: var(--container-w-px);
+}

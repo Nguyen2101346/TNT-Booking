@@ -1,0 +1,118 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root{
+  --gray:#868080;
+  --hover:#554545;
+  --scroll:#ccc;
+}
+.container_eat{
+  width: 1050px;
+  padding: 0 50px;
+  margin: auto;
+  position: relative;
+}
+.eat_wrapper{
+  width: 100%;
+  margin: auto;
+}
+.eat_wrapper .eat-button{
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  top:30%;
+  color: #fff;
+  outline: none;
+  border: none;
+  background-color:var(--gray);
+  font-size: 2.2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.eat_wrapper .eat-button#prev-eat{
+  left: 0px;
+}
+.eat_wrapper .eat-button#next-eat{
+  right: 0px;
+}
+
+.eat_wrapper .eat-button:hover{
+  background-color: var(--hover);
+}
+.eat_wrapper .img_list{
+  width: 100%;
+  display: grid;
+  gap: 50px;
+  margin-bottom: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  overflow: auto;
+  scrollbar-width: none;
+}
+.eat_wrapper .img_list::-webkit-scrollbar{
+  display: none;
+}
+.eat_wrapper .img_list .img_item>img{
+ width: 450px;
+ height: 300px;
+ object-fit: cover;
+}
+.container_eat .eat_scrollbar{
+  height: 24px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+
+}
+.eat_scrollbar .scrollbar_track_eat{
+  height: 2px;
+  width: 100%;
+  margin: auto;
+  background: var(--scroll);
+  position: relative;
+  border-radius: 4px;
+}
+.eat_scrollbar:hover .scrollbar_track_eat{
+  height: 4px;
+}
+.eat_scrollbar .scrollbar_thumb_eat{
+  position: absolute;
+  height: 100%;
+  width: 50%;
+  margin: auto;
+  background: #000;
+  border-radius: inherit;
+  cursor: grab;
+}
+.eat_scrollbar .scrollbar_thumb_eat:active{
+  cursor: grab;
+  height: 8px;
+  top:-2px;
+}
+.eat_scrollbar .scrollbar_thumb_eat::after{
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  top:-10px;
+  bottom: -10px;
+}
+@media (max-width: 1023px){
+  .eat_wrapper .eat-button{
+    display: none !important;
+  }
+  .eat_wrapper .img_list{
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .eat_wrapper .img_list .img_item>img{
+    width: 480px;
+    height: 380px;
+  }
+  .eat_scrollbar .scrollbar_thumb_eat {
+    width: 20%;
+  }
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chọn ưu đãi</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+#mySelect option {
+  background-color: white; /* Màu nền mặc định */
+}
+
+/* Khi hover */
+#mySelect option:hover {
+  background-color: yellow; /* Màu nền khi hover */
+}
+</style>
+</head>
+<body>
+
+  <select id="mySelect">
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+  var selectElement = document.getElementById('mySelect');
+  var options = selectElement.options;
+
+  for (var i = 0; i < options.length; i++) {
+    options[i].addEventListener('mouseenter', function() {
+      this.style.backgroundColor = 'yellow';
+    });
+    options[i].addEventListener('mouseleave', function() {
+      this.style.backgroundColor = 'white';
+    });
+  }
+});
+</script>
+</body>
+</html>

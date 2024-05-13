@@ -1,0 +1,592 @@
+*{
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+     font-family: Inter, sans-serif;
+}
+body{
+     position: relative;
+     display: flex;
+     justify-content: center;
+}
+:root{
+     --white : #fff;
+     --bgHeader: linear-gradient(180deg,rgba(0,0,0,0.56) 0%,rgba(0,0,0,0) 100%);
+     --bgHeader2: #E8952F;
+     --yellow1: #FAB005;
+     --orange1: #FD8C42;
+     --orange2: #FBC7A5;
+     --orange3: #FC8233;
+     --orange4: #EAA044;
+     --red1: #FE4B4B;
+     --blue1 : #2d77d8;
+     --blue2 : #4472C4;
+     --blue3 : #197CCD;
+     --green1: #008B6A;
+     --green3: #00A77F;
+     --green2: rgba(5,79,53,0.9);
+     --green4:#74B230;
+     --text1: #272727;
+     --grey1: rgb(87, 86, 86);
+     --grey2: rgba(224, 224, 224, 0.918);
+     --grey3: rgba(180, 180, 180, 0.89);
+     --orangeGradien1: linear-gradient(180deg,#FF744A 0%,rgba(255,116,74,0) 100%);
+     --instagramGradient: linear-gradient(45deg, rgb(206, 206, 50), rgb(207, 46, 73) 40%, #7A47B5 80%,#4C57CE 90%);
+     --basicGradient1--galaxy : linear-gradient(to right top, #0014ff , #ff2cdf);
+     --basicGradient2--galaxy : linear-gradient(to right top, #ff0a6c , #2d27ff);
+     --basicGradient3--neon : linear-gradient(180deg, #035755 , #00FFFB);
+     --container-w: 1140;
+     --container-w-px: 1140px;
+}
+.Container{
+     width: 100%;
+     height: auto;
+     /* min-height: 1000px; */
+}
+ul{     
+     display: flex;
+     width: 100%;
+}
+li{
+     list-style:none;
+}
+a{
+     /* Muốn thay đổi chữ theo ý thì thay đổi ở đây */
+     position: relative;
+     color: #000;
+     font-size: 18px;
+     text-decoration: none;
+     transition: 0.5s ease;
+}
+.title{
+     position: relative;
+     font-size: 16px;
+     font-weight: bold;
+}
+.title.large{
+     position: relative;
+     font-size: 20px;
+     font-weight: 700;
+}
+.content{
+     position: relative;
+     font-size: 14px;
+     padding: 10px;
+}
+.content.note {
+     position: relative;
+     display: grid;
+     font-size: 12px;
+     display: flex;
+}
+.mini_btn{
+     font-size: 12px;
+     font-weight: bold;
+}
+.medium_btn{
+     padding: 10px 40px;
+     font-size: 15px!important;
+     border-radius: 5px;
+     font-weight: bold;
+     border: 2px solid var(--orange1);
+     background: var(--orange1);
+     color: var(--white)!important;
+     display: flex;
+     justify-content: center!important;
+     align-items: center;
+}
+.medium_btn:hover {
+     border: 2px solid var(--orange1);
+     background: var(--orange2);
+     color: var(--orange1)!important;
+}
+.large_btn{
+     padding: 10px 20px;
+     font-size: 15px!important;
+     font-weight: bold;
+     border-radius: 5px;
+     border: 2px solid var(--orange1);
+     background: var(--white);
+     color: var(--orange1)!important;
+     display: flex;
+     justify-content: center!important;
+     align-items: center;
+}
+.large_btn:hover {
+     border: 2px solid var(--orange1);
+     background: var(--orange1);
+     color: var(--white)!important;
+}
+input[type = 'submit']{
+     padding: 20px 40px;
+     font-size: 20px;
+     font-weight: bold;
+     border-radius: 5px;
+     background: var(--white);
+     display: flex;
+     justify-content: center!important;
+     align-items: center;
+     color: #fff;
+     width: 100%;
+}
+/* input[type = 'submit']:hover{
+} */
+.btn{
+     padding: 20px 40px;
+     font-size: 20px;
+     font-weight: bold;
+     border-radius: 5px;
+     background: var(--white);
+     display: flex;
+     justify-content: center!important;
+     align-items: center;
+     color: #fff;
+     width: 100%;
+}
+/*============================================ PHẦN HEADER CHUNG ============================================ */
+.Container{
+     width: 100%;
+     height: auto;
+}
+.header,.body,.footer{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     transition: background-color 0.5s;
+}
+.header{
+     /* Phần background chỉnh thay đổi màu ở đây */
+     background:var(--blue3);
+     z-index: 100;
+     /* position: fixed; */
+}
+.header .head_container,
+.body .container{
+     width: 1050px;
+     /* width: 1050px; */
+     display: flex;
+     justify-content: space-between;
+     align-items: center;     
+     /* border: 1px solid #fff; */
+}
+.container{
+     flex-direction: column;
+}
+.head_container .head_left,
+.head_container .head_right{
+     flex-basis: 46%;
+     /* border: 1px solid #fff; */
+     display: flex;
+     justify-content: center;
+}
+/* Phần bên trái của header*/
+.head_container .head_left{
+     justify-content: left;
+}
+.head_container .head_left ul{
+     width: 100%;
+}
+.head_container .head_left ul li {
+     /* margin-right: 95px; */
+     flex-basis: calc(100% / 3);
+}
+.head_left a,
+.head_right a {
+     color: #fff;
+     position: relative;
+}
+.head_container .head_left ul li a::after {
+     content: '';
+     position: absolute;
+     width: 0;
+     bottom: -10px;
+     height: 3px;
+     background: #fff;
+     left: 0;
+     border-radius: 1px;
+     transition: 0.5s ease-out;
+}
+.head_container .head_left ul li:hover a::after {
+     width: 100%;
+     background: var(--orange1);
+}
+.head_container .head_left ul li:hover a {
+     color: var(--orange1);
+}
+/* Phần bên phải của header */
+.head_container .head_right{
+     width: 100%;
+     justify-content: right;
+     text-align: right;
+     /* align-items: end; */
+}
+.head_container .head_right ul {
+     width: 100%;
+     display: flex;
+     justify-content: right;
+     align-items: center;
+}
+.head_container .head_right ul li {
+     flex-basis: 50%;
+}
+.admin-id{
+     position:relative;  
+     display:flex;
+     justify-content: end;
+     align-items: center ;
+}
+.head_right ul li span.img-id{
+     display:flex;
+     width:50px;
+     height:50px;
+     background:#008B6A;
+     border-radius: 50%;
+}
+.head_container .head_right ul li span{
+     color: #fff;
+     margin: 0 10px;
+     font-size: 20px;
+}
+.head_container .head_right ul li a::after {
+     content: '';
+     position: absolute;
+     width: 0;
+     bottom: -10px;
+     height: 3px;
+     background: #fff;
+     right: 0;
+     border-radius: 1px;
+     transition: 0.5s ease-out;
+}
+.head_container .head_right ul a:hover::after {
+     width: 100%;
+     background: var(--orange1);
+}
+.head_container .head_right ul a:hover  {
+     color: var(--orange1);
+}
+.miniAdmin-menu {
+     width: 150px !important;;
+     display: none!important;
+     visibility:hidden;
+     position:absolute;
+     top:60px;
+     right:0;
+     grid-template-columns: 1fr;
+     grid-template-rows: 1fr 1fr;
+     z-index: 9;
+     background:#fff;
+     border:2px solid var(--blue3);
+     border-radius: 10px;
+}
+.miniAdmin-menu::before{
+     content:'';
+     position:absolute;
+     top:-11px;
+     right:20px;
+     background:#fff;
+     width: 20px;
+     height:20px;
+     transform:rotateZ(45deg);
+     border-top: 2px solid var(--blue3);
+     border-left: 2px solid var(--blue3);
+     z-index: -1;
+}
+.admin-id:hover .miniAdmin-menu{
+     display: grid!important;
+     visibility:visible;
+}
+.miniAdmin-menu li{
+     display:flex;
+     padding:15px 10px;
+}
+.miniAdmin-menu li:hover{
+     background: var(--blue3);
+}
+.miniAdmin-menu li:hover .miniAdmin-menu::before{
+     background: var(--blue3);
+}
+.miniAdmin-menu a{
+     color:var(--blue3);
+}
+.miniAdmin-menu li:hover a{
+     color:#fff
+}
+/* Phần để cho css để chuyển màu menu */
+.header.scrolled{
+     background: #000;
+     opacity: 0.98;
+}
+.header.scrolled .head_left ul li a,.header.scrolled .head_right ul li a {
+     color: #fff;
+}
+.header.scrolled .head_left ul li:hover a,
+.header.scrolled .head_right ul li:hover a {
+     color: var(--orange1);
+}
+/* Phần chỉnh header theo định dạng iphone 14 Pro Max */
+.head_container.phone{
+     display: none;
+}
+.head_container.phone .mini_nav{
+     display: none;
+}
+.head_container.phone .head_left{
+     display: flex;
+     justify-content: left;
+     align-items: center;
+}
+/* NUT HAMBERGUR mini menu */
+.head_container.phone .MiniMenu {
+     position: fixed;
+     z-index: 100000;
+}
+.head_container.phone .MiniMenu_button{
+     margin: 0px 10px;
+     position: relative;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 50px;height: 50px;
+     cursor: pointer;
+     transition: all .5s ease-in-out;
+     display: flex;
+}
+.head_container.phone .MiniMenu_button .ham-btn__burger i {
+     color: #fff;
+     font-size: 1.3em;
+}
+
+/*Chinh phần mininav  */
+.head_container.phone .mini_nav{
+     /* display: none;  */
+     transition:width 2s;
+     position: fixed;
+     left: -260px;
+}
+
+.head_container.phone .mini_nav.toggle{
+     display: block;
+     height: 100%;
+     flex-direction: column;
+     width: 250px;
+     background: #000;
+     position: fixed;
+     top: 0; left: 0px;
+     transition: width 2s!important;
+}
+
+.head_container.phone  .mini_nav .MiniMenu_button.exit{
+     margin-top: 25px;
+     transform: translateX(190px);
+}
+
+.head_container.phone  .mini_nav li{
+     list-style: none;
+     padding: 20px ;
+     transition: 0.5s;
+}
+.head_container.phone  .mini_nav li:hover a {
+     color:var(--orange1);
+}
+.head_container.phone  .mini_nav li a {
+     color: #fff;
+     text-decoration: none;
+}
+/* ------------------------------------  Phần để chuyển đổi trang  ------------------------------------------*/
+.Change{
+     width: 100%;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     margin: 50px 0 40px;
+}
+.EventChange{
+     position: relative;
+}
+.EventChange a::after{
+     content: '';
+     position: absolute;
+     bottom: -13px;
+     left: 0;
+     height: 3px;
+     width: 0%;
+     background: var(--blue3);
+     transition: 0.5s ease-in-out;
+}
+.EventChange a:hover,.EventChange.click{
+     color: var(--blue3);
+}
+.EventChange a:hover:after,.EventChange.click{
+     width: 100%;
+     color: var(--blue3);
+}
+/*=================================  Thanh chọn loại phòng chung  ============================================*/
+.TypeBar{
+     display: flex;
+}
+.TypeCheck {
+     position: relative;
+     width: 350px;
+     font-size: 20px;
+     border-radius: 0;
+     border: 2px solid var(--blue3);
+     background: var(--blue3);
+}
+.TypeCheck span{
+     position: absolute;
+     font-size: 1.2em;
+     right: 10px;
+     transition: 0.5s;
+}
+.TypeCheck:hover span{
+     transform: rotateZ(-180deg);
+}
+.CreType a{
+     border-radius: 0;
+     font-size: 20px;
+     background: var(--green4);
+     border-color: var(--green4);
+}
+.TypeBar ul{
+     position: absolute;
+     visibility: hidden;
+     opacity: 0;
+     transition: 0.5s;
+     display: flex;
+     flex-direction: column;
+     background: var(--white);
+     z-index: 2;
+     top: 55px;
+     border: 1px solid var(--grey3);
+     border-radius: 10px;
+}
+.TypeBar ul::after{
+     content: '';
+     position: absolute;
+     border-top: 1px solid var(--grey3);
+     border-left:  1px solid var(--grey3);
+     width: 20px;
+     height: 20px;
+     background: var(--white);
+     right: 10px;
+     top: -10px;
+     transform: rotateZ(45deg);
+     z-index: -10;
+}
+.TypeCheck:hover ul{
+     visibility: visible;
+     opacity: 1;
+}
+.TypeCheck li {
+     padding: 15px 10px;
+     border-bottom:1px solid var(--grey3) ;
+}
+.TypeCheck ul li:hover {
+     background: var(--blue3);
+}
+.TypeCheck ul li:hover a{
+     color: #fff;
+}
+.TypeCheck li:first-child{
+     border-top-left-radius: 10px;
+     border-top-right-radius: 10px;
+}
+.TypeCheck li:last-child{
+     border-bottom-left-radius: 10px;
+     border-bottom-right-radius: 10px;
+     border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width: 991px){
+     /* Phần header */
+     .head_container.desktop{
+          display: none;
+     }
+     .head_container.phone{
+          display: flex;
+     }
+     /* Phần body */
+     .large_btn{
+          padding: 5px 10px;
+          font-size: 10px;
+     }
+     .SearchBar i{
+          font-size: 15px;
+     }
+     .SearchBar .title{
+          font-size: 13px;
+     }
+     .SearchBar .content.note{
+          font-size: 10px;
+     }
+}

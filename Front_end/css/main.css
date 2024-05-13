@@ -1,0 +1,1001 @@
+*{
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+     font-family: Inter, sans-serif;
+}
+body{
+     position: relative;
+     display: flex;
+     justify-content: center;
+}
+:root{
+     --white : #fff;
+     --bgHeader: linear-gradient(180deg,rgba(0,0,0,0.56) 0%,rgba(0,0,0,0) 100%);
+     --bgHeader2: #E8952F;
+     --bgSearch: #FFF1D6;
+     --yellow1: #FAB005;
+     --orange1: #FD8C42;
+     --orange2: #FBC7A5;
+     --orange3: #FC8233;
+     --orange4: #EAA044;
+     --red1: #FE4B4B;
+     --blue1 : #2d77d8;
+     --blue2 : #4472C4;
+     --green1: #008B6A;
+     --green3: #00A77F;
+     --green2: rgba(5,79,53,0.9);
+     --text1: #272727;
+     --grey0: #767171;
+     --grey1: rgb(87, 86, 86);
+     --grey2: rgba(224, 224, 224, 0.918);
+     --grey3: rgba(180, 180, 180, 0.89);
+     --orangeGradien1: linear-gradient(180deg,#FF744A 0%,rgba(255,116,74,0) 100%);
+     --instagramGradient: linear-gradient(45deg, rgb(206, 206, 50), rgb(207, 46, 73) 40%, #7A47B5 80%,#4C57CE 90%);
+     --basicGradient1--galaxy : linear-gradient(to right top, #0014ff , #ff2cdf);
+     --basicGradient2--galaxy : linear-gradient(to right top, #ff0a6c , #2d27ff);
+     --basicGradient3--neon : linear-gradient(180deg, #035755 , #00FFFB);
+     --container-w: 1140;
+     --container-w-px: 1050px;
+}
+img{
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+}
+input[type = "submit"]{
+     cursor: pointer;
+}
+.error-p,.correct-p{
+     display: flex;
+     justify-content: start;
+}
+.error-p .content{
+     padding: 5px 10px;
+     color: red;
+}
+.correct-p .content{
+     padding: 5px 10px;
+     color: green;
+}
+img{
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     background-repeat: no-repeat;
+}
+.Container{
+     width: 100%;
+     /* height: auto; */
+     min-height: 1000px;
+}
+ul{     
+     display: flex;
+     width: 100%;
+}
+li{
+     list-style:none;
+}
+a{
+     /* Muốn thay đổi chữ theo ý thì thay đổi ở đây */
+     position: relative;
+     color: #000;
+     font-size: 18px;
+     text-decoration: none;
+}
+.title{
+     position: relative;
+     font-size: 20px;
+     font-weight: bold;
+}
+.title.large{
+     position: relative;
+     font-size: 24px;
+     font-weight: bold;
+}
+.content{
+     position: relative;
+     font-size: 14px;
+     padding: 10px;
+}
+.content.note {
+     position: relative;
+     display: grid;
+     font-size: 12px;
+     display: flex;
+}
+.mini_btn{
+     font-size: 12px;
+     font-weight: bold;
+}
+.medium_btn{
+     padding: 10px 40px;
+     font-size: 15px!important;
+     border-radius: 5px;
+     font-weight: bold;
+     border: 2px solid var(--orange1);
+     background: var(--orange1);
+     color: var(--white)!important;
+     display: flex;
+     justify-content: center!important;
+     align-items: center;
+}
+.medium_btn:hover {
+     border: 2px solid var(--orange1);
+     background: var(--orange2);
+     color: var(--orange1)!important;
+}
+.large_btn{
+     padding: 10px 20px;
+     font-size: 15px!important;
+     font-weight: bold;
+     border-radius: 5px;
+     border: 2px solid var(--orange1);
+     background: var(--white);
+     color: var(--orange1)!important;
+     display: flex;
+     justify-content: center!important;
+     align-items: center;
+}
+.large_btn:hover {
+     border: 2px solid var(--orange1);
+     background: var(--orange1);
+     color: var(--white)!important;
+}
+/*============================================ PHẦN HEADER CHUNG ============================================ */
+.Sale_Container,.Payment_Container{
+     width: 100%;
+     height: auto;
+}
+.header,.body,.footer{
+     width: 100%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     transition: background-color 0.5s;
+}
+.header{
+     /* Phần background chỉnh thay đổi màu ở đây */
+     background:#000;
+     z-index: 100;
+     /* position: fixed; */
+}
+.header .head_container,
+.body .body_container{
+     width: 1050px;
+     /* width: 1050px; */
+     display: flex;
+     justify-content: space-between;
+     align-items: center;     
+     /* border: 1px solid #fff; */
+}
+.body_container{
+     flex-direction: column;
+}
+.head_container .head_left,
+.head_container .head_right{
+     flex-basis: 46%;
+     /* border: 1px solid #fff; */
+     display: flex;
+     justify-content: center;
+}
+/* Phần bên trái của header*/
+.head_container .head_left{
+     justify-content: left;
+}
+.head_container .head_left ul{
+     width: 100%;
+}
+.head_container .head_left ul li {
+     /* margin-right: 95px; */
+     flex-basis: calc(100% / 3);
+}
+.head_left a,
+.head_right a {
+     color: #fff;
+     position: relative;
+     font-weight: bold;
+}
+.head_container .head_left ul li a::after {
+     content: '';
+     position: absolute;
+     width: 0;
+     bottom: -10px;
+     height: 3px;
+     background: #fff;
+     left: 0;
+     border-radius: 1px;
+     transition: 0.5s ease-out;
+}
+.head_container .head_left ul li:hover a::after {
+     width: 100%;
+     background: var(--orange1);
+}
+.head_container .head_left ul li:hover a {
+     color: var(--orange1);
+}
+/* Phần giữa logo */
+.head_logo{
+     width: 70px;
+     height: 70px;
+}
+/* Phần bên phải của header */
+.head_container .head_right{
+     width: 100%;
+     justify-content: right;
+     text-align: right;
+     /* align-items: end; */
+}
+.head_container .head_right ul {
+     width: 100%;
+     display: flex;
+     justify-content: right;
+}
+.head_container .head_right ul li {
+     flex-basis: 50%;
+     display: flex;
+     justify-content: right;
+     align-items: center;
+}
+.head_container .head_right ul li span{
+     color: #fff;
+     margin: 0 10px;
+     font-size: 20px;
+}
+.head_container .head_right ul li a::after {
+     content: '';
+     position: absolute;
+     width: 0;
+     bottom: -10px;
+     height: 3px;
+     background: #fff;
+     right: 0;
+     border-radius: 1px;
+     transition: 0.5s ease-out;
+}
+.head_container .head_right ul a:hover::after {
+     width: 100%;
+     background: var(--orange1);
+}
+.head_container .head_right ul a:hover  {
+     color: var(--orange1);
+}
+/* Phần sau khi đăng nhập */
+.Member-id{
+     display: flex;
+     justify-content: right;
+}
+.Member-id .img-id{
+   width: 50px;
+   height: 50px;  
+   border-radius: 50%;
+}
+.img-id img{
+     border-radius: 50%;
+}
+.miniMember-menu{
+     display: none!important;
+}
+/* Phần để cho css để chuyển màu menu */
+.header.scrolled{
+     background: #000;
+     opacity: 0.98;
+}
+.header.scrolled .head_left ul li a,.header.scrolled .head_right ul li a {
+     color: #fff;
+}
+.header.scrolled .head_left ul li:hover a,
+.header.scrolled .head_right ul li:hover a {
+     color: var(--orange1);
+}
+/* Phần chỉnh header theo định dạng iphone 14 Pro Max */
+.head_container.phone{
+     display: none;
+}
+.head_container.phone .mini_nav{
+     display: none;
+}
+.head_container.phone .head_left{
+     display: flex;
+     justify-content: left;
+     align-items: center;
+}
+/* NUT HAMBERGUR mini menu */
+.head_container.phone .MiniMenu {
+     position: fixed;
+     z-index: 100000;
+}
+.head_container.phone .MiniMenu_button{
+     margin: 0px 10px;
+     position: relative;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 50px;height: 50px;
+     cursor: pointer;
+     transition: all .5s ease-in-out;
+     display: flex;
+}
+.head_container.phone .MiniMenu_button .ham-btn__burger i {
+     color: #fff;
+     font-size: 1.3em;
+}
+
+/*Chinh phần mininav  */
+.head_container.phone .mini_nav{
+     /* display: none;  */
+     transition:width 2s;
+     position: fixed;
+     left: -260px;
+}
+
+.head_container.phone .mini_nav.toggle{
+     display: block;
+     height: 100%;
+     flex-direction: column;
+     width: 250px;
+     background: #000;
+     position: fixed;
+     top: 0; left: 0px;
+     transition: width 2s!important;
+}
+
+.head_container.phone  .mini_nav .MiniMenu_button.exit{
+     margin-top: 25px;
+     transform: translateX(190px);
+}
+
+.head_container.phone  .mini_nav li{
+     list-style: none;
+     padding: 20px ;
+     transition: 0.5s;
+}
+.head_container.phone  .mini_nav li:hover a {
+     color:var(--orange1);
+}
+.head_container.phone  .mini_nav li a {
+     color: #fff;
+     text-decoration: none;
+}
+/*================================================= PHẦN BODY =============================================== */
+.body_container{
+     /* margin-top: 110px; */
+     display: flex;
+     justify-content: center!important;
+}
+/*============================================ PHẦN SEARCH CHUNG ============================================ */
+.SearchBar_container{
+     width: 100%;
+     height: auto;
+     display: flex;
+     justify-content: center;
+     background: var(--bgSearch);
+     z-index: 99;
+}
+.SearchBar_container.scrolled{
+     position: fixed;
+     top: 0;
+}
+.SearchBar{
+     display: flex;
+     justify-content: space-between;
+     width: 1050px;
+     height:70px ;
+}
+.SearchBar .Srch {
+     position: relative;
+     padding: 10px 0;
+     border-right: 1px solid rgb(219, 219, 219);
+     flex-basis: 29%;
+     display: flex;
+     font-size: 17px;
+     justify-content: left;
+     color: var(--grey1); 
+}
+.SearchBar .Srch.Preferential,.Srch.Search_Btn{
+     border: none;
+}
+.SearchBar .content{
+     flex-direction: column;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+#GetDate{
+     display: grid;
+     grid-template-columns: 1fr auto 1fr;
+}
+.SearchBar .Srch .icon{
+     margin: 10px;
+     display: flex;
+     justify-items: center;
+     align-items: center;
+     transform: translateY(-20%);
+}
+.SearchBar .Srch .icon i{
+     color: var(--grey0) ;
+     font-size: 23px;
+}
+.Srch .title{
+     font-weight: bold;
+     color: var(--grey0);
+}
+.SearchBar .Srch:hover .icon i,.SearchBar .Srch:hover .title{
+     color: var(--orange1);
+}
+.Srch.Search_Btn{
+     display: flex;
+     justify-content: right;
+     /* margin-right: 90px; */
+     flex-basis: 15%;
+}
+.Srch.Search_Btn .large_btn{
+     width: 100%;
+}
+/* Chỉnh riêng phần Calander cho khu tìm kiếm bằng ngày tháng */
+
+.Srch.Day #GetDate{
+     position: relative;
+     cursor: pointer;
+}
+.Calander{
+     display: none;
+}
+.Calander label{
+     font-size: 15px;
+     font-weight: bold;
+}
+.Calander input[type = text]{
+     border: none;
+     background: transparent;
+     border-bottom:2px solid var(--orange1) ;
+     outline: none;
+     width: 70px;
+}
+.Srch.Day .Calander.toggle{
+     padding: 10px;
+     position: absolute;
+     top: 70px;
+     display: block;
+     background: #f3f3f3;
+     width: 100%;
+     height: 50px;
+     border: 1px solid #bbbbbb;
+     border-radius: 5px;
+     z-index: 99;
+}
+.SearchBar_container.scrolled .Calander.toggle{
+     top: 70px;
+}
+/* Calander sử dụng bằng JQuerry */
+     .ui-datepicker {
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+     }
+     
+     .ui-datepicker-header {
+     width: 100%;
+     border-bottom:  2px solid #FD8C42;
+     /* color: #fdfbfb; */
+     /* border-radius: 10px; */
+     }
+     .ui-datepicker .ui-datepicker-next,
+     .ui-datepicker .ui-datepicker-prev{
+     border-radius: 50%;
+     width: 1.5em!important;
+     height: 1.5em!important;
+     }
+     .ui-datepicker-title {
+     font-weight: bold;
+     }
+     
+     .ui-datepicker-calendar th {
+     background: #fdfbfb;
+     /* color: #fff; */
+     border-radius: 10px;
+     }
+     .ui-datepicker-week-end span{
+          color: rgb(133, 2, 2);
+     }
+     .ui-datepicker-calendar td {
+     padding: 0.4em;
+     background: #fff;
+     border-radius: 50%;
+     }
+     .ui-datepicker-calendar td .ui-state-default{
+     display: flex;
+     border: none;
+     justify-content: center;
+     align-items: center;
+     border-radius: 10px;
+     font-weight: bold;
+     font-size: 15px;
+     }
+     .ui-state-highlight{
+          border: #fc1b1b!important;
+          background: #fc1b1b!important;
+          color: #fff!important;
+     }
+     .ui-datepicker-today {
+          background-color: #efe8f3 !important;
+     }
+     
+     .ui-datepicker-group {
+          border: none;
+     }
+     
+     /* Tùy chỉnh màu khi hover trên ngày */
+     .ui-datepicker-calendar td:hover a{
+          background-color: #FD8C42;
+          color: #fff;
+     }
+     
+     /* Tùy chỉnh màu cho ngày đã chọn */
+     .ui-datepicker-calendar .ui-state-active {
+          background-color: #FD8C42 !important;
+          color: #fff !important;
+          border:#FD8C42 ;
+     }
+     
+     /* Tùy chỉnh màu cho ngày hợp lệ */
+     .ui-datepicker-calendar .ui-state-default {
+          color: #333;
+     }
+     
+     /* Tùy chỉnh màu cho ngày không hợp lệ */
+     .ui-datepicker-calendar .ui-state-disabled {
+          color: #ccc;
+     }
+     
+     /* Tùy chỉnh màu khi hover trên nút */
+     .ui-datepicker-prev:hover, .ui-datepicker-next:hover {
+          background-color: #fff;
+          border:1px solid #FD8C42;
+          height: 1.5em;
+          width: 1.5em;
+     }
+     
+     /* Tùy chỉnh màu của nút */
+     .ui-datepicker-prev, .ui-datepicker-next {
+          background-color: #f0f0f0;
+          color: #333;
+          border: 1px solid #ccc;
+          padding: 3px 6px;
+          border-radius: 3px;
+     }
+     
+     /* Ẩn phần khung điều chỉnh tháng */
+     .ui-datepicker .ui-datepicker-group {
+          display: none;
+     }
+/* Phần Số người - Số phòng */
+#booking{
+     display: grid;
+     grid-template-columns: 1fr 0.5fr 1fr;
+     text-align: center;
+}
+/* Booking Table */
+#booking-table{
+     display: none;
+}
+#booking-table.open{
+     padding: 10px;
+     position: absolute;
+     top: 70px;
+     display: block;
+     background: #f3f3f3;
+     width: 300px;
+     height: 220px;
+     border: 1px solid #bbbbbb;
+     border-radius: 5px;
+     z-index: 99;
+}
+.SearchBar_container.scrolled #booking-table.open{
+     top: 70px;
+}
+#booking-table.open table{
+     width: 100%;
+     margin: 10px 0 20px;
+     display: flex;
+     justify-content: left;
+     border-bottom: 2px solid var(--orange1);
+}
+#booking-table.open td{
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+     margin: 10px 0;
+}
+/* Các phòng nhỏ */
+#booking-table.open .quantity-control{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     width: 30px;height: 30px;
+     border-radius: 50%;
+     border: none;
+     background: #fff;
+     box-shadow: 0 0 3px #c0bfbf;
+     font-weight: bold;
+}
+#booking-table.open .quantity-control:hover{
+     color: #fff;
+     background: var(--orange1);
+}
+#booking-info{
+     overflow-y: scroll;
+     height: 75px; 
+}
+#booking-info::-webkit-scrollbar {
+     width: 12px; /* chiều rộng của scrollbar */
+ }
+ 
+ #booking-info::-webkit-scrollbar-thumb {
+     background-color: var(--orange1); /* màu của "nút" trên scrollbar */
+     border-radius: 6px; /* bo góc cho "nút" */
+ }
+ 
+ /* For Firefox */
+ /* Note: Firefox cần có thuộc tính overflow-x hoặc overflow-y được thiết lập thành 'scroll' hoặc 'auto' để scrollbar có thể hiển thị */
+ #booking-info::-moz-scrollbar {
+     width: 12px;
+ }
+ #booking-info::-ms-scrollbar-thumb {
+     background-color: #888;
+     border-radius: 6px;
+ }
+.room-container{
+     width: 100%;
+     grid-template-rows: 1fr 1fr 1fr;
+     border-bottom:2px solid #888;
+}
+.room-container h3{
+     position: relative;
+     width: 100px;
+}
+.room-container h3:hover{
+     color: var(--orange1);
+}
+.room-container h3::after{
+     content: '';
+     position: absolute;
+     width: 100%;height: 2px;
+     left: -198px;top: 25px;
+     background: var(--orange1);
+     transition: .75s;
+}
+.room-container h3:hover::after{
+     left: 0;
+}
+.room-container .content{     
+     display: grid;
+     grid-template-columns: 1.5fr 1fr;
+}
+
+.content .quantity_contain{
+     width: 100%;
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr;
+}
+.quantity_contain span{
+     display: flex;
+     justify-content: center;
+     align-self: center;
+}
+/* Phần ưu đãi */
+
+#discountSelect{
+     display: none;
+     position: relative;
+}
+#discountSelect.show{
+     display: block;
+     position: absolute;
+     width: 100px;
+     border: none;
+     top: 25px;left: 10px;
+     background: #FFF1D6;
+}    
+#discountSelect option.hover{
+     background: var(--orange1)!important;
+}
+/*============================================ THÀNH PHẦN CHÍNH ============================================ */
+.Main_content{
+     /* margin: 20px 0; */
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+     width: 100%;
+     background: #fff;
+}
+.Main_content .Main.title{
+     display: flex;
+     justify-content: center;
+     margin: 40px 0 20px 0;
+}
+
+.Main_component {
+     display: grid;
+     grid-template-columns: 2.5fr 1fr;
+     width: 100%;
+     gap: 20px;
+}
+/*============================================ THÀNH PHẦN BÊN TRÁI ============================================ */
+.Component_left{
+     width: 100%;
+}
+.Main_item{
+     display: grid;
+     grid-template-rows: 1fr;
+     gap: 20px;
+}
+.navbar{
+     grid-row: 1;
+     display: flex;
+     height: 50px;
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+     background:var(--blue2);
+}
+.navbar .content{
+     font-size: 18px;
+     text-align: right;
+     color: #fff;
+}
+.Room_container{  
+     width: 100%; 
+     height: 450px;
+     overflow-x: hidden;
+     overflow-y: scroll;
+}
+.Room_container::-webkit-scrollbar {
+     width: 6px; /* chiều rộng của scrollbar */
+ }
+ 
+ .Room_container::-webkit-scrollbar-thumb {
+     background-color: var(--orange1); /* màu của "nút" trên scrollbar */
+     border-radius: 6px; /* bo góc cho "nút" */
+ }
+.room {
+     border: 2px solid rgba(163, 163, 163, 0.877);
+     border-radius: 10px;
+     grid-row: 2;
+     display: grid;
+     grid-template-columns: 40% 60%;
+     gap: 10px; 
+     background: #fff;
+     margin-bottom: 20px;
+}
+
+.room .img {
+     position: relative;
+     width: 300px;
+     height: 200px;
+     padding: 10px;
+}
+.room .sale-icon{
+     position: absolute;
+     top:4px;left: 4px;
+}
+.room .img img{
+     width: 100%;
+     height: 100%;
+     border-radius: 10px;
+}
+.img .sale-icon img{
+     width: 100px!important;
+     height: 100px!important;
+}
+.room .content {
+     display: grid;
+     grid-template-columns: 1fr;  
+}
+.room .content .title a::after{
+     content: '';
+     position: absolute;
+     width: 100%;
+     height: 2px;
+     left: -190px;
+     top: 22px;
+     transition: .5s;
+}
+.room .content .title a:hover{
+     color: var(--orange1);
+}
+.room .content .title a:hover::after{
+     left: 0;
+     background: var(--orange1);
+}
+/* Đánh giá */
+.star {
+     font-size: 20px;
+     cursor: pointer;
+     color: #696969b2;
+     }
+.star.hover, .star.clicked {
+color: rgb(252, 210, 75);
+}
+.appraise {
+     height: 30px;
+     line-height: 30px;
+}
+.appraise .content{
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     padding:0 10px;
+     align-items: center;
+}
+.content p{
+     display: flex;
+     justify-content: left;
+     align-items: center;
+     font-size: 1rem;
+}
+
+/* Phần mục phân loại */
+.category {
+     transform: translateY(-10%);
+     margin-top: 5px;
+}
+.category .content.note{
+     color: #696969b2;
+     width: 100px;
+     grid-template-columns: 25% 75%;
+     font-size: 1.1em;
+     line-height: 10px;
+}
+.category .content.note span{
+     line-height: 10px;
+     transform: translateY(-20%);
+}
+.category .content.note:hover {
+     color: var(--orange1);
+}
+/* Phần giá cả */
+
+.prices {
+     position: relative;
+}
+.prices_absolute{
+     position: absolute;
+     grid-template-rows:1fr 1fr ;
+     top: -20px;right: 10px;
+     display: flex;
+     flex-wrap: nowrap;
+     align-items: end;
+     flex-direction: column;
+}
+.prices_absolute .discountsale{
+     position: absolute;
+     top: -20px;
+     padding: 0px 10px;
+     font-size: 1.3em;
+     font-weight: bold;
+     color: var(--red1);
+}
+.prices_absolute .discountsale:hover{
+     color:red;
+}
+.prices_absolute .content{
+     font-size: 1.3em;
+     font-weight: bold;
+}
+/* Nút chọn */
+.Choose_btn{
+     display: grid;
+     justify-content: right;
+     margin: 10px 20px 0px;
+}
+/*============================================ THÀNH PHẦN BÊN PHẢI ============================================ */
+.Component_right{
+     position: relative;
+     width: 100%;
+}
+.SummaryBill.scrolled{
+     position: fixed;
+     top: 70px;
+}
+.SummaryBill{
+     width: 294px;
+     border: 1px solid #bbbbbb;
+}
+.SummaryBill .Main_item{
+     gap: 10px;
+}
+.SummaryBill .title{
+     font-weight: bold;
+}
+.Main_item.Short{
+     position: relative;
+     background: #fff;
+     padding: 10px;
+     line-height: 25px;
+}
+.Checktime{
+     border-bottom: 1px solid var(--grey1);
+}
+.timeShow_End,.timeShow_Start{
+     font-size: 15px;
+}
+.room_container {
+     height: 155px;
+     overflow-y: scroll;
+}
+.room_container::-webkit-scrollbar {
+     width: 12px; /* chiều rộng của scrollbar */
+}
+
+.room_container::-webkit-scrollbar-thumb {
+     background-color: var(--orange1); /* màu của "nút" trên scrollbar */
+     border-radius: 6px; /* bo góc cho "nút" */
+}
+.room_container .roomMini{
+     position: relative;
+     border-bottom:1px solid var(--grey1) ;
+}
+.RoomFix_btn{
+     position: absolute;
+     top: 0;
+     right: 0;
+}
+.RoomFix_btn a{
+     font-weight: bold;
+     font-size: 15px;
+}
+.TotalBill #TotalPrice{
+     color: red;
+     font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width: 991px){
+     /* Phần header */
+     .head_container.desktop{
+          display: none;
+     }
+     .head_container.phone{
+          display: flex;
+     }
+     /* Phần body */
+     .large_btn{
+          padding: 5px 10px;
+          font-size: 10px;
+     }
+     .SearchBar i{
+          font-size: 15px;
+     }
+     .SearchBar .title{
+          font-size: 13px;
+     }
+     .SearchBar .content.note{
+          font-size: 10px;
+     }
+}

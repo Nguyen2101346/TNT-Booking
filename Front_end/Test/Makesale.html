@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+<body>
+     <div class="room">
+          <div class="img">
+              <div class="sale-icon"><img src="../img/sale_icon.png" alt="" width="50ox" height="50px
+               "></div>
+              <img src="./img/phòng1.jpg" alt="">
+          </div>
+          <div class="content">
+              <div class="discountsale">
+               <!-- Giảm 10 -->
+              </div>
+          </div>
+      </div>
+      <script>
+document.addEventListener("DOMContentLoaded", function() {
+    var discounts = document.querySelectorAll('.discountsale');
+    discounts.forEach(function(discount) {
+        var imgWrapper = discount.closest('.room').querySelector('.img');
+        var saleIcon = document.createElement('div');
+        saleIcon.classList.add('sale-icon');
+        if (discount.textContent.trim() !== '') {
+            imgWrapper.insertBefore(saleIcon, imgWrapper.firstChild);
+        } else {
+            imgWrapper.removeChild(imgWrapper.querySelector('.sale-icon'));
+        }
+    });
+});
+      </script> 
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+<body>
+
+     <div class="Date">
+          29/03/2024
+     </div>
+
+     <div class="result"></div>
+
+<script>
+//   Lấy nội dung của phần tử chứa ngày và tháng
+var text = document.querySelector('.Date').innerText;
+
+// Biểu thức chính quy để tìm kiếm ngày và tháng
+var regex = /(\d{1,2})\/(\d{1,2})\/(\d{4})/;
+
+// Sử dụng phương thức match để tìm kiếm ngày và tháng trong văn bản
+var match = text.match(regex);
+
+if (match !== null) {
+    // match[0] là toàn bộ chuỗi phù hợp với biểu thức chính quy
+    var day = parseInt(match[1], 10); // Ngày
+    var month = parseInt(match[2], 10); // Tháng
+    var year = parseInt(match[3], 10); // Năm
+
+    // Tạo một đối tượng Date từ ngày, tháng và năm
+    var date = new Date(year, month - 1, day);
+
+    // Lấy thứ của ngày được tạo
+    var dayOfWeek = date.getDay();
+
+    // Mảng chứa các tên của các ngày trong tuần
+    var days = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'];
+
+    // Hiển thị ngày, thứ, tháng và năm trong phần tử có class là "result"
+    var resultElement = document.querySelector('.result');
+    resultElement.innerHTML =  days[dayOfWeek] + ' ngày ' + day + ' tháng ' + month + ' năm ' + year ;
+} else {
+    console.log('Không tìm thấy ngày và tháng trong văn bản.');
+}
+     </script>
+</body>
+</html>

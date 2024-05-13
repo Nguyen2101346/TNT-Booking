@@ -1,0 +1,164 @@
+/*============================================ PAYMENT ===================================================== */
+.Info_Container{
+     display: grid;
+     gap: 20px;
+}
+/* Phần thông tin người đặt phòng */
+.Person-info,.Payment_methob{
+     background: #fff;
+     /* border: 1px solid #bbbbbb; */
+     box-shadow: 0 0 2px 3px #bbbbbb;
+}
+/* Phần dan xưng */
+.Person-info .gender{
+     display: flex;
+     padding: 20px;
+     align-items: center;
+}
+.Person-info .title,.Payment_methob .title{
+     font-weight: bold;
+}
+.Person-info .radio{
+     padding: 0px 10px;
+}
+label {
+     align-items: center;
+     font-size: 15px;
+}
+.radio label,.idcheck label,.pay label{
+     position: relative;
+     width: 80px;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     justify-content: center;
+     color: #000;
+     font-family: serif;
+     font-size: 15px;
+     box-shadow:0 0 2px #000;
+     border-radius: 5px;
+     padding: 5px 10px;
+     font-weight: bold;
+     align-items: center;
+}
+.radio label::before,.idcheck label::before, .pay label::before{
+     content: '';
+     /* transform: translateY(-2px); */
+     display: block;
+     width: 16px; height: 16px;
+     box-shadow:0 0 2px #000;
+     border-radius: 50%;
+}
+input[type="radio"],input[type = "checkbox"] {
+     display: none;
+}
+input[type="radio"]:checked +  label,
+input[type = "checkbox"]:checked + label {
+     /* Custom styling for checked state */
+     background-color: var(--orange1);
+     box-shadow: 0 0 2px var(--orange1);
+     color: #fff;
+}
+
+input[type="radio"]:checked + label::before,
+input[type = "checkbox"]:checked + label::before{
+     /* background: #fff; */
+     background-image: url('../img/orange-check.png');
+     background-size: cover;
+}
+/* Phần Họ tên và phần thông tin thêm*/
+.name,.phoneNum,.Email,.company{
+     display: grid;
+     grid-template-rows: 30px 50px;
+     padding: 10px 20px;
+}
+.name input[type = "text"],.phoneNum input[type = "text"],.Email input[type = "email"],
+.company input[type = "text"]{
+     outline: none;
+     height: 50px;
+     font-size: 15px;
+     padding: 10px;
+     border: none;
+     box-shadow: 0 0 2px #000;
+}    
+.info-more {
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+}
+.idcheck{
+     width: 250px;
+     justify-content:left ;
+     display: flex;
+     padding: 20px;
+}
+.idcheck label{
+     width: 100%;
+     grid-template-columns: 20% 80%;
+}
+/* Phần Phương thức thanh toán  */
+form{
+     display: grid;
+     gap: 50px;
+}
+.Payment_methob{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+}
+.pay{
+     width: 100%;
+     justify-content:left ;
+     display: flex;
+     padding: 10px 20px;
+}
+.pay label{
+     width: 100%;
+     grid-template-columns: 5% 95%;
+     padding: 20px;
+     font-size: 18px;
+}
+.pay.bank label{
+     grid-template-columns: 5% 80% 15%;
+     position: relative;
+}
+.pay i {
+     position: absolute;
+     right: 0;
+     background: #fff;
+     height: 61px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     border-radius: 5px;
+}
+.pay img{
+     width: 150px;
+     height: 150px;
+}
+.pay input[type="radio"]:checked +  label {
+     /* Custom styling for checked state */
+     background-color: var(--blue1);
+     box-shadow: 0 0 2px var(--blue1);
+     color: #fff;
+}
+.pay input[type="radio"]:checked + label::before{
+     /* background: #fff; */
+     background-image: url('../img/blue-check3.png');
+     background-size: cover;
+     background-color: #fff;
+}
+p{
+     padding: 10px 20px;
+     font-size: 18px;
+}
+.Pay_btn{
+     display: flex;
+     width: 150px;
+     justify-content: center;
+     align-items: center;
+     margin: 20px;
+}
+.Pay_btn .medium_btn{
+     padding: 10px;
+     font-size: 18px!important;
+}

@@ -1,0 +1,189 @@
+/* PHẦN Chung */
+input[type = 'text'],input[type = 'email']{
+     width: 100%;
+     padding: 15px 20px;
+     font-size: 16px;
+}
+/* PHẦN EVENT */
+.Event_container{
+     width: 100%;
+     height: auto;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+.Event{
+     width: 1050px;
+     height: auto;
+     display: grid;
+     grid-template-rows: 1fr 150px;
+}
+.Event_top{
+     /* display: grid;
+     grid-template-columns: 1fr 1fr 1fr;
+     gap: 20px;
+     justify-items: center;
+     text-align: center; */
+     display: flex;
+     justify-content: space-between;
+     text-align: center;
+}
+.EventCard .Event_img{
+     position: relative;
+     width: 150px;
+     height: 150px;
+     background: var(--grey1);
+     border-radius: 50%;
+}
+.Event_img img{
+     border-radius: 50%;
+}
+.EventCard .Event_img::before{
+     content: "";
+     top: 5px;
+     left: 6px;
+     display: flex;
+     position: absolute;
+     width: 135px;
+     height: 135px;
+     background: transparent;
+     border-radius: 50%;
+     border: 2px dashed #fff;
+     /* border-image: linear-gradient(to right, #fff 5%, transparent 0) 1; */
+}
+.EventCard .title{
+     margin-top: 30px;
+     font-weight: bold;
+     font-size: 20px;
+}
+.EventCard:hover .Event_img::before{ 
+     border-color: var(--orange1);
+}
+.EventCard:hover .title{
+     color: var(--orange1);
+}
+.EventCard.click .Event_img::before{ 
+     border-color: var(--orange1);
+}
+.EventCard.click .title{
+     color: var(--orange1);
+}
+.Event_bottom {
+     margin-top: 30px;
+     display: grid;
+     grid-template-columns: 80% 20%;
+}
+.Event_bottom p{
+     padding-top: 0;
+     padding-left: 0;
+     font-size: 18px;
+}
+.Event_bottom .request_btn{
+     padding-left: 80px;
+}
+.request_btn a{
+     padding: 10px;
+}
+/* PHẦN SLIDE */
+.EventSlide_container{
+     width: 100%;
+     background: #FFF1D6;
+     display: flex;
+     justify-content: center;
+}
+.Event_Slide{
+     width: 1050px;
+     height: 300px;
+     z-index: 1;
+}
+/* PHẦN YÊU CẦU */
+.Request_container{
+     visibility: hidden;
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     top: 500px;
+     left: 0;
+     background: #0f0f0f6b;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     transition: 0.5s;
+     z-index: 19999;
+}
+.Request_container.visible{
+     visibility: visible;
+     opacity: 1;
+     top: 0;
+     position: fixed;
+}
+.RequestCard{
+     position: relative;
+     width: 700px;
+     background: #fff;
+     border-radius: 15px;
+     padding: 20px;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+
+}
+.RequestCard span{
+     position: absolute;
+     top: 20px;
+     right: 20px;
+     font-size: 20px;
+     cursor: pointer;
+}
+.RequestCard span:hover{
+     color: var(--orange1);
+}
+.RequestCard form{
+     margin-top: 20px;
+     width: 100%;
+}
+.Meeting h2:hover{
+     color: var(--orange1);
+}
+.Wedding h2:hover{
+     color: rgb(248, 144, 161);
+}
+.Community h2:hover{
+     color: var(--blue1);
+}
+.mainRequest{
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 20px;
+}
+.mainRequest .re label{
+     display: flex;
+     width: 100%;
+     font-size: 18px;
+     color: #111;
+     font-weight: bold;
+     padding: 10px 0;
+}
+.note {
+     padding: 10px 0;
+     display: grid;
+     grid-template-rows: 10% 60% 20% ;
+}
+.note label{
+     font-size: 18px;
+     color: #111;
+     font-weight: bold;
+}
+.note textarea{
+     outline: none;
+}
+.note p {
+     font-size: 15px;
+     color: var(--grey1);
+     padding: 10px 0;
+}
+.Submit_btn{
+     padding: 10px 0;
+}

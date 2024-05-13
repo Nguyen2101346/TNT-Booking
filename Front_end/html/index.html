@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Home</title>
+     <link rel="shortcut icon" href="./img/LogoTNT.png" type="image/x-icon">
+     <link rel="stylesheet" href="./css/main.css">
+     <link rel="stylesheet" href="./css/banner.css">
+     <link rel="stylesheet" href="./css/home.css">
+     <!-- Sử dụng fontawsome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+     <script src="./js/slider.js" defer></script>
+     <script src="./js/eat.js" defer></script>
+</head>
+<body>
+     <div class="Sale_Container">
+          <!-- Phần header -->
+          <!-- Được chia ra làm 3 phần bên trái, giữa và phải -->
+          <!-- Phần trái, gồm các mục ở 2 bên -->
+          <!-- Phần mid được sử dụng để làm logo-->
+          <div class="header">
+               <div class="head_container desktop">
+                    <div class="head_left">
+                         <ul>
+                              <li><a href="#">Trang chủ</a></li>
+                              <li><a href="#">Đặt phòng</a></li>
+                              <li><a href="#">Hội họp</a></li>
+                         </ul>
+                    </div>
+                    <div class="head_mid">
+                         <div class="head_logo"><a href="#"><img src="./img/LogoTNT.png" alt="" width="70px" height="70px"></a></div>
+                    </div>
+                    <div class="head_right">
+                         <ul>
+                              <li><a href="#">Ưu đãi khuyến mãi</a></li>
+                              <li><a href="#">Đăng nhập</a><span>/</span><a href="#">Đăng ký</a></li>
+                         </ul>
+                    </div>
+               </div>
+               <!-- Phần chỉnh header theo định dạng iphone 14 Pro Max  -->
+               <div class="head_container phone">
+                    <div class="head_left">
+                         <div class="MiniMenu">
+                              <div class="MiniMenu_button">
+                                   <div class="ham-btn__burger"><i class="fa-solid fa-bars"></i></div>
+                              </div>
+                              <div id="test">
+                                   <ul class="mini_nav" >
+                                        <div class="MiniMenu_button exit">
+                                             <div class="ham-btn__burger"><i class="fa-solid fa-xmark"></i></div>
+                                        </div>
+                                        <li><a href="#">Trang chủ</a></li>
+                                        <li><a href="#">Đặt phòng</a></li>
+                                        <li><a href="#">Hội họp</a></li>
+                                        <li><a href="#">Ưu đãi khuyến mãi</a></li>
+                                        <li>
+                                             <a href="#">Đăng nhập</a>
+                                        </li>
+                                        <li>
+                                             <a href="#">Đăng ký</a>
+                                        </li>
+                                   </ul>
+                              </div>
+                         </div>
+                    </div>
+                    <div class="head_mid">
+                         <div class="head_logo"><a href="#"><img src="./img/LogoTNT.png" alt="" width="100px" height="100px"></a></div>
+                    </div>
+                    <div class="head_right">
+                    </div>
+               </div>
+               <!-- Phần script cho header -->
+               <script type="module" src="./js/ultils.js"></script>
+          </div>
+          <!-- Phần Banner -->
+          <div class="Banner_Container Meeting">
+               <img src="./img/banner2.jpg" alt="" class="">
+               <div class="banner_Content">
+                    <h1>Chào mừng bạn đến với TNT Booking</h1>
+                    <p>Hãy cùng khám phá các lựa chọn tuyệt vời và trải nghiệm dịch vụ tốt nhất của chúng tôi</p>
+               </div>
+          </div>
+          <!-- Phần tìm kiếm -->
+          <div class="SearchBar_container">
+               <div class="SearchBar">
+                    <div class="Srch Day">
+                         <div class="icon"><i class="fa-solid fa-calendar-days" ></i></div>
+                         <div class="content" >
+                              <div class="title">Ngày nhận - trả phòng</div>
+                              <div class="content note" id="GetDate"><span id="start">21/02/2024</span> - <span id="end">23/02/2024</span></div>
+                         </div>
+                         <!-- Phần Lịch ẩn gồm 2 phần -->
+                         <div class="Calander">
+                              <label for="start_date">Từ ngày:</label>
+                              <input type="text" id="start_date">
+                         
+                              <label for="end_date">Đến : </label>
+                              <input type="text" id="end_date">
+                         </div>
+                    </div>
+                    
+                    <div class="Srch Person">
+                         <div class="icon"><i class="fa-solid fa-user"></i></div>
+                         <div class="content">
+                              <div class="title">Số phòng - Số người</div>
+                              <div class="content note" id="booking"><span><span id="room_num">1</span> Phòng</span> - <span><span  id="adults_num">1</span> người</span></div>
+                         </div>
+                         <div id="booking-table">
+                              <table>
+                              <tr>
+                                   <th>Số lượng phòng</th>
+                              </tr>
+                              <tr>
+                                   <td class="quantity_contain">
+                                   <button class="quantity-control" onclick="decrementRoom()">-</button>
+                                   <span id="room-quantity">0</span>
+                                   <button class="quantity-control" onclick="incrementRoom()">+</button>
+                                   </td>
+                              </tr>
+                              </table>
+                              <div id="booking-info"></div>
+                              
+                         </div>
+                    </div>
+                    <div class="Srch Preferential">
+                         <div class="icon"><i class="fa-solid fa-ticket-simple"></i></div>
+                         <div class="content">
+                              <div class="title">Mã ưu đãi</div>
+                              <div class="content note" id="Select">Chọn ưu đãi</div>
+                              <Select id="discountSelect">
+                                   <option value="">Chọn ưu đãi</option>
+                                   <option value="discount1">Ưu đãi 1</option>
+                                   <option value="discount2">Ưu đãi 2</option>
+                                   <option value="discount3">Ưu đãi 3</option>
+                              </Select>
+                         </div>
+                    </div>
+                    <div class="Srch Search_Btn">
+                         <a href="#" class="large_btn">Tìm kiếm</a>
+                    </div>
+               </div> 
+          </div>
+          <!-- Phần body -->
+          <!-- Như phần header nhưng ta sẽ chia theo thành phần -->
+          <div class="body">
+               <div class="body_container">
+                    <!-- <div class="body_more"></div> -->
+                    <!-- Phần tìm kiếm  -->
+                    <div class="Main_content">
+                         <div class="Main title">
+                              <h1 class="title large">Khám phá về chúng tôi</h1>
+                         </div>
+                    </div>
+               </div>
+               <div class="content_container">
+                    <div class="SlideRoombook_container">
+                         <div class="content_title">
+                              <h1 class="title large">Các hạng phòng</h1>
+                         </div>
+                         <div class="room_book">
+                              <script>
+                                   fetch('./slider.html')
+                                   .then(response => response.text())
+                                   .then(data => {
+                                        document.querySelector('.content_container .room_book').innerHTML = data;
+                                   })
+                                   .catch(error => console.error('Error:', error));
+                                   </script>
+                         </div>
+                    </div>
+                    
+                    <div class="SlideRoomeat_container">
+                         <div class="content_title">
+                              <h1 class="title large">Nhà hàng và Quán bar</h1>
+                         </div>
+                         <div class="room_eat">
+                              <script>
+                                   fetch('./eat.html')
+                                   .then(response => response.text())
+                                   .then(data => {
+                                        document.querySelector('.SlideRoomeat_container .room_eat').innerHTML = data;
+                                   })
+                                   .catch(error => console.error('Error:', error));
+                                   </script>
+                         </div>
+                    </div>
+               </div>
+          </div>
+               <!-- Phần footer -->
+               <div class="footer">
+                    <div class="footer_container">
+
+                    </div>
+               </div>
+          </div>
+          <script src="./js/Main.js"></script>
+</body>
+</html>

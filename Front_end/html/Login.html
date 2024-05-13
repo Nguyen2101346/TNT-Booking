@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <title></title>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link href="./css/main.css" rel="stylesheet">
+          <link rel="stylesheet" href="./css/LogIn.css">
+          <!-- Sử dụng fontawsome -->
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     </head>
+     <body>
+          <div class="Login_container">
+               <div class="background">
+                    <div class="Card">
+                         <div class="card_head">
+                              <div class="head_logo"><a href="#"><img src="./img/LogoTNT.png" alt="" width="70px" height="70px"></a></div>
+                         </div>
+                         <div class="card_Login">
+                              <form action="" class="visible">
+                                   <h2>Đăng nhập</h2>
+                                   <div class="username text">
+                                        <input type="text" name="name" id="login-username" required="required">
+                                        <span>Tên Đăng nhập</span>
+                                   </div>
+                                   <div class="pass text">
+                                        <input type="password" name="password" id="login-pass" required="required" class="password">
+                                        <span>Mật khẩu</span>
+                                        <i class="fa-solid fa-eye passhow login"></i>
+                                   </div>
+                                   <div class="Login_btn">
+                                        <input type="submit" class="medium_btn" value="Đăng nhập" id="login-btn" >
+                                   </div>
+                              </form>
+                         </div>
+                         <div class="card_SignUp">
+                              <form action="">
+                                   <h2>Đăng ký</h2>
+                                   <div class="username text">
+                                        <input type="text" name="name" id="signup-username" placeholder="Tên đăng nhập">
+                                        <!-- <span>Tên Đăng nhập</span> -->
+                                   </div>
+                                   <div class="pass text">
+                                        <input type="password" name="password" id="signup-pass" placeholder="Mật khẩu">
+                                        <i class="fa-solid fa-eye passhow signup"></i>
+                                        <!-- <span>Mật khẩu</span> -->
+                                   </div>
+                                   <div class="pass text">
+                                        <input type="password" name="password" id="signup-confirm" placeholder="Nhập lại mật khẩu">
+                                        <i class="fa-solid fa-eye passhow confirm"></i>
+                                        <!-- <span>Nhập lại mật khẩu</span> -->
+                                   </div>
+                                   <div class="SignUp_btn">
+                                        <input type="submit" class="medium_btn" value="Đăng Ký" id="signup-btn">
+                                   </div>
+                              </form>
+                         </div>
+                         <div class="card_footer">
+                              <div class="content">
+                                   Bằng việc đăng nhập, tôi đồng ý với Vinpearl về <br>
+                                   <a href="#">Điều kiện điều khoản</a> và <a href="#">Chính sách bảo mật</a>
+                              </div>
+                              <div class="change">
+                                   <div class="login-change">
+                                        Chưa có tài khoản? <a href="#" id="SignUp-link"> Đăng ký ngay</a>
+                                   </div>
+                                   <div class="signup-change">
+                                        Đã có tài khoản? <a href="#" id="Login-link"> Đăng nhập ngay</a>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <script src="https://apis.google.com/js/api.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+          <script src="./js/Login.js"></script>
+          <script></script>
+     </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <style>
+          .star {
+     font-size: 24px;
+     cursor: pointer;
+     }
+
+     .star.hover, .star.clicked {
+     color: yellow;
+     }
+     </style>
+</head>
+<body>
+     <div class="rating">
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+          <span class="star">&#9733;</span>
+        </div>
+        <p id="result"></p>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <script>
+          $(document).ready(function() {
+          $('.star').hover(function() {
+          $(this).addClass('hover').prevAll('.star').addClass('hover');
+          $(this).nextAll('.star').removeClass('hover');
+          }, function() {
+          $(this).removeClass('hover').prevAll('.star').removeClass('hover');
+          });
+
+          $('.star').click(function() {
+          $(this).addClass('clicked').prevAll('.star').addClass('clicked');
+          $(this).nextAll('.star').removeClass('clicked');
+          var rating = $('.clicked').length;
+          $('#result').html(  rating + ' /05.');
+          // Ở đây bạn có thể thực hiện các hành động khác dựa trên giá trị đánh giá.
+          });
+          });
+          </script>
+</script>
+</body>
+</html>

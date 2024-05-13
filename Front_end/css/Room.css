@@ -1,0 +1,153 @@
+/*============================================ ROOM DETAIL ===================================================== */
+.RoomSlider_container{
+     width: 100%;
+     padding: 20px 0;
+     background: var(--bgSearch);
+}
+.headRoom_container{
+     width: 100%;
+     display: grid;
+     justify-content: center;
+     grid-template-rows: 1fr;
+     padding: 20px;
+     background: #FFF1D6;
+}
+.headRoom_container .RoomDetail_container{
+     width: 1050px;
+     /* height: auto; */
+}
+.headRoom_container .room{
+     height: 100%;
+     position: relative;
+     grid-template-columns: 375px 1fr;
+     padding: 0 20px;
+     border: none;
+     align-items: center;
+}
+.room .medium_btn{
+     font-size: 20px!important;
+}
+.headRoom_container .content{
+     font-size: 16px;
+     line-height: 40px;
+     display: flex;
+     flex-direction: column;
+}
+.headRoom_container .room .img{
+     width: 375px;
+     height: 250px;
+}
+.headRoom_container .room .img img{
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+}
+.room .general_infor{
+     display: grid;
+     grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+.room .appraise{
+     display: flex;
+     position: relative;
+     justify-content: left;
+}
+.appraise .title{
+     display: flex;
+     font-size: 20px;
+     line-height: 40px;
+}
+.appraise .rating{
+     margin: 0 10px;
+}
+.room i {
+     margin-right: 10px;
+}
+.absolute {
+     position: absolute;
+     bottom: -10px;
+     right: 0px;
+}
+.Get_btn .medium_btn{
+     padding: 5px 10px;
+}
+.prices{
+     display: flex;
+     text-align: end;
+     flex-direction: column;
+}
+.prices .title{
+     color: red;
+}
+.prices .discountsale{
+     display: flex;
+     justify-content: right;
+     color: rgb(192, 6, 0);
+     padding: 0px 10px;
+     font-size: 1.3em;
+     font-weight: bold;
+}
+/* Room decription */
+.bodyRoom_container{
+     width: 100%;
+     display: flex;
+     justify-content: center;
+}
+.InfoRoom_container{
+     width: 1050px;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     gap: 20px;
+     padding: 20px 0;
+}
+.description{
+     padding: 0;
+}
+.description .title {
+     color: var(--orange1);
+     font-size: 18px;
+     font-weight: bold;
+     padding: 10px 0;
+     margin-top: 11px;
+     margin-bottom: 10px;
+     border-bottom: 2px solid var(--orange1);
+}
+.description p{
+     padding: 0;
+}
+/* Room Convenience */
+.Convenience{
+     border: 2px solid var(--blue1);
+     border-radius: 10px;
+     padding: 0;
+}
+.convenience h3{
+     padding: 10px 0;
+     border-bottom: 2px solid var(--blue1);
+     justify-content: left;
+     align-items: center;
+     display: flex;
+     padding: 0 10px;
+}
+.convenience h3 span{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     padding: 10px;
+}
+.convenience h3 span img{
+     width: 30px;
+     height: 30px;
+}
+.convenience_component{
+     padding: 10px;
+}
+.convenience_component ul{
+     padding: 0 20px;
+     display: grid;
+     text-align: center;
+     grid-template-columns: 1fr 1fr;
+     grid-template-rows:auto ;
+}
+.convenience_component li{
+     line-height: 30px;
+}
