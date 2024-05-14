@@ -88,6 +88,7 @@ input[type = 'text'],input[type = 'email']{
 /* PHẦN SLIDE */
 .EventSlide_container{
      width: 100%;
+     padding: 20px 0;
      background: #FFF1D6;
      display: flex;
      justify-content: center;
@@ -106,7 +107,7 @@ input[type = 'text'],input[type = 'email']{
      top: 500px;
      left: 0;
      background: #0f0f0f6b;
-     display: flex;
+     display: none;
      justify-content: center;
      align-items: center;
      transition: 0.5s;
@@ -117,6 +118,7 @@ input[type = 'text'],input[type = 'email']{
      opacity: 1;
      top: 0;
      position: fixed;
+     display: flex;
 }
 .RequestCard{
      position: relative;

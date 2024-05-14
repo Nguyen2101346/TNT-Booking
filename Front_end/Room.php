@@ -76,7 +76,7 @@
                                    </div>
                                    <div class="absolute">
                                         <div class="prices">
-                                             <div class="discountsale"></div>
+                                             <div class="discountsale">Giảm 30% </div>
                                              <div class="title">Giá: 3.130.000 VNĐ</div>
                                         </div>
                                         <div class="Get_btn">

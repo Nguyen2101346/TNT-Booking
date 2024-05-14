@@ -1,105 +1,84 @@
-function loadMeetingContent() {
-    // Lấy nội dung từ div ẩn chứa nội dung Meeting
-    const meetingContent = $('#hiddenMeetingContent').html();
-    $('#content').html(meetingContent);
-    const meetingForm = $('#hiddenMeetingForm').html();
-    $('#Request_Form').html(meetingForm);
-    const meetingSlide = $('#MeetingSlide').html();
-    $('#Request_Slide').html(meetingSlide);
+function loadContent(eventType) {
+     $.ajax({
+         url: './php/' + eventType + '.php',
+         method: 'GET',
+         success: function(data) {
+             // Parse the returned HTML and find the required elements
+             const parsedHTML = new DOMParser().parseFromString(data, 'text/html');
+             const content = parsedHTML.querySelector('#hidden' + eventType + 'Content').innerHTML;
+             const form = parsedHTML.querySelector('#hidden' + eventType + 'Form').innerHTML;
+             const slide = parsedHTML.querySelector('#' + eventType + 'Slide').innerHTML;
 
-    const CommunityCard = document.querySelector('.EventCard.community');
-    const WeddingCard = document.querySelector('.EventCard.wedding');
-    const MeetingCard = document.querySelector('.EventCard.meeting');
-    MeetingCard.addEventListener('click',() =>{
-         MeetingCard.classList.add('click');
-         WeddingCard.classList.remove('click');
-         CommunityCard.classList.remove('click');
-    })
+             $('#content').html(content);
+             $('#Request_Form').html(form);
+             $('#Request_Slide').html(slide);
+             
+             setUpRequestFormHandlers();
+             initializeSwiper();
+         },
+         error: function() {
+             alert('Failed to load content.');
+         }
+     });
+   }
 
-    const Requestcontainer = document.querySelector('.Request_container');
-    const RequestBtn = document.querySelector('.request_btn');
-    const ExitBtn = document.querySelector('.exit_btn')
-    let visible = false;
-    RequestBtn.addEventListener('click',() => {
-              Requestcontainer.classList.add('visible');
-              visible = true;
-         });
-    ExitBtn.addEventListener('click',() => { 
-              Requestcontainer.classList.remove('visible');
-              visible = false;
-    });
-}
-function loadWeddingContent() {
-    // Lấy nội dung từ div ẩn chứa nội dung Wedding
-    const weddingContent = $('#hiddenWeddingContent').html();
-    $('#content').html(weddingContent);
-    const weddingForm = $('#hiddenWeddingForm').html();
-    $('#Request_Form').html(weddingForm)
-    const weddingSlide = $('#WeddingSlide').html();
-    $('#Request_Slide').html(weddingSlide);
+ function setUpEventHandlers() {
+     $('.EventCard').on('click', function() {
+         const eventType = $(this).attr('class').split(' ')[1];
+         $('.EventCard').removeClass('click');
+         $(this).addClass('click');
+         loadContent(eventType.charAt(0).toUpperCase() + eventType.slice(1));
+     });
+ }
 
-    const MeetingCard = document.querySelector('.EventCard.meeting');
-    const WeddingCard = document.querySelector('.EventCard.wedding');
-    const CommunityCard = document.querySelector('.EventCard.community');
-    WeddingCard.addEventListener('click',() =>{
-         MeetingCard.classList.remove('click');
-         WeddingCard.classList.add('click');
-         CommunityCard.classList.remove('click');
-    })
+ function setUpRequestFormHandlers() {
+     const requestContainer = $('.Request_container');
+     const requestBtn = $('.request_btn');
+     const exitBtn = $('.exit_btn');
+     let visible = false;
 
-    const Requestcontainer = document.querySelector('.Request_container');
-    const RequestBtn = document.querySelector('.request_btn');
-    const ExitBtn = document.querySelector('.exit_btn')
-    let visible = false;
-    RequestBtn.addEventListener('click',() => {
-              Requestcontainer.classList.add('visible');
-              visible = true;
-         });
-    ExitBtn.addEventListener('click',() => { 
-              Requestcontainer.classList.remove('visible');
-              visible = false;
-    });
-}
-
-function loadCommunityContent() {
-    // Lấy nội dung từ div ẩn chứa nội dung Community
-    const communityContent = $('#hiddenCommunityContent').html();
-    $('#content').html(communityContent);
-    const communityForm = $('#hiddenCommunityForm').html();
-    $('#Request_Form').html(communityForm)
-
-    const MeetingCard = document.querySelector('.EventCard.meeting');
-    const WeddingCard = document.querySelector('.EventCard.wedding');
-    const CommunityCard = document.querySelector('.EventCard.community');
-    CommunityCard.addEventListener('click',() =>{
-         MeetingCard.classList.remove('click');
-         WeddingCard.classList.remove('click');
-         CommunityCard.classList.add('click');
-    })
-
-    const Requestcontainer = document.querySelector('.Request_container');
-    const RequestBtn = document.querySelector('.request_btn');
-    const ExitBtn = document.querySelector('.exit_btn')
-    let visible = false;
-    RequestBtn.addEventListener('click',() => {
-              Requestcontainer.classList.add('visible');
-              visible = true;
-         });
-    ExitBtn.addEventListener('click',() => { 
-              Requestcontainer.classList.remove('visible');
-              visible = false;
-    });
-}
-
-const Requestcontainer = document.querySelector('.Request_container');
-const RequestBtn = document.querySelector('.request_btn');
-const ExitBtn = document.querySelector('.exit_btn')
-let visible = false;
-RequestBtn.addEventListener('click',() => {
-         Requestcontainer.classList.add('visible');
+     requestBtn.on('click', function() {
+         requestContainer.addClass('visible');
          visible = true;
-    });
-ExitBtn.addEventListener('click',() => { 
-         Requestcontainer.classList.remove('visible');
+     });
+
+     exitBtn.on('click', function() {
+         requestContainer.removeClass('visible');
          visible = false;
-});
+     });
+ }
+
+ function initializeSlider() {
+     $('#Request_Slide').slick({
+         infinite: true,
+         slidesToShow: 2,
+         slidesToScroll: 1
+     });
+ }
+
+ function initializeSwiper() {
+     new Swiper('.swiper', {
+         slidesPerView: 2,
+         direction: getDirection(),
+         navigation: {
+             nextEl: '.swiper-button-next',
+             prevEl: '.swiper-button-prev',
+         },
+         on: {
+             resize: function () {
+                 swiper.changeDirection(getDirection());
+             },
+         },
+     });
+ }
+
+ function getDirection() {
+     var windowWidth = window.innerWidth;
+     var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
+     return direction;
+ }
+
+ $(document).ready(function() {
+     setUpEventHandlers();
+     loadContent('Meeting'); // Load initial content
+ });

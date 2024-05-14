@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <div class="Sale_Container">
+    <div class="Container">
         <!-- Phần header -->
         <!-- Được chia ra làm 3 phần bên trái, giữa và phải -->
         <!-- Phần trái, gồm các mục ở 2 bên -->

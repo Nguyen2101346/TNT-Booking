@@ -1,0 +1,139 @@
+.History_Container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.History.content{
+    padding: 10px 50px;
+    width:var(--container-w-px);
+    background:  var(--bgSearch);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.History.room_container{
+    width: 100%;
+    height: 100%;
+}
+.History.title{
+    padding: 40px!important;
+}
+.History.content .title.large{
+    font-size: 28px;
+    padding: 0;
+}
+.History.content .title{
+    padding: 0;
+    display: flex;
+    align-self: center;
+}
+.History.content .title a::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: -190px;
+    top: 24px;
+    transition: .5s;
+}
+.History.content .title a:hover{
+    color: var(--orange1);
+}
+.History.content .title a:hover::after{
+    left: 0;
+    background: var(--orange1);
+}
+.History.room{
+    position: relative;
+    width: 100%;
+    height: 250px;
+    grid-template-columns: 350px 1fr;
+    gap: 0;
+}
+.History.room_img{
+    position: relative;
+    width: 300px;
+    height: 200px;
+    align-self: center;
+    justify-self: center;
+}
+.History.img{
+    padding: 0;
+}
+.History.room_img .sale-icon{
+    position: absolute;
+    width: 100px;height: 100px;
+    top:-5px;left: -6px;
+}
+.History.room_content{
+    height: 200px;
+    align-self: center;
+    padding-right: 25px;
+}
+.History.room_content .general_infor{
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
+}
+.History.room_content .content{
+    display: flex;  
+    font-weight: bold;
+    padding: 10px 0 0;
+}
+.History.room_content span{
+    font-size: 16px;
+    font-weight: normal;
+    align-self: center;
+}
+.History.room_content .absolute{
+    bottom: 90px;
+    right: 20px;
+}
+.History.room_content .prices .title{
+    color: black;
+}
+.Detail_btn{
+    justify-self: center;
+    width: 100%;
+    height: 45px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.Detail_btn .medium_btn{
+    padding: 0;
+    width: 100px;
+    height: 100%;
+}
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-btn ,.prev-btn, .next-btn  {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    color: #000;
+    border: none;
+    padding: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    align-self: center;
+    font-weight: bolder;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.page-btn.active,.prev-btn.active, .next-btn.active  {
+    background-color: var(--orange1);
+}
+.prev-btn:hover, .next-btn:hover{
+    background-color: var(--orange1);
+}
+/* .page-btn:hover:not(.active) {
+    background-color: #555;
+} */
