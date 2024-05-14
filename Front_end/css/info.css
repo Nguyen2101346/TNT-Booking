@@ -1,0 +1,238 @@
+input[type = "file"]{
+    display: none;
+}
+.Content_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+.Info_Container{
+    width: 1050px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 30px 1fr;
+    gap: 20px;
+}
+.Update_list{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    width: 725px;
+}
+.Info_list{
+    width: 300px;
+    height: 500px;
+    background-color:var(--bgSearch);
+    padding: 20px;
+    border-radius: 3%;
+}
+.info_avt{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 200px;
+    margin: 30px auto 0px;
+}   
+.info-img{
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+.info-img .changeAvt{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    bottom: 0;
+    right: 0;
+}
+.changeAvt img{
+    border-radius: 50%;
+}
+.info_avt .content{
+    font-size: 18px;
+    font-weight: bold;
+}
+.info_coin{
+    border-top: 2px solid;
+    height: 90px;
+    padding: 10px 0;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+.info_coin .content{
+    padding: 0;
+    align-self: center;
+}
+.info_coin span{
+    position: relative;
+    font-weight: bold;
+}
+.info_coin a::after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    position: absolute;
+    background: var(--orange1);
+    transition: 0.5s;
+}
+.info_coin a:hover{
+    color:var(--orange1)
+}
+.info_coin a:hover::after{
+    width: 70px;
+}
+.info_detail{
+    border-top: 2px solid;
+}
+.info_detail> .item{
+    margin-top: 10px;
+    background-color: transparent;
+    height: 60px;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+}
+.info_detail .item:hover{
+    background: #FFE4AF;
+}
+.info_detail .item.active{
+    background: #FFE4AF;
+}
+.item .info-icon,.logout-icon{
+    width: 20px;
+    height: 25px;
+    align-self: center;
+}
+.Update_list .title.large{
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+fieldset {
+    border: none;
+}
+form .content{
+    font-weight: bold;
+    padding: 0;
+}
+legend.content{
+    padding: 20px 0;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    margin-bottom: 16px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.button{
+    width: 200px;
+    margin: auto;
+}
+input[type="submit"] {
+    width: 100%;
+    background-color:var(--orange3);
+    color: white;
+    padding: 14px 20px;
+    margin-top: 20px auto 0px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+}
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+.name{
+    display: grid;
+    width: 725px;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.name_item{
+    padding: 10px 0;
+}
+.radio{
+    display: flex;
+    width: 100px;
+    padding: 10px 0;
+}
+.gender_item{
+    display: inline-flex;
+    min-width:100px;
+    text-align: center;
+    line-height: 20px;
+}
+.gender_item label{
+    position: relative;
+    width: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    color: #000;
+    font-family: serif;
+    font-size: 15px;
+    box-shadow:0 0 2px #000;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    align-items: center;
+}
+.gender_item label::before{
+    content: '';
+     /* transform: translateY(-2px); */
+     display: block;
+     width: 16px; height: 16px;
+     box-shadow:0 0 2px #000;
+     border-radius: 50%;
+}
+.gender_item input[type="radio"]:checked +  label{
+    background-color: var(--orange1);
+     box-shadow: 0 0 2px var(--orange1);
+     color: #fff;
+}
+.gender_item [type="radio"]:checked + label::before{
+    background-image: url('../img/orange-check.png');
+     background-size: cover;
+}
+.contact{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.douContact{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+.identify{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.identify_item{
+    padding: 10px 0;
+}
+.identify label{
+    font-size: 16px;
+}
