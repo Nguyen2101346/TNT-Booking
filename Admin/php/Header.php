@@ -3,8 +3,8 @@
                     <div class="head_left">
                          <ul>
                               <li><a href="index.php?page=Management" class="title">Quản lý</a></li>
-                              <li><a href="#" class="title">Yêu cầu</a></li>
-                              <li><a href="#" class="title">Thành viên</a></li>
+                              <li><a href="index.php?page=Request" class="title">Yêu cầu</a></li>
+                              <li><a href="index.php?page=Member" class="title">Thành viên</a></li>
                          </ul>
                     </div>
                     <div class="head_mid">

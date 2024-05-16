@@ -319,7 +319,7 @@ input[type = "checkbox"]:checked + label::before{
 }
 /* ===================================================  Quản lý Phòng  ==========================================================================*/
 .Roomlist_Container,.Member_Container,.room_Request_Container,.Event_Request_Container{
-     background:var(--grey3);
+     background:#e0e0e0;
      padding: 50px 20px;
      min-height:700px
 }
@@ -373,12 +373,12 @@ input[type = "checkbox"]:checked + label::before{
      grid-template-columns: 200px 90%;
      gap:20px
 }
-.MiniRoom .Img_MiniRoom,.Member .Img_Member,.Img_Request{
+.MiniRoom .Img_MiniRoom{
      width:200px;
      height:150px;
      border-radius: 10px;
 }
-.Img_MiniRoom img,.Img_Member img,.Img_Request img{
+.Img_MiniRoom img{
      width:100%;
      height:100%;
      border-radius: 10px;
@@ -460,167 +460,3 @@ h3{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Phần quản lý thành viên */
-.MemberSearch{
-     width: 350px;
-     font-size: 20px;
-     border-radius: 0;
-     position: relative;
-     display:grid;
-     grid-template-columns: 90% 10%;
-     border:1px solid #000;
-}
-.MemberSearch input[type="search"]{
-     padding:10px;
-     font-size: 18px;
-     width: 100%;
-     height:100%;
-     position: relative;
-     border:none;
-     outline:none;
-}
-.MemberSearch input[type="submit"]{
-     border:none;
-     width:100%;
-     padding:0;
-}
-.MemberSearch span{
-     position:absolute;
-     top:0;
-     right:10px;
-     transform:translateY(50%);
-}
-/* Phẩn quản lý nhân viên */
-.Member .Img_Member{
-     border-radius: 50%;
-     width:150px;
-     margin:0 30px;
-}
-.Img_Member img{
-     object-fit: cover;
-     border-radius: 50%;
-}
-.Member_content h3 span{
-     font-weight:lighter;
-}
-.Detail_btn .btn{
-     background:#E8952F;
-     border:2px solid E8952F;
-}
-.Detail_btn .btn:hover{
-     background:#fff;
-     border:2px solid #E8952F;
-     color:#E8952F;
-}
-.Agree_btn .btn{
-     background:var(--green4);
-     border:2px solid E8952F;
-}
-.Agree_btn .btn:hover{
-     background:#fff;
-     border:2px solid var(--green4);
-     color: var(--green4);
-}
-/* Phần Chi tiết thành viên */
-.CheckMember.MiniForm{
-     width:750px;
-     height:550px;
-}
-.CheckMember.MiniForm h2{
-     margin: 20px;
-}
-.miniMember_Top{
-     width:100%;
-     display:grid;
-     grid-template-columns: 1fr 1fr;
-     gap: 20px;
-}
-.miniMember_bottom{
-     margin-top: 20px;
-     width:100%;
-}
-.miniMember{
-     font-weight: bold;
-}
-.CheckMember_Confirm{
-     display: grid;
-     grid-template-columns: 1fr 1fr;
-     gap: 100px;
-     margin-top: 20px;
-}
-.Member_confirm_btn .btn{
-     background:var(--green4);
-     border:2px solid var(--green4)
-}
-.Member_confirm_btn .btn:hover{
-     background:#fff;
-     border:2px solid var(--green4);
-     color:var(--green4);
-}
-.Member_Cancel_btn .btn{
-     background:red;
-     border:2px solid red;
-}
-.Member_Cancel_btn .btn:hover{
-     background:#fff;
-     border:2px solid red;
-     color:red;
-}

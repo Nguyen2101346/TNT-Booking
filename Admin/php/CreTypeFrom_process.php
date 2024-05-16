@@ -1,6 +1,6 @@
 <?php
-include './conn.php';
-include './Room_func.php';
+include '../php_func/conn.php';
+include '../php_func/Room_func.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kiểm tra xem có dữ liệu được gửi từ form không

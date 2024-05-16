@@ -18,14 +18,6 @@
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
-     <div class="Container Admin_Room">
-          <!-- Phần body -->
-          <!-- Như phần header nhưng ta sẽ chia theo thành phần -->
-          <div class="body">
-               <!-- Phần chuyển đổi chung -->
-               
-               <div class="" id="roomContent"></div>
-               <!-- Thành phần chính -->
                <div class="Room_container" id="Admin_Room__content">
                     <!-- Thanh chọn loại phòng -->
                     <div class="TypeBar">
@@ -263,7 +255,6 @@
                          </div>
                     </div>
                </div>
-          </div>
           <!-- Form tạo thêm loại -->
           <div class="Creminiroom MiniContainer">
                <form class="Creminiroom MiniForm">
@@ -296,7 +287,7 @@
 
      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
      <script src="../js/slider_swiper.js"></script>
-     <script src="../js/Admin.js"></script>
+     <!-- <script src="../js/Admin.js"></script> -->
      <script>
     
      </script>

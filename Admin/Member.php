@@ -6,9 +6,9 @@
      <meta http-equiv="Content-Style-Type" content="text/css">
      <title>Member Management</title>
      <link rel="shortcut icon" href="../img/LogoTNT.png" type="image/x-icon">
-     <link rel="stylesheet" href="../css/Admin_main.css">
-     <link rel="stylesheet" href="../css/Admin_Room.css">
-     <link rel="stylesheet" href="../css/Slider.css">
+     <link rel="stylesheet" href="./css/Admin_main.css">
+     <link rel="stylesheet" href="./css/Admin_Room.css">
+     <link rel="stylesheet" href="./css/Slider.css">
      <!-- Sử dụng fontawsome -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -19,64 +19,6 @@
 </head>
 <body>
      <div class="Container Admin_Room">
-          <!-- Phần header -->
-          <!-- Được chia ra làm 3 phần bên trái, giữa và phải -->
-          <!-- Phần trái, gồm các mục ở 2 bên -->
-          <!-- Phần mid được sử dụng để làm logo-->
-          <div class="header">
-               <div class="head_container desktop">
-                    <div class="head_left">
-                         <ul>
-                              <li><a href="#">Quản lý</a></li>
-                              <li><a href="#">Yêu cầu</a></li>
-                              <li><a href="#">Thành viên</a></li>
-                         </ul>
-                    </div>
-                    <div class="head_mid">
-                         <div class="head_logo"><a href="#"><img src="../img/LogoTNT.png" alt="" width="70px" height="70px"></a></div>
-                    </div>
-                    <div class="head_right">
-                         <ul>
-                              <li><a href="#">Thống kê số liệu</a></li>
-                              <li><a href="#">Đăng nhập</a><span>/</span><a href="#">Đăng ký</a></li>
-                         </ul>
-                    </div>
-               </div>
-               <!-- Phần chỉnh header theo định dạng iphone 14 Pro Max  -->
-               <div class="head_container phone">
-                    <div class="head_left">
-                         <div class="MiniMenu">
-                              <div class="MiniMenu_button">
-                                   <div class="ham-btn__burger"><i class="fa-solid fa-bars"></i></div>
-                              </div>
-                              <div id="test">
-                                   <ul class="mini_nav" >
-                                        <div class="MiniMenu_button exit">
-                                             <div class="ham-btn__burger"><i class="fa-solid fa-xmark"></i></div>
-                                        </div>
-                                        <li><a href="#">Quản lý</a></li>
-                                        <li><a href="#">Yêu cầu</a></li>
-                                        <li><a href="#">Thành viên</a></li>
-                                        <li><a href="#">Thống kê số liệu</a></li>
-                                        <li>
-                                             <a href="#">Đăng nhập</a>
-                                        </li>
-                                        <li>
-                                             <a href="#">Đăng ký</a>
-                                        </li>
-                                   </ul>
-                              </div>
-                         </div>
-                    </div>
-                    <div class="head_mid">
-                         <div class="head_logo"><a href="#"><img src="../img/LogoTNT.png" alt="" width="100px" height="100px"></a></div>
-                    </div>
-                    <div class="head_right">
-                    </div>
-               </div>
-               <!-- Phần script cho header -->
-               <script src="./js/ultils.js"></script>
-          </div>
           <!-- Phần body -->
           <!-- Như phần header nhưng ta sẽ chia theo thành phần -->
           <div class="body">
@@ -114,7 +56,7 @@
                          <div class="Member_Component">
                               <div class="Member">
                                    <div class="Img_Member">
-                                        <img src="../img/phòng1.jpg">
+                                        <img src="./img/phòng1.jpg">
                                    </div>
                                    <div class="Member_content">
                                         <h3>Tên Khách hàng : <span class="lighter">Phạm Hữu Nguyên</span> </h3>

@@ -14,10 +14,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
+    <div class="Container Admin_Room">
     <?php 
         include './php_func/conn.php'
     ?>
-    <div class="Container Admin_Room">
         <div class="body">
             <!-- Phần chuyển đổi chung -->
             <div class="container RoomManagement">
@@ -30,7 +30,8 @@
                     </div>
                 </div>
             </div>
-            <div id="roomContent"></div>
+            <div id="roomContent">
+            </div>
         </div>
     </div>
 

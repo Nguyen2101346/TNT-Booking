@@ -1,16 +1,16 @@
 $(document).ready(function() {
     // Tải trang quản lý loại phòng khi load lần đầu
-    loadPage('RoomTypeManagement.php');
+    loadPage('RequestRoom.php');
 
     // Gán sự kiện click cho các nút EventChange
-    $('#loadRoomTypes').on('click', function(e) {
+    $('#loadRoomRequest').on('click', function(e) {
         e.preventDefault();
-        loadPage('RoomTypeManagement.php');
+        loadPage('RequestRoom.php');
     });
 
-    $('#loadRooms').on('click', function(e) {
+    $('#LoadEventRequest').on('click', function(e) {
         e.preventDefault();
-        loadPage('RoomManagement.php');
+        loadPage('RequestEvent.php');
     });
 
     // Hàm tải trang bằng AJAX
@@ -19,15 +19,13 @@ $(document).ready(function() {
             url: './php/' + page,
             method: 'GET',
             success: function(data) {
-                $('#roomContent').html(data);
+                $('#Request__content').html(data);
                 
                 // Khởi tạo lại Swiper nếu trang tải có slider
-                if (page === 'RoomTypeManagement.php') {
-                    CreTypeManage();
-                    ConvienceCheck();
+                if (page === 'RequestRoom.php') {
                     initializeSwiper();
                     AJAXSubmit();
-                }else{
+                }else if(page === 'RequestEvent.php'){
                     CreRoom()
                 }
             },

@@ -55,59 +55,6 @@
                </div> -->
           </div>
      </form>
-     <script>
-     document.addEventListener('DOMContentLoaded', function() {
-          const signupForm = document.getElementById('signup-form');
-
-          signupForm.addEventListener('submit', function(event) {
-               event.preventDefault(); // Ngăn chặn hành vi mặc định của form
-
-               // Lấy dữ liệu từ form
-               const formData = new FormData(signupForm);
-               // Gửi dữ liệu form bằng AJAX
-               fetch(signupForm.action, {
-                    method: 'POST',
-                    body: formData
-               })
-               .then(response => response.json()) // Chuyển đổi kết quả nhận được thành JSON
-               .then(data => {
-                    // Xử lý kết quả nhận được
-                    if (data.success) {
-                         // Nếu thành công, hiển thị thông báo thành công và xóa dữ liệu trong form
-                         const message = data.message;
-                         document.getElementById('success_correct').textContent = "Đăng ký thành công";
-                         document.getElementById('user-error').textContent = "";
-                         document.getElementById('pass-error').textContent = "";
-                         document.getElementById('confirm-error  ').textContent = "";
-                         window.location.href = "Login.php"
-                         // window.location.href = 'login_remake.php'; 
-                    } else if (data.type === 'error') {
-                         // Xử lý các loại lỗi khác nhau
-                         const errorMessage = data.message;
-                         if (errorMessage === 'password_too_short') {
-                              // Hiển thị thông báo lỗi dưới password
-                              document.getElementById('pass-error').textContent = "Mật khẩu quá ngắn !";
-                              document.getElementById('user-error').textContent = "";
-                              document.getElementById('confirm-error  ').textContent = "";
-                         } else if (errorMessage === 'password_mismatch') {
-                              // Hiển thị thông báo lỗi dưới password confirm
-                              document.getElementById('confirm-error').textContent = "Mật khẩu nhập lại không khớp !";
-                              document.getElementById('user-error').textContent = "";
-                              document.getElementById('pass-error').textContent = "";
-                         } else if (errorMessage === 'username_exists') {
-                              // Hiển thị thông báo lỗi dưới username
-                              document.getElementById('user-error').textContent = "Tên đăng nhập đã tồn tại !";
-                              document.getElementById('pass-error').textContent = "";
-                              document.getElementById('confirm-error  ').textContent = "";
-                         } else {
-                              document.getElementById('signup-error').textContent = "Có một vài lỗi nhỏ: " + errorMessage;
-                         }
-                    }
-               })
-               .catch(error => {
-                    console.error('Error:', error);
-               });
-          });
-          });
+     
      </script>
 </div>
