@@ -1,0 +1,178 @@
+/* ===================================== REQUEST ============================================== */
+.Request{
+    margin-bottom: 20px;
+    padding:0;
+    height:220px;
+    position:relative;
+    border-radius: 10px;
+    background:#fff;
+    display:grid;
+    grid-template-columns: 300px 90%;
+    gap:20px
+}
+.Img_Request{
+    padding:10px;
+    width:300px;
+    height:220px;
+    border-radius: 10px;
+}
+/* Phần Chi tiết yêu cầu đặt phòng  */
+.CheckRoom.MiniForm{
+    margin-top: 30px;
+    width:750px;
+    height:600px;
+}
+.CheckRoom.MiniForm h2{
+    margin: 20px;
+}
+.CheckRoom_Top{
+    width:100%;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.checkRoom{
+    font-weight:bold;
+}
+.select{
+    position:relative;
+    display:flex;
+    justify-content: space-between;
+    width:100%;
+    align-items: center;
+    transition:0.5s;
+}
+.select ul{
+    height:60px;
+    visibility:hidden;
+    display:grid;
+    position:absolute;
+    top: 50px;;
+    left: 0px;
+    z-index: 10;
+    overflow-y:scroll;
+}
+.select ul li{
+    z-index: 11;
+    cursor:pointer;
+    color:#000;
+    padding:5px;
+    border-bottom:1px solid var(--grey3);
+}
+.select ul li:hover{
+    background:var(--orange1);
+    color:#fff;
+}
+.select span{
+    transition:0.25s;
+}
+.select:hover{
+    border:1px solid var(--orange1);
+    color:var(--orange1)
+}
+.select:hover span{
+    transform:rotateZ(-180deg);
+}
+.select:hover ul{
+    visibility:visible;
+}
+.Select.click {
+    border:1px solid var(--orange1);
+    color:var(--orange1)
+}
+.Select.click span{
+    transform:rotateZ(-180deg);
+}
+.CheckRoom_bottom{
+    width:100%;
+}
+.idcheck{
+    margin-top: 20px;
+}
+.idcheck label{
+    position: relative;
+    width: 180px;
+    display: grid;
+    grid-template-columns: 15% 1fr;
+    justify-content: center;
+    color: #000;
+    font-family: serif;
+    font-size: 15px;
+    box-shadow:0 0 2px #000;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    align-items: center;
+}
+.idcheck label::before{
+    content: '';
+    /* transform: translateY(-2px); */
+    display: block;
+    width: 16px; height: 16px;
+    box-shadow:0 0 2px #000;
+    border-radius: 50%;
+}
+.CheckRoom_Confirm{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    margin-top: 20px;
+}
+.checkRoom_confirm_btn .btn{
+    background:var(--green4);
+    border:2px solid var(--green4)
+}
+.checkRoom_confirm_btn .btn:hover{
+    background:#fff;
+    border:2px solid var(--green4);
+    color:var(--green4);
+}
+.checkRoom_Cancel_btn .btn{
+    background:red;
+    border:2px solid red;
+}
+.checkRoom_Cancel_btn .btn:hover{
+    background:#fff;
+    border:2px solid red;
+    color:red;
+}
+
+/* ================================= EVENT REQUEST =========================================================== */
+
+/* Quản lí chi tiết yêu cầu sự kiện */
+.CheckEvent.MiniForm{
+    height:550px;
+}
+.CheckEvent.MiniForm h2{
+    margin: 20px;
+}
+.CheckEvent_Top{
+    width:100%;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.checkEvent{
+    font-weight:bold;
+}
+.CheckEvent_bottom{
+    padding-top: 20px;
+    font-weight:bold;
+    width:100%
+}
+.CheckEvent_bottom textarea{
+    height: 150px;
+}
+.CheckEvent_Confirm{
+    margin-top: 10px;
+    width:100%;
+}
+.checkEvent_confirm_btn .btn{
+    background:#E8952F;
+    border:2px solid #E8952F
+}
+.checkEvent_confirm_btn .btn:hover{
+    background:#fff;
+    border:2px solid #E8952F;
+    color:#E8952F;
+}

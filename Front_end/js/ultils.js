@@ -22,7 +22,7 @@ exitBtn.addEventListener('click',() => {
      hamOpen = false;    
      }); 
 
-// Phần chỉnh nút menu
+// Phần chỉnh thông tin menu
      const userID = document.querySelector('.user-id');
      const MemberMenu = document.querySelector('.miniMember-menu')
      let MemberOpen = false;

@@ -11,27 +11,15 @@ document.addEventListener('scroll',() => {
 const EventChangeLeft = document.querySelector('.EventChange.Left');
 const EventChangeRight = document.querySelector('.EventChange.Right')
 EventChangeLeft.addEventListener('click',() => {
-     EventChangeLeft.classList.add('click');
-     EventChangeRight.classList.remove('click');
+     EventChangeLeft.querySelector('a').classList.add('click');
+     EventChangeRight.querySelector('a').classList.remove('click');
 }); 
 EventChangeRight.addEventListener('click',() => {
-     EventChangeRight.classList.add('click');
-     EventChangeLeft.classList.remove('click');
+     EventChangeRight.querySelector('a').classList.add('click');
+     EventChangeLeft.querySelector('a').classList.remove('click');
 });
 
 // Phần xử lý thêm loại phòng
-const CreType = document.querySelector('.CreType');
-const CancelButton = document.querySelector('.Cancel_btn')
-const CreTypeForm = document.querySelector('.CreType.MiniContainer');
-let TypeOpen = false;
-CreType.addEventListener('click',() => {
-     CreTypeForm.classList.add('visible');
-     TypeOpen = true;
-});
-CancelButton.addEventListener('click',() => {
-     CreTypeForm.classList.remove('visible');
-     TypeOpen = false;    
-     }); 
 // Phần xử lý thêm phòng
 // const CreRoom = document.querySelector('.AddRoom');
 // const RoomCancelButton = document.querySelector('.MiniRoom_Cancel_btn')

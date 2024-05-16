@@ -21,4 +21,16 @@ exitBtn.addEventListener('click',() => {
      mininav.classList.remove('toggle');
      hamOpen = false;    
      }); 
-
+// Phần chỉnh show thông tin admin
+const userID = document.querySelector('.admin-id');
+const AdminMenu = document.querySelector('.miniAdmin-menu')
+let AdminOpen = false;
+userID.addEventListener('click',() => {
+     if(AdminOpen != true){
+          AdminMenu.classList.add('active');
+          AdminOpen = true;
+     }else{
+          AdminMenu.classList.remove('active');
+          AdminOpen = false;
+     }
+});

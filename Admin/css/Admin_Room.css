@@ -1,3 +1,15 @@
+.cor-text{
+     color: green;
+}
+.er-text{
+     color: red;
+}
+h2.title{
+     font-size: 24px;
+}
+label.title{
+     font-size: 16px;
+}
 .lighter{
      font-weight: lighter;
 }
@@ -37,25 +49,30 @@
      padding: 5px;
      border-radius: 5px;
      background: #e0e0e0;
+     cursor: pointer;
 }
 input[type = 'file']{
      position: absolute;
      display: none;
 }
 .CreRoombot{
-     margin-top: 20px;
+     margin-top: 35px;
 }
 .CreRoombot textarea{
      width: 100%;
+     height: 150px;
      outline: none;
      border-radius: 10px;
      border: 1px solid var(--grey3);
      padding: 10px;
 }
 .CreRoomCom{
-     margin-top: 10px;
+     margin-top: 30px;
 }
-input[type = 'text'],input[type = 'date'],input[type = 'number'],input[type = "email"],.select,textarea{
+.CreRoomCom.name,.CreRoomCom.Small{
+     margin: 0;
+}
+input[type = 'text'],input[type = 'date'],input[type = 'number'],input[type = "email"],.select{
      width: 100%;
      height: 50px;
      border-radius: 10px;
@@ -85,12 +102,15 @@ input[type = "checkbox"]:checked + label::before{
      gap: 10px ;
 }
 .CreRoombot.convenience{
-     margin-top: 75px;
+     margin-top: 70px;
 }
 .Confirm{
+
+     padding: 40px 20px;
      display: grid;
      grid-template-columns: 1fr 1fr;
      gap: 20px;
+     background: #e0e0e0;
 }
 .Confirm a{
      font-size: 20px;
@@ -111,21 +131,22 @@ input[type = "checkbox"]:checked + label::before{
      border:1px solid red;
      color: red;         
 }
-.confirm_btn .btn,.Edit_btn .btn{
+.confirm_btn .btn,.Confirm_btn .btn,.Edit_btn .btn{
      background: var(--green4);
      border: 1px solid var(--green4);
 }
-.confirm_btn .btn:hover,.Edit_btn .btn:hover{
+.confirm_btn .btn:hover,.Confirm_btn .btn:hover,.Edit_btn .btn:hover{
      background: #fff;
      color: var(--green4);
 }
 .ImgRoom_detail{
+     padding: 0 20px;
      background: #e0e0e0;
 }
-.ImgRoom_detail .title{
+.ImgRoom_detail .title, .ImgRoom_detail label.title{
      display: flex;
-     padding: 10px 20px ;
      align-items: center;
+     font-size: 16px;
 }
 .ImgRoom_detail .title label{
      margin-left: 10px;
@@ -166,18 +187,19 @@ input[type = "checkbox"]:checked + label::before{
 }
 .MiniForm{
      margin-top: 100px;
-     width: 750px;
-     height: 450px;
+     width: 600px;
+     height: 500px;
      background: var(--white);
      display: flex;
      flex-direction: column;
      align-items: center;
      border-radius: 10px;
-     padding: 10px 20px;
+     padding: 10px 40px;
 }
 .MiniForm h2{
+     font-size: 20px;
      position: relative;
-     padding: 15px;
+     padding: 40px 0 20px;
 }
 .MiniForm h2::after{
      content: '';
@@ -208,10 +230,94 @@ input[type = "checkbox"]:checked + label::before{
 }
 .Type label,.miniroom label{
      padding: 10px 0;
-     font-size: 18px;
+     font-size: 16px;
      font-weight: bold;
 }
-/* Quản lý Phòng */
+.Cancel_btn .btn,.Confirm_btn .btn{
+     width: 100%;
+     height: 100%;
+     padding: 0;
+     align-self: center;
+     justify-self: center;
+}
+.Cancel_btn,.Confirm_btn{
+     width: 125px;
+     height: 50px;
+}
+/* Phần Thêm tiện ích */
+.MiniConvience h2{
+     color: var(--blue3);
+}
+.ConvienceShow{
+     padding: 10px;
+     display: grid;
+     grid-template-columns: 1fr 1fr;
+     grid-auto-rows: max-content;
+     gap: 10px;
+     width: 100%;
+     height: 350px;
+     overflow-y: scroll;
+}
+.ConvienceShow::-webkit-scrollbar {
+     width: 5px; /* chiều rộng của scrollbar */
+ }
+ 
+.ConvienceShow::-webkit-scrollbar-thumb {
+     background-color: var(--blue3); /* màu của "nút" trên scrollbar */
+     border-radius: 6px; /* bo góc cho "nút" */
+ }
+.Convience_item{
+     height: 50px;
+     display: flex;
+     align-items: center;
+}
+.Convience_item label{
+     position: relative;
+     width: 100%;
+     height: 100%;
+     display: grid;
+     grid-template-columns: 26px 1fr;
+     justify-content: center;
+     color: #000;
+     font-family: serif;
+     font-size: 15px;
+     box-shadow:0 0 2px #000;
+     border-radius: 5px;
+     padding: 5px 10px;
+     font-weight: bold;
+     align-items: center;
+}
+.Convience_item label::before{
+     content: '';
+     /* transform: translateY(-2px); */
+     display: block;
+     width: 16px; height: 16px;
+     box-shadow:0 0 2px #000;
+     border-radius: 50%;
+}
+input[type = "checkbox"]:checked + label {
+     /* Custom styling for checked state */
+     background-color: var(--blue3);
+     box-shadow: 0 0 2px var(--blue3);
+     color: #fff;
+}
+input[type = "checkbox"]:checked + label::before{
+     /* background: #fff; */
+     background-image: url('../img/blue-check3.png');
+     background-size: cover;
+}
+.ConFinish{
+     display: flex;
+     width: 125px;
+     height: 50px;
+     font-size: 18px;
+     align-items: center;
+     justify-content: center;
+     border-radius: 10px;
+     color: #fff;
+     background: var(--blue3);
+}
+/* ===================================================  Quản lý Phòng  ==========================================================================*/
 .Roomlist_Container,.Member_Container,.room_Request_Container,.Event_Request_Container{
      background:var(--grey3);
      padding: 50px 20px;
@@ -318,184 +424,6 @@ h3{
      background:#fff;
      border:2px solid red;
      color:red;
-}
-/* ===================================== REQUEST ============================================== */
-.Request{
-     margin-bottom: 20px;
-     padding:0;
-     height:220px;
-     position:relative;
-     border-radius: 10px;
-     background:#fff;
-     display:grid;
-     grid-template-columns: 300px 90%;
-     gap:20px
-}
-.Img_Request{
-     padding:10px;
-     width:300px;
-     height:220px;
-     border-radius: 10px;
-}
-/* Phần Chi tiết yêu cầu đặt phòng  */
-.CheckRoom.MiniForm{
-     margin-top: 30px;
-     width:750px;
-     height:600px;
-}
-.CheckRoom.MiniForm h2{
-     margin: 20px;
-}
-.CheckRoom_Top{
-     width:100%;
-     display:grid;
-     grid-template-columns: 1fr 1fr;
-     gap: 20px;
-}
-.checkRoom{
-     font-weight:bold;
-}
-.select{
-     position:relative;
-     display:flex;
-     justify-content: space-between;
-     width:100%;
-     align-items: center;
-     transition:0.5s;
-}
-.select ul{
-     height:60px;
-     visibility:hidden;
-     display:grid;
-     position:absolute;
-     top: 50px;;
-     left: 0px;
-     z-index: 10;
-     overflow-y:scroll;
-}
-.select ul li{
-     z-index: 11;
-     cursor:pointer;
-     color:#000;
-     padding:5px;
-     border-bottom:1px solid var(--grey3);
-}
-.select ul li:hover{
-     background:var(--orange1);
-     color:#fff;
-}
-.select span{
-     transition:0.25s;
-}
-.select:hover{
-     border:1px solid var(--orange1);
-     color:var(--orange1)
-}
-.select:hover span{
-     transform:rotateZ(-180deg);
-}
-.select:hover ul{
-     visibility:visible;
-}
-.Select.click {
-     border:1px solid var(--orange1);
-     color:var(--orange1)
-}
-.Select.click span{
-     transform:rotateZ(-180deg);
-}
-.CheckRoom_bottom{
-     width:100%;
-}
-.idcheck{
-     margin-top: 20px;
-}
-.idcheck label{
-     position: relative;
-     width: 180px;
-     display: grid;
-     grid-template-columns: 15% 1fr;
-     justify-content: center;
-     color: #000;
-     font-family: serif;
-     font-size: 15px;
-     box-shadow:0 0 2px #000;
-     border-radius: 5px;
-     padding: 5px 10px;
-     font-weight: bold;
-     align-items: center;
-}
-.idcheck label::before{
-     content: '';
-     /* transform: translateY(-2px); */
-     display: block;
-     width: 16px; height: 16px;
-     box-shadow:0 0 2px #000;
-     border-radius: 50%;
-}
-.CheckRoom_Confirm{
-     display: grid;
-     grid-template-columns: 1fr 1fr;
-     gap: 100px;
-     margin-top: 20px;
-}
-.checkRoom_confirm_btn .btn{
-     background:var(--green4);
-     border:2px solid var(--green4)
-}
-.checkRoom_confirm_btn .btn:hover{
-     background:#fff;
-     border:2px solid var(--green4);
-     color:var(--green4);
-}
-.checkRoom_Cancel_btn .btn{
-     background:red;
-     border:2px solid red;
-}
-.checkRoom_Cancel_btn .btn:hover{
-     background:#fff;
-     border:2px solid red;
-     color:red;
-}
-
-/* ================================= EVENT REQUEST =========================================================== */
-
-/* Quản lí chi tiết yêu cầu sự kiện */
-.CheckEvent.MiniForm{
-     height:550px;
-}
-.CheckEvent.MiniForm h2{
-     margin: 20px;
-}
-.CheckEvent_Top{
-     width:100%;
-     display:grid;
-     grid-template-columns: 1fr 1fr;
-     gap: 20px;
-}
-.checkEvent{
-     font-weight:bold;
-}
-.CheckEvent_bottom{
-     padding-top: 20px;
-     font-weight:bold;
-     width:100%
-}
-.CheckEvent_bottom textarea{
-     height: 150px;
-}
-.CheckEvent_Confirm{
-     margin-top: 10px;
-     width:100%;
-}
-.checkEvent_confirm_btn .btn{
-     background:#E8952F;
-     border:2px solid #E8952F
-}
-.checkEvent_confirm_btn .btn:hover{
-     background:#fff;
-     border:2px solid #E8952F;
-     color:#E8952F;
 }
 
 

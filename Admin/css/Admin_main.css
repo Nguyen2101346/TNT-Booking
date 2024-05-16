@@ -13,6 +13,7 @@ body{
      --white : #fff;
      --bgHeader: linear-gradient(180deg,rgba(0,0,0,0.56) 0%,rgba(0,0,0,0) 100%);
      --bgHeader2: #E8952F;
+     --bgSearch: #FFF1D6;
      --yellow1: #FAB005;
      --orange1: #FD8C42;
      --orange2: #FBC7A5;
@@ -27,6 +28,7 @@ body{
      --green2: rgba(5,79,53,0.9);
      --green4:#74B230;
      --text1: #272727;
+     --grey0: #767171;
      --grey1: rgb(87, 86, 86);
      --grey2: rgba(224, 224, 224, 0.918);
      --grey3: rgba(180, 180, 180, 0.89);
@@ -36,12 +38,32 @@ body{
      --basicGradient2--galaxy : linear-gradient(to right top, #ff0a6c , #2d27ff);
      --basicGradient3--neon : linear-gradient(180deg, #035755 , #00FFFB);
      --container-w: 1140;
-     --container-w-px: 1140px;
+     --container-w-px: 1050px;
+}
+img{
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+}
+input[type = "submit"]{
+     cursor: pointer;
+}
+.error-p,.correct-p{
+     display: flex;
+     justify-content: start;
+}
+.error-p .content{
+     padding: 5px 10px;
+     color: red;
+}
+.correct-p .content{
+     padding: 5px 10px;
+     color: green;
 }
 .Container{
      width: 100%;
-     height: auto;
-     /* min-height: 1000px; */
+     height: 100%;
+     /* min-height: 100vh; */
 }
 ul{     
      display: flex;
@@ -60,24 +82,30 @@ a{
 }
 .title{
      position: relative;
-     font-size: 16px;
+     transition: 0.5s ease;
+     font-size: 20px;
      font-weight: bold;
 }
 .title.large{
      position: relative;
-     font-size: 20px;
-     font-weight: 700;
+     font-size: 24px;
+     font-weight: bold;
 }
 .content{
      position: relative;
-     font-size: 14px;
+     font-size: 16px;
      padding: 10px;
 }
 .content.note {
      position: relative;
      display: grid;
-     font-size: 12px;
+     font-size: 13px;
      display: flex;
+}
+.minicontent{
+     position: relative;
+     font-size: 16px;
+     padding-left: 10px;
 }
 .mini_btn{
      font-size: 12px;
@@ -133,7 +161,7 @@ input[type = 'submit']{
 } */
 .btn{
      padding: 20px 40px;
-     font-size: 20px;
+     font-size: 18px!important;
      font-weight: bold;
      border-radius: 5px;
      background: var(--white);
@@ -215,6 +243,11 @@ input[type = 'submit']{
 .head_container .head_left ul li:hover a {
      color: var(--orange1);
 }
+/* Phần giữa logo */
+.head_logo{
+     width: 100px;
+     height: 100px;
+}
 /* Phần bên phải của header */
 .head_container .head_right{
      width: 100%;
@@ -267,12 +300,14 @@ input[type = 'submit']{
 .head_container .head_right ul a:hover  {
      color: var(--orange1);
 }
+/* Phần thông tin admin */
 .miniAdmin-menu {
-     width: 150px !important;;
+     width: 150px !important;
      display: none!important;
      visibility:hidden;
+     opacity: 0;
      position:absolute;
-     top:60px;
+     top:160px;
      right:0;
      grid-template-columns: 1fr;
      grid-template-rows: 1fr 1fr;
@@ -280,6 +315,7 @@ input[type = 'submit']{
      background:#fff;
      border:2px solid var(--blue3);
      border-radius: 10px;
+     transition: 0.5s;
 }
 .miniAdmin-menu::before{
      content:'';
@@ -294,9 +330,11 @@ input[type = 'submit']{
      border-left: 2px solid var(--blue3);
      z-index: -1;
 }
-.admin-id:hover .miniAdmin-menu{
+.admin-id:hover .miniAdmin-menu,.admin-id .miniAdmin-menu.active{
      display: grid!important;
      visibility:visible;
+     top:90px;
+     opacity: 1;
 }
 .miniAdmin-menu li{
      display:flex;
@@ -305,7 +343,15 @@ input[type = 'submit']{
 .miniAdmin-menu li:hover{
      background: var(--blue3);
 }
-.miniAdmin-menu li:hover .miniAdmin-menu::before{
+.miniAdmin-menu li:first-child{
+     border-top-left-radius:10px;
+     border-top-right-radius:10px;
+}
+.miniAdmin-menu li:last-child{
+     border-bottom-left-radius:10px;
+     border-bottom-right-radius:10px;
+}
+.miniAdmin-menu li:first-child:hover ~ .miniAdmin-menu::before{
      background: var(--blue3);
 }
 .miniAdmin-menu a{
@@ -415,10 +461,10 @@ input[type = 'submit']{
      background: var(--blue3);
      transition: 0.5s ease-in-out;
 }
-.EventChange a:hover,.EventChange.click{
+.EventChange a:hover,.EventChange a.click{
      color: var(--blue3);
 }
-.EventChange a:hover:after,.EventChange.click{
+.EventChange a:hover:after,.EventChange a.click:after{
      width: 100%;
      color: var(--blue3);
 }
