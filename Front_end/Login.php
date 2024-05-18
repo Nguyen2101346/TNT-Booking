@@ -38,13 +38,14 @@
                                              // Lấy thông tin của người dùng từ kết quả truy vấn
                                              $user = mysqli_fetch_assoc($re);
                                              // Xác thực mật khẩu
-                                             if ($user["MatKhau"] == md5($p)) {
+                                             if ($user["Matkhau"] == md5($p)) { 
                                                  // Mật khẩu hợp lệ, đăng nhập thành công
                                                  $txt_cor = "Đăng nhập thành công!";
-                                                 $_SESSION["username"] = $user["TenDangNhap"];
-                                                 $_SESSION["phanquyen"] = $user["PhanQuyen"];
-                                             //     header("location:index.php"); // Chuyển hướng đến trang chính sau khi đăng nhập thành công
-                                             //     exit(); // Kết thúc script để ngăn việc tiếp tục thực thi sau khi đã chuyển hướng
+                                                 $_SESSION["username"] = $user["Tendangnhap"];
+                                                 $_SESSION["role"] = $user["Quyen"];
+                                                 $_SESSION["userID"] = $user["IDTaikhoan"];
+                                                 header("location:index.php?go=1"); // Chuyển hướng đến trang chính sau khi đăng nhập thành công
+                                                 exit(); // Kết thúc script để ngăn việc tiếp tục thực thi sau khi đã chuyển hướng
                                              } else {
                                                  // Mật khẩu không hợp lệ
                                                  $txt_err = "Mật khẩu hoặc tài khoản không đúng!";

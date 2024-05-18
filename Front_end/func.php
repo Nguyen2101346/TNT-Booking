@@ -1,12 +1,12 @@
 <?php
     function check_account($conn, $u){
-        $sql = "select * from tb_taikhoan where TenDangNhap='$u'";
+        $sql = "select * from taikhoan where Tendangnhap='$u'";
         return mysqli_query($conn, $sql);
     }
 
     function add_account($conn, $u, $p){
         $hashedP = md5($p);
-        $sql = "INSERT INTO tb_taikhoan(TenDangnhap, MatKhau) VALUES ('".$u."','".$hashedP."')";
+        $sql = "INSERT INTO taikhoan(Tendangnhap, Matkhau) VALUES ('".$u."','".$hashedP."')";
         mysqli_query($conn, $sql);
     }
 ?>

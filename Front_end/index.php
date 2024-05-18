@@ -1,6 +1,6 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./css/eat.css">
     <link rel="stylesheet" href="./css/footer.css">
     <link rel="stylesheet" href="./css/search.css">
+    <link rel="stylesheet" href="./css/info.css">
     <!-- Sử dụng fontawsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
@@ -33,11 +34,13 @@
         <!-- Phần trái, gồm các mục ở 2 bên -->
         <!-- Phần mid được sử dụng để làm logo-->
         <?php
-                include "./conn.php";
-                include "./php/Header.php";
-          ?>
-        <?php 
-             if(isset($_GET['page'])){
+            $change = 0;
+            if(isset($_GET['go']) == 1){
+                $change = 1;
+            }
+            include "./conn.php";
+            include "./php/Header.php";
+            if(isset($_GET['page'])){
                 $page = $_GET['page'];
                 include ''. $page .'.php';
             }else{
@@ -54,7 +57,32 @@
     <script src="./js/eat.js"></script>
     <script src="./js/ultils.js"></script>
     <script src="./js/Searchbar.js"></script>
-    <script src="./js/searchbar_test.js"></script>
+    <script src="./js/searchbar_get.js"></script>
+    <script src="./js/MiniBill.js"></script>
+    <script>
+        const change = <?= $change?>;
+        document.getElementById("searchButton").addEventListener("click", function(event) {
+         const searchButton = document.getElementById("searchButton");
+         if (searchButton.classList.contains('disabled')) {
+             event.preventDefault();
+             return;
+         }
+         
+         const startDate = document.getElementById("start").textContent.trim();
+         const endDate = document.getElementById("end").textContent.trim();
+         const roomNum = document.getElementById("room_num").textContent.trim();
+         const adultsNum = document.getElementById("adults_num").textContent.trim();
+         const discountCode = document.querySelector('#discountSelect').value;
+         
+         let url = `index.php?page=sale&start_date=${encodeURIComponent(startDate)}&end_date=${encodeURIComponent(endDate)}&rooms=${encodeURIComponent(roomNum)}&qua-adults=${encodeURIComponent(adultsNum)}&discount_code=${encodeURIComponent(discountCode)}`;
+         
+         if (change == 1) {
+             url += '&go=1';
+         }
+         
+         window.location.href = url;
+        });
+    </script>
 </body>
 
 </html>

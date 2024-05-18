@@ -163,7 +163,10 @@ let TabShow = false;
      const adultsNum = parseInt(document.getElementById("adults_num").textContent);
      const discountCode = document.querySelector('#discountSelect').value;
      const searchButton = document.getElementById("searchButton");
-     if (startDate && endDate && roomNum > 0 && adultsNum > 0) {
+
+     const validDatePattern = /^(?!0\/0\/0000)\d{1,2}\/\d{1,2}\/\d{4}$/;
+
+     if (validDatePattern.test(startDate) && validDatePattern.test(endDate) && roomNum > 0 && adultsNum > 0) {
           searchButton.classList.remove('disabled');
           searchButton.removeAttribute('style');
           searchButton.addEventListener('mouseover', () => {
@@ -177,7 +180,7 @@ let TabShow = false;
           });
      }
 }
- document.getElementById("searchButton").addEventListener("click", function(event) {
+document.getElementById("searchButton").addEventListener("click", function(event) {
      const searchButton = document.getElementById("searchButton");
      if (searchButton.classList.contains('disabled')) {
          event.preventDefault();
@@ -191,6 +194,9 @@ let TabShow = false;
      const discountCode = document.querySelector('#discountSelect').value;
      
      const url = `index.php?page=sale&start_date=${encodeURIComponent(startDate)}&end_date=${encodeURIComponent(endDate)}&rooms=${encodeURIComponent(roomNum)}&qua-adults=${encodeURIComponent(adultsNum)}&discount_code=${encodeURIComponent(discountCode)}`;
+     if(change == 1){
+          url += '&go=1'
+     }
      window.location.href = url;
  });
  document.getElementById("searchButton").addEventListener("click", function() {

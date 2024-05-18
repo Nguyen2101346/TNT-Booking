@@ -10,13 +10,14 @@
                               <span class="fas fa-caret-down"></span>
                          <ul>
                               <?php 
+                                   $Sothutu = 1;
                                    $sql = "SELECT * FROM loaiphong";
                                    $re = mysqli_query($conn,$sql);
                                    while($r = mysqli_fetch_array($re)){
                               ?>
-                                   <li><a href="#"> <?= $r['IDLoaiphong']?> . <?= $r['Tenloaiphong']?></a></li>
+                                   <li><a href="#" class="type_items" data-id="<?= $r['IDLoaiphong']?>"> <?= $Sothutu ?> . <?= $r['Tenloaiphong']?></a></li>
                               <?php
-                                   }
+                                   $Sothutu++ ;}
                               ?>
                          </ul>
                          </div>
@@ -24,7 +25,7 @@
                               <a href="#" class="medium_btn" id="openCreTypeForm"> Loại phòng mới </a>
                          </div>
                     </div>
-                    <form action="" class="CreRoom_form" id="CreRoom">
+                    <form action="" class="CreRoom_form" id="CreRoom" method="post" enctype="multipart/form-data">
                          <div class="CreRoom_container">
                               <div class="CreRoom Left">
                                    <div class="ImgRoom">
@@ -69,7 +70,7 @@
                                    <lable>Ảnh xem trước</lable>
                                         <div class="getImg_detail">
                                              <label for="ImgDetail" class="title">Chọn ảnh</label>
-                                             <input type="file" name="" id="ImgDetail">
+                                             <input type="file" name="ImgDetail[]" id="ImgDetail" multiple="multiple">
                                         </div>
                               </div>
                               <div class="ImgRoom_Slider">
@@ -161,6 +162,7 @@
      </div>
 
      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+     <script src=""></script>
      <script>
           $(document).ready(function() {
             $('#openCreTypeForm').on('click', function(event) {
@@ -183,18 +185,17 @@
                     url: './php/CreTypeForm_process.php',
                     data: formData,
                     dataType: 'json',
-                    success: function(response) {
+                    success: function(response){
                          if (response.success) {
                          alert('Loại phòng mới đã được thêm thành công!');
                          $('.CreType.MiniContainer').removeClass('visible');
-                         } else if(data.type == error){
-                         const errormessage = data.message;
+                         } else if(response.type == 'error'){
+                         const errormessage = response.message;
                          if(errormessage === 'TypeRoomname_exists' ){
                               document.querySelector('.er-text').textContent = "Loại phòng này đã tồn tại!";
                          }else if(errormessage === 'Date-not-today'){
-                              document.querySelector('.er-text').textContent = ""
+                              document.querySelector('.er-text').textContent = "Ngày tạo phải là hôm nay!"
                          }
-                         
                          }
                     },
                     error: function() {

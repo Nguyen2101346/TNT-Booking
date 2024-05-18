@@ -123,6 +123,7 @@ form{
 }
 .pay i {
      position: absolute;
+     top:0;
      right: 0;
      background: #fff;
      height: 61px;

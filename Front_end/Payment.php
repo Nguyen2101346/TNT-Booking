@@ -6,6 +6,7 @@
      <title>Payment</title>
      <link rel="shortcut icon" href="./img/LogoTNT.png" type="image/x-icon">
      <link rel="stylesheet" href="./css/main.css">
+     <link rel="stylesheet" href="./css/search.css">
      <link rel="stylesheet" href="./css/Payment.css">
      <!-- Sử dụng fontawsome -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -15,10 +16,6 @@
 </head>
 <body onload="loadContent()">
      <div class="Payment_Container">
-          <!-- Phần header -->
-          <!-- Được chia ra làm 3 phần bên trái, giữa và phải -->
-          <!-- Phần trái, gồm các mục ở 2 bên -->
-          <!-- Phần mid được sử dụng để làm logo-->
           <?php 
             include "./php/Header.php"
           ?>

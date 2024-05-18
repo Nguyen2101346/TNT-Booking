@@ -1,31 +1,63 @@
+<?php 
+if ($change == 1 && session_status() == PHP_SESSION_NONE){
+     session_start();
+}
+?>
+
 <div class="header">
     <div class="head_container desktop">
          <div class="head_left">
               <ul>
-                   <li><a href="index.php?page=Home" class="title">Trang chủ</a></li>
-                   <li><a href="index.php?page=Sale" class="title">Đặt phòng</a></li>
-                   <li><a href="index.php?page=Event" class="title">Hội họp</a></li>
+                   <li><a href="index.php?page=Home<?php if($change == 1) echo '&go=1'?>" class="title">Trang chủ</a></li>
+                   <li><a href="index.php?page=Sale<?php if($change == 1) echo '&go=1'?>" class="title">Đặt phòng</a></li>
+                   <li><a href="index.php?page=Event<?php if($change == 1) echo '&go=1'?>" class="title">Hội họp</a></li>
               </ul>
          </div>
          <div class="head_mid">
-              <div class="head_logo"><a href="index.php?page=Home"><img src="./img/LogoTNT.png" alt="" width="100px" height="100px"></a></div>
+              <div class="head_logo"><a href="index.php?page=Home<?php if($change == 1) echo '&go=1'?>"><img src="./img/LogoTNT.png" alt="" width="100px" height="100px"></a></div>
          </div>
          <div class="head_right">
               <ul>
                    <li><a href="#" class="title">Ưu đãi khuyến mãi</a></li>
-                   <li><a href="Login.php" class="title">Đăng nhập</a><span>
+                   <?php 
+                    if (!isset($_SESSION['userID'])){
+                    ?>
+                    <li><a href="Login.php" class="title">Đăng nhập</a><span>
                     /</span><a href="Login.php?from=signup" class="title">Đăng ký</a>
                     </li>
-
-                         <!-- Phần sau khi đăng nhập -->
-                             <!-- <li class="Member-id">
-                                <a href = "#" class="user-id title">Koi</a>
-                                <span class="img-id"><img src="./img/avatar.jpg" alt=""></span> 
-                                <ul class="miniMember-menu">
-                                     <li><a href="#" class="title">Thông tin</a></li>
-                                     <li><a href="#" class="title">Đăng xuất</a></li>
-                                </ul>
-                            </li> -->
+                    <?php
+                    }else{
+                         $SESSION['username'] = $username;
+                         $sql = "SELECT * FROM taikhoan WHERE Tendangnhap = '$username'";
+                         $re = mysqli_query($conn,$sql);
+                         $r = mysqli_fetch_array($re);
+                    ?>
+                    <!-- Phần sau khi đăng nhập -->
+                         <li class="Member-id">
+                              <a href = "#" class="user-id title">Hi, 
+                              <?php
+                              if(empty($r['Hoten'])){
+                                  echo $_SESSION['username'];
+                              }else{
+                                   echo $r['Hoten'];
+                              }
+                              ?></a>
+                              <span class="img-id"><img src="
+                              <?php
+                                   if(empty($r['AnhDD'])){
+                                        echo'./img/person.png';
+                                   }else{
+                                        echo './img' + $r['AnhDD'];
+                                   }
+                              ?>" alt=""></span> 
+                              <ul class="miniMember-menu">
+                                   <li><a href="index.php?page=Information<?php if($change == 1) echo '&go=1'?>" class="title">Thông tin</a></li>
+                                   <li><a href="./php_function/logout.php" class="title">Đăng xuất</a></li>
+                              </ul>
+                         </li>
+                    <?php
+                    }
+                    ?> 
               </ul>
          </div>
     </div>

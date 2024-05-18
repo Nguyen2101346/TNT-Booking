@@ -19,11 +19,12 @@
                </div> -->
           </div>
           <div class="TotalBill">
-               <div class="title">Tổng cộng</div>
+               <div class="title">Ưu đãi: </div>
+               <div class="title">Tổng cộng: </div>
                <div id="TotalPrice"></div>
           </div>
      </div>
      <div class="Change_btn">
-          <a href="#" class="medium_btn">Tiếp tục</a>
+          <a href="Payment.php" class="medium_btn">Tiếp tục</a>
      </div>
 </div>

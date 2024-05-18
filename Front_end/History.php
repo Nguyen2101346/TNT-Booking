@@ -19,13 +19,6 @@
 </head>
 <body>
     <div class="Container">
-        <!-- Phần header -->
-          <!-- Được chia ra làm 3 phần bên trái, giữa và phải -->
-          <!-- Phần trái, gồm các mục ở 2 bên -->
-          <!-- Phần mid được sử dụng để làm logo-->
-          <?php 
-                include "./php/Header.php"
-          ?>
         <div class="History_Container">
             <div class="History content">
                 <div class="History title">

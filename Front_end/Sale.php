@@ -35,13 +35,13 @@
                             <div class="Main_item">
                                 <div class="navbar">
                                     <?php
-                                                  $discount_code = isset($_GET['discount_code']) ? $_GET['discount_code'] : '';
-                                                  if (!empty($discount_code)) {
-                                                      echo '<h3 class="offersCheck content">Tìm kiếm theo ưu đãi</h3>';
-                                                  }if (empty($discount_code)){
-                                                       echo '<h3 class="offersCheck content"></h3>';
-                                                  }
-                                             ?>
+                                        $discount_code = isset($_GET['discount_code']) ? $_GET['discount_code'] : '';
+                                        if (!empty($discount_code)) {
+                                             echo '<h3 class="offersCheck content">Tìm kiếm theo ưu đãi</h3>';
+                                        }if (empty($discount_code)){
+                                             echo '<h3 class="offersCheck content"></h3>';
+                                        }
+                                   ?>
                                     <h3 class="content">Đã chọn <span id="Numroom">0</span>/<span
                                             id="limit_room">1</span></h3>
                                 </div>
@@ -54,11 +54,8 @@
                                              $room_num = isset($_GET['room_num']) ? $_GET['room_num'] : 1;
                                              $adults_num = isset($_GET['qua-adults']) ? $_GET['qua-adults'] : 1;
                                              $discount_code = isset($_GET['discount_code']) ? $_GET['discount_code'] : '';
-                                             // if(!$adults_num){
-                                             //      $adults_num = 
-                                             // }
-                                        }     
-                                             $sql = "SELECT * FROM loaiphong WHERE Songuoi = '$adults_num'";
+
+                                             $sql = "SELECT * FROM loaiphong WHERE Songuoi >= '$adults_num'";
                                              $re = mysqli_query($conn,$sql);
                                              $row = mysqli_num_rows($re);
                                              if($row > 0){
@@ -115,14 +112,74 @@
                                              }else{
                                                   echo "Không tìm thấy phòng nào";
                                              }
+                                        }else{
+                                             $sql = "SELECT * FROM loaiphong";
+                                             $re = mysqli_query($conn,$sql);
+                                             $row = mysqli_num_rows($re);
+                                             if($row > 0){
+                                                  while($r = mysqli_fetch_array($re)){
+                                                       $gia = $r['Gia'];
+                                                       $changenumber = number_format($gia, 0, ',', '.');
+                                                       echo '     
+                                                       <div class="room">
+                                                            <div class="img">
+                                                                 <div class="sale-icon">
+                                                                      <img src="./img/sale_icon.png" alt="">
+                                                                 </div>
+                                                                 <img src="./img/'.$r["AnhDD"].'" alt="">
+                                                            </div>
+                                                            <div class="content">
+                                                                 <div class="title"><a href="#">'. $r['Tenloaiphong'].'</a></div>
+                                                                 <div class="appraise">
+                                                                      <div class="content">
+                                                                           <div class="rating">
+                                                                                <span class="star">&#9733;</span>
+                                                                                <span class="star">&#9733;</span>
+                                                                                <span class="star">&#9733;</span>
+                                                                                <span class="star">&#9733;</span>
+                                                                                <span class="star">&#9733;</span>
+                                                                           </div>
+                                                                           <p id="result" class="sale"></p>
+                                                                      </div>
+                                                                 </div>
+                                                                 <div class="category">
+                                                                      <div class="content note">
+                                                                           <span>
+                                                                                <i class="fa-solid fa-user"></i>
+                                                                           </span>
+                                                                           '.$r['Songuoi'].' Người</div>
+                                                                      <div class="content note"><span>
+                                                                           <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                                                      </span>'. $r['Dientich'].' m&sup2</div>
+                                                                 </div>
+                                                                 <div class="prices">
+                                                                      <div class="prices_absolute">
+                                                                           <div class="discountsale"></div>
+                                                                           <div class="content">
+                                                                                '.$changenumber.' VND
+                                                                           </div>
+                                                                      </div>
+                                                                 </div>
+                                                                 <div class="Choose_btn">
+                                                                      <a href="#" class="medium_btn" onclick="chooseRoom(0)">Chọn</a>
+                                                                 </div>
+                                                            </div>
+                                                       </div>
+                                                  ';
+                                                  }
+                                             }else{
+                                                  echo "Không tìm thấy phòng nào";
+                                             }
+                                        }     
+                                             
                                         ?>
                                 </div>
                             </div>
                         </div>
                         <div class="Component_right">
                             <?php 
-                                        include "./php/MiniBill.php";
-                                        ?>
+                                   include "./php/MiniBill.php";
+                              ?>
                         </div>
                     </div>
                 </div>
