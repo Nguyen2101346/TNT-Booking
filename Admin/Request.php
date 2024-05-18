@@ -23,8 +23,8 @@
                <!-- Phần chuyển đổi chung -->
                <div class="container RequestManagement">
                     <div class="Change">
-                         <div class="EventChange Left" id = "loadRoomRequest">
-                              <a href="#" class="title"><h2>Yêu cầu đặt phòng</h2></a>
+                         <div class="EventChange Left " id = "loadRoomRequest">
+                              <a href="#" class="title click"><h2>Yêu cầu đặt phòng</h2></a>
                          </div>
                          <div class="EventChange Right" id = "LoadEventRequest">
                               <a href="#" class="title"><h2>Yêu cầu sự kiện</h2></a>
@@ -41,6 +41,7 @@
      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
      <script src="../js/slider_swiper.js"></script>
      <script src="./js/Admin_Request.js"></script>
+     <script src="./js/Admin.js"></script>
      <script>
      const DetailButton = document.querySelector('.request.Detail_btn');
      const EventCancelButton = document.querySelector('.checkEvent_confirm_btn')

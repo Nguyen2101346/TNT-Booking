@@ -24,7 +24,7 @@
                          <div class="Request_Component">
                               <div class="Request">
                                    <div class="Img_Request">
-                                        <img src="../img/phòng1.jpg">
+                                        <img src="./img/phòng1.jpg">
                                    </div>
                                    <div class="Request_content">
                                         <h3>Loại phòng : <span class="lighter"> Deluxe Hướng Biển 2 Giường Đơn</span> </h3>

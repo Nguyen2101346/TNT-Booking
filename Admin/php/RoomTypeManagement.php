@@ -21,7 +21,7 @@
                          </ul>
                          </div>
                          <div class="CreType">
-                              <a href="#" class="medium_btn"> Loại phòng mới </a>
+                              <a href="#" class="medium_btn" id="openCreTypeForm"> Loại phòng mới </a>
                          </div>
                     </div>
                     <form action="" class="CreRoom_form" id="CreRoom">
@@ -103,9 +103,37 @@
                     </form>
                </div>
           <!-- Form tạo thêm loại -->
-          <?php
-               include './CreTypeFrom.php';
-          ?>
+          <div class="CreType MiniContainer" id="CreTypeFormContainer">
+               <form class="CreType MiniForm" action="CreTypeForm_process.php" method="POST" id="CreType_form">
+                    <h2>Thêm loại phòng mới</h2>
+                    <div class="Type Num">
+                              <label for="">Thứ tự</label>
+                              <input type="text" name="" id="">
+                    </div>
+                    <div class="Type Name">
+                              <label for="">Tên loại phòng</label>
+                              <input type="text" name="CreType_Tenloaiphong" id="" required>
+                    </div>
+                    <div class="Type Day">
+                              <label for="">Ngày tạo</label>
+                              <input type="date" name="CreType_Ngaytao" id="" value="<?= date('Y-m-d') ?>" required >
+                    </div>
+                    <div class="Type Alert">
+                              <div class="er-text"></div>
+                              <div class="cor-text"></div>
+                    </div>
+                    <div class="TypeConfirm">
+                              <div class="Cancel_btn">
+                                   <a href="#" class="btn">Huỷ bỏ</a>
+                              </div>
+                              <div class="Confirm_btn">
+                                   <input type="submit" name="confirm" id="" value="Xác nhận" class="btn"> 
+                              </div>
+                    </div>
+               </form>
+          </div>
+
+
           <div class="MiniConvience MiniContainer">
                <form action="" class="MiniConvience MiniForm">
                     <h2> Chọn tiện ích </h2>
@@ -133,27 +161,46 @@
      </div>
 
      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-     <script src="./js/slider_swiper.js"></script>
-     <script src="./js/Admin.js"></script>
-     <!-- <script>
-               var swiper = new Swiper('.swiper', {
-               slidesPerView: 2,
-               direction: getDirection(),
-               navigation: {
-               nextEl: '.swiper-button-next',
-               prevEl: '.swiper-button-prev',
-               },
-               on: {
-               resize: function () {
-                    swiper.changeDirection(getDirection());
-               },
-               },
-          });
+     <script>
+          $(document).ready(function() {
+            $('#openCreTypeForm').on('click', function(event) {
+                event.preventDefault();
+                $('.CreType.MiniContainer').addClass('visible');
+            });
 
-          function getDirection() {
-               var windowWidth = window.innerWidth;
-               var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
+            $('.CreType .Cancel_btn .btn').on('click', function(event) {
+                event.preventDefault();
+                $('.CreType.MiniContainer').removeClass('visible');
+            });
 
-               return direction;
-          }
-     </script> -->
+            $('#CreType_form').on('submit', function(event) {
+                event.preventDefault();
+
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    type: 'POST',
+                    url: './php/CreTypeForm_process.php',
+                    data: formData,
+                    dataType: 'json',
+                    success: function(response) {
+                         if (response.success) {
+                         alert('Loại phòng mới đã được thêm thành công!');
+                         $('.CreType.MiniContainer').removeClass('visible');
+                         } else if(data.type == error){
+                         const errormessage = data.message;
+                         if(errormessage === 'TypeRoomname_exists' ){
+                              document.querySelector('.er-text').textContent = "Loại phòng này đã tồn tại!";
+                         }else if(errormessage === 'Date-not-today'){
+                              document.querySelector('.er-text').textContent = ""
+                         }
+                         
+                         }
+                    },
+                    error: function() {
+                        alert('Đã xảy ra lỗi. Vui lòng thử lại.');
+                    }
+                });
+            });
+        });
+     </script>

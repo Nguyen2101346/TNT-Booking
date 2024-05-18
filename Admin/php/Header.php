@@ -57,7 +57,6 @@
                     </div>
                </div>
                <!-- Phần script cho header -->
-               <script src="../js/ultils.js"></script>
                <script>
                </script>
           </div>

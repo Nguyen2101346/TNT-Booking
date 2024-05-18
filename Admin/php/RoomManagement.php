@@ -286,7 +286,7 @@
      </div>
 
      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-     <script src="../js/slider_swiper.js"></script>
+     <!-- <script src="../js/slider_swiper.js"></script> -->
      <!-- <script src="../js/Admin.js"></script> -->
      <script>
     

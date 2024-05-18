@@ -35,5 +35,8 @@
     ?>
     </div>
      <script src="./js/ultils.js" deper></script>
+     <script src="./js/Admin.js"></script>
+    <script src="./js/Admin_Management.js"></script>
+    <script src="./js/Management-test.js"></script>
 </body>
 </html>

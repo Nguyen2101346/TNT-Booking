@@ -2,13 +2,13 @@
     <div class="head_container desktop">
          <div class="head_left">
               <ul>
-                   <li><a href="index.php" class="title">Trang chủ</a></li>
-                   <li><a href="#" class="title">Đặt phòng</a></li>
-                   <li><a href="Event.php" class="title">Hội họp</a></li>
+                   <li><a href="index.php?page=Home" class="title">Trang chủ</a></li>
+                   <li><a href="index.php?page=Sale" class="title">Đặt phòng</a></li>
+                   <li><a href="index.php?page=Event" class="title">Hội họp</a></li>
               </ul>
          </div>
          <div class="head_mid">
-              <div class="head_logo"><a href="index.php"><img src="./img/LogoTNT.png" alt="" width="100px" height="100px"></a></div>
+              <div class="head_logo"><a href="index.php?page=Home"><img src="./img/LogoTNT.png" alt="" width="100px" height="100px"></a></div>
          </div>
          <div class="head_right">
               <ul>

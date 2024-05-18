@@ -26,7 +26,7 @@
                <div class="container MemberManagement">
                     <div class="Change">
                          <div class="EventChange Left" id="loadRoom">
-                              <a href="#" class="title"><h2>Danh sách thành viên</h2></a>
+                              <a href="#" class="title click"><h2>Danh sách thành viên</h2></a>
                          </div>
                          <div class="EventChange Right">
                               <a href="#" class="title"><h2></h2></a>

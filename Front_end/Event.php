@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,13 +18,6 @@
 </head>
 <body>
      <div class="Container">
-          <!-- Phần header -->
-          <!-- Được chia ra làm 3 phần bên trái, giữa và phải -->
-          <!-- Phần trái, gồm các mục ở 2 bên -->
-          <!-- Phần mid được sử dụng để làm logo-->
-          <?php 
-               include "./php/Header.php"
-          ?>
           <!-- Phần Banner -->
           <div class="Banner_Container Meeting">
                <img src="./img/banner2.jpg" alt="" class="">
@@ -36,27 +30,38 @@
           <div class="Event_container">
                <div class="Event content">
                     <div class="Event_top">
-                         <div class="EventCard meeting">
-                              <!-- onclick="loadMeetingContent()" -->
-                              <div class="Event_img">
-                                   <img src="./img/anh (6).jpg" alt="">
+                         <?php 
+                              $sql = "SELECT * FROM sukien";
+                              $re = mysqli_query($conn,$sql);
+                              while($r = mysqli_fetch_array($re)){
+                         ?>
+                              <div class="EventCard meeting">
+                                   <div class="Event_img">
+                                        <img src="./img/anh(6).jpg" alt="">
+                                   </div>
+                                   <h2 class="title"> <?= $r['Tensukien']?> </h2>
                               </div>
-                              <h2 class="title"> Hội họp & Hội nghị </h2>
-                         </div>
+                         <?php          
+                              }
+                         ?>
+                         <!-- <div class="EventCard meeting click">
+                                   <div class="Event_img">
+                                        <img src="./img/anh(6).jpg" alt="">
+                                   </div>
+                                   <h2 class="title"> Hội họp & Hội nghị </h2>
+                              </div>
                          <div class="EventCard Wedding" >
-                         <!-- onclick="loadWeddingContent()" -->
                               <div class="Event_img">
                                    <img src="./img/anh (1).jpg" alt="">
                               </div>
                               <h2 class="title"> Tiệc cưới </h2>
                          </div>
                          <div class="EventCard Community ">
-                         <!-- onclick="loadCommunityContent()" -->
                               <div class="Event_img">
                                    <img src="./img/anh (2).jpg" alt="">
                               </div>
                               <h2 class="title"> Sự kiện cộng đồng </h2>
-                         </div>
+                         </div> -->
                     </div>
                     <div class="Event_bottom" id="content">
                     </div>
@@ -71,9 +76,6 @@
                <div class="Request_container" id="Request_Form">
                </div>
           </div>
-          <?php 
-               include "./php/Footer.php"
-          ?>
      </div>
      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
