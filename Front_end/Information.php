@@ -29,7 +29,7 @@
                         </div>
                         <div class="item logout">
                             <div class="logout-icon"> <img src="./img/logout.png" alt=""></div>
-                            <a href="#" class="content">Đăng xuất</a>
+                            <a href="./php_function/logout.php" class="content">Đăng xuất</a>
                         </div>
                     </div>
                 </div>

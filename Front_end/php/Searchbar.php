@@ -9,7 +9,7 @@ if(isset($_GET['start_date']) || isset($_GET['start_date']) || isset($_GET['end_
 }else{
     $start_date = '0/0/0000';
     $end_date = '0/0/0000';
-    $room_num = 0;
+    $room_num = 1;
     $adults_num = 0;
     $discount_code ='';
 }
