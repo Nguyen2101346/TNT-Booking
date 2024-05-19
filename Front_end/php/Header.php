@@ -36,19 +36,19 @@ if ($change == 1 && session_status() == PHP_SESSION_NONE){
                          <li class="Member-id">
                               <a href = "#" class="user-id title">Hi, 
                               <?php
-                              if(empty($r['Hoten'])){
-                                  echo $_SESSION['username'];
-                              }else{
+                              if(isset($r['Hoten']) && !empty($r['Hoten'])){
                                    echo $r['Hoten'];
-                              }
+                               } else {
+                                   echo $_SESSION['username'];
+                               }
                               ?></a>
                               <span class="img-id"><img src="
                               <?php
-                                   if(empty($r['AnhDD'])){
-                                        echo'./img/person.png';
-                                   }else{
-                                        echo './img' + $r['AnhDD'];
-                                   }
+                                   if(isset($r['AnhDD']) && !empty($r['AnhDD'])){
+                                        echo './img/' . $r['AnhDD'];
+                                    } else {
+                                        echo './img/person.png';
+                                    }
                               ?>" alt=""></span> 
                               <ul class="miniMember-menu">
                                    <li><a href="index.php?page=Information<?php if($change == 1) echo '&go=1'?>" class="title">Thông tin</a></li>

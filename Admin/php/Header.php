@@ -1,3 +1,8 @@
+<?php 
+     if(isset($_SESSION['role']) && $_SESSION['role'] == 1){
+          session_start();
+     }
+?>
 <div class="header">
                <div class="head_container desktop">
                     <div class="head_left">

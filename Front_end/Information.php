@@ -109,7 +109,7 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <div class="button">
+                        <div class="InforSave_btn">
                             <input type="submit" value="Lưu">
                         </div>
                     </form>

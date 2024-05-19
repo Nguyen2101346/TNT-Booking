@@ -1,3 +1,10 @@
+<?php 
+    if(isset($_GET['go']) && isset($_SESSION['role']) && $_SESSION['role'] == 1){
+        session_start();
+    }else{
+        header('location:../Front_end/Login.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +30,10 @@
     <div class="Container">
     <?php 
         include "./php/Header.php";
-
+        $change = 0;
+        if(isset($_GET['go']) && $_GET['go'] = 1){
+            $change = 1;   
+        }
         if(isset($_GET['page'])){
             $page = $_GET['page'];
             include ''. $page .'.php';

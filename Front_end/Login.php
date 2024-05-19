@@ -44,7 +44,11 @@
                                                  $_SESSION["username"] = $user["Tendangnhap"];
                                                  $_SESSION["role"] = $user["Quyen"];
                                                  $_SESSION["userID"] = $user["IDTaikhoan"];
-                                                 header("location:index.php?go=1"); // Chuyển hướng đến trang chính sau khi đăng nhập thành công
+                                                 if(isset($_SESSION['role']) && $_SESSION['role'] == 1){
+                                                  header("location:../Admin/index.php?go=1");
+                                                 }else{
+                                                  header("location:index.php?go=1");// Chuyển hướng đến trang chính sau khi đăng nhập thành công
+                                                 }
                                                  exit(); // Kết thúc script để ngăn việc tiếp tục thực thi sau khi đã chuyển hướng
                                              } else {
                                                  // Mật khẩu không hợp lệ

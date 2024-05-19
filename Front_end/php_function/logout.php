@@ -3,7 +3,7 @@
     if(isset($_SESSION)){
         session_destroy();
         echo 'đã xóa thành công';
-        header('location:./php/index.php');
+        header('location:/TNT/Front_end/index.php');
     }
     else{
         echo 'chưa xóa';

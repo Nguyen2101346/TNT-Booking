@@ -1,4 +1,4 @@
-<div class="SummaryBill">
+<form class="SummaryBill" action="" method="">
      <div class="navbar">
           <h3 class="content bill">Chuyến đi</h3>
      </div>
@@ -25,6 +25,23 @@
           </div>
      </div>
      <div class="Change_btn">
-          <a href="Payment.php" class="medium_btn">Tiếp tục</a>
+          <a href="#" class="medium_btn" id="continueButton">Tiếp tục</a>
      </div>
-</div>
+</form>
+<script>
+     document.getElementById("continueButton").addEventListener("click", function(event) {
+    const roomContainer = document.getElementById("roomContainer");
+    if (roomContainer.children.length === 0) {
+        alert("Bạn phải chọn ít nhất một phòng để tiếp tục.");
+        event.preventDefault();
+        return;
+    }
+
+    // Hiển thị nút submit và ẩn nút tiếp tục
+    document.getElementById("continueButton").style.display = "none";
+    document.getElementById("submitButton").style.display = "block";
+
+    // Chuyển đổi các phòng đã chọn và thông tin sang trang Payment
+    document.getElementById("summaryForm").submit();
+});
+</script>

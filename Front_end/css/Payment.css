@@ -1,7 +1,6 @@
 /*============================================ PAYMENT ===================================================== */
-.Info_Container{
-     display: grid;
-     gap: 20px;
+.Payment_Container{
+     margin-bottom: 50px;
 }
 /* Phần thông tin người đặt phòng */
 .Person-info,.Payment_methob{
@@ -66,12 +65,12 @@ input[type = "checkbox"]:checked + label::before{
      background-size: cover;
 }
 /* Phần Họ tên và phần thông tin thêm*/
-.name,.phoneNum,.Email,.company{
+#paymentForm .name,#paymentForm .phoneNum,#paymentForm .Email,#paymentForm .company{
      display: grid;
      grid-template-rows: 30px 50px;
      padding: 10px 20px;
 }
-.name input[type = "text"],.phoneNum input[type = "text"],.Email input[type = "email"],
+#paymentForm .name input[type = "text"],.phoneNum input[type = "text"],.Email input[type = "email"],
 .company input[type = "text"]{
      outline: none;
      height: 50px;
@@ -95,7 +94,7 @@ input[type = "checkbox"]:checked + label::before{
      grid-template-columns: 20% 80%;
 }
 /* Phần Phương thức thanh toán  */
-form{
+.Payment_Container #paymentForm{
      display: grid;
      gap: 50px;
 }
@@ -148,7 +147,7 @@ form{
      background-size: cover;
      background-color: #fff;
 }
-p{
+.Payment_Container p{
      padding: 10px 20px;
      font-size: 18px;
 }

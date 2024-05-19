@@ -1,24 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Payment</title>
-     <link rel="shortcut icon" href="./img/LogoTNT.png" type="image/x-icon">
-     <link rel="stylesheet" href="./css/main.css">
-     <link rel="stylesheet" href="./css/search.css">
-     <link rel="stylesheet" href="./css/Payment.css">
-     <!-- Sử dụng fontawsome -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-</head>
-<body onload="loadContent()">
+
      <div class="Payment_Container">
-          <?php 
-            include "./php/Header.php"
-          ?>
           <!-- Phần tìm kiếm  -->
           <?php
             include "./php/Searchbar.php" 
@@ -35,8 +16,8 @@
                          <div class="Main_component">
                               <div class="Component_left">
                                    <div class="Main_item">
-                                        <div class="Info_Container">
-                                             <form action="">
+                                        <div class="Payment_Container">
+                                        <form action="payment_process.php" method="POST" id="paymentForm">
                                              <div class="Person-info">
                                                   <div class="navbar">
                                                        <h3 class="content"> Thông tin người đặt phòng</h3>
@@ -59,20 +40,20 @@
                                                        </div>
                                                        <div class="name">
                                                             <label for="" class="title" >Họ và tên</label>
-                                                            <input type="text" name="" id="" placeholder="Vui lòng nhập đủ họ và tên" required="required">
+                                                            <input type="text" name="" id="fullname" placeholder="Vui lòng nhập đủ họ và tên" required="required">
                                                        </div>
                                                        <div class="info-more">
                                                             <div class="phoneNum">
                                                                  <label for="" class="title" >Điện thoại</label>
-                                                                 <input type="text" name="" id="" placeholder="Vui lòng nhập số điện thoại" required="required">
+                                                                 <input type="text" name="" id="phone" placeholder="Vui lòng nhập số điện thoại" required="required">
                                                             </div>
                                                             <div class="Email">
                                                                  <label for="" class="title" >Email</label>
-                                                                 <input type="email" name="" id="" placeholder="Vui lòng nhập Email " required="required">
+                                                                 <input type="email" name="" id="email" placeholder="Vui lòng nhập Email " required="required">
                                                             </div>
                                                        </div>
                                                        <div class="idcheck">
-                                                            <input type="checkbox" name="" id="idcheck">
+                                                            <input type="checkbox" name="is_staying" id="idcheck">
                                                             <label for="idcheck">Tôi là người lưu trú</label>
                                                        </div>
                                              </div>
@@ -93,7 +74,7 @@
                                                             Khi nhấp vào "Thanh toán", bạn đồng ý cung cấp các thông tin trên và đồng ý với các điều khoản, điều kiện và chính sách quyền riêng tư của TNT Booking.
                                                        </p>
                                                        <div class="Pay_btn">
-                                                            <input type="submit" class="medium_btn" value="Thanh toán"> 
+                                                            <input type="submit" class="medium_btn" value="Thanh toán" id="payButton"> 
                                                        </div>
                                              </div>
                                         </div>
@@ -101,9 +82,50 @@
                                    </div>
                               </div>
                               <div class="Component_right">
-                                   <?php 
-                                        include "./php/MiniBill.php"
-                                   ?>
+                              <form class="SummaryBill" action="" method="">
+                                   <div class="navbar">
+                                        <h3 class="content bill">Chuyến đi</h3>
+                                   </div>
+                                   <div class="Main_item Short">
+                                        <div class="Checktime">
+                                             <div class="title">Thời gian</div>
+                                             <div class="timeShow_Start note">Ngày bắt đầu: <?php echo $_GET['start_date']; ?></div>
+                                              <div class="timeShow_End note">Ngày kết thúc: <?php echo $_GET['end_date']; ?></div>
+                                        </div>
+                                        <div class="room_container">
+                                        <?php
+                                            // Hiển thị thông tin các phòng đã chọn
+                                            foreach ($_POST as $key => $value) {
+                                                if (strpos($key, 'room') === 0) {
+                                                    $roomData = json_decode($value, true);
+                                                    echo '<input type="hidden" name="'.$key.'" value="'.$value.'">';
+                                                    echo '<div class="selected-room">';
+                                                    echo '<div class="RoomNum title">Phòng '.$roomData['title'].'</div>';
+                                                    echo '<div class="RoomPrice">'.$roomData['priceFormatted'].' VND</div>';
+                                                    echo '</div>';
+                                                }
+                                            }
+                                        ?>
+                                        </div>
+                                        <div class="TotalBill">
+                                        <?php
+                                             // Tính tổng giá của các phòng đã chọn
+                                             $totalPrice = 0;
+                                             foreach ($_POST as $key => $value) {
+                                                  if (strpos($key, 'room') === 0) {
+                                                       $roomData = json_decode($value, true);
+                                                       $totalPrice += $roomData['price'];
+                                                  }
+                                             }
+                                             echo '<div class="title">Tổng giá: </div>';
+                                             echo '<div id="TotalPrice">'.$totalPrice.' VND</div>';
+                                             ?>
+                                        </div>
+                                   </div>
+                                   <div class="Change_btn">
+                                        <a href="#" class="medium_btn" id="continueButton">Tiếp tục</a>
+                                   </div>
+                              </form>
                               </div>
                          </div>
                     </div>
@@ -112,14 +134,8 @@
                <script src="./js/Main.js"></script>
           </div>
           <!-- Phần footer -->
-          <div class="footer">
-               <div class="footer_container">
-                    <div class="content"></div>
-               </div>
-          </div>
      </div>
      
      <script>
+          document.getElementById('continueButton').style.display = 'none';
      </script>
-</body>
-</html>

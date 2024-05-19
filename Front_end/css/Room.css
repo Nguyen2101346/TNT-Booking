@@ -46,6 +46,10 @@
      display: grid;
      grid-template-rows: 1fr 1fr 1fr 1fr;
 }
+p#result{
+     padding: 10px 10px 0;
+     font-size: 16px;
+}
 .room .appraise{
      display: flex;
      position: relative;

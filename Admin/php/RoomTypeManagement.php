@@ -32,12 +32,12 @@
                                         <img src="./img/phòng1.jpg" alt="">
                                         <div class="getImgRoom">
                                              <label for="ImgRoom" class="title">Chỉnh sửa ảnh</label>
-                                             <input type="file" name="" id="ImgRoom">
+                                             <input type="file" name="ImgRoom" id="ImgRoom">
                                         </div>
                                    </div>
                                    <div class="CreRoombot description">
                                         <label class="title">Mô tả</label>
-                                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                                        <textarea name="RoomDes" id="" cols="30" rows="10"></textarea>
                                    </div>
                               </div>
                               <div class="CreRoom Right">
@@ -203,5 +203,73 @@
                     }
                 });
             });
+             // Xử lý khi chọn loại phòng
+               $('.type_items').on('click', function(event) {
+                    event.preventDefault();
+                    var idRoom = $(this).data('id');
+                    $.ajax({
+                         url: './php/Get_room_details.php',
+                         type: 'GET',
+                         data: { id: idRoom },
+                         dataType: 'json',
+                         success: function(response) {
+                              if (response.success) {
+                                   // Điền thông tin vào form
+                                   $('textarea[name="RoomDes"]').val(response.data.Mota);
+                                   $('input[name="RoomName"]').val(response.data.Tenloaiphong);
+                                   $('input[name="RoomNum"]').val(response.data.SoPhong);
+                                   $('input[name="RoomArea"]').val(response.data.DienTich);
+                                   $('input[name="RoomDay"]').val(response.data.NgayTao);
+                                   $('textarea[name="RoomConvenience"]').val(response.data.Tienich);
+                                   // Hiển thị ảnh đại diện và các ảnh khác nếu có
+                                   $('.ImgRoom img').attr('src', response.data.AnhDD);
+                                   // Tạo danh sách các ảnh khác
+                                   var imgSliderHtml = '';
+                                   response.data.ImgDetail.forEach(function(img) {
+                                   imgSliderHtml += '<div class="swiper-slide"><img src="'+img+'" alt=""></div>';
+                                   });
+                                   $('.swiper-wrapper').html(imgSliderHtml);
+                                   // Check các tiện ích
+                                   $('#ConvienceCheckboxes input[type="checkbox"]').each(function() {
+                                   if (response.data.TienichList.includes($(this).val())) {
+                                        $(this).prop('checked', true);
+                                   } else {
+                                        $(this).prop('checked', false);
+                                   }
+                                   });
+                                   $('input[name="idRoom"]').val(idRoom);
+                              } else {
+                                   alert(response.message);
+                              }
+                         },
+                         error: function() {
+                              alert('Đã xảy ra lỗi. Vui lòng thử lại.');
+                         }
+                    });
+               });
+
+          // Xử lý khi submit form cập nhật loại phòng
+          $('#CreRoom').on('submit', function(event) {
+               event.preventDefault();
+               var formData = new FormData(this);
+               $.ajax({
+                    url: 'update_room.php',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                         if (response.success) {
+                              alert('Cập nhật loại phòng thành công!');
+                              // Reload or update the UI as necessary
+                         } else {
+                              alert(response.message);
+                         }
+                    },
+                    error: function() {
+                         alert('Đã xảy ra lỗi. Vui lòng thử lại.');
+                    }
+               });
+          });
         });
      </script>

@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sale</title>
-    <link rel="shortcut icon" href="./img/LogoTNT.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/main.css">
-    <!-- Sử dụng fontawsome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-</head>
 
 <body>
     <div class="Sale_Container">
@@ -63,7 +46,7 @@
                                                        $gia = $r['Gia'];
                                                        $changenumber = number_format($gia, 0, ',', '.');
                                                        echo '     
-                                                       <div class="room">
+                                                       <div class="room" data-id="'.$r['IDLoaiphong'].'" data-title="'.$r['Tenloaiphong'].'" data-price="'.$r['Gia'].'" data-priceFormatted="'.$changenumber.'">
                                                             <div class="img">
                                                                  <div class="sale-icon">
                                                                       <img src="./img/sale_icon.png" alt="">
@@ -103,7 +86,7 @@
                                                                       </div>
                                                                  </div>
                                                                  <div class="Choose_btn">
-                                                                      <a href="#" class="medium_btn" onclick="chooseRoom(0)">Chọn</a>
+                                                                      <a href="#" class="medium_btn" onclick="chooseRoom(' . $r['IDLoaiphong'] . ')">Chọn</a>
                                                                  </div>
                                                             </div>
                                                        </div>
@@ -121,7 +104,7 @@
                                                        $gia = $r['Gia'];
                                                        $changenumber = number_format($gia, 0, ',', '.');
                                                        echo '     
-                                                       <div class="room">
+                                                       <div class="room" data-id="'.$r['IDLoaiphong'].'" data-title="'.$r['Tenloaiphong'].'" data-price="'.$r['Gia'].'" data-priceFormatted="'.$changenumber.'">
                                                             <div class="img">
                                                                  <div class="sale-icon">
                                                                       <img src="./img/sale_icon.png" alt="">
@@ -161,7 +144,7 @@
                                                                       </div>
                                                                  </div>
                                                                  <div class="Choose_btn">
-                                                                      <a href="#" class="medium_btn" onclick="chooseRoom(0)">Chọn</a>
+                                                                      <a href="#" class="medium_btn" onclick="chooseRoom(' . $r['IDLoaiphong']. ')">Chọn</a>
                                                                  </div>
                                                             </div>
                                                        </div>
@@ -187,16 +170,108 @@
             <!-- Script phần body -->
             <script src="./js/Main.js"></script>
         </div>
-        <!-- Phần footer -->
-        <div class="footer">
-            <div class="footer_container">
-                <div class="content"></div>
-            </div>
-        </div>
     </div>
 
     <script>
-    </script>
-</body>
+     const queryParams = new URLSearchParams(window.location.search);
+     const start_date = queryParams.get('start_date');
+    const end_date = queryParams.get('end_date');
 
-</html>
+     document.addEventListener('DOMContentLoaded', function() {
+    let selectedRooms = [];
+    const limitRoom = parseInt(document.getElementById('limit_room').textContent);
+    const numRoomElement = document.getElementById('Numroom');
+    const totalPriceElement = document.getElementById('TotalPrice');
+    const continueButton = document.getElementById('continueButton');
+    const buttonContainer = document.getElementById('buttonContainer');
+
+
+
+    function chooseRoom(roomData) {
+        if (selectedRooms.length > limitRoom) {
+            alert('Bạn đã chọn đủ số lượng phòng.');
+            return;
+        }
+
+        selectedRooms.push(roomData);
+        updateMiniBill();
+        updateNumRoom();
+        updateTotalPrice();
+    }
+
+    function updateMiniBill() {
+        const roomContainer = document.querySelector('.room_container');
+        roomContainer.innerHTML = ''; // Clear previous content
+
+        selectedRooms.forEach((room, index) => {
+            const roomMini = document.createElement('div');
+            roomMini.classList.add('roomMini');
+            roomMini.innerHTML = `
+                <div class="RoomNum title">Phòng ${index + 1}</div>
+                <div class="RoomTitle">${room.title}</div>
+                <div class="RoomPrice">${room.priceFormatted} VND</div>
+                <div class="RoomFix_btn">
+                    <a href="#" class="mini_btn" onclick="removeRoom(${index})">Chỉnh sửa</a>
+                </div>
+            `;
+            roomContainer.appendChild(roomMini);
+        });
+    }
+
+    function updateNumRoom() {
+        numRoomElement.textContent = selectedRooms.length;
+    }
+
+    function updateTotalPrice() {
+        const totalPrice = selectedRooms.reduce((sum, room) => sum + room.price, 0);
+        totalPriceElement.textContent = 'Giá: ' + totalPrice.toLocaleString('vi-VN') + ' VND';
+    }
+
+    function removeRoom(index) {
+        selectedRooms.splice(index, 1);
+        updateMiniBill();
+        updateNumRoom();
+        updateTotalPrice();
+    }
+
+    document.querySelectorAll('.Choose_btn a').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            const roomElement = this.closest('.room');
+            const roomData = {
+                id: roomElement.getAttribute('data-id'),
+                title: roomElement.querySelector('.title a').textContent,
+                price: parseInt(roomElement.getAttribute('data-price')),
+                priceFormatted: roomElement.querySelector('.prices_absolute .content').textContent
+            };
+            chooseRoom(roomData);
+        });
+    });
+
+    window.removeRoom = removeRoom;
+
+    continueButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        if (selectedRooms.length === 0) {
+            alert("Bạn phải chọn ít nhất một phòng để tiếp tục.");
+            return;
+        }
+        // Chuyển sang trang Payment.php và ẩn nút "Tiếp tục"
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'index.php?page=Payment';
+        if(change==1){
+          form.action += '&start_date=' + start_date + '&end_date=' + end_date + '&go=1';
+        }
+        selectedRooms.forEach((room, index) => {
+            const roomInput = document.createElement('input');
+            roomInput.type = 'hidden';
+            roomInput.name = `room${index}`;
+            roomInput.value = JSON.stringify(room);
+            form.appendChild(roomInput);
+        });
+        document.body.appendChild(form);
+        form.submit();
+    });
+});
+    </script>

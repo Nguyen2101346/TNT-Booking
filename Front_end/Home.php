@@ -28,17 +28,9 @@
                         <h1 class="title large">Các hạng phòng</h1>
                     </div>
                     <div class="room_book">
-                        <!-- <script>
-                                   fetch('./php/book.php')
-                                   .then(response => response.text())
-                                   .then(data => {
-                                        document.querySelector('.content_container .room_book').innerHTML = data;
-                                   })
-                                   .catch(error => console.error('Error:', error));
-                                   </script> -->
-                                <?php 
-                                   include "./php/book.php"
-                                ?>
+                        <?php 
+                            include "./php/book.php"
+                        ?>
                     </div>
                 </div>
 

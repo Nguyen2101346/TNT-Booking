@@ -116,18 +116,18 @@ input[type = "file"]{
 fieldset {
     border: none;
 }
-form .content{
+.Info_Container form .content{
     font-weight: bold;
     padding: 0;
 }
 legend.content{
     padding: 20px 0;
 }
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"],
-select {
+.Info_Container input[type="text"],
+.Info_Container input[type="email"],
+.Info_Container input[type="tel"],
+.Info_Container input[type="date"],
+.identify_item select  {
     width: 100%;
     padding: 8px;
     margin-top: 4px;
@@ -138,7 +138,7 @@ select {
     box-sizing: border-box;
 }
 
-input[type="radio"] {
+.Info_Container input[type="radio"] {
     display: none;
 }
 
@@ -146,7 +146,7 @@ input[type="radio"] {
     width: 200px;
     margin: auto;
 }
-input[type="submit"] {
+.Info_Container input[type="submit"] {
     width: 100%;
     background-color:var(--orange3);
     color: white;
@@ -158,10 +158,10 @@ input[type="submit"] {
     font-weight: bold;
     font-size: 16px;
 }
-input[type="submit"]:hover {
+.InforSave_btn input[type="submit"]:hover {
     background-color: #45a049;
 }
-.name{
+.Update_list .name{
     display: grid;
     width: 725px;
     grid-template-columns: 1fr 1fr;
