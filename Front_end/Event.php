@@ -35,33 +35,33 @@
                               $re = mysqli_query($conn,$sql);
                               while($r = mysqli_fetch_array($re)){
                          ?>
-                              <div class="EventCard meeting">
+                              <!-- <div class="EventCard meeting">
                                    <div class="Event_img">
                                         <img src="./img/anh(6).jpg" alt="">
                                    </div>
                                    <h2 class="title"> <?= $r['Tensukien']?> </h2>
-                              </div>
+                              </div> -->
                          <?php          
                               }
                          ?>
-                         <!-- <div class="EventCard meeting click">
+                         <div class="EventCard meeting click">
                                    <div class="Event_img">
-                                        <img src="./img/anh(6).jpg" alt="">
+                                        <img src="./img/Meeting.jpg" alt="">
                                    </div>
                                    <h2 class="title"> Hội họp & Hội nghị </h2>
                               </div>
                          <div class="EventCard Wedding" >
                               <div class="Event_img">
-                                   <img src="./img/anh (1).jpg" alt="">
+                                   <img src="./img/Wedding.jpg" alt="">
                               </div>
                               <h2 class="title"> Tiệc cưới </h2>
                          </div>
                          <div class="EventCard Community ">
                               <div class="Event_img">
-                                   <img src="./img/anh (2).jpg" alt="">
+                                   <img src="./img/Community.jpg" alt="">
                               </div>
                               <h2 class="title"> Sự kiện cộng đồng </h2>
-                         </div> -->
+                         </div>
                     </div>
                     <div class="Event_bottom" id="content">
                     </div>

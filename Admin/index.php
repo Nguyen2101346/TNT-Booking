@@ -1,9 +1,12 @@
-<?php 
-    if(isset($_GET['go']) && isset($_SESSION['role']) && $_SESSION['role'] == 1){
-        session_start();
-    }else{
-        header('location:../Front_end/Login.php');
-    }
+<?php
+    // if(session_status() == PHP_SESSION_NONE){
+    //     session_start();
+    // }
+    
+    // if(!isset($_SESSION['role']) && $_SESSION['role'] !== 1){
+    //     header('location:../Front_end/Login.php');
+    //     exit;
+    // }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,11 +32,13 @@
 <body>
     <div class="Container">
     <?php 
-        include "./php/Header.php";
+        
         $change = 0;
         if(isset($_GET['go']) && $_GET['go'] = 1){
             $change = 1;   
         }
+        include "./php_func/conn.php";
+        include "./php/Header.php";
         if(isset($_GET['page'])){
             $page = $_GET['page'];
             include ''. $page .'.php';
@@ -48,6 +53,5 @@
         <script src="./js/slider_swiper.js"></script>
         <script src="./js/Admin.js"></script>
         <script src="./js/Admin_Management.js"></script>
-        <script src="./js/Management-test.js"></script>
 </body>
 </html>

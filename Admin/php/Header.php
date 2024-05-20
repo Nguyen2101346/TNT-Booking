@@ -1,13 +1,19 @@
 <?php 
-     if(isset($_SESSION['role']) && $_SESSION['role'] == 1){
+     if($change ==1 && isset($_GET['go']) && $_GET['go'] == 1){
           session_start();
      }
+     if(isset($_SESSION['role']) && $_SESSION['role'] !== 1){
+     }else{
+          header('location:../Front_end/Login.php');
+          exit;
+     }
+     
 ?>
 <div class="header">
                <div class="head_container desktop">
                     <div class="head_left">
                          <ul>
-                              <li><a href="index.php?page=Management" class="title">Quản lý</a></li>
+                              <li><a href="index.php?page=Management<?php if($change == 1) echo '&go=1'?>" class="title">Quản lý</a></li>
                               <li><a href="index.php?page=Request" class="title">Yêu cầu</a></li>
                               <li><a href="index.php?page=Member" class="title">Thành viên</a></li>
                          </ul>
@@ -16,14 +22,30 @@
                          <div class="head_logo"><a href="#"><img src="./img/LogoTNT.png" alt=""></a></div>
                     </div>
                     <div class="head_right">
+                         <?php 
+                         if(isset($_GET['go']) && $_GET['go'] == 1){
+                              $id = $_SESSION['userID'];
+                              $sql = "SELECT * FROM taikhoan WHERE IDTaikhoan = $id";
+                              $re = mysqli_query($conn,$sql);
+                              $r = mysqli_fetch_array($re);
+                         }
+                         ?>
                          <ul>
                               <li><a href="#" class="title">Thống kê số liệu</a></li>
                               <li class="admin-id">
-                                   <a href = "#" class="title">Admin001</a>
-                                   <span class="img-id"><img src="./img/person.png" alt=""></span> 
+                                   <a href = "#" class="title"><?= $r['Tendangnhap'] ?></a>
+                                   <span class="img-id"><img src="
+                                   <?php 
+                                   if (!isset($r['Avatar'])){
+                                        echo "./img/person.png";
+                                   }else{
+                                        echo "./img/" + $r['Avatar'];
+                                   }
+                                   ?>
+                                   " alt=""></span> 
                                    <ul class="miniAdmin-menu">
                                         <li><a href="#">Thông tin</a></li>
-                                        <li><a href="#">Đăng xuất</a></li>
+                                        <li><a href="../Front_end/php_func/logout.php">Đăng xuất</a></li>
                                    </ul>
                               </li>
                          </ul>

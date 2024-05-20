@@ -29,6 +29,12 @@ input[type = 'text'],input[type = 'email']{
      justify-content: space-between;
      text-align: center;
 }
+.EventCard{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
 .EventCard .Event_img{
      position: relative;
      width: 150px;

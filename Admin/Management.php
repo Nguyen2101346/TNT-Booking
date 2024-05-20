@@ -16,7 +16,11 @@
 <body>
     <div class="Container Admin_Room">
     <?php 
-        include './php_func/conn.php'
+        include './php_func/conn.php';
+        if(isset($_GET['idroom'])){
+            $idroom = $_GET['idroom'];
+            echo  $_GET['idroom'];  
+        }
     ?>
         <div class="body">
             <!-- Phần chuyển đổi chung -->
@@ -36,5 +40,45 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+            $(document).ready(function() {
+            $('#roomContent').load('./php/RoomTypeManagement.php', function(){
+                initializeSwiper();
+            });
+            $('#loadRoomTypes').click(function(e) {
+                e.preventDefault();
+                $('#roomContent').load('./php/RoomTypeManagement.php', function(){
+                    initializeSwiper();
+                });
+            });
+
+            $('#loadRooms').click(function(e) {
+                e.preventDefault();
+                $('#roomContent').load('./php/RoomManagement.php');
+            });
+        });
+
+        function initializeSwiper(){
+            var swiper = new Swiper('.swiper', {
+                slidesPerView: 2,
+                direction: getDirection(),
+                navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+                },
+                on: {
+                resize: function () {
+                    swiper.changeDirection(getDirection());
+                },
+                },
+            });
+            
+            function getDirection() {
+                var windowWidth = window.innerWidth;
+                var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
+                return direction;
+            }
+        }
+    </script>
 </body>
 </html>

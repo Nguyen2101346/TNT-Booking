@@ -2,7 +2,7 @@
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $db = "tntbooking_tes1";
+    $db = "tntbooking";
 
     // Create connection
     $conn = mysqli_connect($servername, $username, $password,$db);

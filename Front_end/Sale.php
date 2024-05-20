@@ -175,7 +175,7 @@
     <script>
      const queryParams = new URLSearchParams(window.location.search);
      const start_date = queryParams.get('start_date');
-    const end_date = queryParams.get('end_date');
+     const end_date = queryParams.get('end_date');
 
      document.addEventListener('DOMContentLoaded', function() {
     let selectedRooms = [];
@@ -259,9 +259,11 @@
         // Chuyển sang trang Payment.php và ẩn nút "Tiếp tục"
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = 'index.php?page=Payment';
-        if(change==1){
+        if(change == 1){
+          form.action = 'index.php?page=Payment';
           form.action += '&start_date=' + start_date + '&end_date=' + end_date + '&go=1';
+        }else{
+          alert('Bạn phải đăng nhập để sử dụng chức năng này!');
         }
         selectedRooms.forEach((room, index) => {
             const roomInput = document.createElement('input');

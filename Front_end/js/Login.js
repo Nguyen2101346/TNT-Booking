@@ -108,7 +108,7 @@
                               document.getElementById('pass-error').textContent = "";
                               document.getElementById('confirm-error  ').textContent = "";
                               window.location.href = "Login.php"
-                              window.location.href = 'login_remake.php'; 
+                              // window.location.href = 'login_remake.php'; 
                          } else if (data.type === 'error') {
                               // Xử lý các loại lỗi khác nhau
                               const errorMessage = data.message;

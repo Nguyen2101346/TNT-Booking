@@ -48,6 +48,9 @@ input[type = "file"]{
     bottom: 0;
     right: 0;
 }
+.info-img img{
+    border-radius: 50%;
+}
 .changeAvt img{
     border-radius: 50%;
 }
