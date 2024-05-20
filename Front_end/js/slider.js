@@ -1,4 +1,4 @@
-const initSlider = () => {
+let initSlider = function() {
     const imageList = document.querySelector(".slider_wrapper .img_list");
     const sliderButtons = document.querySelectorAll(".slider_wrapper .slide-button");
     const sliderScrollbar = document.querySelector(".container .slider_scrollbar");

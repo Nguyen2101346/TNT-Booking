@@ -13,16 +13,31 @@
                                     $re = mysqli_query($conn, $sql);
                                     $r = mysqli_fetch_array($re);
                                 ?>
-                                <img src="<?php if(isset($r['Avatar']) && $r['Avatar']!="")
-                                    {echo $r['Avatar'];}
-                                    ?>" alt="">
+                                <img id="avatarPreview" src="<?php if(isset($r['Avatar']) && $r['Avatar']!=""){echo './img_members/'.$r['Avatar'].'';}else{echo './img/person.png';}?>"alt="">
                                 <div class="changeAvt">
                                     <label for="Avtchange">
                                         <img src="./img/changeAvt.png" alt="">
                                     </label>
-                                    <input type="file" name="changeAvt" id="Avtchange">       
+                                    <input type="file" name="changeAvt" id="Avtchange" accept="image/*">       
                                 </div>
                             </div>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const avatarInput = document.getElementById('Avtchange');
+                                    const avatarPreview = document.getElementById('avatarPreview');
+
+                                    avatarInput.addEventListener('change', function(event) {
+                                        const file = event.target.files[0];
+                                        if (file) {
+                                            const reader = new FileReader();
+                                            reader.onload = function(e) {
+                                                avatarPreview.src = e.target.result;
+                                            }
+                                            reader.readAsDataURL(file);
+                                        }
+                                    });
+                                });
+                            </script>
                             <?php
                                 
                             ?>
@@ -153,14 +168,14 @@
                             //Nếu có cập nhật ảnh đại diện
                             if(isset($_FILES["changeAvt"]) && $_FILES["changeAvt"]["error"] == 0) {
                                 $imagepath = basename($_FILES["changeAvt"]["name"]);
-                                $target_dir = "img_members/";
-                                $target_file = $target_dir.$imagepath;
+                                // $target_dir = "img_members/";
+                                // $target_file = $target_dir.$imagepath;
                                 
                                 $check = getimagesize($_FILES["changeAvt"]["tmp_name"]);
 
                                 // Kiểm tra xem tệp đã tồn tại chưa
-                                if (file_exists($target_file)) {
-                                    $sql = "UPDATE taikhoan SET Ho='$lastName',Ten='$firstName',Gioitinh='$gender',Email='$email',Sodt='$phone',Diachi='$address',Loaigiayto='$idType',Magiayto='$idNum',Quoctich='$nationality',Ngaysinh='$dob',Avatar='$target_file' WHERE IDTaikhoan=".$_SESSION['userID']."";
+                                if (file_exists($imagepath)) {
+                                    $sql = "UPDATE taikhoan SET Ho='$lastName',Ten='$firstName',Gioitinh='$gender',Email='$email',Sodt='$phone',Diachi='$address',Loaigiayto='$idType',Magiayto='$idNum',Quoctich='$nationality',Ngaysinh='$dob',Avatar='$imagepath' WHERE IDTaikhoan=".$_SESSION['userID']."";
                                     $result = mysqli_query($conn,$sql);
                                     if($result){
                                         echo "Thành công"; 
@@ -174,8 +189,8 @@
                                     echo "Avatar phải là hình ảnh";
                                 }else {
                                     // Di chuyển tệp tin từ vị trí tạm thời đến vị trí lưu trữ
-                                    move_uploaded_file($_FILES["changeAvt"]["tmp_name"], $target_file);
-                                    $sql = "UPDATE taikhoan SET Ho='$lastName',Ten='$firstName',Gioitinh='$gender',Email='$email',Sodt='$phone',Diachi='$address',Loaigiayto='$idType',Magiayto='$idNum',Quoctich='$nationality',Ngaysinh='$dob',Avatar='$target_file' WHERE IDTaikhoan=".$_SESSION['userID']."";
+                                    move_uploaded_file($_FILES["changeAvt"]["tmp_name"],'./img_members/' .$imagepath);
+                                    $sql = "UPDATE taikhoan SET Ho='$lastName',Ten='$firstName',Gioitinh='$gender',Email='$email',Sodt='$phone',Diachi='$address',Loaigiayto='$idType',Magiayto='$idNum',Quoctich='$nationality',Ngaysinh='$dob',Avatar='$imagepath' WHERE IDTaikhoan=".$_SESSION['userID']."";
                                     $result = mysqli_query($conn,$sql);
                                     if($result){
                                         echo "Thành công"; 

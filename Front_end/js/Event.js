@@ -1,84 +1,165 @@
-function loadContent(eventType) {
-     $.ajax({
-         url: './php/' + eventType + '.php',
-         method: 'GET',
-         success: function(data) {
-             // Parse the returned HTML and find the required elements
-             const parsedHTML = new DOMParser().parseFromString(data, 'text/html');
-             const content = parsedHTML.querySelector('#hidden' + eventType + 'Content').innerHTML;
-             const form = parsedHTML.querySelector('#hidden' + eventType + 'Form').innerHTML;
-             const slide = parsedHTML.querySelector('#' + eventType + 'Slide').innerHTML;
+document.addEventListener('DOMContentLoaded', function() {
+    function loadContent(eventType) {
+        $.ajax({
+            url: './php/Event_' + eventType + '.php',
+            method: 'GET',
+            success: function(data) {
+                const parsedHTML = new DOMParser().parseFromString(data, 'text/html');
+                const contentElement = parsedHTML.querySelector('#hidden' + eventType + 'Content');
+                const formElement = parsedHTML.querySelector('#hidden' + eventType + 'Form');
+                const slideElement = parsedHTML.querySelector('#' + eventType + 'Slide');
 
-             $('#content').html(content);
-             $('#Request_Form').html(form);
-             $('#Request_Slide').html(slide);
-             
-             setUpRequestFormHandlers();
-             initializeSwiper();
-         },
-         error: function() {
-             alert('Failed to load content.');
-         }
-     });
-   }
+                if (contentElement && formElement && slideElement) {
+                    const content = contentElement.innerHTML;
+                    const form = formElement.innerHTML;
+                    const slide = slideElement.innerHTML;
 
- function setUpEventHandlers() {
-     $('.EventCard').on('click', function() {
-         const eventType = $(this).attr('class').split(' ')[1];
-         $('.EventCard').removeClass('click');
-         $(this).addClass('click');
-         loadContent(eventType.charAt(0).toUpperCase() + eventType.slice(1));
-     });
- }
+                    $('#content').html(content);
+                    $('#Request_Form').html(form);
+                    $('#Request_Slide').html(slide);
 
- function setUpRequestFormHandlers() {
-     const requestContainer = $('.Request_container');
-     const requestBtn = $('.request_btn');
-     const exitBtn = $('.exit_btn');
-     let visible = false;
+                    setUpRequestFormHandlers();
+                    initializeSwiper();
+                    PostMeetingRequest();
+                    PostWeddingRequest();
+                    PostCommunityRequest();
+                } else {
+                    console.error('Một hoặc nhiều những cái thành phần bên trong bị thiếu khi load.');
+                }
+            },
+            error: function() {
+                alert('Không thể load nội dung.');
+            }
+        });
+    }
 
-     requestBtn.on('click', function() {
-         requestContainer.addClass('visible');
-         visible = true;
-     });
+    function setUpEventHandlers() {
+        $('.EventCard').on('click', function() {
+            const eventType = $(this).attr('class').split(' ')[1];
+            $('.EventCard').removeClass('click');
+            $(this).addClass('click');
+            loadContent(eventType.charAt(0).toUpperCase() + eventType.slice(1));
+        });
+    }
 
-     exitBtn.on('click', function() {
-         requestContainer.removeClass('visible');
-         visible = false;
-     });
- }
+    function setUpRequestFormHandlers() {
+        const requestContainer = $('.Request_container');
+        const requestBtn = $('.request_btn');
+        const exitBtn = $('.exit_btn');
+        let visible = false;
 
- function initializeSlider() {
-     $('#Request_Slide').slick({
-         infinite: true,
-         slidesToShow: 2,
-         slidesToScroll: 1
-     });
- }
+        requestBtn.on('click', function() {
+            requestContainer.addClass('visible');
+            visible = true;
+        });
 
- function initializeSwiper() {
-     new Swiper('.swiper', {
-         slidesPerView: 2,
-         direction: getDirection(),
-         navigation: {
-             nextEl: '.swiper-button-next',
-             prevEl: '.swiper-button-prev',
-         },
-         on: {
-             resize: function () {
-                 swiper.changeDirection(getDirection());
-             },
-         },
-     });
- }
+        exitBtn.on('click', function() {
+            requestContainer.removeClass('visible');
+            visible = false;
+        });
+    }
 
- function getDirection() {
-     var windowWidth = window.innerWidth;
-     var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
-     return direction;
- }
+    function initializeSlider() {
+        $('#Request_Slide').slick({
+            infinite: true,
+            slidesToShow: 2,
+            slidesToScroll: 1
+        });
+    }
 
- $(document).ready(function() {
-     setUpEventHandlers();
-     loadContent('Meeting'); // Load initial content
- });
+    function initializeSwiper() {
+        new Swiper('.swiper', {
+            slidesPerView: 2,
+            direction: getDirection(),
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            on: {
+                resize: function () {
+                    swiper.changeDirection(getDirection());
+                },
+            },
+        });
+    }
+
+    function getDirection() {
+        var windowWidth = window.innerWidth;
+        var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
+        return direction;
+    }
+
+    function PostMeetingRequest() {
+        $(document).ready(function() {
+            $('#meetingForm').submit(function(e) {
+                e.preventDefault(); // Ngăn không cho form submit theo cách thông thường
+        
+                var formData = $(this).serialize(); // Lấy dữ liệu từ form
+                console.log(formData);
+                $.ajax({
+                    type: 'POST',
+                    url: 'php/Event_Meeting_process.php', // Đảm bảo đường dẫn chính xác
+                    data: formData,
+                    success: function(response) {
+                        // Hiển thị phản hồi từ server
+                        $('#responseMessage').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        // Hiển thị lỗi chi tiết
+                        $('#responseMessage').html('<p>Có lỗi xảy ra, vui lòng thử lại.</p><p>' + xhr.responseText + '</p>');
+                    }
+                });
+            });
+        });
+    }
+    function PostWeddingRequest() {
+        $(document).ready(function() {
+            $('#weddingForm').submit(function(e) {
+                e.preventDefault(); // Ngăn không cho form submit theo cách thông thường
+        
+                var formData = $(this).serialize(); // Lấy dữ liệu từ form
+                console.log(formData);
+                $.ajax({
+                    type: 'POST',
+                    url: 'php/Event_Wedding_process.php', // Đảm bảo đường dẫn chính xác
+                    data: formData,
+                    success: function(response) {
+                        // Hiển thị phản hồi từ server
+                        $('#responseMessage').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        // Hiển thị lỗi chi tiết
+                        $('#responseMessage').html('<p>Có lỗi xảy ra, vui lòng thử lại.</p><p>' + xhr.responseText + '</p>');
+                    }
+                });
+            });
+        });
+    }
+    function PostCommunityRequest() {
+        $(document).ready(function() {
+            $('#communityForm').submit(function(e) {
+                e.preventDefault(); // Ngăn không cho form submit theo cách thông thường
+        
+                var formData = $(this).serialize(); // Lấy dữ liệu từ form
+                console.log(formData);
+                $.ajax({
+                    type: 'POST',
+                    url: 'php/Event_Community_process.php', // Đảm bảo đường dẫn chính xác
+                    data: formData,
+                    success: function(response) {
+                        // Hiển thị phản hồi từ server
+                        $('#responseMessage').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        // Hiển thị lỗi chi tiết
+                        $('#responseMessage').html('<p>Có lỗi xảy ra, vui lòng thử lại.</p><p>' + xhr.responseText + '</p>');
+                    }
+                });
+            });
+        });
+    }
+
+
+    setUpEventHandlers();
+    loadContent('Meeting'); // Load initial content
+});

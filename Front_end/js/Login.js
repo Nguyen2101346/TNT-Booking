@@ -126,6 +126,11 @@
                                    // Hiển thị thông báo lỗi dưới username
                                    document.getElementById('user-error').textContent = "Tên đăng nhập đã tồn tại !";
                                    document.getElementById('pass-error').textContent = "";
+                                   document.getElementById('confirm-error').textContent = "";
+                              } else if (errorMessage === 'username_too_long') {
+                                   // Hiển thị thông báo lỗi dưới username
+                                   document.getElementById('user-error').textContent = "Tên đăng nhập quá dài !";
+                                   document.getElementById('pass-error').textContent = "";
                                    document.getElementById('confirm-error  ').textContent = "";
                               } else {
                                    document.getElementById('signup-error').textContent = "Có một vài lỗi nhỏ: " + errorMessage;

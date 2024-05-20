@@ -27,8 +27,9 @@ if ($change == 1 && session_status() == PHP_SESSION_NONE){
                     </li>
                     <?php
                     }else{
-                         $SESSION['username'] = $username;
-                         $sql = "SELECT * FROM taikhoan WHERE Tendangnhap = '$username'";
+                         $sql = "SELECT Tendangnhap,Avatar
+                              FROM taikhoan
+                              WHERE IDTaikhoan = ".$_SESSION['userID']." ";
                          $re = mysqli_query($conn,$sql);
                          $r = mysqli_fetch_array($re);
                     ?>
@@ -36,20 +37,13 @@ if ($change == 1 && session_status() == PHP_SESSION_NONE){
                          <li class="Member-id">
                               <a href = "#" class="user-id title">Hi, 
                               <?php
-                              if(isset($r['Hoten']) && !empty($r['Hoten'])){
+                              if(isset($r['Hoten'])){
                                    echo $r['Hoten'];
                                } else {
                                    echo $_SESSION['username'];
                                }
                               ?></a>
-                              <span class="img-id"><img src="
-                              <?php
-                                   if(isset($r['AnhDD']) && !empty($r['AnhDD'])){
-                                        echo './img/' . $r['AnhDD'];
-                                    } else {
-                                        echo './img/person.png';
-                                    }
-                              ?>" alt=""></span> 
+                              <span class="img-id"><img src="<?php if(isset($r['Avatar']) && $r['Avatar']!=""){echo './img_members/'.$r['Avatar'].'';}else{echo './img/person.png';}?>" alt=""></span> 
                               <ul class="miniMember-menu">
                                    <li><a href="index.php?page=Information<?php if($change == 1) echo '&go=1'?>" class="title">Thông tin</a></li>
                                    <li><a href="./php_function/logout.php" class="title">Đăng xuất</a></li>

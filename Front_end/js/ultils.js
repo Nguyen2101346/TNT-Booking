@@ -35,12 +35,3 @@ exitBtn.addEventListener('click',() => {
                MemberOpen = false;
           }
      });
-     document.addEventListener('scroll',() => {
-          const header = document.querySelector('.SummaryBill')
-     
-          if(window.scrollY > 100){
-               header.classList.add('scrolled');
-          }else{
-               header.classList.remove('scrolled');
-          }
-     })

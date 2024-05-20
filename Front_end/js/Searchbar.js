@@ -1,8 +1,10 @@
 // Nút mở calander trên phần tìm kiểm
-const GetDate = document.querySelector('#GetDate');
-const Calander = document.querySelector('.Calander');
-let CalOpen = false;
-GetDate.addEventListener('click',() => {
+const element = document.querySelector('#GetDate')
+if(element){
+     const GetDate = document.querySelector('#GetDate');
+     const Calander = document.querySelector('.Calander');
+     let CalOpen = false;
+     GetDate.addEventListener('click',() => {
      if(!CalOpen == true){
           Calander.classList.add('toggle');
           CalOpen = true;
@@ -10,7 +12,11 @@ GetDate.addEventListener('click',() => {
           Calander.classList.remove('toggle');
           CalOpen = false;
      }
-});
+     });
+} else {
+     console.log('Phần tử không tồn tại, này bên Searchbar.js nên khỏi lo');
+}
+
 
 // Phần Calander
 $(function() {
@@ -44,6 +50,8 @@ $(function() {
 var roomQuantity = 1;
 var adultsQuantity = 1;
 
+const elementTable = document.querySelector('#booking')
+if(elementTable){
 const Booking = document.querySelector('#booking')
 const Table = document.querySelector('#booking-table')
 let TabShow = false;
@@ -144,6 +152,9 @@ let TabShow = false;
                DiscountShow = false;
           }
      })
+} else {
+     console.log('Phần tử không tồn tại, này bên Searchbar.js nên khỏi lo');
+}
      //  Áp dụng js để hover select
      $(document).ready(function() {
           $('#discountSelect option').hover( 
@@ -180,6 +191,8 @@ let TabShow = false;
           });
      }
 }
+const elementSearch = document.querySelector('#searchButton')
+if(elementSearch){
 document.getElementById("searchButton").addEventListener("click", function(event) {
      const searchButton = document.getElementById("searchButton");
      if (searchButton.classList.contains('disabled')) {
@@ -222,4 +235,9 @@ document.getElementById("searchButton").addEventListener("click", function(event
          }
      };
      xhr.send(formData);
+     
  });
+} else {
+     console.log('Phần tử không tồn tại, này bên Searchbar.js nên khỏi lo');
+}
+

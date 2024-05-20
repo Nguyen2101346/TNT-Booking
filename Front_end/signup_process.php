@@ -14,6 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Trả về kết quả dưới dạng JSON
         if(mysqli_num_rows($re)> 0){
             echo json_encode(array("type" => "error", "message" => "username_exists"));
+        }elseif (strlen($u) > 8){
+            echo json_encode(array("type" => "error", "message" => "username_too_long"));
         }elseif (strlen($p) < 8) {
             echo json_encode(array("type" => "error", "message" => "password_too_short"));
         } elseif ($p != $rp) {

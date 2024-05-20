@@ -142,6 +142,9 @@ a{
      background: var(--orange1);
      color: var(--white)!important;
 }
+textarea{
+     resize: none;
+}
 /*============================================ PHẦN HEADER CHUNG ============================================ */
 .Sale_Container,.Payment_Container{
      width: 100%;
@@ -613,11 +616,13 @@ color: rgb(252, 210, 75);
 }
 .SummaryBill.scrolled{
      position: fixed;
-     top: 70px;
+     top: 155px;
+     z-index: 10;
 }
 .SummaryBill{
      width: 294px;
      border: 1px solid #bbbbbb;
+     background: #fff;
 }
 .SummaryBill .Main_item{
      gap: 10px;

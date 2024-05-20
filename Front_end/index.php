@@ -61,9 +61,11 @@
     <script src="./js/ultils.js"></script>
     <script src="./js/Searchbar.js"></script>
     <script src="./js/searchbar_get.js"></script>
-    <script src="./js/MiniBill.js"></script>
+    <!-- <script src="./js/MiniBill.js"></script> -->
     <script>
         const change = <?= $change?>;
+        const elementSearch1 = document.querySelector('#searchButton')
+        if(elementSearch1){
         document.getElementById("searchButton").addEventListener("click", function(event) {
          const searchButton = document.getElementById("searchButton");
          if (searchButton.classList.contains('disabled')) {
@@ -83,8 +85,11 @@
              url += '&go=1';
          }
          
-         window.location.href = url;
+            window.location.href = url;
         });
+    } else {
+        console.log('Phần tử không tồn tại, này bên index.php nên khỏi lo');
+    }
     </script>
 </body>
 

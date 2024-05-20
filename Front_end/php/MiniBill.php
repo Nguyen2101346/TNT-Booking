@@ -44,4 +44,13 @@
     // Chuyển đổi các phòng đã chọn và thông tin sang trang Payment
     document.getElementById("summaryForm").submit();
 });
+     document.addEventListener('scroll',() => {
+     const header = document.querySelector('.SummaryBill')
+
+     if(window.scrollY > 100){
+          header.classList.add('scrolled');
+     }else{
+          header.classList.remove('scrolled');
+     }
+     })
 </script>
