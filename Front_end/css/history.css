@@ -137,3 +137,118 @@
 /* .page-btn:hover:not(.active) {
     background-color: #555;
 } */
+
+.filter-container {
+    width: 100%;
+    display: grid;
+    gap: 25px;
+    align-items: center;
+    grid-template-columns: 150px 250px 150px 100px;
+}
+
+.filter-item {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+#bookingType, #dateRange, #status {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#dateRange {
+    margin: 0;
+}
+#filterButton {
+    width: 100%;
+    height: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#filterButton:hover {
+    background-color: #0056b3;
+}
+.order-list{
+    width: 100%;
+    height: 700px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #000;
+    padding-top: 40px;
+}
+.order-item {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 20px 10px;
+    margin-bottom: 20px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.order-header h3 {
+    margin: 0;
+}
+
+.order-status {
+    font-weight: bold;
+}
+
+.order-status.pending {
+    color: blue;
+}
+
+.order-status.success {
+    color: green;
+}
+
+.order-status.failed {
+    color: red;
+}
+
+.order-details {
+    display: flex;
+}
+
+.order-image {
+    margin-right: 10px;
+}
+
+.order-image img {
+    width: 150px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.order-info {
+    flex-grow: 1;
+}
+.order-info .spraise{
+    margin: 0;
+    margin-bottom: 5px;
+    /* color: var(--orange1); */
+}
+.order-info p {
+    margin: 5px 0;
+}
+
+.order-total {
+    font-weight: bold;
+    color: orange;
+    text-align: right;
+}

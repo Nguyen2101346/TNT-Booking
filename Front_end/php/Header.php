@@ -46,6 +46,7 @@ if ($change == 1 && session_status() == PHP_SESSION_NONE){
                               <span class="img-id"><img src="<?php if(isset($r['Avatar']) && $r['Avatar']!=""){echo './img_members/'.$r['Avatar'].'';}else{echo './img/person.png';}?>" alt=""></span> 
                               <ul class="miniMember-menu">
                                    <li><a href="index.php?page=Information<?php if($change == 1) echo '&go=1'?>" class="title">Thông tin</a></li>
+                                   <li class="Anounce"><a href="index.php?page=History<?php if($change == 1) echo '&go=1'?>" class="title">Đơn hàng <span class = "red_mark"></span></a></li>
                                    <li><a href="./php_function/logout.php" class="title">Đăng xuất</a></li>
                               </ul>
                          </li>

@@ -21,7 +21,7 @@ input[type = "file"]{
 }
 .Info_list{
     width: 300px;
-    height: 500px;
+    height: 560px;
     background-color:var(--bgSearch);
     padding: 20px;
     border-radius: 3%;
@@ -107,7 +107,7 @@ input[type = "file"]{
 .info_detail .item.active{
     background: #FFE4AF;
 }
-.item .info-icon,.logout-icon{
+.item .info-icon,.logout-icon,.Bill-icon{
     width: 20px;
     height: 25px;
     align-self: center;

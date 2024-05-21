@@ -1,81 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/footer.css">
-    <link rel="stylesheet" href="./css/Room.css">
-    <link rel="stylesheet" href="./css/history.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-</head>
-<body>
-    <div class="Container">
-        <div class="History_Container">
-            <div class="History content">
-                <div class="History title">
-                    <h2 class="title large">Lịch sử đặt phòng</h2>
-                </div>
-                <div class="History room_container">
-                    <!-- <div class="History room">
-                        <div class="History room_img img">
-                            <div class="sale-icon">
-                                            <img src="./img/sale_icon.png" alt="">
+
+<div class="Container">
+        <div class="Content_container">
+            <form action="index.php?page=Information&go=1" method="post" enctype="multipart/form-data">
+                <div class="Info_Container">
+                    <div class="Info_list">
+                        <div class="info_avt">
+                            <div class="info-img">
+                                <?php
+                                    $sql = "SELECT Tendangnhap,Avatar
+                                            FROM taikhoan
+                                            WHERE IDTaikhoan = ".$_SESSION['userID']."";
+                                    $re = mysqli_query($conn, $sql);
+                                    $r = mysqli_fetch_array($re);
+                                ?>
+                                <img id="avatarPreview" src="<?php if(isset($r['Avatar']) && $r['Avatar']!=""){echo './img_members/'.$r['Avatar'].'';}else{echo './img/person.png';}?>"alt="">
+                                <div class="changeAvt">
+                                    <label for="Avtchange">
+                                        <img src="./img/changeAvt.png" alt="">
+                                    </label>
+                                    <input type="file" name="changeAvt" id="Avtchange" accept="image/*">       
+                                </div>
                             </div>
-                            <img src="./img/anh1.jpg" alt="">
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const avatarInput = document.getElementById('Avtchange');
+                                    const avatarPreview = document.getElementById('avatarPreview');
+
+                                    avatarInput.addEventListener('change', function(event) {
+                                        const file = event.target.files[0];
+                                        if (file) {
+                                            const reader = new FileReader();
+                                            reader.onload = function(e) {
+                                                avatarPreview.src = e.target.result;
+                                            }
+                                            reader.readAsDataURL(file);
+                                        }
+                                    });
+                                });
+                            </script>
+                            <?php
+                                
+                            ?>
+                            <div class="content"><?php if(isset($r['Tendangnhap']) && $r['Tendangnhap']!=""){echo $r['Tendangnhap'];}?></div>
                         </div>
-                        <div class="History room_content">
-                            <div class="title"><a href="#" class="title">Deluxe 2 Giường Đơn</a></div>
-                            <div class="appraise">
-                                            <div class="title">
-                                                <div class="rating">
-                                                    <span class="star">&#9733;</span>
-                                                    <span class="star">&#9733;</span>
-                                                    <span class="star">&#9733;</span>
-                                                    <span class="star">&#9733;</span>
-                                                    <span class="star">&#9733;</span>
-                                                </div>
-                                                <p id="result" class="sale"></p>
-                                            </div>
-                            </div>
-                            <div class="general_infor">
-                                <div class="title">
-                                        <span class="content">Số phòng: <span class="minicontent"> M101</span></span>
-                                </div>
-                                <div class="title">
-                                        <span class="content">Từ: <span class="minicontent"> Thứ tư, 08/04/2024</span></span>
-                                </div>
-                                <div class="title">
-                                        <span class="content">Đến: <span class="minicontent"> Thứ sáu, 10/04/2024</span></span>
-                                </div>
-                            </div>
-                                <div class="absolute">
-                                    <div class="prices">
-                                            <div class="discountsale"></div>
-                                            <div class="title">Giá: 3.130.000 VNĐ</div>
-                                    </div>
-                                </div>
-                                    <div class="Detail_btn">
-                                            <a href="#" class="medium_btn">Chi tiết</a>
-                                    </div>
+                        <?php
+                            $sql = "SELECT SUM(Tonggia) AS Tichluy FROM datphong Where IDTaikhoan=".$_SESSION['userID']."";
+                            $re = mysqli_query($conn, $sql);
+                            $r = mysqli_fetch_array($re);
+                        ?>
+                        <div class="info_coin">
+                            <div class="content">Giá trị tích lũy:</div>
+                            <span class="content"><?php if(isset($r['Tichluy']) && $r['Tichluy']!=0){ echo $r['Tichluy']." VNĐ";}?></span>
+                            <a href="index.php?page=History<?php if($change == 1) echo '&go=1'?>" class="content">Lịch sử &gt</a>
                         </div>
-                    </div> -->
+                        <div class="info_detail">
+                            <div class="item info ">
+                                <div class="info-icon">
+                                    <img src="./img/Account.png" alt="">
+                                </div>
+                                <a href="index.php?page=Information<?php if($change == 1) echo '&go=1'?>" class="content">Thông tin tài khoản</a>
+                            </div>
+                            <div class="item history active">
+                                <div class="Bill-icon">
+                                    <img src="./img/Bill-re.png" alt="">
+                                </div>
+                                <a href="index.php?page=History<?php if($change == 1) echo '&go=1'?>" class="content">Đơn hàng của tôi</a>
+                            </div>
+                            <div class="item logout">
+                                <div class="logout-icon"> <img src="./img/logout.png" alt=""></div>
+                                <a href="./php_function/logout.php" class="content">Đăng xuất</a>
+                            </div>
+                        </div>
                 </div>
-                <div class="pagination"></div>
+                <div class="Update_list">
+                    <h1 class="title large">Đơn hàng của tôi</h1>
+                    <div class="filter-container">
+                        <div class="filter-item">
+                            <select id="bookingType" name="bookingType" class="content">
+                                <option value="room" class="content">Đặt phòng</option>
+                                <option value="meeting" class="content">Đặt Hội họp</option>
+                                <option value="wedding" class="content">Đặt Tiệc cưới</option>
+                                <option value="community" class="content">Đặt Cộng đồng</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <input type="text" id="dateRange" name="dateRange" placeholder="20/05/2024 - 25/05/2024" class="content">
+                        </div>
+                        <div class="filter-item">
+                            <select id="status" name="status" class="content">
+                                <option value="all" class="content">Tất cả</option>
+                                <option value="pending" class="content">Đang chờ xử lý</option>
+                                <option value="success" class="content">Thành công</option>
+                                <option value="failed" class="content">Không thành công</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <button id="filterButton" class="content" >Lọc</button>
+                        </div>
+                    </div>
+                    
+                    <div class="order-list">
+                        <div class="order-item">
+                            <div class="order-header">
+                                <h3>Deluxe 2 Giường Đơn</h3>
+                                <span class="order-status pending">Đang chờ xử lý</span>
+                            </div>
+                            <div class="order-details">
+                                <div class="order-image">
+                                    <img src="./img/phòng1.jpg" alt="Room Image">
+                                </div>
+                                <div class="order-info">
+                                    <p class="spraise">Đánh giá: ⭐⭐⭐⭐ 4.0/5.0</p>
+                                    <p>Ngày giao dịch: 20/05/2024</p>
+                                    <p>Số người: 2</p>
+                                </div>
+                            </div>
+                            <div class="order-total">Tổng tiền: 3.339.000 VNĐ</div>
+                        </div>
+
+                        <div class="order-item">
+                            <div class="order-header">
+                                <h3>Deluxe 2 Giường Đơn</h3>
+                                <span class="order-status success">Thành công</span>
+                            </div>
+                            <div class="order-details">
+                                <div class="order-image">
+                                    <img src="./img/phòng1.jpg" alt="Room Image">
+                                </div>
+                                <div class="order-info">
+                                    <p>Đánh giá: ⭐⭐⭐⭐ 4.0/5.0</p>
+                                    <p>Ngày giao dịch: 20/05/2024</p>
+                                    <p>Số người: 2</p>
+                                </div>
+                            </div>
+                            <div class="order-total">Tổng tiền: 3.339.000 VNĐ</div>
+                        </div>
+                        <div class="order-item">
+                            <div class="order-header">
+                                <h3>Deluxe 2 Giường Đơn</h3>
+                                <span class="order-status failed">Không thành công</span>
+                            </div>
+                            <div class="order-details">
+                                <div class="order-image">
+                                    <img src="./img/phòng1.jpg" alt="Room Image">
+                                </div>
+                                <div class="order-info">
+                                    <p>Đánh giá: ⭐⭐⭐⭐ 4.0/5.0</p>
+                                    <p>Ngày giao dịch: 20/05/2024</p>
+                                    <p>Số người: 2</p>
+                                </div>
+                            </div>
+                            <div class="order-total">Tổng tiền: 3.339.000 VNĐ</div>
+                        </div>
+                    </div>
+                    <script>
+                        document.getElementById('filterButton').addEventListener('click', function() {
+                            var bookingType = document.getElementById('bookingType').value;
+                            var dateRange = document.getElementById('dateRange').value;
+                            var status = document.getElementById('status').value;
+
+                            // Thực hiện hành động lọc ở đây, ví dụ: gửi yêu cầu AJAX hoặc cập nhật giao diện
+                            console.log('Booking Type:', bookingType);
+                            console.log('Date Range:', dateRange);
+                            console.log('Status:', status);
+                        });
+                    </script>           
+                </div>
             </div>
         </div>
-        <?php 
-            include "./php/Footer.php"
-        ?>
-        <script src="./js/room.js"></script>
-    </div>
-</body>
-</html>

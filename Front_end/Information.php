@@ -58,7 +58,13 @@
                                 <div class="info-icon">
                                     <img src="./img/Account.png" alt="">
                                 </div>
-                                <a href="information.php" class="content">Thông tin tài khoản</a>
+                                <a href="index.php?page=Information<?php if($change == 1) echo '&go=1'?>" class="content">Thông tin tài khoản</a>
+                            </div>
+                            <div class="item info">
+                                <div class="info-icon">
+                                    <img src="./img/Bill-re.png" alt="">
+                                </div>
+                                <a href="index.php?page=History<?php if($change == 1) echo '&go=1'?>" class="content">Đơn hàng của tôi</a>
                             </div>
                             <div class="item logout">
                                 <div class="logout-icon"> <img src="./img/logout.png" alt=""></div>
