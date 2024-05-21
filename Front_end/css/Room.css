@@ -46,8 +46,14 @@
      display: grid;
      grid-template-rows: 1fr 1fr 1fr 1fr;
 }
+.headRoom_container .RoomDetail_container .rating{
+     margin: 0 10px;
+}
+.headRoom_container .RoomDetail_container #result{
+     padding: 10px 10px 0px ;
+}
 p#result{
-     padding: 10px 10px 0;
+     padding: 10px 10px 10px ;
      font-size: 16px;
 }
 .room .appraise{
@@ -61,8 +67,9 @@ p#result{
      line-height: 40px;
 }
 .appraise .rating{
-     margin: 0 10px;
+     margin: 10px 0px;
 }
+
 .room i {
      margin-right: 10px;
 }

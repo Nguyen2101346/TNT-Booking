@@ -8,6 +8,9 @@
      /* border: 1px solid #bbbbbb; */
      box-shadow: 0 0 2px 3px #bbbbbb;
 }
+.Person-info {
+     padding-bottom: 20px;
+}
 /* Phần dan xưng */
 .Person-info .gender{
      display: flex;
@@ -16,6 +19,7 @@
 }
 .Person-info .title,.Payment_methob .title{
      font-weight: bold;
+     font-size: 18px;
 }
 .Person-info .radio{
      padding: 0px 10px;
@@ -162,3 +166,7 @@ input[type = "checkbox"]:checked + label::before{
      padding: 10px;
      font-size: 18px!important;
 }
+.selected-room{
+     border-bottom: 1px solid #000;
+}
+

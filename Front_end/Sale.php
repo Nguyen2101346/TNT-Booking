@@ -38,7 +38,10 @@
                                              $adults_num = isset($_GET['qua-adults']) ? $_GET['qua-adults'] : 1;
                                              $discount_code = isset($_GET['discount_code']) ? $_GET['discount_code'] : '';
 
-                                             $sql = "SELECT * FROM loaiphong WHERE Songuoi >= '$adults_num'";
+                                             $sql = "SELECT * 
+                                             FROM loaiphong,phong
+                                             WHERE loaiphong.IDLoaiphong = phong.IDLoaiphong 
+                                             AND phong.Trangthai = '0' AND loaiphong.Songuoi >= '$adults_num'";
                                              $re = mysqli_query($conn,$sql);
                                              $row = mysqli_num_rows($re);
                                              if($row > 0){
@@ -54,8 +57,12 @@
                                                                  <img src="./img/'.$r["AnhDD"].'" alt="">
                                                             </div>
                                                             <div class="content">
-                                                                 <div class="title"><a href="#">'. $r['Tenloaiphong'].'</a></div>
-                                                                 <div class="appraise">
+                                                                 <div class="title">'?>
+                                                                      <a href="index.php?page=Room&id=<?php echo $r['IDLoaiphong']; ?><?php if ($change == 1) echo '&go=1'; ?>">
+                                                                           <?php echo $r['Tenloaiphong']; ?>
+                                                                      </a>
+                                                       <?php echo'</div>
+                                                                      <div class="appraise">
                                                                       <div class="content">
                                                                            <div class="rating">
                                                                                 <span class="star">&#9733;</span>
@@ -95,8 +102,11 @@
                                              }else{
                                                   echo "Không tìm thấy phòng nào";
                                              }
-                                        }else{
-                                             $sql = "SELECT * FROM loaiphong";
+                                             }else{
+                                             $sql = "SELECT * 
+                                                  FROM loaiphong,phong
+                                                  WHERE loaiphong.IDLoaiphong = phong.IDLoaiphong 
+                                                  AND phong.Trangthai = '0'";
                                              $re = mysqli_query($conn,$sql);
                                              $row = mysqli_num_rows($re);
                                              if($row > 0){
@@ -209,6 +219,7 @@
             roomMini.innerHTML = `
                 <div class="RoomNum title">Phòng ${index + 1}</div>
                 <div class="RoomTitle">${room.title}</div>
+                <input type="hidden" name="${room.id}" value="${room.id}">
                 <div class="RoomPrice">${room.priceFormatted} VND</div>
                 <div class="RoomFix_btn">
                     <a href="#" class="mini_btn" onclick="removeRoom(${index})">Chỉnh sửa</a>
@@ -259,12 +270,17 @@
         // Chuyển sang trang Payment.php và ẩn nút "Tiếp tục"
         const form = document.createElement('form');
         form.method = 'POST';
-        if(change == 1){
-          form.action = 'index.php?page=Payment';
-          form.action += '&start_date=' + start_date + '&end_date=' + end_date + '&go=1';
-        }else{
-          alert('Bạn phải đăng nhập để sử dụng chức năng này!');
-        }
+        if(start_date != null && end_date != null){
+               if(change == 1){
+                    form.action = 'index.php?page=Payment';
+                    form.action += '&start_date=' + start_date + '&end_date=' + end_date + '&go=1';
+               }else{
+                    alert('Bạn phải đăng nhập để sử dụng chức năng này!');
+               }
+          }
+          else{
+               alert('Bạn phải chọn ngày đến và ngày đi');
+          }
         selectedRooms.forEach((room, index) => {
             const roomInput = document.createElement('input');
             roomInput.type = 'hidden';
