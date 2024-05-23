@@ -383,7 +383,7 @@ include "../php_func/conn.php";
                             Number of Rooms: ${info.RoomNum}\n
                             Price: ${info.RoomPrice}\n
                             Convenience: ${info.RoomConvenience}\n
-                            Image: ${info.ImgRoom}\n
+                            AnhDD: ${info.ImgRoom}\n
                             Convenience IDs: ${info.IDTienich.join(', ')}`;
                         alert(message);
                         } else {

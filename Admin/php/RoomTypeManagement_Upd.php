@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Imgroom = '';
     if (!empty($_FILES['ImgRoom']['name'])) {
         $Imgroom = $_FILES['ImgRoom']['name'];
-        move_uploaded_file($_FILES['ImgRoom']['tmp_name'], '../Admin/img' . $Imgroom);
+        move_uploaded_file($_FILES['ImgRoom']['tmp_name'], './img' . $Imgroom);
     } else {
         $sql = "SELECT AnhDD FROM loaiphong WHERE IDLoaiphong = ?";
         $stmt = $conn->prepare($sql);
