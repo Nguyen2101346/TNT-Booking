@@ -154,13 +154,14 @@
     font-size: 16px;
 }
 
-#bookingType, #dateRange, #status {
+#bookingType, #dateStart,#dateEnd, #status {
     width: 100%;
     height: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-#dateRange {
+
+#dateStart,#dateEnd {
     margin: 0;
 }
 #filterButton {

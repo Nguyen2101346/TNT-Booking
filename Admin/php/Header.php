@@ -45,7 +45,7 @@
                                    " alt=""></span> 
                                    <ul class="miniAdmin-menu">
                                         <li><a href="#">Thông tin</a></li>
-                                        <li><a href="../Front_end/php_func/logout.php">Đăng xuất</a></li>
+                                        <li><a href="../Front_end/php_function/logout.php">Đăng xuất</a></li>
                                    </ul>
                               </li>
                          </ul>

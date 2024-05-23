@@ -84,7 +84,8 @@
                             </select>
                         </div>
                         <div class="filter-item">
-                            <input type="text" id="dateRange" name="dateRange" placeholder="20/05/2024 - 25/05/2024" class="content">
+                            <input type="date" id="dateStart" name="dateStart" value="20/05/2024" class="content">
+                            <input type="date" id="dateEnd" name="dateEnd" value="25/05/2024" class="content">
                         </div>
                         <div class="filter-item">
                             <select id="status" name="status" class="content">
@@ -112,6 +113,7 @@
                                 <div class="order-info">
                                     <p class="spraise">Đánh giá: ⭐⭐⭐⭐ 4.0/5.0</p>
                                     <p>Ngày giao dịch: 20/05/2024</p>
+                                    <p>Ngày lưu trú: 21/05/2024 - 25/05/2024</p>
                                     <p>Số người: 2</p>
                                 </div>
                             </div>
@@ -130,6 +132,7 @@
                                 <div class="order-info">
                                     <p>Đánh giá: ⭐⭐⭐⭐ 4.0/5.0</p>
                                     <p>Ngày giao dịch: 20/05/2024</p>
+                                    <p>Ngày lưu trú: 21/05/2024 - 25/05/2024</p>
                                     <p>Số người: 2</p>
                                 </div>
                             </div>
@@ -147,6 +150,7 @@
                                 <div class="order-info">
                                     <p>Đánh giá: ⭐⭐⭐⭐ 4.0/5.0</p>
                                     <p>Ngày giao dịch: 20/05/2024</p>
+                                    <p>Ngày lưu trú: 21/05/2024 - 25/05/2024</p>
                                     <p>Số người: 2</p>
                                 </div>
                             </div>

@@ -40,6 +40,9 @@ body{
      --container-w: 1140;
      --container-w-px: 1050px;
 }
+textarea{
+     resize: none;
+}
 img{
      width: 100%;
      height: 100%;
