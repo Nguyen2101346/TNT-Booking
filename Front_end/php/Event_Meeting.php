@@ -3,7 +3,7 @@
     <?php
           if (session_status() == PHP_SESSION_NONE){
                session_start();
-               $userID = $_SESSION['userID'];
+            // $userID = $_SESSION['userID'];
           }
           include "../conn.php";
         //   $sql = "SELECT * FROM sukien WHERE IDSukien=1";

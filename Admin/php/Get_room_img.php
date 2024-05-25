@@ -14,7 +14,9 @@ if (isset($_GET['idroom'])) {
     while ($row = $result->fetch_assoc()) {
         $images[] = $row['Hinh'];
     }
-
+    if (count($images) == 0) {
+        $images[] = 'default.jpg';
+    }
     echo json_encode($images);
 } else {
     echo json_encode(['error' => 'Room ID not provided']);

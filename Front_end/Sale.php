@@ -41,7 +41,8 @@
                                              $sql = "SELECT * 
                                              FROM loaiphong,phong
                                              WHERE loaiphong.IDLoaiphong = phong.IDLoaiphong 
-                                             AND phong.Trangthai = '0' AND loaiphong.Songuoi >= '$adults_num'";
+                                             AND phong.Trangthai = '0' AND loaiphong.Songuoi >= '$adults_num'
+                                             GROUP BY phong.IDLoaiPhong";
                                              $re = mysqli_query($conn,$sql);
                                              $row = mysqli_num_rows($re);
                                              if($row > 0){
@@ -104,9 +105,10 @@
                                              }
                                              }else{
                                              $sql = "SELECT * 
-                                                  FROM loaiphong,phong
-                                                  WHERE loaiphong.IDLoaiphong = phong.IDLoaiphong 
-                                                  AND phong.Trangthai = '0'";
+                                             FROM loaiphong,phong
+                                             WHERE loaiphong.IDLoaiphong = phong.IDLoaiphong 
+                                             AND phong.Trangthai = '0'
+                                             GROUP BY phong.IDLoaiPhong";
                                              $re = mysqli_query($conn,$sql);
                                              $row = mysqli_num_rows($re);
                                              if($row > 0){
