@@ -245,6 +245,9 @@ $(document).ready(function() {
     // Lấy chi tiết loại phòng
     $('.type_items').on('click', function(event) {
         event.preventDefault();
+        var id = this.getAttribute('data-id');
+        var currentUrl = window.location.href.split('?')[0];
+        window.location.href = currentUrl + '?page=Management&idroom=' + id;
         var id = $(this).data('id');
         console.log("ID của phòng:", id);
         lastClickedId = id;

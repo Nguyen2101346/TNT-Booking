@@ -161,4 +161,6 @@ p#result{
 }
 .convenience_component li{
      line-height: 30px;
+     display: flex;
+     align-items: start;
 }
