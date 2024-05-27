@@ -12,11 +12,12 @@ if (isset($_GET['idroom'])) {
     $result = $stmt->get_result();
 
 
-    $idiamge = [];
     $images = [];
     while ($row = $result->fetch_assoc()) {
-        $images[] = $row['Hinh'];
-        // $idiamge[] = $row['IDHinh'];
+        $images[] = [
+            'Hinh' => $row['Hinh'],
+            'IDHinh' => $row['IDHinh']
+        ];
     }
     if (count($images) == 0) {
         $images = 'Default.jpg';

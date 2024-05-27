@@ -8,37 +8,36 @@ include '../php_func/Room_func.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kiểm tra xem có dữ liệu được gửi từ form không
-    if (isset($_POST["Tenphong"]) && isset($_POST["Ngaytao"]) && isset($_POST["Sotang"])) {
+    if (isset($_POST["IDLoaiphong"]) && isset($_POST["Tenphong"]) && isset($_POST["Ngaytao"]) && isset($_POST["Sotang"])) {
+        $IDLoaiphong = $_POST["IDLoaiphong"];
         $roomname = $_POST["Tenphong"];
         $sotang = $_POST["Sotang"];
         $DayCre = $_POST["Ngaytao"];
         
         if (empty($roomname)) { 
-            echo json_encode(array("type" => "error", "message" => "Name_nothing"));
+            $response['message'] = "Name_nothing";
         } else if (empty($DayCre)) {
-            echo json_encode(array("type" => "error", "message" => "Date_nothing"));
+            $response['message'] = "Date_nothing";
         } else if (empty($sotang)) {
-            echo json_encode(array("type" => "error", "message" => "Sotang_nothing"));
+            $response['message'] = "Sotang_nothing";
         } else {
             $today = date("Y-m-d");
-            $sql = "SELECT * FROM phong WHERE Tenphong = '$roomname'";
-            $re  = mysqli_query($conn, $sql);
+            $sql = "SELECT * FROM phong WHERE Tenphong = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("s", $roomname);
+            $stmt->execute();
+            $re = $stmt->get_result();
 
-            if (mysqli_num_rows($re) > 0) {
-                echo json_encode(array("type" => "error", "message" => "Roomname_exists"));
+            if ($re->num_rows > 0) {
+                $response['message'] = "Loại phòng này đã tồn tại!";
             } elseif ($DayCre != $today) {
-                echo json_encode(array("type" => "error", "message" => "Date_not_today"));
-            }elseif($sotang < 1 || $sotang > 5){
-                echo json_encode(array("type" => "error", "message" => "Sotang_not_1_to_5"));
+                $response['message'] = "Ngày tạo phải là hôm nay!";
+            } elseif ($sotang < 1 || $sotang > 5) {
+                $response['message'] = "Khách sạn nhỏ lắm bớt chọn tầng cao !";
             } else {
                 if (add_MiniRoom($conn, $IDLoaiphong, $roomname, $DayCre, $sotang)) {
                     $response['success'] = true;
                     $response['message'] = 'Success';
-                } else {
-                    $response['message'] = 'Error_inserting_room';
-                    $response['message'] = $roomname;
-                    // $response['message'] = $DayCre;
-                    // $response['message'] = $sotang;
                 }
             }
         }

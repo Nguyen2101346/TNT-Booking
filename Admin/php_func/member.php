@@ -85,6 +85,7 @@ function getMembers($search_query = '', $search_type = 'all') {
             array_push($members, $member);
         }
     }
+    
     return $members;
 }
 

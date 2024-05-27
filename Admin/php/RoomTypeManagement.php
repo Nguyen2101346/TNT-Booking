@@ -8,7 +8,7 @@ include "../php_func/conn.php";
     <div class="TypeBar">
         <div class="TypeCheck medium_btn">
             Chọn loại phòng
-            <span class="fas fa-caret-down"></span>
+            <span><i class="fa-solid fa-caret-down fa-beat"></i></span>
             <ul>
                 <?php 
                 $Sothutu = 1;
@@ -308,7 +308,7 @@ $(document).ready(function() {
                         if (Array.isArray(imageData)) {
                             imageData.forEach(function(img) {
                                 var ImgDetailContainer = 
-                                '<div class="swiper-slide"><a href="#"><img src="./img/detail/' + img + '" alt=""></a></div>'
+                                '<div class="swiper-slide"><a href="#"><img src="./img/detail/' + img.Hinh + '" alt=""></a></div>'
                                 imageContainer.append(ImgDetailContainer);
                                 // if(img.id > 0){
                                 // var ImgDetailLarge = $('.swiper-slide-large');

@@ -377,13 +377,14 @@ input[type = "checkbox"]:checked + label::before{
      border-radius: 10px;
      background:#fff;
      display:grid;
-     grid-template-columns: 200px 1fr   ;
+     grid-template-columns: 220px 1fr   ;
      gap:20px
 }
 .MiniRoom .Img_MiniRoom{
      width:200px;
      height:150px;
      border-radius: 10px;
+     justify-self: center;
 }
 .Img_MiniRoom img{
      width:100%;
@@ -414,7 +415,7 @@ h3{
      padding: 10px 40px;
 }
 /* Phần Thêm phòng mới */
-.MiniRoom_Cancel_btn .btn{
+.MiniRoom_Cancel_btn .btn,.UpdMiniRoom_Cancel_btn .btn{
      background:var(--green4);
      border:2px solid var(--green4)
 }

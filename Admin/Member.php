@@ -34,7 +34,6 @@ $members = getMembers($search_query, $search_type);
           /* Ensure you have these fonts loaded */
           @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-
           /* Apply the font family */
           body {
                font-family: 'Roboto', sans-serif;
@@ -51,7 +50,6 @@ $members = getMembers($search_query, $search_type);
           }
 
           /* Ensure FontAwesome icon retains its style */
-          
      </style>
 </head>
 
@@ -81,7 +79,7 @@ $members = getMembers($search_query, $search_type);
                     <div class="TypeBar">
                          <div class="TypeCheck medium_btn">
                               <div class="title_TypeCheck">Tất cả</div>
-                              <span class="fas fa-caret-down"></span>
+                              <span><i class="fa-solid fa-caret-down fa-beat-fade"></i></span>
                               <ul>
                                    <li><a href="#" data-search-type="all">Tất cả</a></li>
                                    <li><a href="#" data-search-type="name">Tên</a></li>
@@ -91,7 +89,7 @@ $members = getMembers($search_query, $search_type);
                               </ul>
                          </div>
                          <div class="MemberSearch">
-                              <form method="GET" action="member.php">
+                              <form id="searchForm">
                                    <input type="hidden" name="search_type" id="search_type" value="all">
                                    <input type="search" name="search_query" id="search_query" placeholder="Để trống để tìm theo thứ tự">
                                    <input type="submit" value="">
@@ -99,15 +97,52 @@ $members = getMembers($search_query, $search_type);
                               </form>
                          </div>
                     </div>
-
                     <script>
                          $(document).ready(function() {
+                              function bindDetailButtons() {
+                                   $('.member.Detail_btn').on('click', function(event) {
+                                        event.preventDefault();
+                                        var memberData = $(this).data('member');
+                                        $('#ID').val(memberData.ID);
+                                        $('#name').val(memberData.name);
+                                        $('#gender').val(memberData.gender);
+                                        $('#birthday').val(memberData.birthday);
+                                        $('#email').val(memberData.email);
+                                        $('#phone').val(memberData.phone);
+                                        $('#address').val(memberData.address);
+                                        $('#member_id').val(memberData.id);
+                                        $('.CheckMember.MiniContainer').addClass('visible');
+                                   });
+                              }
+
+                              $('#searchForm').on('submit', function(event) {
+                                   event.preventDefault();
+
+                                   var searchType = $('#search_type').val();
+                                   var searchQuery = $('#search_query').val();
+
+                                   $.ajax({
+                                        url: 'Member.php',
+                                        type: 'GET',
+                                        data: {
+                                             search_type: searchType,
+                                             search_query: searchQuery
+                                        },
+                                        success: function(response) {
+                                             $('#Admin_Main__content').html($(response).find('#Admin_Main__content').html());
+                                             bindDetailButtons(); // Re-bind the detail buttons after updating the content
+                                        }
+                                   });
+                              });
+
                               $('.TypeCheck ul li a').on('click', function(event) {
                                    event.preventDefault();
                                    var searchType = $(this).data('search-type');
                                    $('#search_type').val(searchType);
                                    $('.TypeCheck .title_TypeCheck').text($(this).text());
                               });
+
+                              bindDetailButtons(); // Initial binding
                          });
                     </script>
                     <div class="Member_Container" id="Member">
@@ -119,7 +154,7 @@ $members = getMembers($search_query, $search_type);
                                    echo "
                                    <div class='Member' data-id='" . $member_id . "'>
                                         <div class='Img_Member'>
-                                             <img src='" . $member['image'] . "'>
+                                             <img src='../Front_end/img_members/" . $member['image'] . "'>
                                         </div>
                                         <div class='Member_content'>
                                              <h3>Tên Khách hàng : <span class='lighter'>" . $member['name'] . "</span> </h3>
@@ -215,32 +250,55 @@ $members = getMembers($search_query, $search_type);
      <script src="../js/Admin.js"></script>
      <script>
           $(document).ready(function() {
-               $('.member.Detail_btn').on('click', function(event) {
-                    event.preventDefault();
-                    var memberData = $(this).data('member');
-                    $('#ID').val(memberData.ID);
-                    $('#name').val(memberData.name);
-                    $('#gender').val(memberData.gender);
-                    $('#birthday').val(memberData.birthday);
-                    $('#email').val(memberData.email);
-                    $('#phone').val(memberData.phone);
-                    $('#address').val(memberData.address);
-                    $('#member_id').val(memberData.id);
-                    $('.CheckMember.MiniContainer').addClass('visible');
-               });
+               function bindDetailButtons() {
+                    $('.member.Detail_btn').on('click', function(event) {
+                         event.preventDefault();
+                         var memberData = $(this).data('member');
+                         $('#ID').val(memberData.ID);
+                         $('#name').val(memberData.name);
+                         $('#gender').val(memberData.gender);
+                         $('#birthday').val(memberData.birthday);
+                         $('#email').val(memberData.email);
+                         $('#phone').val(memberData.phone);
+                         $('#address').val(memberData.address);
+                         $('#member_id').val(memberData.id);
+                         $('.CheckMember.MiniContainer').addClass('visible');
+                    });
+               }
+
+               bindDetailButtons(); // Initial binding
 
                $('.Member_Cancel_btn').on('click', function(event) {
                     event.preventDefault();
                     $('.CheckMember.MiniContainer').removeClass('visible');
                });
 
-               // $('.TypeCheck ul li a').on('click', function(event) {
-               //      event.preventDefault();
-               //      var searchType = $(this).data('search-type');
-               //      var searchText = $(this).text();
-               //      $('#search_type').val(searchType);
-               //      $('.TypeCheck .title').text(searchText); // Use .text() to handle special characters correctly
-               // });
+               $('#searchForm').on('submit', function(event) {
+                    event.preventDefault();
+
+                    var searchType = $('#search_type').val();
+                    var searchQuery = $('#search_query').val();
+
+                    $.ajax({
+                         url: 'Member.php',
+                         type: 'GET',
+                         data: {
+                              search_type: searchType,
+                              search_query: searchQuery
+                         },
+                         success: function(response) {
+                              $('#Admin_Main__content').html($(response).find('#Admin_Main__content').html());
+                              bindDetailButtons(); // Re-bind the detail buttons after updating the content
+                         }
+                    });
+               });
+
+               $('.TypeCheck ul li a').on('click', function(event) {
+                    event.preventDefault();
+                    var searchType = $(this).data('search-type');
+                    $('#search_type').val(searchType);
+                    $('.TypeCheck .title_TypeCheck').text($(this).text());
+               });
 
                // Set default search type to "all" for "Tất cả"
                if ($('#search_type').val() === '') {
