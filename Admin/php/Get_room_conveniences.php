@@ -33,8 +33,7 @@ if (isset($_GET['idroom'])) {
     // Trả về dữ liệu dưới dạng JSON
     echo json_encode($response);
     }else{
-        $roomConveniences[] = 0;
-        echo json_encode($roomConveniences);
+        echo json_encode($allConveniences);
     }
    
 

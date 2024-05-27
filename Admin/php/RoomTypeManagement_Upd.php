@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $RoomArea = $_POST['RoomArea'] ?? '';
     $RoomNum = $_POST['RoomNum'] ?? '';
     $RoomPrice = $_POST['RoomPrice'] ?? '';
-    $RoomConvenience = $_POST['RoomConvenience'] ?? '';
+    // $RoomConvenience = $_POST['RoomConvenience'] ?? '';
 
     $Imgroom = '';
     if (isset($_FILES['ImgRoom']) && $_FILES['ImgRoom']['error'] == UPLOAD_ERR_OK) {
@@ -59,35 +59,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $stmt->bind_param('ssiisisi', $RoomName, $RoomDes, $RoomAdult, $RoomArea, $RoomNum, $RoomPrice, $Imgroom, $idroom);
     if ($stmt->execute()) {
-        $sql1 = "DELETE FROM nhantienich WHERE IDLoaiphong = ?";
-        $stmt1 = $conn->prepare($sql1);
-        if (!$stmt1) {
-            $response['status'] = 'error';
-            $response['message'] = 'Chuẩn bị truy vấn thất bại: ' . $conn->error;
-            echo json_encode($response);
-            exit();
-        }
-        $stmt1->bind_param('i', $idroom);
-        if ($stmt1->execute()) {
-            if (isset($_POST['IDTienich']) && is_array($_POST['IDTienich'])) {
-                foreach ($_POST['IDTienich'] as $IDTienich) {
-                    $sql2 = "INSERT INTO nhantienich (IDLoaiphong, IDTienich) VALUES (?, ?)";
-                    $stmt2 = $conn->prepare($sql2);
-                    if (!$stmt2) {
-                        $response['status'] = 'error';
-                        $response['message'] = 'Chuẩn bị truy vấn thất bại: ' . $conn->error;
-                        echo json_encode($response);
-                        exit();
-                    }
-                    $stmt2->bind_param('ii', $idroom, $IDTienich);
-                    if (!$stmt2->execute()) {
-                        $response['status'] = 'error';
-                        $response['message'] = 'Lỗi khi chèn tiện ích: ' . $stmt2->error;
-                        echo json_encode($response);
-                        exit();
-                    }
-                }
-            }
+        // $sql1 = "DELETE FROM nhantienich WHERE IDLoaiphong = ?";
+        // $stmt1 = $conn->prepare($sql1);
+        // if (!$stmt1) {
+        //     $response['status'] = 'error';
+        //     $response['message'] = 'Chuẩn bị truy vấn thất bại: ' . $conn->error;
+        //     echo json_encode($response);
+        //     exit();
+        // }
+        // $stmt1->bind_param('i', $idroom);
+        // if ($stmt1->execute()) {
+            // if (isset($_POST['IDTienich']) && is_array($_POST['IDTienich'])) {
+            //     foreach ($_POST['IDTienich'] as $IDTienich) {
+            //         $sql2 = "INSERT INTO nhantienich (IDLoaiphong, IDTienich) VALUES (?, ?)";
+            //         $stmt2 = $conn->prepare($sql2);
+            //         if (!$stmt2) {
+            //             $response['status'] = 'error';
+            //             $response['message'] = 'Chuẩn bị truy vấn thất bại: ' . $conn->error;
+            //             echo json_encode($response);
+            //             exit();
+            //         }
+            //         $stmt2->bind_param('ii', $idroom, $IDTienich);
+            //         if (!$stmt2->execute()) {
+            //             $response['status'] = 'error';
+            //             $response['message'] = 'Lỗi khi chèn tiện ích: ' . $stmt2->error;
+            //             echo json_encode($response);
+            //             exit();
+            //         }
+            //     }
+            // }
             
             // Xử lý tải lên nhiều ảnh cho img_detail
             $uploadedImages = [];
@@ -135,19 +135,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'RoomArea' => $RoomArea,
                 'RoomNum' => $RoomNum,
                 'RoomPrice' => $RoomPrice,
-                'RoomConvenience' => $RoomConvenience,
+                // 'RoomConvenience' => $RoomConvenience,
                 'ImgRoom' => $Imgroom,
-                'IDTienich' => $_POST['IDTienich'] ?? [],
+                // 'IDTienich' => $_POST['IDTienich'] ?? [],
                 'ImgDetail' => $uploadedImages
             ];
         } else {
             $response['status'] = 'error';
-            $response['message'] = 'Lỗi khi xóa các tiện ích: ' . $stmt1->error;
+            $response['message'] = 'Lỗi khi xóa các tiện ích: ' . $stmt3->error;
         }
-    } else {
-        $response['status'] = 'error';
-        $response['message'] = 'Lỗi khi cập nhật chi tiết phòng: ' . $stmt->error;
-    }
+    // } else {
+    //     $response['status'] = 'error';
+    //     $response['message'] = 'Lỗi khi cập nhật chi tiết phòng: ' . $stmt->error;
+    // }    
 } else {
     $response['status'] = 'error';
     $response['message'] = 'Phương thức yêu cầu không hợp lệ.';

@@ -377,7 +377,7 @@ input[type = "checkbox"]:checked + label::before{
      border-radius: 10px;
      background:#fff;
      display:grid;
-     grid-template-columns: 200px 90%;
+     grid-template-columns: 200px 1fr   ;
      gap:20px
 }
 .MiniRoom .Img_MiniRoom{

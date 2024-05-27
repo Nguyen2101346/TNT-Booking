@@ -14,8 +14,8 @@
                     <div class="head_left">
                          <ul>
                               <li><a href="index.php?page=Management<?php if($change == 1) echo '&go=1'?>" class="title">Quản lý</a></li>
-                              <li><a href="index.php?page=Request" class="title">Yêu cầu</a></li>
-                              <li><a href="index.php?page=Member" class="title">Thành viên</a></li>
+                              <li><a href="index.php?page=Request<?php if($change == 1) echo '&go=1'?>" class="title">Yêu cầu</a></li>
+                              <li><a href="index.php?page=Member<?php if($change == 1) echo '&go=1'?>" class="title">Thành viên</a></li>
                          </ul>
                     </div>
                     <div class="head_mid">

@@ -22,6 +22,29 @@
     color: var(--blue3) !important;
     margin: 10px;
 }
+.ImgDetail-small-Container{
+  display: none;
+}
+.ImgDetail-small-Container.visible{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-slide-large{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+
+
 @media (max-width: 760px) {
   .swiper-button-next {
     right: 20px;

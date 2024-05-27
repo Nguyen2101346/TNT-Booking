@@ -52,7 +52,7 @@ include "../php_func/conn.php";
         <div class="CreRoom_container">
             <div class="CreRoom Left">
                 <div class="ImgRoom">
-                    <img src="./img/Deluxe_2dbed.jpg" alt="" id="AnhDD">
+                    <img src="./img/detail/Default.jpg" alt="" id="AnhDD">
                     <div class="getImgRoom">
                         <label for="ImgRoom" class="title">Chỉnh sửa ảnh</label>
                         <input type="file" name="ImgRoom" id="ImgRoom">
@@ -60,37 +60,39 @@ include "../php_func/conn.php";
                 </div>
                 <div class="CreRoombot description">
                     <label class="title" for="RoomDes">Mô tả</label>
-                    <textarea name="RoomDes" id="RoomDes" cols="30" rows="10"><?= isset($r['Mota']) ? htmlspecialchars($r['Mota']) : '' ?></textarea>
+                    <textarea name="RoomDes" id="RoomDes" cols="30" rows="10">
+                        Phần Mô tả cho phòng khi 
+                    </textarea>
                 </div>
             </div>
             <div class="CreRoom Right">
                 <div class="CreRoomCom name">
                     <label for="RoomName" class="title">Tên loại phòng</label>
-                    <input type="text" name="RoomName" id="RoomName" value="<?= isset($r['Tenloaiphong']) ? htmlspecialchars($r['Tenloaiphong']) : '' ?>">
+                    <input type="text" name="RoomName" id="RoomName" value="Tên loại phòng sẽ ở đây">
                 </div>
                 <div class="CreRoomCom Small">
                     <div class="CreRoomCom Adult">
                         <label for="RoomAdult" class="title">Số người</label>
-                        <input type="text" name="RoomAdult" id="RoomAdult" value="<?= isset($r['Songuoi']) ? htmlspecialchars($r['Songuoi']) : '' ?>">
+                        <input type="text" name="RoomAdult" id="RoomAdult" value="Số người ít nhất">
                     </div>
                     <div class="CreRoomCom Area">
                         <label for="RoomArea" class="title">Diện tích</label>
-                        <input type="text" name="RoomArea" id="RoomArea" value="<?= isset($r['DienTich']) ? htmlspecialchars($r['DienTich']) : '' ?>">
+                        <input type="text" name="RoomArea" id="RoomArea" value="Diện tích của 1 phòng">
                     </div>
                 </div>
                 <div class="CreRoomCom Small">
                     <div class="CreRoomCom Roomnum">
                         <label for="RoomNum" class="title">Số phòng</label>
-                        <input type="text" name="RoomNum" id="RoomNum" value="<?= isset($r['SoPhong']) ? htmlspecialchars($r['SoPhong']) : '' ?>">
+                        <input type="text" name="RoomNum" id="RoomNum" value="Số phòng có thể có trong loại phòng">
                     </div>
                     <div class="CreRoomCom Price">
                         <label for="RoomPrice" class="title">Giá</label>
-                        <input type="text" name="RoomPrice" id="RoomPrice" value="<?= isset($r['Gia']) ? htmlspecialchars($r['Gia']) : '' ?>">
+                        <input type="text" name="RoomPrice" id="RoomPrice" value="Giá niêm yết">
                     </div>  
                 </div>
                 <div class="CreRoombot convenience">
                     <label for="RoomConvenience" class="ConvenienceCheck title">Tiện ích</label>
-                    <textarea name="RoomConvenience" id="RoomConvenienceTextarea" cols="30" rows="10" readonly><?= isset($r['Tienich']) ? htmlspecialchars($r['Tienich']) : '' ?></textarea>
+                    <textarea name="RoomConvenience" id="RoomConvenienceTextarea" cols="30" rows="10" readonly>Tiện ích có sẵn trong 1 phòng </textarea>
                 </div>
             </div>
         </div>
@@ -105,24 +107,7 @@ include "../php_func/conn.php";
             <div class="ImgRoom_Slider">
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                        <?php
-                        $sql1 = "SELECT * FROM hinhphong WHERE IDLoaiphong = ?";
-                        $stmt1 = $conn->prepare($sql1);
-                        $stmt1->bind_param('i', $idroom);
-                        $stmt1->execute();
-                        $result1 = $stmt1->get_result();
-                        $r1 = $result1->fetch_assoc();
-                        if (isset($r1['Hinh'])) {
-                            $images = explode(',', $r1['Hinh']);    
-                            foreach ($images as $img) {
-                                echo '<div class="swiper-slide"><img src="./img/detail/' . htmlspecialchars($img) . '" alt=""></div>';
-                            }
-                        } else {
-                            echo '<div class="swiper-slide"><img src="./img/Deluxe2bed-sea.jpg" alt=""></div>';
-                            echo '<div class="swiper-slide"><img src="./img/Deluxe2bed-sea.jpg" alt=""></div>';
-                            echo '<div class="swiper-slide"><img src="./img/Deluxe2bed-sea.jpg" alt=""></div>';
-                        }
-                        ?>
+                        <div class="swiper-slide"><img src="./img/detail/Default.jpg" alt=""></div>
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
@@ -139,8 +124,12 @@ include "../php_func/conn.php";
             </div>
         </div>
     </form>
-</div>                    
-
+</div>
+<!-- Phần Chi tiết hình ảnh mô tả sản phẩm  -->
+<div class="ImgDetail-small-Container">
+<div class="swiper-slide-large">    
+</div>
+</div>
 <div class="CreType MiniContainer" id="CreTypeFormContainer">
     <form class="CreType MiniForm" action="CreTypeForm_process.php" method="POST" id="CreType_form">
         <h2>Thêm loại phòng mới</h2>
@@ -173,22 +162,9 @@ include "../php_func/conn.php";
 <div class="MiniConvenience MiniContainer" id="MiniConvenienceContainer">
     <form action="ConvenienceForm_process.php" method="POST" class="MiniConvenience MiniForm" id="ConvenienceForm" data-id="<?= isset($r['IDLoaiphong']) ? htmlspecialchars($r['IDLoaiphong']) : '' ?>">
         <h2>Chọn tiện ích</h2>
+        <input type="hidden" name="room_id" id="dataIdInput" value="">
         <div class="ConvenienceShow" id="ConvenienceCheckboxes">
-            <?php 
-            $sql = "SELECT * FROM tienich";
-            $stmt = $conn->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            while ($r = $result->fetch_assoc()) {
-                echo '
-                <div class="Convenience_item">
-                    <input type="checkbox" class="convenience_items" name="convenience[]" value="' . htmlspecialchars($r['IDTienich']) . '" id="' . htmlspecialchars($r['IDTienich']) . '">
-                    <label for="' . htmlspecialchars($r['IDTienich']) . '">' . htmlspecialchars($r['Tienich']) . '</label>
-                </div>';
-            }
-            ?>
-        </div>
-        <input type="hidden" name="room_id" value="<?= isset($r['IDLoaiphong']) ? htmlspecialchars($r['IDLoaiphong']) : '' ?>">
+        </div>        
         <div class="ConvienceConfirm">
             <div class="Cancel_btn">
                 <a href="#" class="btn">Huỷ bỏ</a>
@@ -199,6 +175,7 @@ include "../php_func/conn.php";
         </div>
     </form>
 </div>
+
 
     <script>
 $(document).ready(function() {
@@ -246,11 +223,14 @@ $(document).ready(function() {
     $('.type_items').on('click', function(event) {
         event.preventDefault();
         var id = this.getAttribute('data-id');
-        var currentUrl = window.location.href.split('?')[0];
-        window.location.href = currentUrl + '?page=Management&idroom=' + id;
+        document.getElementById('ConvenienceForm').setAttribute('data-id', id);
+        console.log(id);
+
         var id = $(this).data('id');
         console.log("ID của phòng:", id);
         lastClickedId = id;
+
+
         $('#ConvenienceForm').on('submit', function(event) {
         event.preventDefault();
 
@@ -311,7 +291,7 @@ $(document).ready(function() {
                     if(data.AnhDD != null){
                         $('#AnhDD').attr('src', './img/'+ data.AnhDD);
                     }else{
-                        $('#AnhDD').attr('src', './img/default.jpg');
+                        $('#AnhDD').attr('src', './img/Default.jpg');
                     }
                     $('#RoomConvenienceTextarea').val(data.Tienich);
 
@@ -327,7 +307,18 @@ $(document).ready(function() {
                         imageContainer.empty();
                         if (Array.isArray(imageData)) {
                             imageData.forEach(function(img) {
-                                imageContainer.append('<div class="swiper-slide"><img src="./img/detail/' + img + '" alt=""></div>');
+                                var ImgDetailContainer = 
+                                '<div class="swiper-slide"><a href="#"><img src="./img/detail/' + img + '" alt=""></a></div>'
+                                imageContainer.append(ImgDetailContainer);
+                                // if(img.id > 0){
+                                // var ImgDetailLarge = $('.swiper-slide-large');
+                                // ImgDetailLarge.empty();
+                                // var ShowImageDetail = 
+                                //  '<div class="swiper-slide-large">'
+                                // +   '<img class = "ImgDetail-large" src="./img/detail/' + img + '" alt="">'
+                                // + '</div>';
+                                // ImgDetailLarge.append(ShowImageDetail);
+                                // }        
                             });
                         } else {
                             console.error("imageData is not an array");
@@ -347,20 +338,26 @@ $(document).ready(function() {
                             type: 'GET',
                             data: { idroom: id },
                             dataType: 'json',
-                            success: function(data) {
-                            $('#ConvienceCheckboxes').empty();
-
+                            success: function(ConvienceCheckboxesdata) {
+                            var ConvienceCheckboxes = $('#ConvenienceCheckboxes');
+                            ConvienceCheckboxes.empty();
                             // Lặp qua danh sách tiện ích nhận được từ AJAX request
-                            data.forEach(function(convenience) {
+                            if(Array.isArray(ConvienceCheckboxesdata)){
+                            ConvienceCheckboxesdata.forEach(function(convenience) {
+                                console.log(convenience);
                                 // Tạo HTML cho mỗi tiện ích
-                                var convenienceItem = '<div class="Convience_item">' +
-                                                        '<input type="checkbox" id="' + convenience.IDTienich + '" name="IDTienich[]" value="' + convenience.IDTienich + '"' + (convenience.checked ? ' checked="checked"' : '') + '>' +
-                                                        '<label for="' + convenience.IDTienich + '">' + convenience.Tienich + '</label>' +
-                                                    '</div>';
+                                var convenienceItem = 
+                                '<div class="Convenience_item">' +
+                                    '<input type="checkbox" id="' + convenience.IDTienich + '" name="convenience[]" value="' + convenience.IDTienich + '"' + (convenience.checked ? ' checked="checked"' : '') + '>' +
+                                    '<label for="' + convenience.IDTienich + '">' + convenience.Tienich + '</label>' +
+                                '</div>';
 
                                 // Thêm tiện ích vào giao diện
-                                $('#ConvienceCheckboxes').append(convenienceItem);
+                                ConvienceCheckboxes.append(convenienceItem);
                             });
+                                }else{
+                                    console.error("ConvienceCheckboxesdata is not an array");
+                                }
                             },
                             error: function(xhr, status, error) {
                                 console.error(error);
@@ -370,17 +367,18 @@ $(document).ready(function() {
                 },
                 error: function(xhr, status, error) {
                     console.error(error);
-                    alert('Failed to fetch room details. Please try again.');
+                    alert('Failed to fetch room conveniece. Please try again.');
             }
         });
         
     });
+    $('.swiper-slide a').on('click', function(event) {
+        event.preventDefault();
+        var id = $(this).data('img-id');
+        console.log('ID của Ảnh:', id);
 
-
-    
-
-    
-
+        $('.ImgDetail-small-Container').addClass('visible');
+    });
     // Thêm Ảnh
     $('#ImgDetail').on('change', function(event) {
         var input = event.target;
@@ -436,7 +434,6 @@ $(document).ready(function() {
                 Price: ${info.RoomPrice}\n
                 Convenience: ${info.RoomConvenience}\n
                 AnhDD: ${info.ImgRoom}\n
-                Convenience IDs: ${info.IDTienich.join(', ')}\n
                 ImgDetail: ${info.ImgDetail.join(', ')}`;
                 alert('Cập nhật phòng thành công!');
             alert(message);
@@ -476,6 +473,10 @@ $(document).ready(function() {
     
     $('.ConvenienceCheck').on('click', function(event) {
         event.preventDefault();
+        var id = this.closest('form').querySelector('input[name="idRoom"]').value;
+        document.getElementById('ConvenienceForm').setAttribute('data-id', id);
+        document.getElementById('dataIdInput').value = id;
+        console.log('id',id);
         console.log("ConvenienceCheck clicked"); // Check if RoomConvenience click event is being triggered
         $('.MiniConvenience.MiniContainer').addClass('visible');
     });
@@ -487,14 +488,14 @@ $(document).ready(function() {
         updateRoomConvenienceTextarea();
     });
     // Lắng nghe sự kiện thay đổi của các checkbox tiện ích
-    $(document).on('change', 'input[name="IDTienich[]"]', function() {
+    $(document).on('change', 'input[name="convenience[]"]', function() {
         updateRoomConvenienceTextarea();
     });
 
     // Hàm để cập nhật RoomConvenienceTextarea dựa trên các tiện ích được chọn
     function updateRoomConvenienceTextarea() {
         var selectedConveniences = [];
-        $('input[name="IDTienich[]"]:checked').each(function() {
+        $('input[name="convenience[]"]:checked').each(function() {
             selectedConveniences.push($(this).next('label').text());
         });
         $('#RoomConvenienceTextarea').val(selectedConveniences.join(', '));
@@ -504,50 +505,10 @@ $(document).ready(function() {
     // updateRoomConvenienceTextarea();
 
     $(document).ready(function() {
-    //     $('#ConvenienceForm').on('submit', function(event) {
-    //     event.preventDefault();
-    //     var formData = $(this).serializeArray();
-    //     var id = $(this).data('id');
-        
-    //     // Thêm id loại phòng vào form data
-    //     formData.push({name: "room_id", value: id});
-
-    //     $.ajax({
-    //         type: 'POST',
-    //         url: './php/ConvenienceForm_process.php',
-    //         data: formData,
-    //         dataType: 'json',
-    //         success: function(response) {
-    //             if (response.success) {
-    //                 alert('Tiện ích đã được thêm thành công!');
-    //                 $('.MiniConvenience.MiniContainer').removeClass('visible');
-    //             } else if (response.type == 'error') {
-    //                 const errormessage = response.message;
-    //                 if (errormessage === 'TypeRoomname_exists') {
-    //                     $('.er-text').text("Loại phòng này đã tồn tại!");
-    //                 } else if (errormessage === 'Date-not-today') {
-    //                     $('.er-text').text("Ngày tạo phải là hôm nay!");
-    //                 }
-    //             }
-    //         },
-    //         error: function(error) {
-    //             let errorMessage = 'Đã xảy ra lỗi. ';
-    //             if (error.response) {
-    //                 errorMessage += 'Máy chủ đã trả về mã lỗi ' + error.response.status + ': ' + error.response.statusText;
-    //             } else if (error.request) {
-    //                 errorMessage += 'Không thể gửi yêu cầu đến máy chủ. Vui lòng kiểm tra kết nối mạng của bạn.';
-    //             } else {
-    //                 errorMessage += 'Có sự cố xảy ra: ' + error.message;
-    //             }
-    //             alert(errorMessage);
-    //         }
-    //     });
-    // });
-
     // Hàm để cập nhật RoomConvenienceTextarea dựa trên các tiện ích được chọn
     function updateRoomConvenienceTextarea() {
         var selectedConveniences = [];
-        $('input[name="RoomConvenience[]"]:checked').each(function() {
+        $('input[name="convenience[]"]:checked').each(function() {
             selectedConveniences.push($(this).next('label').text());
         });
         $('#RoomConvenienceTextarea').val(selectedConveniences.join(', '));
