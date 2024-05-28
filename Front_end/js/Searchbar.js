@@ -133,6 +133,17 @@ let TabShow = false;
           });
           document.getElementById("adults_num").textContent = totalAdults;
           checkIfSearchEnabled();
+          let minAdults = Infinity;
+            const MinquantityElements = document.querySelectorAll('.quantity[data-type="adults"]');
+            MinquantityElements.forEach(element => {
+                const currentQuantity = parseInt(element.textContent);
+                if (currentQuantity < minAdults) {
+                    minAdults = currentQuantity;
+                }
+            });
+            minAdults = minAdults === Infinity ? 0 : minAdults;
+          //   document.getElementById("adults_num").textContent = minAdults;
+            checkIfSearchEnabled();
      }
 
      // Khởi tạo phòng ban đầu
@@ -205,8 +216,9 @@ document.getElementById("searchButton").addEventListener("click", function(event
      const roomNum = document.getElementById("room_num").textContent.trim();
      const adultsNum = document.getElementById("adults_num").textContent.trim();
      const discountCode = document.querySelector('#discountSelect').value;
+     const adultsMinNum = document.querySelectorAll()
      
-     const url = `index.php?page=sale&start_date=${encodeURIComponent(startDate)}&end_date=${encodeURIComponent(endDate)}&rooms=${encodeURIComponent(roomNum)}&qua-adults=${encodeURIComponent(adultsNum)}&discount_code=${encodeURIComponent(discountCode)}`;
+     const url = `index.php?page=sale&start_date=${encodeURIComponent(startDate)}&end_date=${encodeURIComponent(endDate)}&rooms=${encodeURIComponent(roomNum)}&qua-adults=${encodeURIComponent(adultsNum)}&min_adults=${encodeURIComponent(adultsMinNum)}&discount_code=${encodeURIComponent(discountCode)}`;
      if(change == 1){
           url += '&go=1'
      }

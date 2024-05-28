@@ -39,22 +39,22 @@
      </div>
 
      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-     <script src="../js/slider_swiper.js"></script>
+     <!-- <script src="../js/slider_swiper.js"></script> -->
      <script src="./js/Admin_Request.js"></script>
      <script src="./js/Admin.js"></script>
      <script>
-     const DetailButton = document.querySelector('.request.Detail_btn');
-     const EventCancelButton = document.querySelector('.checkEvent_confirm_btn')
-     const CheckEventForm = document.querySelector('.CheckEvent.MiniContainer');
-     let CheckEventOpen = false;
-     DetailButton.addEventListener('click',() => {
-        CheckEventForm.classList.add('visible');
-          CheckEventForm = true;
-     });
-     EventCancelButton.addEventListener('click',() => {
-        CheckEventForm.classList.remove('visible');
-          CheckEventForm = false;    
-          });
+     // const DetailButton = document.querySelector('.request.Detail_btn');
+     // const EventCancelButton = document.querySelector('.checkEvent_confirm_btn')
+     // const CheckEventForm = document.querySelector('.CheckEvent.MiniContainer');
+     // let CheckEventOpen = false;
+     // DetailButton.addEventListener('click',() => {
+     //    CheckEventForm.classList.add('visible');
+     //      CheckEventForm = true;
+     // });
+     // EventCancelButton.addEventListener('click',() => {
+     //    CheckEventForm.classList.remove('visible');
+     //      CheckEventForm = false;    
+     //      });
      </script>
 </body>
 </html>

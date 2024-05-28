@@ -37,12 +37,13 @@
                                              $room_num = isset($_GET['room_num']) ? $_GET['room_num'] : 1;
                                              $adults_num = isset($_GET['qua-adults']) ? $_GET['qua-adults'] : 1;
                                              $discount_code = isset($_GET['discount_code']) ? $_GET['discount_code'] : '';
+                                             $min_adults = isset($_GET['min_adults']) ? $_GET['min_adults'] : 1;
 
                                              $sql = "SELECT * 
                                              FROM loaiphong,phong
                                              WHERE loaiphong.IDLoaiphong = phong.IDLoaiphong 
-                                             AND phong.Trangthai = '0' AND loaiphong.Songuoi >= '$adults_num'
-                                             GROUP BY phong.IDLoaiPhong";
+                                             AND phong.TrangThai = '0' AND loaiphong.Songuoi >= '$min_adults'
+                                             GROUP BY phong.IDPhong";
                                              $re = mysqli_query($conn,$sql);
                                              $row = mysqli_num_rows($re);
                                              if($row > 0){
@@ -107,8 +108,8 @@
                                              $sql = "SELECT * 
                                              FROM loaiphong,phong
                                              WHERE loaiphong.IDLoaiphong = phong.IDLoaiphong 
-                                             AND phong.Trangthai = '0'
-                                             GROUP BY phong.IDLoaiPhong";
+                                             AND phong.TrangThai = '0'
+                                             GROUP BY phong.IDPhong";
                                              $re = mysqli_query($conn,$sql);
                                              $row = mysqli_num_rows($re);
                                              if($row > 0){
@@ -269,6 +270,10 @@
             alert("Bạn phải chọn ít nhất một phòng để tiếp tục.");
             return;
         }
+     //    }if (selectedRooms.length > limitRoom) {
+     //        alert("Số phòng đã chọn vượt quá giới hạn cho phép.");
+     //        return;
+     //    }
         // Chuyển sang trang Payment.php và ẩn nút "Tiếp tục"
         const form = document.createElement('form');
         form.method = 'POST';

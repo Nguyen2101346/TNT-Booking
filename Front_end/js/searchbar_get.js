@@ -6,6 +6,7 @@ function getQueryParams() {
         end_date: params.get('end_date'),
         rooms: params.get('rooms'),
         adults: params.get('adults'),
+        min_adults: params.get('min_adults'),
         discount_code: params.get('discount_code')
     };
 }
@@ -26,6 +27,9 @@ function setSearchValues(params) {
         document.getElementById('limit_room').textContent = params.rooms; // Cập nhật limit_room
         roomQuantity = parseInt(params.rooms);
         updateRooms();
+    }
+    if (params.min_adults) {
+        document.getElementById('adults_Minnum').textContent = params.min_adults;
     }
     if (params.adults) {
         document.getElementById('adults_num').textContent = params.adults;
@@ -95,5 +99,6 @@ function updateRooms() {
 document.addEventListener('DOMContentLoaded', function() {
     const params = getQueryParams();
     setSearchValues(params);
-    createRoomElements(params.rooms ? parseInt(params.rooms) : 1, params.adults ? parseInt(params.adults) : 1);
+    createRoomElements(params.rooms ? parseInt(params.rooms) : 1, params.adults ? parseInt(params.adults) : 1, params.min_adults ? parseInt(params.min_adults) : 1);
 }); 
+

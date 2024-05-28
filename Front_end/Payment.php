@@ -86,8 +86,8 @@
                                                   $phone = $_POST['phone'];
                                                   $email = $_POST['email'];
                                                   $payment = $_POST['Payment'];
-                                                  $start_date = $_GET['start_date'];
-                                                  $end_date = $_GET['end_date'];
+                                                  $start_date = $_POST['start_date'];
+                                                  $end_date = $_POST['end_date'];
                                                   $idroom = $_POST['idroom'];
                                                   $RoomPrice = $_POST['RoomPrice'];
 
@@ -95,9 +95,9 @@
                                                   VALUES ('$idroom','$start_date','$end_date','0','$RoomPrice','$RoomPrice')";
                                                   $result = mysqli_query($conn, $sql);
                                                   if($result){
-                                                       echo "<script>alert('Thành công'); window.location.href='index.php?page=Home';</script>";
+                                                       echo "<script>alert('Thành công');</script>";
                                                   }else{
-                                                       echo "<script>alert('Thất bại'); window.location.href='index.php?page=Home';</script>";
+                                                       echo "<script>alert('Thất bại');</script>";
                                                   }
                                              }
                                         ?>
@@ -155,9 +155,6 @@
                                              echo '<div id="TotalPrice">'.$formattedTotalPrice.' VND</div>';
                                              ?>
                                         </div>
-                                   </div>
-                                   <div class="Change_btn">
-                                        <a href="#" class="medium_btn" id="continueButton">Tiếp tục</a>
                                    </div>
                               </form>
                               </div>

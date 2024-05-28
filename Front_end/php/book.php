@@ -35,7 +35,7 @@
         while($r = mysqli_fetch_array($re)){
         ?>
           <div class="img_item">
-            <img src="./img/<?= $r['AnhDD']?>" alt="img-1"> 
+            <img src="../Admin/img/<?= $r['AnhDD']?>" alt="img-1"> 
             <a href="index.php?page=Room&id=<?= $r['IDLoaiphong']?><?php if($change == 1) echo '&go=1'?>">
               <h1 class="title"><?= $r['Tenloaiphong']?></h1>
             </a>

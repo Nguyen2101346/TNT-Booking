@@ -151,6 +151,9 @@ $members = getMembers($search_query, $search_type);
                               <?php
                               foreach ($members as $member) {
                                    $member_id = $member['id'];
+                                   if($member['image'] == ''){
+                                        $member['image'] = 'person.png';
+                                   }
                                    echo "
                                    <div class='Member' data-id='" . $member_id . "'>
                                         <div class='Img_Member'>

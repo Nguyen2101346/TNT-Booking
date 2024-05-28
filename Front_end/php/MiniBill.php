@@ -35,7 +35,7 @@
         alert("Bạn phải chọn ít nhất một phòng để tiếp tục.");
         event.preventDefault();
         return;
-    }
+    } 
 
     // Hiển thị nút submit và ẩn nút tiếp tục
     document.getElementById("continueButton").style.display = "none";
@@ -44,13 +44,13 @@
     // Chuyển đổi các phòng đã chọn và thông tin sang trang Payment
     document.getElementById("summaryForm").submit();
 });
-     document.addEventListener('scroll',() => {
-     const header = document.querySelector('.SummaryBill')
+     // document.addEventListener('scroll',() => {
+     // const header = document.querySelector('.SummaryBill')
 
-     if(window.scrollY > 100){
-          header.classList.add('scrolled');
-     }else{
-          header.classList.remove('scrolled');
-     }
-     })
+     // if(window.scrollY > 100){
+     //      header.classList.add('scrolled');
+     // }else{
+     //      header.classList.remove('scrolled');
+     // }
+     // })
 </script>

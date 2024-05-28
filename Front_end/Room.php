@@ -1,5 +1,4 @@
 <?php
-     // include "func.php";
      if(isset($_GET['id'])){
           $idroomtype = $_GET['id'];
      }
@@ -20,7 +19,7 @@
                               <img src="./img/<?= $r['AnhDD']?>" alt="">
                          </div>
                          <div class="content">
-                              <div class="title large"><a href="#" class="title large"><?= $r['Tenloaiphong']?></a></div>
+                              <div class="title large"><?= $r['Tenloaiphong']?></div>
                               <div class="general_infor">
                                    <div class="appraise">
                                         <div class="title">
@@ -28,14 +27,29 @@
                                                   <i class="fa-solid fa-thumbs-up"></i>
                                              </span>
                                              <span>Đánh giá :</span>
+                                             <?php
+                                                  $re1 = get_averages($conn, $idroomtype); // Hàm để lấy bình luận từ cơ sở dữ liệu
+                                                  if(mysqli_num_rows($re1) > 0){
+                                                       $r1 = mysqli_fetch_array($re1);
+                                                       $average_rating = number_format(floor($r1['Trungbinh']),1);
+                                             ?>
                                              <div class="rating">
+                                             <?php
+                                                  for ($i = 1; $i <= 5; $i++) {
+                                                       $selected = $i <= $average_rating ? 'selected' : '';
+                                                       echo '<span class="star-display ' . $selected . '">&#9733;</span>';
+                                                  }
+                                             ?>
+                                                  <!-- <span class="star">&#9733;</span>
                                                   <span class="star">&#9733;</span>
                                                   <span class="star">&#9733;</span>
                                                   <span class="star">&#9733;</span>
-                                                  <span class="star">&#9733;</span>
-                                                  <span class="star">&#9733;</span>
+                                                  <span class="star">&#9733;</span> -->
                                              </div>
-                                             <p id="result" class="sale"></p>
+                                             <p><?= $average_rating ?> / 5.0</p>
+                                             <?php
+                                                  }
+                                             ?>
                                         </div>
                                    </div>
                                    <div class="title">
@@ -65,9 +79,9 @@
                                         <?php
                                              $discount = mysqli_fetch_array(check_discount($conn, $idroomtype));
                                         ?>
-                                        <div class="discountsale"> <?php if(isset($discount['Nhangiam']) && $discount['Nhangiam']!=""){
+                                        <div class="discountsale"> <?php if(isset($discount['Nhangiam']) && $discount['Nhangiam']>0){
                                              if(isset($discount['Donvi']) && $discount['Donvi']==0){echo "Giảm:".$discount['Nhangiam']."%";}else{echo "Giảm:".$discount['Nhangiam']."VNĐ";}
-                                             }?> </div>
+                                             }else{if(isset($discount['Tieude']) && $discount['Tieude']!=""){echo $discount['Tieude'];}}?> </div>
                                         <div class="title">Giá: <?= $changenumber?> VND</div>
                                    </div>
                                    <div class="Get_btn">

@@ -1,12 +1,12 @@
-document.addEventListener('scroll',() => {
-     const CreType_from = document.querySelector('.MiniContainer')
+// document.addEventListener('scroll',() => {
+//      const CreType_from = document.querySelector('.MiniContainer')
 
-     if(window.scrollY > 80){
-          CreType_from.classList.add('fixed');
-     }else{
-          CreType_from.classList.remove('fixed');
-     }
-})
+//      if(window.scrollY > 80){
+//           CreType_from.classList.add('fixed');
+//      }else{
+//           CreType_from.classList.remove('fixed');
+//      }
+// })
 // Phần xư lý thanh chuyển đổi web
 const EventChangeLeft = document.querySelector('.EventChange.Left');
 const EventChangeRight = document.querySelector('.EventChange.Right')

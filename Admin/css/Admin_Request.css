@@ -141,7 +141,18 @@
 
 /* Quản lí chi tiết yêu cầu sự kiện */
 .CheckEvent.MiniForm{
-    height:550px;
+    position: relative;
+    height:570px;
+}
+.CheckEvent.MiniForm span{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.CheckEvent.MiniForm span:hover{
+    color:var(--orange1);
 }
 .CheckEvent.MiniForm h2{
     margin: 20px;
@@ -162,6 +173,9 @@
 }
 .CheckEvent_bottom textarea{
     height: 150px;
+    width: 100%;
+    border-radius: 10px;
+    outline: none;
 }
 .CheckEvent_Confirm{
     margin-top: 10px;
