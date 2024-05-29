@@ -52,7 +52,7 @@
     </div>
         <script src="./js/ultils.js" deper></script>
         <script src="./js/slider_swiper.js"></script>
-        <script src="./js/Admin.js"></script>
+        <!-- <script src="./js/Admin.js"></script> -->
         <script src="./js/Admin_Management.js"></script>
         <!-- <script src="./js/Admin_Utilities.js"></script> -->
 </body>

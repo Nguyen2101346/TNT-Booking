@@ -1,5 +1,6 @@
 /* ===================================== REQUEST ============================================== */
 .Request{
+    position: relative;
     margin-bottom: 20px;
     padding:0;
     height:220px;
@@ -16,11 +17,28 @@
     height:220px;
     border-radius: 10px;
 }
+.absolute_text{
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    font-weight: bold;
+    color:#000;
+}
+.absolute_text.status1{
+    color:var(--blue3);
+}
+.absolute_text.status2{
+    color:var(--green4);
+}
+.absolute_text.status0{
+    color:red;
+}
+
 /* Phần Chi tiết yêu cầu đặt phòng  */
 .CheckRoom.MiniForm{
     margin-top: 30px;
     width:750px;
-    height:600px;
+    height:650px;
 }
 .CheckRoom.MiniForm h2{
     margin: 20px;
@@ -116,7 +134,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 100px;
-    margin-top: 20px;
+    margin-top: 60px;
 }
 .checkRoom_confirm_btn .btn{
     background:var(--green4);
@@ -176,6 +194,7 @@
     width: 100%;
     border-radius: 10px;
     outline: none;
+    padding: 10px;
 }
 .CheckEvent_Confirm{
     margin-top: 10px;
@@ -189,4 +208,21 @@
     background:#fff;
     border:2px solid #E8952F;
     color:#E8952F;
+}
+
+
+
+/* Disable button styles */
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.Request.disabled {
+    opacity: 0.5;
+}
+
+.request .btn.disabled {
+    pointer-events: none;
+    opacity: 0.5;
 }

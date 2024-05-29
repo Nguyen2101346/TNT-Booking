@@ -10,7 +10,7 @@ include "../php_func/conn.php";
      <div class="TypeBar">
           <div class="TypeCheck medium_btn">
                Chọn loại phòng
-               <span class="fas fa-caret-down"></span>
+               <span><i class="fas fa-caret-down fa-beat"></i></span>
                <ul>
                     <?php 
                     $Sothutu = 1;

@@ -24,7 +24,7 @@ $(document).ready(function() {
                 // Khởi tạo lại Swiper nếu trang tải có slider
                 if (page === 'RequestRoom.php') {
                     initializeSwiper();
-                    AJAXSubmit();
+                    // AJAXSubmit();
                 }else if(page === 'RequestEvent.php'){
                     CreRoom()
                 }
@@ -112,25 +112,6 @@ $(document).ready(function() {
             });
         });
     }
-    // Tạo func cho thêm phòng mới 
-    // function CreRoom(){
-    //     const CreRoom = document.querySelector('.AddRoom');
-    //     const RoomCancelButton = document.querySelector('.MiniRoom_Cancel_btn')
-    //     const CreRoomForm = document.querySelector('.Creminiroom.MiniContainer');
-    //     let RoomOpen = false;
-    //     CreRoom.addEventListener('click',() => {
-    //          CreRoomForm.classList.add('visible');
-    //          RoomOpen = true;
-    //     });
-    //     RoomCancelButton.addEventListener('click',() => {
-    //          CreRoomForm.classList.remove('visible');
-    //          RoomOpen = false;    
-    //          });
-    // }
-
-    // function AJAXSubmit(){
-
-    // }
 });
 
 

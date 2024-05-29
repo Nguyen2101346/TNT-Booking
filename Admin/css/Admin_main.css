@@ -40,6 +40,9 @@ body{
      --container-w: 1140;
      --container-w-px: 1050px;
 }
+i.fa-caret-down{
+     color: var(--white);
+}
 textarea{
      resize: none;
 }

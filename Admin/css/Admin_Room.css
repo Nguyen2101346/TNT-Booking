@@ -351,6 +351,9 @@ input[type = "checkbox"]:checked + label::before{
      overflow-y: scroll;
      overflow-x: hidden;
 }
+.Request_Component{
+     height:700px;
+}
 .RoomList_Component::-webkit-scrollbar,.Member_Component::-webkit-scrollbar,.Request_Component::-webkit-scrollbar {
      width: 12px; /* chiều rộng của scrollbar */
  }

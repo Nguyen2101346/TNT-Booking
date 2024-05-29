@@ -80,26 +80,26 @@
                                         </div>
                                         </form>
                                         <?php 
-                                             if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                                                  $gender = $_POST['gender'];
-                                                  $fullname = $_POST['fullname'];
-                                                  $phone = $_POST['phone'];
-                                                  $email = $_POST['email'];
-                                                  $payment = $_POST['Payment'];
-                                                  $start_date = $_POST['start_date'];
-                                                  $end_date = $_POST['end_date'];
-                                                  $idroom = $_POST['idroom'];
-                                                  $RoomPrice = $_POST['RoomPrice'];
+                                             // if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                                             //      $gender = $_POST['gender'];
+                                             //      $fullname = $_POST['fullname'];
+                                             //      $phone = $_POST['phone'];
+                                             //      $email = $_POST['email'];
+                                             //      $payment = $_POST['Payment'];
+                                             //      $start_date = $_POST['start_date'];
+                                             //      $end_date = $_POST['end_date'];
+                                             //      $idroom = $_POST['idroom'];
+                                             //      $RoomPrice = $_POST['RoomPrice'];
 
-                                                  $sql = "INSERT INTO `datphong`(`IDLoaiphong`, `Ngaynhap`, `Ngaytra`, `Tinhtrang`, `Tienphong`, `Tienphong`) 
-                                                  VALUES ('$idroom','$start_date','$end_date','0','$RoomPrice','$RoomPrice')";
-                                                  $result = mysqli_query($conn, $sql);
-                                                  if($result){
-                                                       echo "<script>alert('Thành công');</script>";
-                                                  }else{
-                                                       echo "<script>alert('Thất bại');</script>";
-                                                  }
-                                             }
+                                             //      $sql = "INSERT INTO `datphong`(`IDLoaiphong`, `Ngaynhap`, `Ngaytra`, `Tinhtrang`, `Tienphong`, `Tienphong`) 
+                                             //      VALUES ('$idroom','$start_date','$end_date','0','$RoomPrice','$RoomPrice')";
+                                             //      $result = mysqli_query($conn, $sql);
+                                             //      if($result){
+                                             //           echo "<script>alert('Thành công');</script>";
+                                             //      }else{
+                                             //           echo "<script>alert('Thất bại');</script>";
+                                             //      }
+                                             // }
                                         ?>
                                    </div>
                               </div>

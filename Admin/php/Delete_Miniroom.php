@@ -5,7 +5,7 @@ if(isset($_POST['room_id'])){
     $idroom = $_POST['room_id'];
     
     // Sử dụng Prepared Statements và tham số để tránh lỗi và tăng tính bảo mật
-    $sql = "DELETE FROM phong WHERE IDPhong = ?";
+    $sql = "UPDATE phong SET TrangThai = '2' WHERE IDPhong = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $idroom); // 'i' đại diện cho kiểu integer
     if ($stmt->execute()) {
