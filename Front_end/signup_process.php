@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $u = $_POST["re_username"];
         $p = $_POST["re_password"];
         $rp = $_POST["rre_password"];
-        $re = check_account($conn, $u);
+        $re = check_account1($conn, $u);
         // Kiểm tra các điều kiện đăng ký (ví dụ: tài khoản đã tồn tại, mật khẩu ngắn, mật khẩu không trùng khớp)
         // Nếu hợp lệ, thêm tài khoản vào cơ sở dữ liệu
         // Trả về kết quả dưới dạng JSON

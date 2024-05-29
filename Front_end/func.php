@@ -114,7 +114,7 @@
     function filter_eventbooked($conn, $start_date, $end_date, $status, $userID){
         if($status == "all"){
             if($start_date=="" && $end_date==""){
-                $sql = "SELECT * FROM datsk AND IDTaikhoan='$userID'";
+                $sql = "SELECT * FROM datsk WHERE IDTaikhoan='$userID'";
                 return mysqli_query($conn, $sql);
             }
             elseif($start_date!="" && $end_date==""){

@@ -185,6 +185,7 @@
     flex-direction: column;
     border-top: 1px solid #000;
     padding-top: 40px;
+    overflow-y: scroll;
 }
 .order-item {
     border: 1px solid #ccc;

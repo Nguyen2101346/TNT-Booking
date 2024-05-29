@@ -32,7 +32,7 @@
                               if(isset($_POST["login"]) && $_POST["login"]){
                                    $u = $_POST["username"];
                                    $p = $_POST["password"];
-                                   $re = check_account($conn, $u);
+                                   $re = check_account1($conn, $u);
                                    if ($re) {
                                         if (mysqli_num_rows($re) > 0) {
                                              // Lấy thông tin của người dùng từ kết quả truy vấn

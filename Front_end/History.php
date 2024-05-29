@@ -111,42 +111,42 @@
                             $status = isset($_POST['status']) ? $_POST['status'] : 'all';
 
                             if($bookingType == "room"){
-                                $re = filter_roombooked($conn, $dateStart, $dateEnd, $status);
+                                $re = filter_roombooked($conn, $dateStart, $dateEnd, $status, $_SESSION['userID']);
                                 if(mysqli_num_rows($re)> 0){
                                     while($r = mysqli_fetch_array($re)){
-                    ?>
-                        <div class="order-item">
-                            <div class="order-header">
-                                <?php
-                                    $roomtypeInfo = mysqli_fetch_array(check_roomtypeinfo($conn,$r['IDPhong']));
-                                ?>
-                                <h3><?= $roomtypeInfo['Tenloaiphong']?></h3>
-                                <?php
-                                    if(isset($r['Trangthai']) && $r['Trangthai']=="1"){echo "<span class='order-status pending'>Đang chờ xử lý</span>";}
-                                    elseif($r['Trangthai']=="2"){echo "<span class='order-status success'>Thành công</span>";}
-                                    elseif($r['Trangthai']== "0"){echo "<span class='order-status failed'>Không thành công</span>";}
-                                ?>
-                            </div>
-                            <div class="order-details">
-                                <div class="order-image">
-                                    <img src="./img/<?= $roomtypeInfo['AnhDD']?>" alt="Room Image">
+                            ?>
+                                <div class="order-item">
+                                    <div class="order-header">
+                                        <?php
+                                            $roomtypeInfo = mysqli_fetch_array(check_roomtypeinfo($conn,$r['IDPhong']));
+                                        ?>
+                                        <h3><?= $roomtypeInfo['Tenloaiphong']?></h3>
+                                        <?php
+                                            if(isset($r['Trangthai']) && $r['Trangthai']=="1"){echo "<span class='order-status pending'>Đang chờ xử lý</span>";}
+                                            elseif($r['Trangthai']=="2"){echo "<span class='order-status success'>Thành công</span>";}
+                                            elseif($r['Trangthai']== "0"){echo "<span class='order-status failed'>Không thành công</span>";}
+                                        ?>
+                                    </div>
+                                    <div class="order-details">
+                                        <div class="order-image">
+                                            <img src="../Admin/img/<?= $roomtypeInfo['AnhDD']?>" alt="Room Image">
+                                        </div>
+                                        <div class="order-info">
+                                            <p class="spraise">Đánh giá: ⭐⭐⭐⭐ 4.0/5.0</p>
+                                            <p>Ngày giao dịch: <?=$r['Ngaydat']?></p>
+                                            <p>Ngày lưu trú: <?=$r['Ngaybatdau']?> - <?=$r['Ngayketthuc']?></p>
+                                            <p>Số người: 2</p>
+                                        </div>
+                                    </div>
+                                    <div class="order-total">Tổng tiền: <?=$r['Tonggia']?> VNĐ</div>
                                 </div>
-                                <div class="order-info">
-                                    <p class="spraise">Đánh giá: ⭐⭐⭐⭐ 4.0/5.0</p>
-                                    <p>Ngày giao dịch: <?=$r['Ngaydat']?></p>
-                                    <p>Ngày lưu trú: <?=$r['Ngaybatdau']?> - <?=$r['Ngayketthuc']?></p>
-                                    <p>Số người: 2</p>
-                                </div>
-                            </div>
-                            <div class="order-total">Tổng tiền: <?=$r['Tonggia']?> VNĐ</div>
-                        </div>
-                    <?php
+                            <?php
                                 }
                             }else{
                                 echo "Không tìm thấy kết quả phù hợp";
                             }
                         }elseif($bookingType == "event"){
-                            $re = filter_eventbooked($conn, $dateStart, $dateEnd, $status);
+                            $re = filter_eventbooked($conn, $dateStart, $dateEnd, $status, $_SESSION['userID']);
                             if(mysqli_num_rows($re)> 0){
                                 while($r = mysqli_fetch_array($re)){
                     ?>
@@ -188,7 +188,7 @@
                             $dateEnd = isset($_POST['dateEnd']) ? $_POST['dateEnd'] : '';
                             $status = isset($_POST['status']) ? $_POST['status'] : 'all';
                             
-                            $re = filter_roombooked($conn, $dateStart, $dateEnd, $status);
+                            $re = filter_roombooked($conn, $dateStart, $dateEnd, $status, $_SESSION['userID']);
                             if(mysqli_num_rows($re)> 0){
                                 while($r = mysqli_fetch_array($re)){
                     ?>
@@ -206,7 +206,7 @@
                             </div>
                             <div class="order-details">
                                 <div class="order-image">
-                                    <img src="./img/<?= $roomtypeInfo['AnhDD']?>" alt="Room Image">
+                                    <img src="../Admin/img/<?= $roomtypeInfo['AnhDD']?>" alt="Room Image">
                                 </div>
                                 <div class="order-info">
                                     <p class="spraise">Đánh giá: ⭐⭐⭐⭐ 4.0/5.0</p>

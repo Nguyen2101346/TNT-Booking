@@ -51,7 +51,7 @@
                                                        $gia = $r['Gia'];
                                                        $changenumber = number_format($gia, 0, ',', '.');
                                                        echo '     
-                                                       <div class="room" data-id="'.$r['IDLoaiphong'].'" data-title="'.$r['Tenloaiphong'].'" data-price="'.$r['Gia'].'" data-priceFormatted="'.$changenumber.'">
+                                                       <div class="room" data-idroom="'.$r['IDPhong'].'" data-id="'.$r['IDLoaiphong'].'" data-title="'.$r['Tenloaiphong'].'" data-price="'.$r['Gia'].'" data-priceFormatted="'.$changenumber.'">
                                                             <div class="img">
                                                                  <div class="sale-icon">
                                                                       <img src="./img/sale_icon.png" alt="">
@@ -94,6 +94,7 @@
                                                                            </div>
                                                                       </div>
                                                                  </div>
+                                                                 <input type="hidden" name="idroom" value="'.$r['IDPhong'].'">
                                                                  <div class="Choose_btn">
                                                                       <a href="#" class="medium_btn" onclick="chooseRoom(' . $r['IDLoaiphong'] . ')">Chọn</a>
                                                                  </div>
@@ -117,7 +118,7 @@
                                                        $gia = $r['Gia'];
                                                        $changenumber = number_format($gia, 0, ',', '.');
                                                        echo '     
-                                                       <div class="room" data-id="'.$r['IDLoaiphong'].'" data-title="'.$r['Tenloaiphong'].'" data-price="'.$r['Gia'].'" data-priceFormatted="'.$changenumber.'">
+                                                       <div class="room" data-id="'.$r['IDLoaiphong'].'" data-title="'.$r['Tenloaiphong'].'" data-price="'.$r['Gia'].'" data-priceFormatted="'.$changenumber.'" data-idroom="'.$r['IDPhong'].'">
                                                             <div class="img">
                                                                  <div class="sale-icon">
                                                                       <img src="./img/sale_icon.png" alt="">
@@ -156,6 +157,7 @@
                                                                            </div>
                                                                       </div>
                                                                  </div>
+                                                                 <input type="hidden" name="idroom" value="'.$r['IDphong'].'">
                                                                  <div class="Choose_btn">
                                                                       <a href="#" class="medium_btn" onclick="chooseRoom(' . $r['IDLoaiphong']. ')">Chọn</a>
                                                                  </div>
@@ -181,7 +183,7 @@
                 </div>
             </div>
             <!-- Script phần body -->
-            <script src="./js/Main.js"></script>
+            <!-- <script src="./js/Main.js"></script> -->
         </div>
     </div>
 
@@ -223,6 +225,7 @@
                 <div class="RoomNum title">Phòng ${index + 1}</div>
                 <div class="RoomTitle">${room.title}</div>
                 <input type="hidden" name="${room.id}" value="${room.id}">
+                <input type="hidden" name="${room.idroom}" value="${room.idroom}">
                 <div class="RoomPrice">${room.priceFormatted} VND</div>
                 <div class="RoomFix_btn">
                     <a href="#" class="mini_btn" onclick="removeRoom(${index})">Chỉnh sửa</a>
@@ -234,6 +237,7 @@
 
     function updateNumRoom() {
         numRoomElement.textContent = selectedRooms.length;
+        console.log(selectedRooms);
     }
 
     function updateTotalPrice() {
@@ -256,7 +260,8 @@
                 id: roomElement.getAttribute('data-id'),
                 title: roomElement.querySelector('.title a').textContent,
                 price: parseInt(roomElement.getAttribute('data-price')),
-                priceFormatted: roomElement.querySelector('.prices_absolute .content').textContent
+                priceFormatted: roomElement.querySelector('.prices_absolute .content').textContent,
+                idroom: roomElement.getAttribute('data-idroom')
             };
             chooseRoom(roomData);
         });
