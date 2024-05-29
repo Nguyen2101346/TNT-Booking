@@ -42,14 +42,26 @@ include "../php_func/conn.php";
                while ($r = $result->fetch_assoc()) {
                     if ($r['TrangThai'] == '0') {
                          $Tinhtrang = 'Còn trống';
-                    } else {
+                    } else if($r['TrangThai'] == '1') {
                          $Tinhtrang = 'Đang được sử dụng';
+                    }else{
+                         $Tinhtrang = 'Đã bị hủy';
                     }
+
+                    $disabledClass = '';
+                    $deleteDisabled = '';
+                    if($Tinhtrang == 'Đã bị hủy'){
+                         $disabledClass = 'disabled';
+                         $deleteDisabled = 'disabled';
+                    }
+
                     if ($r['Ngaytao'] !== '0') {
                          $Ngaytao = date('d/m/Y', strtotime($r['Ngaytao']));
                     }
+
+                    
                 ?>  
-               <div class="MiniRoom" id="MiniRoom">
+               <div class="MiniRoom <?= $disabledClass ?>" id="MiniRoom">
                     <div class="Img_MiniRoom">
                          <img src="./img/<?= htmlspecialchars($r['AnhDD']) ?>">
                     </div>
@@ -59,10 +71,10 @@ include "../php_func/conn.php";
                          <h3>Ngày tạo : <span id="MiniroomCreDate"><?= $Ngaytao ?></span></h3>
                          <h3>Tình trạng : <span id="MiniroomStatus"><?= $Tinhtrang ?></span></h3>
                          <div class="BasicEdit">
-                              <div class="Edit_btn" id="Upd_btn" data-room-id="<?= htmlspecialchars($r['IDPhong']) ?>">
+                              <div class="Edit_btn <?= $disabledClass ?>" id="Upd_btn" data-room-id="<?= htmlspecialchars($r['IDPhong']) ?>">
                                    <a href="#" class="btn" >Chỉnh sửa</a>
                               </div>
-                              <div class="Delet_btn" data-room-id="<?= htmlspecialchars($r['IDPhong']) ?>">
+                              <div class="Delet_btn <?= $deleteDisabled ?>" data-room-id="<?= htmlspecialchars($r['IDPhong']) ?>">
                                    <a href="#" class="btn">Hủy bỏ</a>
                               </div>
                          </div>
@@ -170,7 +182,7 @@ include "../php_func/conn.php";
                     } 
                });
           });
-          $('#MiniRoomForm_Upd').on('submit', function(e){
+          $(document).on('submit', '#MiniRoomForm_Upd', function(e){
                e.preventDefault();
                var formData = $(this).serialize();
                $.ajax({
@@ -188,7 +200,7 @@ include "../php_func/conn.php";
                });
           });
           
-          $('.Delet_btn').click(function(e){
+          $(document).on('click', '.Delet_btn', function(e){
                e.preventDefault();
                // Hiển thị hộp thoại xác nhận
                var confirmation = confirm('Bạn có chắc chắn muốn hủy bỏ phòng này không?');
@@ -284,7 +296,7 @@ include "../php_func/conn.php";
                     }
                });
 
-               $('#MiniRoomForm').on('submit',function(e){
+               $(document).on('submit', '#MiniRoomForm', function(e){
                     e.preventDefault();
                     var formData = $(this).serialize();
                     $.ajax({
@@ -295,7 +307,9 @@ include "../php_func/conn.php";
                          success :function(response) {
                               if (response.success) {
                                    alert('Loại phòng mới đã được thêm thành công!');
+                                   $('.cor-text').text(response.message);
                                    $('.CreType.MiniContainer').removeClass('visible');
+                                   location.reload();
                               } 
                               else {
                               $('.er-text').text(response.message);

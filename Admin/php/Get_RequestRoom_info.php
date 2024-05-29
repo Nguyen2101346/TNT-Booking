@@ -32,20 +32,22 @@ try {
         $result = $stmt->get_result();
         $room = [];
         if ($result->num_rows > 0) {
-            if($row['PhuongthucTT'] == 0){
-                $response['Payment'] = "Trực tiếp";
+            $row = $result->fetch_assoc();
+
+            if($row['PhuongthucTT'] == '0'){
+                $Payment = 'Trực tiếp';
             }else{
-                $response['Payment'] = "Tiền tuyến";
+                    $Payment = 'Trực tuyến';
             }
 
-            $row = $result->fetch_assoc();
             $response['TenloaiPhong'] = $row['TenloaiPhong'];
             $response['Ho'] = $row['Ho'];
             $response['Ten'] = $row['Ten'];
             $response['Sodt'] = $row['Sodt'];
             $response['Email'] = $row['Email'];
             $response['Tonggia'] = $row['Tonggia'];
-            $response['PhuongthucTT'] = $row['PhuongthucTT'];
+            $response['PhuongthucTT'] = $Payment;
+            // $response['PhuongthucTT'] = $row['PhuongthucTT'];
             $response['Ngaydat'] = $row['Ngaydat'];
             $response['IDDatphong'] = $row['IDDatphong'];
 

@@ -354,6 +354,9 @@ input[type = 'submit']{
 .miniAdmin-menu li:hover{
      background: var(--blue3);
 }
+.mini-more{
+     justify-content: left!important;
+}
 .miniAdmin-menu li:first-child{
      border-top-left-radius:10px;
      border-top-right-radius:10px;

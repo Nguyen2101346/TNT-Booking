@@ -7,7 +7,7 @@
 //           CreType_from.classList.remove('fixed');
 //      }
 // })
-// Phần xư lý thanh chuyển đổi web
+// Phần xư l thanh chuyển đổi web
 const EventChangeLeft = document.querySelector('.EventChange.Left');
 const EventChangeRight = document.querySelector('.EventChange.Right')
 EventChangeLeft.addEventListener('click',() => {
@@ -18,8 +18,7 @@ EventChangeRight.addEventListener('click',() => {
      EventChangeRight.querySelector('a').classList.add('click');
      EventChangeLeft.querySelector('a').classList.remove('click');
 });
-
-// Phần xử lý thêm loại phòng
+// Phần xử l thêm loại phòng
 // Phần xử lý thêm phòng
 // const CreRoom = document.querySelector('.AddRoom');
 // const RoomCancelButton = document.querySelector('.MiniRoom_Cancel_btn')

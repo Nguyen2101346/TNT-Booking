@@ -94,10 +94,13 @@
     font-weight: bold;
 }
 .CheckMember_Confirm{
+    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 100px;
     margin-top: 20px;
+}
+.CheckMember_Confirm .Member_confirm_btn{
+    width: 100%;
 }
 .Member_confirm_btn .btn{
     background:var(--green4);

@@ -13,11 +13,15 @@ include "../php_func/conn.php";
                          <div class="TypeCheck_text">Tất cả</div>
                          <span><i class="fa-solid fa-caret-down fa-beat" style="color: white;"></i></span>
                     <ul>
-                         <li><a href="#">Tất cả</a></li>
-                         <li><a href="#">loại phòng</a></li>
-                         <li><a href="#">Tên khách hàng</a></li>
-                         <li><a href="#">Ngày đặt</a></li>
-                         <li><a href="#">Phương thức thanh toán</a></li>
+                         <li class="search"><a href="#" data-search-type = "all">Tất cả</a></li>
+                         <!-- <li class="search"><a href="#" data-search-type = "typeRoom">Loại phòng</a></li>
+                         <li class="search"><a href="#" data-search-type = "name">Tên khách hàng</a></li>
+                         <li class="search"><a href="#" data-search-type = "date">Ngày đặt</a></li>
+                         <li class="search"><a href="#" data-search-type = "payment">Phương thức thanh toán</a></li>
+                         <li class="search"><a href="#" data-search-type = "phone">Số điện thoại</a></li> -->
+                         <li class="search"><a href="#" data-search-type = "waiting">Đang chờ xử lí</a></li>
+                         <li class="search"><a href="#" data-search-type = "confirm">Đã xác nhận</a></li>
+                         <li class="search"><a href="#" data-search-type = "cancel">Đã hủy bỏ</a></li>
                     </ul>
                </div>
                <!-- <div class="MemberSearch">
@@ -34,7 +38,11 @@ include "../php_func/conn.php";
                          WHERE datphong.IDPhong = phong.IDPhong
                          AND phong.IDLoaiPhong = loaiphong.IDLoaiPhong
                          AND datphong.IDTaiKhoan = taikhoan.IDTaiKhoan
-                         GROUP BY datphong.IDDatPhong";
+                         GROUP BY datphong.IDDatPhong
+                         ORDER BY (CASE datphong.Trangthai WHEN '1' THEN 1 
+                         WHEN '2' THEN 2 
+                         WHEN '0' THEN 3 
+                         END )ASC, datphong.Trangthai DESC";
                     $result = mysqli_query($conn, $sql);
                     while($row = mysqli_fetch_assoc($result)){
                         // Đặt múi giờ
@@ -82,8 +90,10 @@ include "../php_func/conn.php";
                          $disabledClass = '';
                          $agreeDisabled = '';
                          $deleteDisabled = '';
+                         $comfirmDisabled = '';
                          if ($status == "Đã xác nhận") {
                               $deleteDisabled = 'disabled';
+                              $comfirmDisabled = 'disabled';
                          } else if ($status == "Đã Hủy bỏ") {
                               $disabledClass = 'disabled';
                               $agreeDisabled = 'disabled';
@@ -153,10 +163,8 @@ include "../php_func/conn.php";
                </div>
                <div class="checkRoom RoomNum">
                     <label for="">Sắp xếp phòng cho khách hàng</label>
-                    <div class="select" data-id>
+                    <select class="RoomName_list select">
                          Chọn phòng
-                         <span class="fas fa-caret-down"></span>
-                         <select class="RoomName_list">
                          <?php 
                          // $idLoaiPhong = $row['IDLoaiPhong'];
                          // $sql = "SELECT phong.Tenphong, loaiphong.TenloaiPhong 
@@ -167,8 +175,7 @@ include "../php_func/conn.php";
                          //      echo '<li>'.$row['Tenphong'].'</li>';
                          // }
                          ?>
-                         </select>
-                    </div>
+                    </select>
                </div>
                <input type="hidden" name="IDDatphong" id="IDDatphong" value="">
           </div>
@@ -182,7 +189,7 @@ include "../php_func/conn.php";
                <div class="checkRoom_Cancel_btn" >
                     <a href="#" class="btn">Huỷ bỏ</a>
                </div>
-               <div class="checkRoom_confirm_btn" data-id="">
+               <div class="checkRoom_confirm_btn <?= $comfirmDisabled?>" data-id="">
                     <input type="submit" name="confirm" id="" value="Xác nhận" class="btn"> 
                </div>
           </div>
@@ -235,7 +242,7 @@ include "../php_func/conn.php";
                                    if(Array.isArray(data)){
                                         data.forEach(element => {
                                              console.log(element);
-                                             var html = '<option data-id="'+element.IDPhong+'">'+element.Tenphong+'</option>';
+                                             var html = '<option class="RoomMini" data-id="'+element.IDPhong+'">'+element.Tenphong+'</option>';
                                              RoomName_list.append(html);
                                         });
                                    }else{
@@ -259,12 +266,97 @@ include "../php_func/conn.php";
                     }
                });
           });
+          $(document).on('submit', '#CheckRoom_Form', function(e){
+               e.preventDefault();
+               var IDDatphong = $('#IDDatphong').val();
+               var IDPhong = $('.RoomName_list').find('option:selected').data('id');
+               console.log(IDDatphong);
+               console.log('ID phòng nhỏ được chọn:', IDPhong);
+
+               $.ajax({
+                    url: "./php_func/RequestRoom_Confirm.php",
+                    method: "POST",
+                    data: { idDatphong: IDDatphong, IDPhong: IDPhong },
+                    // dataType: "json",
+                    success: function(data) {
+                         console.log(data);
+                         $('.checkRoom_confirm_btn').addClass('disabled');
+                         alert('Phòng đã được duyệt thành công!');
+                    },
+                    error: function(xhr, status, error) {
+                         console.log(xhr, status, error);
+                    }
+               });
+          });
           $('.checkRoom_Cancel_btn').click(function(){
                $('.CheckRoom.MiniContainer').removeClass('visible');
           });
+
+          $(document).on('click', '.Delet_btn:not(.disabled)', function(){
+               event.preventDefault();
+               // Hiển thị hộp thoại xác nhận
+               var confirmation = confirm('Bạn chấp nhận hủy yêu cầu này không?');
+               // Nếu người dùng đồng ý
+               if (confirmation) {
+                    // Lấy ID của phòng cần xóa
+                    var id = $(this).data('id');
+                    console.log('id hủy:', id);
+                    DeleteReRoom(id); // Gọi hàm xóa phòng với ID tương ứng
+               }
+
+               function DeleteReRoom(id) {
+                    $.ajax({
+                    url: "../Admin/php_func/RequestRoom_Delete.php",
+                    method: "POST",
+                    data: { idDatphong: id },
+                    // dataType: "json",
+                    success: function(response) {
+                         console.log(response);
+                              // Xử l phản hồi từ máy chủ nếu cần
+                              // Ví dụ: hiển thị thông báo thành công, làm mới trang, vv.
+                              alert('Đơn đặt Phòng đã được hủy bỏ.');
+                              location.reload(); // Làm mới trang sau khi xóa
+                    },
+                    error: function(xhr, status, error) {
+                         // Xử lý lỗi nếu có
+                         console.error("Error details:", xhr, status, error);
+                         alert('Có lỗi xảy ra khi duyệt đơn: ' + xhr.status + ' ' + xhr.statusText + ' - ' + error);
+                    }
+                    });
+               }
+          });
+
+          // Xử lý sự kiện nhấp chuột vào các phần tử li
+          $('.search a').on('click', function(event) {
+               event.preventDefault();
+
+               // Lấy giá trị của thuộc tính data-search-type
+               var searchType = $(this).data('search-type');
+               var searchText = $(this).text();
+
+               // Đặt văn bản vào phần tử TypeCheck_text
+               $('.TypeCheck_text').text(searchText);
+
+               console.log('Search Type:', searchType);
+
+               // Thực hiện AJAX request để lấy dữ liệu theo loại tìm kiếm
+               $.ajax({
+                    url: './php_func/RequestRoom_Search.php', // Tạo một tệp PHP để xử l yêu cầu
+                    method: 'GET',
+                    data: { type: searchType },
+                    dataType: 'html', // Định dạng dữ liệu trả về có thể là JSON hoặc HTML
+                    success: function(response) {
+                         console.log(response);
+                         // Đặt nội dung trả về vào container
+                         $('.Request_Component').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                         console.error('Error:', xhr, status, error);
+                         alert('Có lỗi xảy ra khi tải dữ liệu: ' + error);
+                    }
+               });
+          });
      });
-
-
      </script>
 </body>
 </html>

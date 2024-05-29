@@ -61,7 +61,11 @@ function getMembers($search_query = '', $search_type = 'all') {
                 break;
         }
     }
-
+    $sql .= "
+    ORDER BY (CASE taikhoan.Trangthai WHEN '1' THEN 1 
+                                      WHEN '2' THEN 2 
+                                      WHEN '0' THEN 3 
+                 END) ASC, taikhoan.Trangthai DESC";
     $stmt = $conn->prepare($sql);
     
     if (!empty($params)) {
@@ -75,6 +79,7 @@ function getMembers($search_query = '', $search_type = 'all') {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $member = [
+                'Trangthai' => $row['Trangthai'],
                 'name' => $row['Ten'],
                 'phone' => $row['Sodt'],
                 'email' => $row['Email'],
@@ -85,7 +90,6 @@ function getMembers($search_query = '', $search_type = 'all') {
             array_push($members, $member);
         }
     }
-    
     return $members;
 }
 

@@ -35,10 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } elseif ($sotang < 1 || $sotang > 5) {
                 $response['message'] = "Khách sạn nhỏ lắm bớt chọn tầng cao !";
             } else {
-                if (add_MiniRoom($conn, $IDLoaiphong, $roomname, $DayCre, $sotang)) {
+                add_MiniRoom($conn, $IDLoaiphong, $roomname, $DayCre, $sotang);
                     $response['success'] = true;
                     $response['message'] = 'Success';
-                }
             }
         }
     } else {

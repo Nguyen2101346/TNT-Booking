@@ -20,7 +20,6 @@ if (isset($_GET['idroom'])) {
 
     if ($result->num_rows > 0) {
             $row['Ngaytao'] = date('d/m/Y', strtotime($row['Ngaytao']));
-            $row['TrangThai'] = $row['TrangThai'] == '0' ? 'Còn trống' : 'Đang được sử dụng';
             $room = $result->fetch_assoc();
         ob_end_clean();
         echo json_encode($room);

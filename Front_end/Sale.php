@@ -43,7 +43,7 @@
                                              FROM loaiphong,phong
                                              WHERE loaiphong.IDLoaiphong = phong.IDLoaiphong 
                                              AND phong.TrangThai = '0' AND loaiphong.Songuoi >= '$min_adults'
-                                             GROUP BY phong.IDPhong";
+                                             GROUP BY loaiphong.IDLoaiphong";
                                              $re = mysqli_query($conn,$sql);
                                              $row = mysqli_num_rows($re);
                                              if($row > 0){
@@ -56,7 +56,7 @@
                                                                  <div class="sale-icon">
                                                                       <img src="./img/sale_icon.png" alt="">
                                                                  </div>
-                                                                 <img src="./img/'.$r["AnhDD"].'" alt="">
+                                                                 <img src="../Admin/img/'.$r["AnhDD"].'" alt="">
                                                             </div>
                                                             <div class="content">
                                                                  <div class="title">'?>
@@ -109,7 +109,7 @@
                                              FROM loaiphong,phong
                                              WHERE loaiphong.IDLoaiphong = phong.IDLoaiphong 
                                              AND phong.TrangThai = '0'
-                                             GROUP BY phong.IDPhong";
+                                             GROUP BY loaiphong.IDLoaiphong";
                                              $re = mysqli_query($conn,$sql);
                                              $row = mysqli_num_rows($re);
                                              if($row > 0){
@@ -122,7 +122,7 @@
                                                                  <div class="sale-icon">
                                                                       <img src="./img/sale_icon.png" alt="">
                                                                  </div>
-                                                                 <img src="./img/'.$r["AnhDD"].'" alt="">
+                                                                 <img src="../Admin/img/'.$r["AnhDD"].'" alt="">
                                                             </div>
                                                             <div class="content">
                                                                  <div class="title"><a href="#">'. $r['Tenloaiphong'].'</a></div>

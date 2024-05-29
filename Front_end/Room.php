@@ -28,6 +28,10 @@
                                              </span>
                                              <span>Đánh giá :</span>
                                              <?php
+                                                  $sql = 'SELECT * FROM danhgia,loaiphong 
+                                                  WHERE danhgia.IDLoaiphong = loaiphong.IDLoaiphong AND loaiphong.IDLoaiphong = '.$idroomtype;
+                                                  $re2 = mysqli_query($conn, $sql);
+                                                  if(mysqli_num_rows($re2) > 0){
                                                   $re1 = get_averages($conn, $idroomtype); // Hàm để lấy bình luận từ cơ sở dữ liệu
                                                   if(mysqli_num_rows($re1) > 0){
                                                        $r1 = mysqli_fetch_array($re1);
@@ -47,6 +51,15 @@
                                                   <span class="star">&#9733;</span> -->
                                              </div>
                                              <p><?= $average_rating ?> / 5.0</p>
+                                             <?php
+                                                  }
+                                                  }else{
+                                             ?>
+                                                  <span class="star">&#9733;</span>
+                                                  <span class="star">&#9733;</span>
+                                                  <span class="star">&#9733;</span>
+                                                  <span class="star">&#9733;</span>
+                                                  <span class="star">&#9733;</span>
                                              <?php
                                                   }
                                              ?>

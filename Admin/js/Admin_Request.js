@@ -23,7 +23,7 @@ $(document).ready(function() {
                 
                 // Khởi tạo lại Swiper nếu trang tải có slider
                 if (page === 'RequestRoom.php') {
-                    initializeSwiper();
+                    // initializeSwiper();
                     // AJAXSubmit();
                 }else if(page === 'RequestEvent.php'){
                     CreRoom()

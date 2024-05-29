@@ -22,6 +22,7 @@ $members = getMembers($search_query, $search_type);
      <link rel="stylesheet" href="./css/Admin_Room.css">
      <link rel="stylesheet" href="./css/Slider.css">
      <link rel="stylesheet" href="./css/Admin_Member.css">
+     <link rel="stylesheet" href="./css/Admin_Request.css">
      <!-- Sử dụng fontawsome -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -99,21 +100,6 @@ $members = getMembers($search_query, $search_type);
                     </div>
                     <script>
                          $(document).ready(function() {
-                              function bindDetailButtons() {
-                                   $('.member.Detail_btn').on('click', function(event) {
-                                        event.preventDefault();
-                                        var memberData = $(this).data('member');
-                                        $('#ID').val(memberData.ID);
-                                        $('#name').val(memberData.name);
-                                        $('#gender').val(memberData.gender);
-                                        $('#birthday').val(memberData.birthday);
-                                        $('#email').val(memberData.email);
-                                        $('#phone').val(memberData.phone);
-                                        $('#address').val(memberData.address);
-                                        $('#member_id').val(memberData.id);
-                                        $('.CheckMember.MiniContainer').addClass('visible');
-                                   });
-                              }
 
                               $('#searchForm').on('submit', function(event) {
                                    event.preventDefault();
@@ -129,8 +115,11 @@ $members = getMembers($search_query, $search_type);
                                              search_query: searchQuery
                                         },
                                         success: function(response) {
-                                             $('#Admin_Main__content').html($(response).find('#Admin_Main__content').html());
-                                             bindDetailButtons(); // Re-bind the detail buttons after updating the content
+                                             if(response.length > 0){
+                                                  $('#Admin_Main__content').html($(response).find('#Admin_Main__content').html());
+                                             }else{
+                                                  $('#Admin_Main__content').html('<h2>Không Tìm thấy thành viên muốn tìm</h2>');
+                                             }
                                         }
                                    });
                               });
@@ -141,8 +130,6 @@ $members = getMembers($search_query, $search_type);
                                    $('#search_type').val(searchType);
                                    $('.TypeCheck .title_TypeCheck').text($(this).text());
                               });
-
-                              bindDetailButtons(); // Initial binding
                          });
                     </script>
                     <div class="Member_Container" id="Member">
@@ -154,8 +141,19 @@ $members = getMembers($search_query, $search_type);
                                    if($member['image'] == ''){
                                         $member['image'] = 'person.png';
                                    }
+
+                                   if($member['Trangthai'] == '1'){
+                                        $status = 'Đang Hoạt động';
+                                   }else{
+                                        $status = 'Đã bị hủy';
+                                   }
+
+                                   $disabledClass = '';
+                                   if($status == 'Đã bị hủy'){
+                                        $disabledClass = 'disabled';
+                                   }
                                    echo "
-                                   <div class='Member' data-id='" . $member_id . "'>
+                                   <div class='Member " . $disabledClass . "' data-id='" . $member_id . "'>
                                         <div class='Img_Member'>
                                              <img src='../Front_end/img_members/" . $member['image'] . "'>
                                         </div>
@@ -164,11 +162,12 @@ $members = getMembers($search_query, $search_type);
                                              <h3>Số điện thoại : <span class='lighter'>" . $member['phone'] . "</span></h3>
                                              <h3>Email : <span class='lighter'>" . $member['email'] . "</span></h3>
                                              <h3>Ngày tạo : <span class='lighter'>" . $member['created_at'] . "</span></h3>
+                                             <h3 class='absolute_text status" . $member['Trangthai'] . "'><span class='lighter'>" . $status . "</span></h3>
                                              <div class='member BasicEdit'>
-                                                  <div class='member Detail_btn' data-member='" . json_encode($member) . "'>
+                                                  <div class='member Detail_btn' data-id='" . $member_id . "'>
                                                   <a href='#' class='btn'>Chi tiết</a>
                                                   </div>
-                                                  <div class='member Delet_btn'>
+                                                  <div class='member Delet_btn' data-id='" . $member_id . "'>
                                                   <a href='#' class='btn'>Hủy bỏ</a>
                                                   </div>
                                              </div>
@@ -183,21 +182,22 @@ $members = getMembers($search_query, $search_type);
           </div>
           <?php $message = '';
 
-          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-               $company = $_POST['ID'];
-               $name = $_POST['name'];
-               $gender = $_POST['gender'];
-               $birthday = $_POST['birthday'];
-               $email = $_POST['email'];
-               $phone = $_POST['phone'];
-               $address = $_POST['address'];
-               $ID = $_POST['member_id'];
-               // Insert data into database
-               $message = insertMember($conn, $company, $name, $gender, $birthday, $email, $phone, $address, $ID);
-          } ?>
+          // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          //      $company = $_POST['ID'];
+          //      $name = $_POST['name'];
+          //      $gender = $_POST['gender'];
+          //      $birthday = $_POST['birthday'];
+          //      $email = $_POST['email'];
+          //      $phone = $_POST['phone'];
+          //      $address = $_POST['address'];
+          //      $ID = $_POST['member_id'];
+          //      // Insert data into database
+          //     $message = insertMember($conn, $company, $name, $gender, $birthday, $email, $phone, $address, $ID);
+          // } 
+          ?>
           <!-- Form tạo thêm loại -->
           <div class="CheckMember MiniContainer">
-               <form class="CheckMember MiniForm" method="post" action="Member.php">
+               <form class="CheckMember MiniForm" method="post" action="" id="CheckMember_Form">
                     <h2>Chi tiết thành viên</h2>
                     <div class="miniMember_Top">
                          <div class="miniMember ID">
@@ -233,17 +233,14 @@ $members = getMembers($search_query, $search_type);
                          </div>
                     </div>
                     <div class="CheckMember_Confirm">
-                         <div class="Member_Cancel_btn">
+                         <!-- <div class="Member_Cancel_btn">
                               <a href="#" class="btn">Huỷ bỏ</a>
-                         </div>
+                         </div> -->
                          <div class="Member_confirm_btn">
                               <input type="submit" name="confirm" value="Ok" class="btn">
                          </div>
                     </div>
                </form>
-               <?php if ($message) : ?>
-                    <p><?php echo $message; ?></p>
-               <?php endif; ?>
           </div>
           <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
      </div>
@@ -253,48 +250,56 @@ $members = getMembers($search_query, $search_type);
      <script src="../js/Admin.js"></script>
      <script>
           $(document).ready(function() {
-               function bindDetailButtons() {
-                    $('.member.Detail_btn').on('click', function(event) {
+                    $(document).on('click','.member.Detail_btn', function(event) {
                          event.preventDefault();
-                         var memberData = $(this).data('member');
-                         $('#ID').val(memberData.ID);
-                         $('#name').val(memberData.name);
-                         $('#gender').val(memberData.gender);
-                         $('#birthday').val(memberData.birthday);
-                         $('#email').val(memberData.email);
-                         $('#phone').val(memberData.phone);
-                         $('#address').val(memberData.address);
-                         $('#member_id').val(memberData.id);
+                         var id = $(this).data('id');
+                         console.log(id);
                          $('.CheckMember.MiniContainer').addClass('visible');
+                         $.ajax({
+                              url: './php/Get_Member.php',
+                              type: 'GET',
+                              data: {iduser: id},
+                              dataType: 'json',
+                              success: function(data) {
+                                   console.log(data)
+                                   $('#ID').val(data.Loaigiayto);
+                                   $('#name').val(data.Ho + ' ' + data.Ten);
+                                   $('#gender').val(data.Gioitinh);
+                                   $('#birthday').val(data.Ngaysinh);
+                                   $('#email').val(data.Email);
+                                   $('#phone').val(data.Sodt);
+                                   $('#address').val(data.Diachi);
+                                   $('#member_id').val(data.IDTaikhoan);
+                              },error: function(xhr, status, error) {
+                                   console.log(xhr, status, error);
+                              }
+                         });
                     });
-               }
 
-               bindDetailButtons(); // Initial binding
 
-               $('.Member_Cancel_btn').on('click', function(event) {
+               $('.Member_confirm_btn').on('click', function(event) {
                     event.preventDefault();
                     $('.CheckMember.MiniContainer').removeClass('visible');
                });
 
-               $('#searchForm').on('submit', function(event) {
-                    event.preventDefault();
+               // $('#searchForm').on('submit', function(event) {
+               //      event.preventDefault();
 
-                    var searchType = $('#search_type').val();
-                    var searchQuery = $('#search_query').val();
+               //      var searchType = $('#search_type').val();
+               //      var searchQuery = $('#search_query').val();
 
-                    $.ajax({
-                         url: 'Member.php',
-                         type: 'GET',
-                         data: {
-                              search_type: searchType,
-                              search_query: searchQuery
-                         },
-                         success: function(response) {
-                              $('#Admin_Main__content').html($(response).find('#Admin_Main__content').html());
-                              bindDetailButtons(); // Re-bind the detail buttons after updating the content
-                         }
-                    });
-               });
+               //      $.ajax({
+               //           url: 'Member.php',
+               //           type: 'GET',
+               //           data: {
+               //                search_type: searchType,
+               //                search_query: searchQuery
+               //           },
+               //           success: function(response) {
+               //                $('#Admin_Main__content').html($(response).find('#Admin_Main__content').html());
+               //           }
+               //      });
+               // });
 
                $('.TypeCheck ul li a').on('click', function(event) {
                     event.preventDefault();
@@ -307,6 +312,37 @@ $members = getMembers($search_query, $search_type);
                if ($('#search_type').val() === '') {
                     $('#search_type').val('all');
                }
+
+               $(document).on('click', '.member.Delet_btn', function(event) {
+                    event.preventDefault();
+                    var confirmation = confirm('Bạn chấp nhận hủy yêu cầu này không?');
+                    // Nếu người dng đồng 
+                    if (confirmation) {
+                         // Lấy ID của phòng cần xóa
+                         var id = $(this).data('id');
+                         console.log('id hủy:', id);
+                         DeleteMember(id);
+                    }
+
+                    function DeleteMember(id) {
+                         $.ajax({
+                         url:'./php_func/member_delete.php',
+                         type: 'POST',
+                         data: {iduser: id},
+                         success: function(response) {
+                              console.log(response);
+                              alert('Thành viên đã bị xóa bỏ')
+                              location.reload();
+                         },
+                              error: function(xhr, status, error) {
+                                   // Xử lý lỗi nếu có
+                                   console.error("Error details:", xhr, status, error);
+                                   alert('Có lỗi xảy ra khi duyệt đơn: ' + xhr.status + ' ' + xhr.statusText + ' - ' + error);
+                              }
+                         })
+                    }
+                    
+               });
           });
      </script>
 </body>

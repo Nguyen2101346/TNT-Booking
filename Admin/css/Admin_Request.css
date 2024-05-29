@@ -218,7 +218,7 @@
     opacity: 0.5;
 }
 
-.Request.disabled {
+.Request.disabled, .MiniRoom.disabled {
     opacity: 0.5;
 }
 
