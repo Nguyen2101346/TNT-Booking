@@ -157,7 +157,7 @@
                                                                            </div>
                                                                       </div>
                                                                  </div>
-                                                                 <input type="hidden" name="idroom" value="'.$r['IDphong'].'">
+                                                                 <input type="hidden" name="idroom" value="'.$r['IDPhong'].'">
                                                                  <div class="Choose_btn">
                                                                       <a href="#" class="medium_btn" onclick="chooseRoom(' . $r['IDLoaiphong']. ')">Chọn</a>
                                                                  </div>

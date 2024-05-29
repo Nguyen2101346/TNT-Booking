@@ -114,6 +114,33 @@
                                 $re = filter_roombooked($conn, $dateStart, $dateEnd, $status, $_SESSION['userID']);
                                 if(mysqli_num_rows($re)> 0){
                                     while($r = mysqli_fetch_array($re)){
+
+                                        $daysOfWeek = array(
+                                            'Sunday' => 'Chủ nhật',
+                                            'Monday' => 'Thứ hai',
+                                            'Tuesday' => 'Thứ ba',
+                                            'Wednesday' => 'Thứ tư',
+                                            'Thursday' => 'Thứ năm',
+                                            'Friday' => 'Thứ sáu',
+                                            'Saturday' => 'Thứ bảy'
+                                            );
+                   
+                                            // Giả sử $row['NgayDat'] là chuỗi ngày tháng từ cơ sở dữ liệu
+                                            $date = new DateTime($r['Ngaydat']);
+                                            $date1 = new DateTime($r['Ngaybatdau']);
+                                            $date2 = new DateTime($r['Ngayketthuc']);
+                                            // Lấy tên thứ bằng tiếng Anh
+                                            $dayOfWeek = $date->format('l');
+                                            $dayOfWeek1 = $date1->format('l');
+                                            $dayOfWeek2 = $date2->format('l');
+                                            // Chuyển đổi sang tiếng Việt
+                                            $dayOfWeekInVietnamese = $daysOfWeek[$dayOfWeek];
+                                            $dayOfWeekInVietnamese1 = $daysOfWeek[$dayOfWeek1];
+                                            $dayOfWeekInVietnamese2 = $daysOfWeek[$dayOfWeek2];
+                                            // Định dạng ngày tháng năm
+                                            $Ngaydat = $dayOfWeekInVietnamese . ', ' . $date->format('d/m/Y');
+                                            $Ngaybatdau = $dayOfWeekInVietnamese1 . ', ' . $date1->format('d/m/Y');
+                                            $Ngayketthuc = $dayOfWeekInVietnamese2 . ', ' . $date2->format('d/m/Y');
                             ?>
                                 <div class="order-item">
                                     <div class="order-header">
@@ -133,8 +160,8 @@
                                         </div>
                                         <div class="order-info">
                                             <p class="spraise">Đánh giá: ⭐⭐⭐⭐ 4.0/5.0</p>
-                                            <p>Ngày giao dịch: <?=$r['Ngaydat']?></p>
-                                            <p>Ngày lưu trú: <?=$r['Ngaybatdau']?> - <?=$r['Ngayketthuc']?></p>
+                                            <p>Ngày giao dịch: <?=$Ngaydat?></p>
+                                            <p>Ngày lưu trú: <?=$Ngaybatdau?> - <?=$Ngayketthuc?></p>
                                             <p>Số người: 2</p>
                                         </div>
                                     </div>
@@ -149,6 +176,25 @@
                             $re = filter_eventbooked($conn, $dateStart, $dateEnd, $status, $_SESSION['userID']);
                             if(mysqli_num_rows($re)> 0){
                                 while($r = mysqli_fetch_array($re)){
+                                        $daysOfWeek = array(
+                                            'Sunday' => 'Chủ nhật',
+                                            'Monday' => 'Thứ hai',
+                                            'Tuesday' => 'Thứ ba',
+                                            'Wednesday' => 'Thứ tư',
+                                            'Thursday' => 'Thứ năm',
+                                            'Friday' => 'Thứ sáu',
+                                            'Saturday' => 'Thứ bảy'
+                                            );
+                                            $date = new DateTime($r['Ngaydat']);
+                   
+                                            // Lấy tên thứ bằng tiếng Anh
+                                            $dayOfWeek = $date->format('l');
+                   
+                                            // Chuyển đổi sang tiếng Việt
+                                            $dayOfWeekInVietnamese = $daysOfWeek[$dayOfWeek];
+                   
+                                            // Định dạng ngày tháng năm
+                                            $Ngaydat = $dayOfWeekInVietnamese . ', ' . $date->format('d/m/Y');
                     ?>
                         <div class="order-item">
                             <div class="order-header">
@@ -169,7 +215,7 @@
                                 <div class="order-info">
                                     <!-- <p class="spraise">Đánh giá: ⭐⭐⭐⭐ 4.0/5.0</p> -->
                                     <p>Khách hàng: <?=$r['TenKH']?></p>
-                                    <p>Ngày giao dịch: <?=$r['Ngaydat']?></p>
+                                    <p>Ngày giao dịch: <?=$Ngaydat?></p>
                                     <p>Email: <?=$r['Email']?></p>
                                     <p>Số điện thoại: <?=$r['Sodt']?></p>
                                 </div>

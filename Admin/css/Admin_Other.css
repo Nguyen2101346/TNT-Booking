@@ -1,0 +1,395 @@
+/* TIỆN ÍCH - UTILITIES */
+
+.Utilities_container {
+    background-color: #e6e5e5;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    width: 1050px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.title_20{
+    font-size: 20px;
+    font-weight: bold;
+}
+.title_18{
+    font-size: 18px;
+    font-weight: bold;
+}
+.title_16{
+    font-size: 16px;
+    font-weight: bold;
+}
+.add-button.title_20{
+    color: #fff;
+}
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+.tab.active {
+    font-weight: bold;
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+}
+
+.content {
+    padding: 50px 20px;
+    background-color: #e6e5e5;
+    width: 100%;
+    margin: auto;
+    background-color: #e6e5e5;
+    min-height: 700px;
+}
+
+.add-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+span{
+    text-align: center;
+
+}
+.items{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 30px;
+    align-items: center;
+}
+
+.item {
+    border-radius: 10px;
+    height: 75px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.remove-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    width: 600px;
+    height: 300px;
+    background-color: white;
+    padding: 50px;
+    border-radius: 5px;
+    text-align: center;
+}
+.input-group{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 30px;
+    justify-content: left;
+}
+.modal-buttons {
+    margin-top: 30px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+}
+
+.cancel-button, .confirm-button {
+    width: 125px;
+    height: 50px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+}
+
+.cancel-button {
+    background-color: #ff4d4d;
+    color: white;
+    margin-right: 10px;
+}
+
+.confirm-button {
+    background-color: #007bff;
+    color: white;
+}
+/* ------JS */
+.modal-show {
+    display: flex;
+}
+
+.modal-hide {
+    display: none;
+}
+
+/* ƯU ĐÃI - ADDSALE */
+.AddSale_container {
+    background-color: #e6e5e5;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    width: 1050px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.offer-cards{
+    display: grid;
+    gap: 30px;
+    margin-top: 30px;
+    align-items: center;
+}
+.add-offer-btn {
+    width: 100%;
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.offer-card {
+    display: flex;
+    background-color: #fff;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.offer-card img {
+    width: 225px;
+    height: 150px;
+    height: auto;
+    padding: 10px;
+}
+
+.offer-details {
+    flex-grow: 1;
+    padding: 20px;
+    text-align: left;
+}
+
+.offer-details h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.offer-details p {
+    margin: 5px 0;
+}
+
+.discount {
+    color: red;
+    font-weight: bold;
+}
+
+.offer-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.offer-actions button {
+    width: 150px;
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.offer-actions .cancel-btn {
+    background-color: #dc3545;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+#AddSale_modal .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group.half-width {
+    flex: 1 1 calc(50% - 10px); /* Updated to handle spacing */
+}
+
+.form-group.two-item{
+    display: flex;
+}
+
+.form-group.second-width {
+    flex: 1 1 calc(50% - 10px);
+}
+
+.form-group .half:first-child {
+    flex: 3; /* gấp ba lần chiều rộng của phần tử thứ hai */
+    margin-right: 10px;
+}
+
+.form-group .half {
+    flex: 1; 
+}
+
+
+.form-group .half input,
+.form-group .half select {
+    width: 100%;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+select {
+    appearance: none; /* Loại bỏ giao diện mặc định */
+    -webkit-appearance: none; /* Cho trình duyệt Safari */
+    -moz-appearance: none; /* Cho trình duyệt Firefox */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="%23000000"><path d="M7 10l5 5 5-5z"/></svg>'); /* Sử dụng một biểu tượng mũi tên chỉ xuống tuỳ chỉnh */
+    background-repeat: no-repeat; /* Ngăn lặp lại hình ảnh nền */
+    background-position: right center; /* Đặt vị trí của biểu tượng */
+    background-color: #ffffff; /* Màu nền của ô chọn */
+    border: 1px solid #ccc; /* Đường viền của ô chọn */
+    border-radius: 5px; /* Bo tròn viền */
+    padding: 8px 20px 8px 10px; /* Khoảng cách giữa biểu tượng và văn bản */
+    width: 100%; /* Chiều rộng của ô chọn */
+    box-sizing: border-box; /* Đảm bảo rằng padding không làm thay đổi kích thước bên ngoài của ô chọn */
+    cursor: pointer; /* Con trỏ tay khi di chuột qua ô chọn */
+}
+
+
+.form-actions {
+    display: flex;
+    width: 80%;
+     /* Canh chỉnh các phần tử vào giữa theo chiều ngang */
+    margin: 20px auto ; /* Tạo khoảng cách từ phần tử trên xuống */
+}
+
+.form-actions .cancel-btn{
+    display: block;
+    width: 100px;
+    margin: auto;
+
+}
+.form-actions .confirm-btn{
+    display: block;
+    width: 100px;
+    margin: auto;
+}
+
+.form-group label{
+    font-weight: bold;
+}
+.cancel-btn {
+    font-weight: bold;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.confirm-btn {
+    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Utilities</title>
-    <link rel="stylesheet" href="./css/Admin_Utilities.css">
+    <link rel="stylesheet" href="./css/Admin_Other.css">
     <!-- <link rel="stylesheet" href="./css/Admin_main.css"> -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -33,17 +33,17 @@
     <script>
         $(document).ready(function(){
             // Tải trang quản lý loại phòng khi load lần đầu
-            loadPage('AddSale.php');
+            loadPage('Other_AddSale.php');
 
             // Gán sự kiện click cho các nt EventChange
             $('#LoadAddSale').on('click', function(e) {
                 e.preventDefault();
-                loadPage('AddSale.php');
+                loadPage('Other_AddSale.php');
             });
 
             $('#LoadUtilities').on('click', function(e) {
                 e.preventDefault();
-                loadPage('Utilities.php');
+                loadPage('Other_Utilities.php');
             });
 
             // Hàm tải trang bằng AJAX
