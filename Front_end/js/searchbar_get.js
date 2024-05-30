@@ -16,10 +16,12 @@ function setSearchValues(params) {
     if (params.start_date) {
         document.getElementById('start').textContent = params.start_date;
         document.getElementById('start_date').value = params.start_date;
+        // console.log(params.start_date);
     }
     if (params.end_date) {
         document.getElementById('end').textContent = params.end_date;
         document.getElementById('end_date').value = params.end_date;
+        // console.log(params.end_date);
     }
     if (params.rooms) {
         document.getElementById('room_num').textContent = params.rooms;

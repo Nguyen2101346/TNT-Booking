@@ -11,6 +11,12 @@
     display: flex;
     flex-direction: column;
 }
+.lighter{
+    font-weight: normal;
+}
+p{
+    padding: 5px 0;
+}
 .title_20{
     font-size: 20px;
     font-weight: bold;
@@ -127,7 +133,7 @@ span{
     margin-top: 30px;
     justify-content: left;
 }
-.modal-buttons {
+.modal-buttons,.form-actions {
     margin-top: 30px;
     width: 100%;
     display: grid;
@@ -197,19 +203,21 @@ span{
 }
 
 .offer-card {
+    position: relative;
     display: flex;
     background-color: #fff;
     align-items: center;
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
+    height: 171px;
 }
 
 .offer-card img {
     width: 225px;
     height: 150px;
     height: auto;
-    padding: 10px;
+    margin-left: 10px;
 }
 
 .offer-details {
@@ -269,13 +277,14 @@ span{
     background-color: rgba(0,0,0,0.4);
 }
 
-#AddSale_modal .modal-content {
+.AddSale.modal .modal-content {
     background-color: #fefefe;
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     max-width: 600px;
+    height: 500px;
     border-radius: 10px;
 }
 
@@ -319,6 +328,7 @@ form {
 .form-group .half input,
 .form-group .half select {
     width: 100%;
+    height: 50px;
 }
 .form-group label {
     display: block;
@@ -328,6 +338,7 @@ form {
 .form-group input,
 .form-group select {
     width: 100%;
+    height: 50px;
     padding: 8px;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -357,16 +368,11 @@ select {
     margin: 20px auto ; /* Tạo khoảng cách từ phần tử trên xuống */
 }
 
-.form-actions .cancel-btn{
+.form-actions .cancel-btn,.form-actions .confirm-btn{
     display: block;
-    width: 100px;
     margin: auto;
-
-}
-.form-actions .confirm-btn{
-    display: block;
-    width: 100px;
-    margin: auto;
+    width: 125px;
+    height: 50px;
 }
 
 .form-group label{
@@ -392,4 +398,25 @@ select {
     font-size: 14px;
     border-radius: 5px;
     cursor: pointer;
+}
+.absolute_text{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-weight: bold;
+    color:#000;
+}
+.absolute_text.status1{
+    color:var(--blue3);
+}
+.absolute_text.status2{
+    color:var(--green4);
+}
+.absolute_text.status0{
+    color:red;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
 }

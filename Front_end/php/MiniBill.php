@@ -1,3 +1,10 @@
+<style>
+    .Checktime input{
+        border: none;
+        outline: none;
+    }
+</style>
+
 <form class="SummaryBill" action="" method="">
      <div class="navbar">
           <h3 class="content bill">Chuyến đi</h3>
@@ -5,8 +12,10 @@
      <div class="Main_item Short">
           <div class="Checktime">
                <div class="title">Thời gian</div>
-               <div class="timeShow_Start note"></div>
-               <div class="timeShow_End note"></div>
+               <input type="hidden" name="start_date" id="start_date" value="<?php echo $_GET['start_date']; ?>">
+               <input type="hidden" name="end_date" id="end_date" value="<?php echo $_GET['end_date']; ?>">
+               <input class="timeShow_Start note" id="myID" name="timeStart" value="Ngày đặt">
+               <input class="timeShow_End note" id="myID" name="timeEnd" value="Ngày đi">
           </div>
           <div class="room_container">
                <!-- <div class="roomMini">
@@ -29,6 +38,8 @@
      </div>
 </form>
 <script>
+
+
      document.getElementById("continueButton").addEventListener("click", function(event) {
     const roomContainer = document.getElementById("roomContainer");
     if (roomContainer.children.length === 0) {

@@ -10,7 +10,7 @@
           if(mysqli_num_rows($check_img) > 0){
             while($r = mysqli_fetch_array($check_img)){
         ?>
-        <div class="img_item"><img src="./img/<?=$r['Hinh']?>" alt="img-1"> 
+        <div class="img_item"><img src="../Admin/img/detail/<?=$r['Hinh']?>" alt="img-1"> 
         </div>
         <?php
             }

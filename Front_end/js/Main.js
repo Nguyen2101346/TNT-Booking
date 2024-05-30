@@ -82,7 +82,7 @@ function displaySearchTime() {
           // Chuỗi hiển thị sẽ bao gồm thông tin về thứ, ngày, tháng và năm
           var displayString =  'Từ ' + daysOfWeek[dayOfWeek] + ' - ' + day + ' / ' + month + ' / ' + year;
      
-          $(targetElement).text(displayString);
+          $(targetElement).val(displayString);
           } else {
           console.log('Không tìm thấy ngày hợp lệ.');
           }
@@ -105,86 +105,8 @@ function displaySearchTime() {
           // Chuỗi hiển thị sẽ bao gồm thông tin về thứ, ngày, tháng và năm
           var displayString = 'Đến ' + daysOfWeek[dayOfWeek] + ' - ' + day + ' / ' + month + ' / ' + year;
      
-          $(targetElement).text(displayString);
+          $(targetElement).val(displayString);
           } else {
           console.log('Không tìm thấy ngày hợp lệ.');
           }
      }
-
-// Phòng ROOM
-     // var selectedRooms = []; // Mảng lưu trữ thông tin của các phòng đã chọn
-
-     // function chooseRoom(roomIndex) {
-     // var limitRoom = parseInt(document.getElementById('limit_room').innerText);
-
-     // if (selectedRooms.length < limitRoom) {
-     //      var selectedRoom = document.querySelectorAll(".Room_container .room")[roomIndex];
-     //      var roomTitle = selectedRoom.querySelector(".content .title a").innerText;
-     //      var roomPrice = selectedRoom.querySelector(".content .prices .content").innerText;
-     //      var bedType = selectedRoom.dataset.bedType;
-
-     //      // Lấy phần số từ chuỗi giá
-     //      var price = parseInt(roomPrice.replace(/\D/g, '')); // Loại bỏ tất cả các ký tự không phải số
-
-     //      selectedRooms.push({
-     //           roomNum: selectedRooms.length + 1,
-     //           roomTitle: roomTitle,
-     //           roomPrice: roomPrice,
-     //           price:price,
-     //           bedType: bedType
-     //      });
-
-     //      updateSelectedRooms(); // Cập nhật hiển thị các phòng đã chọn
-     //      updateTotalBill();
-     // } else {
-     //      alert("Đã đạt đến giới hạn số phòng cho phép!");
-     // }
-     // }
-
-     // function updateSelectedRooms() {
-     // var roomMiniContainer = document.querySelector(".room_container");
-     // roomMiniContainer.innerHTML = ""; // Xóa nội dung hiện tại để cập nhật lại
-
-     // selectedRooms.forEach(function(room, index) {
-     //      var roomMini = document.createElement("div");
-     //      roomMini.className = "roomMini";
-     //      roomMini.innerHTML = `
-     //           <div class="RoomNum title">Phòng ${room.roomNum}</div>
-     //           <div class="RoomTitle">${room.roomTitle}</div>
-     //           <div class="RoomPrice">${room.roomPrice}</div>
-     //           <div class="RoomFix_btn">
-     //                <a href="#" class="mini_btn" onclick="editRoom(${index})">Chỉnh sửa</a>
-     //           </div>
-     //      `;
-     //      roomMiniContainer.appendChild(roomMini);
-     // });
-
-     // var roomNum = document.getElementById("Numroom");
-     // roomNum.textContent = selectedRooms.length; // Cập nhật số phòng đã chọn
-     // }
-
-     // function editRoom(roomIndex) {
-     // // Loại bỏ phòng đã chọn khỏi mảng selectedRooms
-     // selectedRooms.splice(roomIndex, 1);
-     
-     // // Cập nhật lại hiển thị các phòng đã chọn
-     // updateSelectedRooms();
-     // updateTotalBill()
-     // }
-
-     // function calculateTotalBill() {
-     //      var totalPrice = 0;
-     //      selectedRooms.forEach(function(room) {
-     //      totalPrice += room.price
-     //      });
-     //      return totalPrice;
-     // }
-     
-     // function updateTotalBill() {
-     // var totalPrice = calculateTotalBill();
-     // document.getElementById("TotalPrice").textContent = "Giá : " + formatCurrency(totalPrice) ;
-     // }
-     
-     // function formatCurrency(amount) {
-     // return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VND";
-     // }

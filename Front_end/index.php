@@ -27,6 +27,8 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
     <script src="./js/slider.js" defer></script>
     <script src="./js/eat.js" defer></script>
 </head>
@@ -63,8 +65,20 @@
     <script src="./js/ultils.js"></script>
     <script src="./js/Searchbar.js"></script>
     <script src="./js/searchbar_get.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/vn.js"></script>
     <!-- <script src="./js/MiniBill.js"></script> -->
     <script>
+
+        flatpickr("#myID", {
+            minDate: "today",
+            dateFormat: "Y-m-d",
+        });
+        // flatpickr(myElement, {
+        //     "locale": "vn"  // locale for this instance only
+        // });
         const change = <?= $change?>;
         const elementSearch1 = document.querySelector('#searchButton')
         if(elementSearch1){

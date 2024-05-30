@@ -11,7 +11,11 @@
     }
 
     function get_comments($conn, $idroomtype) {
-        $sql = "SELECT c.*, u.Avatar, u.Tendangnhap FROM danhgia c JOIN taikhoan u ON c.IDTaikhoan = u.IDTaikhoan WHERE c.IDLoaiphong = $idroomtype";
+        $sql = "SELECT c.*, u.Avatar, u.Tendangnhap 
+        FROM danhgia c 
+        JOIN taikhoan u 
+        ON c.IDTaikhoan = u.IDTaikhoan 
+        WHERE c.IDLoaiphong = $idroomtype";
         return mysqli_query($conn, $sql);
     }
     function get_averages($conn, $idroomtype){
@@ -29,7 +33,7 @@
     }
 
     function check_discount($conn, $id){
-        $sql = "SELECT * FROM uudai WHERE IDLoaiphong=$id";
+        $sql = "SELECT * FROM uudai WHERE IDLoaiphong=$id AND Trangthai = 1";
         return mysqli_query($conn, $sql);
     }
 

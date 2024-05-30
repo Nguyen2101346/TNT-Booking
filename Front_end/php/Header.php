@@ -9,7 +9,7 @@ if ($change == 1 && session_status() == PHP_SESSION_NONE){
          <div class="head_left">
               <ul>
                    <li><a href="index.php?page=Home<?php if($change == 1) echo '&go=1'?>" class="title">Trang chủ</a></li>
-                   <li><a href="index.php?page=Sale<?php if($change == 1) echo '&go=1'?>" class="title">Đặt phòng</a></li>
+                   <li><a href="index.php?page=Sale&start_date=&end_date=&rooms=1&qua-adults=1&min_adults=1&discount_code=0<?php if($change == 1) echo '&go=1'?>" class="title">Đặt phòng</a></li>
                    <li><a href="index.php?page=Event<?php if($change == 1) echo '&go=1'?>" class="title">Hội họp</a></li>
               </ul>
          </div>

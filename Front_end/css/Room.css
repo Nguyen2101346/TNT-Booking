@@ -1,4 +1,9 @@
 /*============================================ ROOM DETAIL ===================================================== */
+.title_16{
+     font-size: 16px!important;
+     font-weight: bold;
+}
+
 .RoomSlider_container{
      width: 100%;
      padding: 20px 0;

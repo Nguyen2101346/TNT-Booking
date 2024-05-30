@@ -78,7 +78,7 @@
                                         <div class="Checktime">
                                              <div class="title">Thời gian</div>
                                              <div class="timeShow_Start note" id="start_date" data-start="<?php echo $start_date; ?>">Ngày bắt đầu: <?php echo $_GET['start_date']; ?></div>
-                                             <div class="timeShow_End note" id="end_date" data-end="<?php echo $end_date; ?>">Ngày kết thc: <?php echo $_GET['end_date']; ?></div>
+                                             <div class="timeShow_End note" id="end_date" data-end="<?php echo $end_date; ?>">Ngày kết thúc: <?php echo $_GET['end_date']; ?></div>
                                         </div>
                                         <div class="room_container">
                                              <?php

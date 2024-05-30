@@ -16,7 +16,7 @@
                               <div class="sale-icon">
                                    <img src="./img/sale_icon.png" alt="">
                               </div>
-                              <img src="./img/<?= $r['AnhDD']?>" alt="">
+                              <img src="../Admin/img/<?= $r['AnhDD']?>" alt="">
                          </div>
                          <div class="content">
                               <div class="title large"><?= $r['Tenloaiphong']?></div>
@@ -27,16 +27,12 @@
                                                   <i class="fa-solid fa-thumbs-up"></i>
                                              </span>
                                              <span>Đánh giá :</span>
-                                             <?php
-                                                  $sql = 'SELECT * FROM danhgia,loaiphong 
-                                                  WHERE danhgia.IDLoaiphong = loaiphong.IDLoaiphong AND loaiphong.IDLoaiphong = '.$idroomtype;
-                                                  $re2 = mysqli_query($conn, $sql);
-                                                  if(mysqli_num_rows($re2) > 0){
-                                                  $re1 = get_averages($conn, $idroomtype); // Hàm để lấy bình luận từ cơ sở dữ liệu
-                                                  if(mysqli_num_rows($re1) > 0){
-                                                       $r1 = mysqli_fetch_array($re1);
-                                                       $average_rating = number_format(floor($r1['Trungbinh']),1);
-                                             ?>
+                                                  <?php
+                                                       $re1 = get_averages($conn, $idroomtype); // Hàm để lấy bình luận từ cơ sở dữ liệu
+                                                       if(mysqli_num_rows($re1) > 0){
+                                                            $r1 = mysqli_fetch_array($re1);
+                                                            $average_rating = number_format(floor($r1['Trungbinh']),1);
+                                                  ?>
                                              <div class="rating">
                                              <?php
                                                   for ($i = 1; $i <= 5; $i++) {
@@ -51,15 +47,6 @@
                                                   <span class="star">&#9733;</span> -->
                                              </div>
                                              <p><?= $average_rating ?> / 5.0</p>
-                                             <?php
-                                                  }
-                                                  }else{
-                                             ?>
-                                                  <span class="star">&#9733;</span>
-                                                  <span class="star">&#9733;</span>
-                                                  <span class="star">&#9733;</span>
-                                                  <span class="star">&#9733;</span>
-                                                  <span class="star">&#9733;</span>
                                              <?php
                                                   }
                                              ?>
@@ -93,7 +80,7 @@
                                              $discount = mysqli_fetch_array(check_discount($conn, $idroomtype));
                                         ?>
                                         <div class="discountsale"> <?php if(isset($discount['Nhangiam']) && $discount['Nhangiam']>0){
-                                             if(isset($discount['Donvi']) && $discount['Donvi']==0){echo "Giảm:".$discount['Nhangiam']."%";}else{echo "Giảm:".$discount['Nhangiam']."VNĐ";}
+                                             if(isset($discount['Donvi']) && $discount['Donvi']==1){echo "Giảm: ".$discount['Nhangiam']."%";}else{echo "Giảm: ".$discount['Nhangiam']."VNĐ";}
                                              }else{if(isset($discount['Tieude']) && $discount['Tieude']!=""){echo $discount['Tieude'];}}?> </div>
                                         <div class="title">Giá: <?= $changenumber?> VND</div>
                                    </div>

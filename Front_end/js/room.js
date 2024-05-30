@@ -1,192 +1,110 @@
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const rooms = [
-        {
-            imgSrc: "./img/anh1.jpg",
-            title: "Deluxe 2 Giường Đơn",
-            rating: 5,
-            roomNumber: "M101",
-            fromDate: "Thứ tư, 08/04/2024",
-            toDate: "Thứ sáu, 10/04/2024",
-            price: "3.130.000 VNĐ",
-        },
-        {
-            imgSrc: "./img/anh1.jpg",
-            title: "Deluxe 2 Giường Đôi",
-            rating: 5,
-            roomNumber: "M101",
-            fromDate: "Thứ tư, 08/04/2024",
-            toDate: "Thứ sáu, 10/04/2024",
-            price: "3.130.000 VNĐ",
-        },
-        {
-            imgSrc: "./img/anh1.jpg",
-            title: "Deluxe 2 Giường Đơn",
-            rating: 5,
-            roomNumber: "M101",
-            fromDate: "Thứ tư, 08/04/2024",
-            toDate: "Thứ sáu, 10/04/2024",
-            price: "3.130.000 VNĐ",
-        },
-        {
-            imgSrc: "./img/anh1.jpg",
-            title: "Deluxe 2 Giường Đôi",
-            rating: 5,
-            roomNumber: "M101",
-            fromDate: "Thứ tư, 08/04/2024",
-            toDate: "Thứ sáu, 10/04/2024",
-            price: "3.130.000 VNĐ",
-        },
-        {
-            imgSrc: "./img/anh1.jpg",
-            title: "Deluxe 2 Giường Đôi",
-            rating: 5,
-            roomNumber: "M101",
-            fromDate: "Thứ tư, 08/04/2024",
-            toDate: "Thứ sáu, 10/04/2024",
-            price: "3.130.000 VNĐ",
-        },
-        {
-            imgSrc: "./img/anh1.jpg",
-            title: "Deluxe 2 Giường Đôi",
-            rating: 5,
-            roomNumber: "M101",
-            fromDate: "Thứ tư, 08/04/2024",
-            toDate: "Thứ sáu, 10/04/2024",
-            price: "3.130.000 VNĐ",
-        },
-        {
-            imgSrc: "./img/anh1.jpg",
-            title: "Deluxe 2 Giường Đôi",
-            rating: 5,
-            roomNumber: "M101",
-            fromDate: "Thứ tư, 08/04/2024",
-            toDate: "Thứ sáu, 10/04/2024",
-            price: "3.130.000 VNĐ",
-        },
-        // Add more rooms here
-    ];
+document.addEventListener('DOMContentLoaded', function() {
+    let selectedRooms = [];
+    const limitRoom = parseInt(document.getElementById('limit_room').textContent);
+    const numRoomElement = document.getElementById('Numroom');
+    const totalPriceElement = document.getElementById('TotalPrice');
+    const continueButton = document.getElementById('continueButton');
 
-    const roomsPerPage = 2;
-    let currentPage = 1;
-
-    function renderRooms() {
-        const startIndex = (currentPage - 1) * roomsPerPage;
-        const endIndex = startIndex + roomsPerPage;
-        const roomsToRender = rooms.slice(startIndex, endIndex);
-
-        const roomContainer = document.querySelector(".History.room_container");
-        roomContainer.innerHTML = "";
-
-        roomsToRender.forEach(room => {
-            roomContainer.innerHTML += `
-                <div class="History room">
-                    <div class="History room_img img">
-                        <div class="sale-icon">
-                            <img src="./img/sale_icon.png" alt="">
-                        </div>
-                        <img src="${room.imgSrc}" alt="">
-                    </div>
-                    <div class="History room_content">
-                        <div class="title"><a href="#" class="title">${room.title}</a></div>
-                        <div class="appraise">
-                            <div class="title">
-                                <div class="rating">${"&#9733;".repeat(room.rating)}</div>
-                                <p id="result" class="sale"></p>
-                            </div>
-                        </div>
-                        <div class="general_infor">
-                            <div class="title">
-                                <span class="content">Số phòng: <span class="minicontent"> ${room.roomNumber}</span></span>
-                            </div>
-                            <div class="title">
-                                <span class="content">Từ: <span class="minicontent"> ${room.fromDate}</span></span>
-                            </div>
-                            <div class="title">
-                                <span class="content">Đến: <span class="minicontent"> ${room.toDate}</span></span>
-                            </div>
-                        </div>
-                        <div class="absolute">
-                            <div class="prices">
-                                <div class="discountsale"></div>
-                                <div class="title">Giá: ${room.price}</div>
-                            </div>
-                        </div>
-                        <div class="Detail_btn">
-                            <a href="#" class="medium_btn">Chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-
-        renderPagination();
-    }
-
-    function renderPagination() {
-        const pageCount = Math.ceil(rooms.length / roomsPerPage);
-        const paginationContainer = document.querySelector(".pagination");
-        paginationContainer.innerHTML = "";
-
-
-        const prevButton = document.createElement("button");
-        prevButton.innerHTML = "&lt;";
-        prevButton.classList.add("prev-btn");
-        if (currentPage === 1) prevButton.disabled = true;
-
-        prevButton.addEventListener("click", function () {
-            if (currentPage > 1) {
-                currentPage--;
-                renderRooms();
-            }
-        });
-
-        paginationContainer.appendChild(prevButton);
-
-
-        for (let i = 1; i <= pageCount; i++) {
-            const pageButton = document.createElement("button");
-            pageButton.textContent = i;
-            pageButton.classList.add("page-btn");
-            if (i === currentPage) pageButton.classList.add("active");
-
-            pageButton.addEventListener("click", function () {
-                currentPage = i;
-                renderRooms();
-            });
-
-            paginationContainer.appendChild(pageButton);
+    function chooseRoom(event, roomId) {
+        event.preventDefault();
+        if (selectedRooms.length >= limitRoom) {
+            alert('Bạn đã chọn đủ số lượng phòng.');
+            return;
         }
 
-        const nextButton = document.createElement("button");
-        nextButton.innerHTML = "&gt;";
-        nextButton.classList.add("next-btn");
-        if (currentPage === pageCount) nextButton.disabled = true;
+        const roomElement = document.querySelector(`.room[data-id='${roomId}']`);
+        const roomData = {
+            id: roomElement.getAttribute('data-id'),
+            title: roomElement.querySelector('.title a').textContent,
+            price: parseInt(roomElement.getAttribute('data-price')),
+            priceFormatted: roomElement.querySelector('.prices_absolute .content').textContent,
+            idroom: roomElement.getAttribute('data-idroom')
+        };
 
-        nextButton.addEventListener("click", function () {
-            if (currentPage < pageCount) {
-                currentPage++;
-                renderRooms();
-            }
+        selectedRooms.push(roomData);
+        updateMiniBill();
+        updateNumRoom();
+        updateTotalPrice();
+    }
+    function updateNumRoom() {
+        numRoomElement.textContent = selectedRooms.length;
+        console.log(selectedRooms.length);
+    }
+    function updateMiniBill() {
+        const roomContainer = document.querySelector('.room_container');
+        roomContainer.innerHTML = ''; // Xóa nội dung trước đó
+
+        selectedRooms.forEach((room, index) => {
+            const roomMini = document.createElement('div');
+            roomMini.classList.add('roomMini');
+            roomMini.innerHTML = `
+                <div class="RoomNum title">Phòng ${index + 1}</div>
+                <div class="RoomTitle">${room.title}</div>
+                <input type="hidden" name="room${index}" value='${JSON.stringify(room)}'>
+                <div class="RoomPrice">${room.priceFormatted} VND</div>
+                <div class="RoomFix_btn">
+                    <a href="#" class="mini_btn" onclick="removeRoom(${index})">Chỉnh sửa</a>
+                </div>
+            `;
+            roomContainer.appendChild(roomMini);
         });
-
-        paginationContainer.appendChild(nextButton);
     }
 
-    renderRooms();
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    var discounts = document.querySelectorAll('.discountsale');
-    discounts.forEach(function(discount) {
-    var imgWrapper = discount.closest('.room').querySelector('.img');
-    var saleIcon = document.createElement('div');
-    saleIcon.classList.add('sale-icon');
-    if (discount.textContent.trim() !== '') {
-         imgWrapper.insertBefore(saleIcon, imgWrapper.firstChild);
-    } else {
-         imgWrapper.removeChild(imgWrapper.querySelector('.sale-icon'));
+    function updateTotalPrice() {
+        const totalPrice = selectedRooms.reduce((sum, room) => sum + room.price, 0);
+        totalPriceElement.textContent = 'Giá: ' + totalPrice.toLocaleString('vi-VN') + ' VND';
     }
+
+    function removeRoom(index) {
+        selectedRooms.splice(index, 1);
+        updateMiniBill();
+        updateNumRoom();
+        updateTotalPrice();
+    }
+
+    document.querySelectorAll('.Choose_btn a').forEach(button => {
+        button.addEventListener('click', function(event) {
+            const roomElement = this.closest('.room');
+            const roomId = roomElement.getAttribute('data-id');
+            chooseRoom(event, roomId);
+        });
+    });
+
+    window.removeRoom = removeRoom;
+
+    continueButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        if (selectedRooms.length === 0) {
+            alert("Bạn phải chọn ít nhất một phòng để tiếp tục.");
+            return;
+        }
+        if (selectedRooms.length > limitRoom) {
+            alert("Số phòng đã chọn vượt quá giới hạn cho phép.");
+            return;
+        }
+        const form = document.createElement('form');
+        form.method = 'POST';
+        if (start_date != null && end_date != null) {
+            if (change == 1) {
+                form.action = 'index.php?page=Payment&start_date=' + start_date + '&end_date=' + end_date + '&go=1';
+            } else {
+                alert('Bạn phải đăng nhập để sử dụng chức năng này!');
+                return;
+            }
+        } else {
+            alert('Bạn phải chọn ngày đến và ngày đi');
+            return;
+        }
+        selectedRooms.forEach((room, index) => {
+            const roomInput = document.createElement('input');
+            roomInput.type = 'hidden';
+            roomInput.name = `room${index}`;
+            roomInput.value = JSON.stringify(room);
+            form.appendChild(roomInput);
+        });
+        document.body.appendChild(form);
+        form.submit();
     });
 });
