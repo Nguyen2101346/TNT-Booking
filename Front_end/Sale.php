@@ -31,21 +31,57 @@
                                         $adults_num = isset($_GET['qua-adults']) ? $_GET['qua-adults'] : 1;
                                         $discount_code = isset($_GET['discount_code']) ? $_GET['discount_code'] : '';
                                         $min_adults = isset($_GET['min_adults']) ? $_GET['min_adults'] : 1;
-
-                                        $sql = "SELECT * 
-                                                FROM loaiphong, phong
-                                                WHERE loaiphong.IDLoaiphong = phong.IDLoaiphong 
-                                                AND phong.TrangThai = '0' 
-                                                AND loaiphong.Songuoi >= '$min_adults'
-                                                GROUP BY loaiphong.IDLoaiphong";
+                                    if(isset($discount_code)){
+                                            $sql = "SELECT 
+                                                    loaiphong.*, 
+                                                    phong.*, 
+                                                    uudai.Nhangiam,
+                                                    loaiud.IDLoaiUD,
+                                                    uudai.Donvi,
+                                                    uudai.Tieude
+                                                FROM 
+                                                    loaiphong
+                                                JOIN 
+                                                    phong ON loaiphong.IDLoaiphong = phong.IDLoaiphong
+                                                LEFT JOIN 
+                                                    uudai ON loaiphong.IDLoaiphong = uudai.IDLoaiphong
+                                                LEFT JOIN 
+                                                    loaiud ON uudai.IDLoaiUD = loaiud.IDLoaiUD
+                                                WHERE 
+                                                    phong.TrangThai = '0' 
+                                                    AND loaiphong.Songuoi >= '$min_adults'";
+                                            if($discount_code == '1'){
+                                                $sql .=" AND loaiud.IDLoaiUD = '1'";
+                                            }else if($discount_code == '2'){
+                                                $sql .=" AND loaiud.IDLoaiUD = '2'";
+                                            }
+                                            $sql .="GROUP BY 
+                                                    loaiphong.IDLoaiphong";
                                         $re = mysqli_query($conn, $sql);
                                         $row = mysqli_num_rows($re);
                                         if ($row > 0) {
                                             while ($r = mysqli_fetch_array($re)) {
                                                 $gia = $r['Gia'];
                                                 $changenumber = number_format($gia, 0, ',', '.');
+                                                if($r['Nhangiam'] > 0){
+                                                    if($r['Donvi'] == 1){
+                                                        $originPrice = "<p data-originPrice='".$gia."'>".$changenumber." VNĐ</p>";
+                                                        $discount = "<p data-discount='".$r['Nhangiam'].":%'>Giảm: ".$r['Nhangiam']." %</p>";
+                                                        $total = $gia - ($gia * $r['Nhangiam'] / 100);
+                                                        $Totalformat = number_format($total, 0, ',', '.');
+                                                    }else{
+                                                        $originPrice = "<p data-originPrice='".$gia."'>".$changenumber."</p>";
+                                                        $discount = "<p data-discount='".$r['Nhangiam'].":VNĐ'>Giảm: ".$r['Nhangiam']." VNĐ</p>";
+                                                        $total = $gia - $r['Nhangiam'];
+                                                        $Totalformat= number_format($total, 0, ',', '.');
+                                                    }
+                                                }else{
+                                                    $discount = $r['Tieude'];
+                                                    $total = $gia;
+                                                    $Totalformat = $changenumber;
+                                                }
                                                 echo '     
-                                                <div class="room" data-idroom="'.$r['IDPhong'].'" data-id="'.$r['IDLoaiphong'].'" data-title="'.$r['Tenloaiphong'].'" data-price="'.$r['Gia'].'" data-priceFormatted="'.$changenumber.'">
+                                                <div class="room" data-idroom="'.$r['IDPhong'].'" data-id="'.$r['IDLoaiphong'].'" data-title="'.$r['Tenloaiphong'].'" data-price="'.$total.'" data-priceFormatted="'.$changenumber.'">
                                                     <div class="img">
                                                         <div class="sale-icon">
                                                             <img src="./img/sale_icon.png" alt="">
@@ -96,28 +132,15 @@
                                                             <div class="prices_absolute">
                                                                 <div class="discountsale">'?>
                                                                 <?php
-                                                                    $discount = mysqli_fetch_array(check_discount($conn, $r['IDLoaiphong']));
-                                                                    if (isset($discount['Nhangiam']) && $discount['Nhangiam'] > 0) {
-                                                                        if($discount['Donvi'] == 1){
-                                                                            $unit = ' %';
-                                                                        }else{
-                                                                            $unit = ' VNĐ';
-                                                                        }
-                                                                        if (isset($discount['Donvi']) && $discount['Donvi'] == 1) {
-                                                                            echo "<p data-discount='".$discount['Nhangiam'].":".$unit."'>Giảm: ".$discount['Nhangiam']." %</p>";
-                                                                        } else {
-                                                                            echo "<p data-discount='".$discount['Nhangiam'].":".$unit."'>Giảm: ".$discount['Nhangiam']." VNĐ</p>";
-                                                                        }
-                                                                    } else {
-                                                                        if (isset($discount['Tieude']) && $discount['Tieude'] != "") {
-                                                                            echo $discount['Tieude'];
-                                                                        }
-                                                                    }
+                                                                   echo $discount;
+                                                                   if(isset($r['Nhangiam']) && $r['Nhangiam'] > 0){
+                                                                    echo $originPrice;
+                                                                   }
                                                                 ?>     
                                                                 <?php
                                                                 echo'</div>
-                                                                <div class="content">
-                                                                    '.$changenumber.' VND
+                                                                <div class="content" id="totalPrice">
+                                                                    '.$Totalformat.' VND
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -132,6 +155,7 @@
                                         } else {
                                             echo "Không tìm thấy phòng nào";
                                         }
+                                    }
                                     ?>
                                 </div>
                             </div>
@@ -202,30 +226,13 @@ document.addEventListener('DOMContentLoaded', function() {
             roomContainer.appendChild(roomMini);
         });
     }
-
     function updateTotalPrice() {
-    let totalPrice = selectedRooms.reduce((sum, room) => sum + room.price, 0);
+        let totalPrice = selectedRooms.reduce((sum, room) => {
+            return sum + room.price;
+        }, 0);
 
-    selectedRooms.forEach(room => {
-        if (room.discount) {
-            const discountInfo = room.discount.split(':');
-            if (discountInfo.length === 2) {
-                const discountType = discountInfo[0].trim();
-                const discountValue = parseFloat(discountInfo[1].trim());
-
-                if (discountType === 'Giảm') {
-                    if (discountInfo.includes('%')) {
-                        totalPrice -= (totalPrice * (discountValue / 100));
-                    } else {
-                        totalPrice -= discountValue;
-                    }
-                }
-            }
-        }
-    });
-
-    totalPriceElement.textContent = 'Giá: ' + totalPrice.toLocaleString('vi-VN') + ' VND';
-}
+        totalPriceElement.textContent = 'Giá: ' + totalPrice.toLocaleString('vi-VN') + ' VND';
+    }
 
     function removeRoom(index) {
         selectedRooms.splice(index, 1);

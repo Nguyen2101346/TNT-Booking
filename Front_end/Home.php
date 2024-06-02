@@ -1,6 +1,6 @@
 <!-- Phần Banner -->
 <div class="Banner_Container Meeting">
-            <img src="./img/banner2.jpg" alt="" class="">
+            <img src="./img/background.jpg" alt="" class="">
             <div class="banner_Content">
                 <h1>Chào mừng bạn đến với TNT Booking</h1>
                 <p>Hãy cùng khám phá các lựa chọn tuyệt vời và trải nghiệm dịch vụ tốt nhất của chúng tôi</p>

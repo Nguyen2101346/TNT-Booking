@@ -19,7 +19,7 @@ if(isset($_GET['start_date']) || isset($_GET['start_date']) || isset($_GET['end_
                <div class="Srch Day">
                     <div class="icon"><i class="fa-solid fa-calendar-days" ></i></div>
                     <div class="content">
-                    <div class="title">Ngày nhận - trả phòng</div>
+                    <div class="title_18">Ngày nhận - trả phòng</div>
                     <div class="content note" id="GetDate">
                         <span id="start"><?php echo htmlspecialchars($start_date); ?></span> - <span id="end"><?php echo htmlspecialchars($end_date); ?></span>
                     </div>
@@ -34,7 +34,7 @@ if(isset($_GET['start_date']) || isset($_GET['start_date']) || isset($_GET['end_
             <div class="Srch Person">
                 <div class="icon"><i class="fa-solid fa-user"></i></div>
                 <div class="content">
-                    <div class="title">Số phòng - Số người</div>
+                    <div class="title_18">Số phòng - Số người</div>
                     <div class="content note" id="booking">
                         <span><span id="room_num"><?php echo htmlspecialchars($room_num); ?></span> Phòng</span> - <span><span id="adults_num"><?php echo htmlspecialchars($adults_num); ?></span> người</span>
                     </div>
@@ -58,13 +58,13 @@ if(isset($_GET['start_date']) || isset($_GET['start_date']) || isset($_GET['end_
             <div class="Srch Preferential">
                 <div class="icon"><i class="fa-solid fa-ticket-simple"></i></div>
                 <div class="content">
-                    <div class="title">Mã ưu đãi</div>
+                    <div class="title_18">Tìm kiếm ưu đãi</div>
                     <div class="content note" id="Select">Chọn ưu đãi</div>
                     <select id="discountSelect">
                         <option value="">Chọn ưu đãi</option>
-                        <option value="discount1" <?php if ($discount_code == 'discount1') echo 'selected'; ?>>Ưu đãi 1</option>
-                        <option value="discount2" <?php if ($discount_code == 'discount2') echo 'selected'; ?>>Ưu đãi 2</option>
-                        <option value="discount3" <?php if ($discount_code == 'discount3') echo 'selected'; ?>>Ưu đãi 3</option>
+                        <option value="all" <?php if ($discount_code == 'all') echo 'selected'; ?>>Tất cả</option>
+                        <option value="1" <?php if ($discount_code == '1') echo 'selected'; ?>>Giảm giá</option>
+                        <option value="2" <?php if ($discount_code == '2') echo 'selected'; ?>>Dịch vụ</option>
                     </select>
                     </div>
                </div>

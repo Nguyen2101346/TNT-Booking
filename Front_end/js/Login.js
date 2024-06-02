@@ -107,7 +107,7 @@
                               document.getElementById('user-error').textContent = "";
                               document.getElementById('pass-error').textContent = "";
                               document.getElementById('confirm-error  ').textContent = "";
-                              window.location.href = "Login.php"
+                              location.reload();
                               // window.location.href = 'login_remake.php'; 
                          } else if (data.type === 'error') {
                               // Xử lý các loại lỗi khác nhau

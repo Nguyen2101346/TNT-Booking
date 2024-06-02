@@ -100,21 +100,21 @@
     border-radius: 8px;
 }
 
-.room-details {
+.room-details, .member-details {
     flex-grow: 1;
     height: 150px;
     display: grid;
     grid-template-rows: repeat(4,1fr);
     align-items: center;
 }
-.room-details h3,p{
+.room-details h3, .member-details h3, .member-details p,.room-details p {
     width: 100%;
     height: 29px;
     font-weight: bold;
     align-self: center;
     align-content: center;
 }
-.room-details .title{
+.room-details .title, .member-details .title{
     font-size: 24px;
     margin-top: 0;
 }
@@ -185,7 +185,7 @@
     border-radius: 50%;
 }
 
-.room-details {
+.member-details {
     flex-grow: 1;
     height: 150px;
 }

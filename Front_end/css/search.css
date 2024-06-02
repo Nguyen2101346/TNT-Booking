@@ -1,3 +1,7 @@
+.title_18{
+    font-size: 18px;
+    font-weight: bold;
+}
 .SearchBar_container{
     width: 100%;
     height: auto;
@@ -12,16 +16,17 @@
     top: 0;
 }
 .SearchBar{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 300px 300px 300px 1fr;
     width: 1050px;
     height:70px ;
 }
 .SearchBar .Srch {
     position: relative;
+    width: 300px;
+    height: 70px;
     padding: 10px 0;
     border-right: 1px solid rgb(219, 219, 219);
-    flex-basis: 29%;
     display: flex;
     font-size: 17px;
     justify-content: left;
@@ -29,6 +34,10 @@
 }
 .SearchBar .Srch.Preferential,.Srch.Search_Btn{
     border: none;
+    width: 100%;
+}
+.SearchBar .Srch.Preferential,.Srch.Person{
+    padding-left: 20px;
 }
 .SearchBar .content{
     flex-direction: column;
@@ -41,28 +50,27 @@
     grid-template-columns: 1fr auto 1fr;
 }
 .SearchBar .Srch .icon{
-    margin: 10px;
+    margin: 10px 20px 10px 0;
     display: flex;
     justify-items: center;
     align-items: center;
     transform: translateY(-20%);
 }
 .SearchBar .Srch .icon i{
-    color: var(--grey1) ;
+    color: #767171;
     font-size: 23px;
 }
-.Srch .title{
+.Srch .title, .Srch .title_18{
     font-weight: bold;
-    color: #000;
+    color: #767171;
 }
-.SearchBar .Srch:hover .icon i,.SearchBar .Srch:hover .title{
+.SearchBar .Srch:hover .icon i,.SearchBar .Srch:hover .title,.SearchBar .Srch:hover .title_18{
     color: var(--orange1);
 }
 .Srch.Search_Btn{
     display: flex;
-    justify-content: right;
+    justify-self: right;
     /* margin-right: 90px; */
-    flex-basis: 15%;
 }
 .Srch.Search_Btn .large_btn{
     width: 100%;

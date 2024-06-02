@@ -43,13 +43,13 @@
                             <div class="content"><?php if(isset($r['Tendangnhap']) && $r['Tendangnhap']!=""){echo $r['Tendangnhap'];}?></div>
                         </div>
                         <?php
-                            $sql = "SELECT SUM(Tonggia) AS Tichluy FROM datphong Where IDTaikhoan=".$_SESSION['userID']."";
+                            $sql = "SELECT SUM(Tonggia) AS Tichluy FROM datphong Where IDTaikhoan=".$_SESSION['userID']." AND Trangthai=2";
                             $re = mysqli_query($conn, $sql);
                             $r = mysqli_fetch_array($re);
                         ?>
                         <div class="info_coin">
                             <div class="content">Giá trị tích lũy:</div>
-                            <span class="content"><?php if(isset($r['Tichluy']) && $r['Tichluy']!=0){ echo $r['Tichluy']." VNĐ";}?></span>
+                            <span class="content"><?php if(isset($r['Tichluy']) && $r['Tichluy']!=0){ echo $r['Tichluy']." VNĐ";}else{echo "0 VNĐ";}?></span>
                             <a href="index.php?page=History<?php if($change == 1) echo '&go=1'?>" class="content">Lịch sử &gt</a>
                         </div>
                         <div class="info_detail">

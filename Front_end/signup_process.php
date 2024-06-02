@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo json_encode(array("success" => true, "message" => "Success"));
         }
     } else {
-        // Nếu dữ liệu không được gửi đúng cách
+        // Nếu dữ liệu không được gửi đng cách
         echo json_encode(array("type" => "error", "message" => "Dữ liệu không hợp lệ!"));
     }
 } else {

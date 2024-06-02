@@ -44,13 +44,13 @@
                             <div class="content"><?php if(isset($r['Tendangnhap']) && $r['Tendangnhap']!=""){echo $r['Tendangnhap'];}?></div>
                         </div>
                         <?php
-                            $sql = "SELECT SUM(Tonggia) AS Tichluy FROM datphong Where IDTaikhoan=".$_SESSION['userID']."";
+                            $sql = "SELECT SUM(Tonggia) AS Tichluy FROM datphong Where IDTaikhoan=".$_SESSION['userID']." AND Trangthai=2";
                             $re = mysqli_query($conn, $sql);
                             $r = mysqli_fetch_array($re);
                         ?>
                         <div class="info_coin">
                             <div class="content">Giá trị tích lũy:</div>
-                            <span class="content"><?php if(isset($r['Tichluy']) && $r['Tichluy']!=0){ echo $r['Tichluy']." VNĐ";}?></span>
+                            <span class="content"><?php if(isset($r['Tichluy']) && $r['Tichluy']!=0){ echo $r['Tichluy']." VNĐ";}else{echo "0 VNĐ";}?></span>
                             <a href="index.php?page=History<?php if($change == 1) echo '&go=1'?>" class="content">Lịch sử &gt</a>
                         </div>
                         <div class="info_detail">
@@ -199,7 +199,9 @@
                                     $sql = "UPDATE taikhoan SET Ho='$lastName',Ten='$firstName',Gioitinh='$gender',Email='$email',Sodt='$phone',Diachi='$address',Loaigiayto='$idType',Magiayto='$idNum',Quoctich='$nationality',Ngaysinh='$dob',Avatar='$imagepath' WHERE IDTaikhoan=".$_SESSION['userID']."";
                                     $result = mysqli_query($conn,$sql);
                                     if($result){
-                                        echo "Thành công"; 
+                                        echo '<div class="correct-p">
+                                                <div class="content" id="success_correct" >Thành công</div>
+                                            </div>'; 
                                     }
                                     else{
                                         echo "Error: " . mysqli_error($conn);

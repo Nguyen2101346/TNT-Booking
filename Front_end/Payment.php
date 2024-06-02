@@ -130,7 +130,6 @@
                var prices = [];
                $('.RoomPrice').each(function(){
                     prices.push($(this).attr('data-price'));
-                    console.log(prices);
                });
                var start_date = $('#start_date').val();
                var end_date = $('#end_date').val();
@@ -142,6 +141,15 @@
                var gender = $('input[name="gender"]:checked').val();
                var payment_method = $('input[name="payment_method"]:checked').val();
 
+               console.log(idrooms);
+               console.log(prices);
+               console.log(start_date);
+               console.log(end_date);
+               console.log(fullname);
+               console.log(phone);
+               console.log(email);
+               console.log(gender);
+               console.log(payment_method);
                $.ajax({
                     url: './php_function/Payment_Order.php',
                     method: 'POST',

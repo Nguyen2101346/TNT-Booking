@@ -100,11 +100,14 @@ p#result{
 }
 .prices .discountsale{
      display: flex;
-     justify-content: right;
+     flex-direction: column;
+     align-items: end;
      color: rgb(192, 6, 0);
      padding: 0px 10px;
      font-size: 1.3em;
      font-weight: bold;
+     top:-30px;
+     width: 200px;
 }
 /* Room decription */
 .bodyRoom_container{
