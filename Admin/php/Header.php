@@ -31,7 +31,7 @@
                }
                ?>
                <ul>
-                    <li><a href="#" class="title">Thống kê </a></li>
+                    <li><a href="index.php?page=Statistics<?php if($change == 1) echo '&go=1'?>" class="title">Thống kê </a></li>
                     <li><a href="index.php?page=Other<?php if($change == 1) echo '&go=1'?>" class="title"> Khác </a></li>
                     <li class="admin-id">
                          <a href = "#" class="title"><?= $r['Tendangnhap'] ?></a>

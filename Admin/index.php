@@ -27,6 +27,8 @@
      <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
      <!-- Sử dụng swiper đơn giản  -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
      <!-- Sử dụng script -->
     
 </head>
@@ -54,6 +56,17 @@
         <script src="./js/slider_swiper.js"></script>
         <script src="./js/Admin.js"></script>
         <script src="./js/Admin_Management.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js"></script>
+        <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+        <script src="https://npmcdn.com/flatpickr/dist/l10n/vn.js"></script>
+        <script>
+            flatpickr("#myID", {
+            minDate: "today",
+            dateFormat: "Y-m-d",
+            locale: "vn"
+        });
+        </script>
         <!-- <script src="./js/Admin_Utilities.js"></script> -->
 </body>
 </html>

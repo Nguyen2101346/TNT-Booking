@@ -71,16 +71,11 @@
                                                             <?php
                                                                  for ($i = 1; $i <= 5; $i++) {
                                                                       $selected = $i <= $average_rating ? 'selected' : '';
-                                                                      echo '<span class="star-display ' . $selected . '">&#9733;</span>';
+                                                                      echo '<span class="star_display ' . $selected . '">&#9733;</span>';
                                                                  }
                                                             ?>
-                                                                 <!-- <span class="star">&#9733;</span>
-                                                                 <span class="star">&#9733;</span>
-                                                                 <span class="star">&#9733;</span>
-                                                                 <span class="star">&#9733;</span>
-                                                                 <span class="star">&#9733;</span> -->
                                                             </div>
-                                                            <p><?= $average_rating ?> / 5.0</p>
+                                                            <!-- <p class="sale-display"><?= $average_rating ?> / 5.0</p> -->
                                                             <?php
                                                                  }
                                                             ?>
@@ -103,10 +98,15 @@
                                                                 <?php
                                                                     $discount = mysqli_fetch_array(check_discount($conn, $r['IDLoaiphong']));
                                                                     if (isset($discount['Nhangiam']) && $discount['Nhangiam'] > 0) {
+                                                                        if($discount['Donvi'] == 1){
+                                                                            $unit = ' %';
+                                                                        }else{
+                                                                            $unit = ' VNĐ';
+                                                                        }
                                                                         if (isset($discount['Donvi']) && $discount['Donvi'] == 1) {
-                                                                            echo "Giảm: ".$discount['Nhangiam']." %";
+                                                                            echo "<p data-discount='".$discount['Nhangiam'].":".$unit."'>Giảm: ".$discount['Nhangiam']." %</p>";
                                                                         } else {
-                                                                            echo "Giảm: ".$discount['Nhangiam']." VNĐ";
+                                                                            echo "<p data-discount='".$discount['Nhangiam'].":".$unit."'>Giảm: ".$discount['Nhangiam']." VNĐ</p>";
                                                                         }
                                                                     } else {
                                                                         if (isset($discount['Tieude']) && $discount['Tieude'] != "") {
@@ -169,7 +169,8 @@ document.addEventListener('DOMContentLoaded', function() {
             title: roomElement.querySelector('.title a').textContent,
             price: parseInt(roomElement.getAttribute('data-price')),
             priceFormatted: roomElement.querySelector('.prices_absolute .content').textContent,
-            idroom: roomElement.getAttribute('data-idroom')
+            idroom: roomElement.getAttribute('data-idroom'),
+            discount: roomElement.getAttribute('data-discount'),
         };
 
         selectedRooms.push(roomData);
@@ -191,8 +192,9 @@ document.addEventListener('DOMContentLoaded', function() {
             roomMini.innerHTML = `
                 <div class="RoomNum title">Phòng ${index + 1}</div>
                 <div class="RoomTitle">${room.title}</div>
-                <input type="hidden" name="room${index}" value='${JSON.stringify(room)}'>
-                <div class="RoomPrice">${room.priceFormatted} VND</div>
+                <input type="hidden" name="room${index}" value='${room.idroom}'>
+                <input type="hidden" name="discount${index}" value='${room.discount}'>
+                <div class="RoomPrice">${room.priceFormatted}</div>
                 <div class="RoomFix_btn">
                     <a href="#" class="mini_btn" onclick="removeRoom(${index})">Chỉnh sửa</a>
                 </div>
@@ -202,9 +204,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateTotalPrice() {
-        const totalPrice = selectedRooms.reduce((sum, room) => sum + room.price, 0);
-        totalPriceElement.textContent = 'Giá: ' + totalPrice.toLocaleString('vi-VN') + ' VND';
-    }
+    let totalPrice = selectedRooms.reduce((sum, room) => sum + room.price, 0);
+
+    selectedRooms.forEach(room => {
+        if (room.discount) {
+            const discountInfo = room.discount.split(':');
+            if (discountInfo.length === 2) {
+                const discountType = discountInfo[0].trim();
+                const discountValue = parseFloat(discountInfo[1].trim());
+
+                if (discountType === 'Giảm') {
+                    if (discountInfo.includes('%')) {
+                        totalPrice -= (totalPrice * (discountValue / 100));
+                    } else {
+                        totalPrice -= discountValue;
+                    }
+                }
+            }
+        }
+    });
+
+    totalPriceElement.textContent = 'Giá: ' + totalPrice.toLocaleString('vi-VN') + ' VND';
+}
 
     function removeRoom(index) {
         selectedRooms.splice(index, 1);
@@ -269,8 +290,17 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(form);
         form.submit();
     });
+    document.querySelectorAll('.rating').forEach(ratingDiv => {
+        ratingDiv.querySelectorAll('.star_display').forEach(star => {
+            if(star.classList.contains('selected')){
+                star.style.color = 'gold';
+            }else{
+                star.style.color = 'gray';
+            }
+        });
+    });
 });
+    
 
-
-     </script>
+</script>
 </body>

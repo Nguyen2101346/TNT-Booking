@@ -60,10 +60,10 @@
                   <?php
                   for ($i = 1; $i <= 5; $i++) {
                     $selected = $i <= $re['Sosao'] ? 'selected' : '';
-                    echo '<span class="star-display ' . $selected . '">&#9733;</span>';
+                    echo '<span class="star_display ' . $selected . '" data-value = "'.$i.'">&#9733;</span>';
                   }
                   ?>
-                  <span><?= $re['Sosao'] ?>.0 / 5.0</span>
+                  <span class="sale-display"><?= $re['Sosao'] ?>.0 / 5.0</span>
               </div>
               <div class="user_name"><span><?= $re['Tendangnhap'] ?></span> - <?= $re['Ngaytao'] ?></div>
               <div class="rating_content"><?= $re['Binhluan'] ?></div>
@@ -80,20 +80,7 @@
       ?>
     </div>
     </div>
-<!-- <div class="comment_items">
-          <div class="avatar"><img src="./img/an1.jpg" alt=""></div>
-          <div class="cmt_content">
-            
-            <div class="rating">
-              <span class="star">&#9733;</span>
-              <span class="star">&#9733;</span>
-              <span class="star">&#9733;</span>
-              <span class="star">&#9733;</span>
-              <span class="star">&#9733;</span>
-            </div>
-            <div class="user_name"><span>Nguyen Heo</span> - 10/04/2024</div>
-            <div class="rating_content">Phòng này tạo cảm giác lạnh lẻo và sợ ma.
-              Trang trí đẹp mắt và ánh sáng êm dịu. Tiện nghi đầy đủ không gian rộng rãi.
-              Phòng này tạo cảm giác lạnh lẻo và sợ ma. Trang trí đẹp mắt và ánh sáng êm dịu. </div>
-          </div>
-        </div> -->
+  <script>
+   
+
+  </script>

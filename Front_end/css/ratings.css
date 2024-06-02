@@ -66,7 +66,7 @@
 }
 .two_col textarea,.user_name textarea{
     font-size: 18px;
-    color: var(--grey3);
+    color: #333;
 }
 .send_btn{
     position: relative;
@@ -101,3 +101,8 @@
     padding: 10px;
     font-size: 18px;
 }
+.star_display{
+    font-size: 20px;
+    color: #696969b2;
+}
+

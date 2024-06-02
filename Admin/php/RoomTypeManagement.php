@@ -98,7 +98,7 @@ include "../php_func/conn.php";
         </div>
         <div class="ImgRoom_detail">
             <div class="title">
-                <label>Ảnh xem trước</label>
+                <h4>Ảnh xem trước</h4>
                 <div class="getImg_detail">
                     <label for="ImgDetail" class="title">Chọn ảnh</label>
                     <input type="file" name="ImgDetail[]" id="ImgDetail" multiple="multiple">

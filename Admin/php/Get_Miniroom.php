@@ -30,7 +30,15 @@ if (isset($_GET['idroom'])) {
 
         while ($row = $result->fetch_assoc()) {
             $row['Ngaytao'] = date('d/m/Y', strtotime($row['Ngaytao']));
-            $row['TrangThai'] = $row['TrangThai'] == '0' ? 'Còn trống' : 'Đang được sử dụng';
+            $disabledClass = '';
+            if($row['TrangThai'] == 0){
+                $row['TrangThai'] = 'Còn trống';
+            }else if($row['TrangThai'] == 1){
+                $row['TrangThai'] = 'Đang được sử dụng';
+            }else{
+                $row['TrangThai'] = 'Đã bị hủy';
+                $disabledClass = 'disabled';
+            }
             
             $rooms[] = [
                 'IDPhong' => $row['IDPhong'],
@@ -38,7 +46,9 @@ if (isset($_GET['idroom'])) {
                 'Tenphong' => $row['Tenphong'],
                 'Ngaytao' => $row['Ngaytao'],
                 'Sotang' => $row['Sotang'],
-                'TrangThai' => $row['TrangThai']
+                'TrangThai' => $row['TrangThai'],
+                'display' => $display,
+                'disabledClass' => $disabledClass
             ];
         }
 

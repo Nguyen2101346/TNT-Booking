@@ -265,7 +265,7 @@ include "../php_func/conn.php";
                                 console.log(MiniRoom);
                                 // Tạo HTML cho mỗi tiện ích
                                 var MiniRoomItem = 
-                                   '<div class="MiniRoom" id="MiniRoom">'
+                                   '<div class="MiniRoom '+MiniRoom.disabledClass+'" id="MiniRoom">'
                                         +'<div class="Img_MiniRoom">'
                                              +'<img src="./img/'+MiniRoom.AnhDD+'">'
                                         +'</div>'

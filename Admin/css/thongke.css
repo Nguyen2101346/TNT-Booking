@@ -1,0 +1,120 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.filter-container {
+    width: 1010px;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    background-color: #EDEDED;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.filter-select {
+    width: 150px;
+    height: 50px;
+    margin-right: 10px;
+    margin-left: 20px;
+    padding: 15px;
+    background-color: #fff; /* Set background color to white */
+    border: none;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: white url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23007bff" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658c-.566-.678-.106-1.658.753-1.658h9.594c.86 0 1.32.98.754 1.658l-4.796 5.482a1 1 0 0 1-1.512 0z"/></svg>') no-repeat right 10px center;
+    background-size: 16px 16px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.filter-button {
+    margin-left: 20px;
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    
+}
+
+.total-rooms {
+    margin-left: auto;
+    font-weight: bold;
+}
+.revenue,.quantity{
+    width: 345px;
+    height: 24px;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 0 20px 20px;
+}
+.room-listing {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px 20px;
+    width: 1010px;
+    margin: 40px auto;
+    background-color: #EDEDED;
+}
+
+.room {
+    width: 930px;
+    height: 150px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.room-image {
+    width: 225px;
+    height: 150px;
+    object-fit: cover;
+    /* border-radius: 8px; */
+    margin-right: 20px;
+}
+
+.room-details {
+    flex-grow: 1;
+    height: 150px;
+}
+.room-details h3,p{
+    width: 249px;
+    height: 29px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+.room-details .title{
+    font-size: 24px;
+    margin-top: 0;
+}
+.room-rank {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.room-rank img{
+    width: 70px;
+    height: 75px;
+    margin-right: 30px;
+    margin-top: -80px;
+}

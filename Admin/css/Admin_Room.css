@@ -20,8 +20,8 @@ label.title{
      position: relative;
 }
 .CreRoom_container{
-     padding: 20px;
-     background: #e0e0e0;
+     padding: 40px 25px;
+     background: #EDEDED;
      display: grid;
      grid-template-columns: 0.8fr 1.2fr;
      gap: 20px;
@@ -141,7 +141,7 @@ input[type = "checkbox"]:checked + label::before{
 }
 .ImgRoom_detail{
      padding: 0 20px;
-     background: #e0e0e0;
+     background: #EDEDED;
 }
 .ImgRoom_detail .title, .ImgRoom_detail label.title{
      display: flex;

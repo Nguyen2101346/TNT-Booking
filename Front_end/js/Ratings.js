@@ -1,11 +1,8 @@
-function clearText() {
-    var textarea = document.getElementById("name");
-    textarea.value = "";
-}
-function clearText1() {
-    var textarea = document.getElementById("comment");
-    textarea.value = "";
-}
+
+// function clearText() {
+//     var textarea = document.getElementById("comment");
+//     textarea.value = "";
+// }
 document.addEventListener("DOMContentLoaded", function() {
     // Lắng nghe sự kiện khi người dùng click vào một ngôi sao để chọn đánh giá
     document.querySelectorAll('.star').forEach(star => {
@@ -30,12 +27,26 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Tô màu các ngôi sao hiển thị từ cơ sở dữ liệu khi trang được tải
+    // document.querySelectorAll('.rating').forEach(ratingDiv => {
+    //     let ratingSpan = ratingDiv.querySelector('.sale-display');
+    //     if (ratingSpan) {
+    //         let rating = parseFloat(ratingSpan.textContent.split(' /')[0]);
+    //         ratingDiv.querySelectorAll('.star-display').forEach(star => {
+    //             if (parseInt(star.getAttribute('data-value')) <= rating) {
+    //                 star.style.color = 'gold';
+    //             } else {
+    //                 star.style.color = 'gray';
+    //             }
+    //         });
+    //     }
+    // });
+
     document.querySelectorAll('.rating').forEach(ratingDiv => {
         let ratingSpan = ratingDiv.querySelector('.sale-display');
         if (ratingSpan) {
             let rating = parseFloat(ratingSpan.textContent.split(' /')[0]);
-            ratingDiv.querySelectorAll('.star-display').forEach(star => {
-                if (parseInt(star.getAttribute('data-value')) <= rating) {
+            ratingDiv.querySelectorAll('.star_display').forEach(star => {
+                if (star.classList.contains('selected')) {
                     star.style.color = 'gold';
                 } else {
                     star.style.color = 'gray';
@@ -44,3 +55,4 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+

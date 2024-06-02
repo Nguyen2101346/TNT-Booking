@@ -65,6 +65,7 @@
     <script src="./js/ultils.js"></script>
     <script src="./js/Searchbar.js"></script>
     <script src="./js/searchbar_get.js"></script>
+    <script src="./js/Ratings.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js"></script>
     <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
@@ -75,6 +76,7 @@
         flatpickr("#myID", {
             minDate: "today",
             dateFormat: "Y-m-d",
+            locale: "vn"
         });
         // flatpickr(myElement, {
         //     "locale": "vn"  // locale for this instance only

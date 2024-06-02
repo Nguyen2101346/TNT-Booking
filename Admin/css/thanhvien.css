@@ -1,0 +1,32 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.filter-container {
+    width: 1010px;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    background-color: #EDEDED;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.filter-select {
+    width: 150px;
+    height: 50px;
+    margin-right: 10px;
+    margin-left: 15px;
+    padding: 15px;
+    background-color: #fff; /* Set background color to white */
+    border: none;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: white url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23007bff" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658c-.566-.678-.106-1.658.753-1.658h9.594c.86 0 1.32.98.754 1.658l-4.796 5.482a1 1 0 0 1-1.512 0z"/></svg>') no-repeat right 10px center;
+    background-size: 16px 16px;
+    cursor: pointer;
+    font-size: 16px;
+}

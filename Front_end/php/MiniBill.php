@@ -28,7 +28,6 @@
                </div> -->
           </div>
           <div class="TotalBill">
-               <div class="title">Ưu đãi: </div>
                <div class="title">Tổng cộng: </div>
                <div id="TotalPrice"></div>
           </div>

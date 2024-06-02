@@ -22,7 +22,7 @@
                               <div class="title large"><?= $r['Tenloaiphong']?></div>
                               <div class="general_infor">
                                    <div class="appraise">
-                                        <div class="title">
+                                        <div class="title rating">
                                              <span>
                                                   <i class="fa-solid fa-thumbs-up"></i>
                                              </span>
@@ -37,7 +37,7 @@
                                              <?php
                                                   for ($i = 1; $i <= 5; $i++) {
                                                        $selected = $i <= $average_rating ? 'selected' : '';
-                                                       echo '<span class="star-display ' . $selected . '">&#9733;</span>';
+                                                       echo '<span class="star_display ' . $selected . '">&#9733;</span>';
                                                   }
                                              ?>
                                                   <!-- <span class="star">&#9733;</span>
@@ -46,7 +46,7 @@
                                                   <span class="star">&#9733;</span>
                                                   <span class="star">&#9733;</span> -->
                                              </div>
-                                             <p><?= $average_rating ?> / 5.0</p>
+                                             <p class="sale-display"><?= $average_rating ?> / 5.0</p>
                                              <?php
                                                   }
                                              ?>
