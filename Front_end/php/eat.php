@@ -17,13 +17,22 @@
         chevron_left
       </button>
       <div class="img_list">
-        <div class="img_item"><img src="./img/an1.jpg" alt="img-1"> 
+        <?php
+          include "../conn.php";
+          $sql = "SELECT * FROM sukien";
+          $re = mysqli_query($conn,$sql);
+          while($r = mysqli_fetch_array($re)){
+        ?>
+        <div class="img_item"><img src="./img/<?= $r['AnhDD']?>" alt="img-1"> 
           <a href="" > 
-            <h1 class="title">The Lagoon Beach Club</h1>
+            <h1 class="title"><?= $r['Tensukien']?></h1>
           </a>
-          <p>Nằm kế cận một trong những vịnh biển đẹp nhất thế giới, The Lagoon Beach Club mang đến ...</p>
+          <p><?= $r['Mota']?></p>
         </div>
-        <div class="img_item"><img src="./img/an2.jpg" alt="img-1"> 
+        <?php
+          }
+        ?>
+        <!-- <div class="img_item"><img src="./img/an2.jpg" alt="img-1"> 
           <a href="">
             <h1 class="title">Nhà hàng Oceania</h1>
           </a>
@@ -33,7 +42,7 @@
             <h1 class="title">dulex</h1>
           </a>
           <p>abcbsd</p>
-        </div>
+        </div> -->
         
       </div>
       <button id="next-eat" class="eat-button material-symbols-rounded">
