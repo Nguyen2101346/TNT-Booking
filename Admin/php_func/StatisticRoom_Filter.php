@@ -3,7 +3,8 @@ include "../php_func/conn.php";
 
 // Nhận các giá trị lọc từ yêu cầu Ajax
 $filter1 = $_POST['filter1'];
-$filter2 = $_POST['filter2']; // This will be the date string
+$start_date = $_POST['start_date'];
+$end_date = $_POST['end_date'];// This will be the date string
 $filter3 = $_POST['filter3'];
 
 // Bắt đầu xây dựng câu truy vấn dựa trên các bộ lọc
@@ -13,25 +14,22 @@ $sql = "WITH FilteredDatphong AS (
     JOIN phong ON phong.IDPhong = datphong.IDPhong
     WHERE datphong.Trangthai = 2
 ";
-
-// Áp dụng bộ lọc ngày nếu có
-if ($filter2 !== '') {
-    $sql .= " AND DATE(datphong.Ngaydat) = '$filter2'";
-}
-
 $sql .= "),
 RevenueAndCount AS (
     SELECT 
         IDLoaiphong,
         SUM(Tonggia) AS Doanhthu,
         COUNT(IDPhong) AS Soluongdat
-    FROM FilteredDatphong
-    GROUP BY IDLoaiphong
-)
+    FROM FilteredDatphong";
+    if($start_date != 0 && $end_date != 0){
+        $sql .= " WHERE Ngaydat BETWEEN '$start_date' AND '$end_date'";
+    }
+$sql.="    GROUP BY IDLoaiphong
+    )
 SELECT 
 loaiphong.Tenloaiphong,
 loaiphong.AnhDD,
-danhgia.Sosao,
+ROUND(AVG(danhgia.Sosao)) AS Sosao,
 FilteredDatphong.Ngaydat,
 COALESCE(RevenueAndCount.Doanhthu, 0) AS Doanhthu,
 COALESCE(RevenueAndCount.Soluongdat, 0) AS Soluongdat

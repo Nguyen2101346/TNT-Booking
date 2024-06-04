@@ -55,11 +55,15 @@
                                              </span>
                                              <span>Đánh giá :</span>
                                                   <?php
-                                                       $re1 = get_averages($conn, $idroomtype); // Hàm để lấy bình luận từ cơ sở dữ liệu
-                                                       if(mysqli_num_rows($re1) > 0){
-                                                            $r1 = mysqli_fetch_array($re1);
-                                                            $average_rating = number_format(floor($r1['Trungbinh']),1);
-                                                          
+                                                       // $re1 = get_averages($conn, $idroomtype); // Hàm để lấy bình luận từ cơ sở dữ liệu
+                                                       // if(mysqli_num_rows($re1) > 0){
+                                                       //      $r1 = mysqli_fetch_array($re1);
+                                                       //      $average_rating = number_format(floor($r1['Trungbinh']),1);
+                                                       $sql = "SELECT ROUND(AVG(Sosao)) AS Sosao FORM danhgia WHERE IDLoaiphong = $idroomtype";
+                                                       $result = mysqli_query($conn,$sql);
+                                                       if(mysqli_num_rows($result) > 0){
+                                                            $re = mysqli_fetch_array($result);
+                                                            $average_rating = number_format(floor($re['Sosao'],1))
                                                   ?>
                                              <div class="rating">
                                              <?php

@@ -128,6 +128,7 @@ span{
 }
 .input-group{
     display: flex;
+    width: 100%;
     flex-direction: column;
     align-items: start;
     margin-top: 30px;
@@ -265,7 +266,7 @@ span{
 }
 
 /* Modal styles */
-.modal {
+/* .modal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -275,7 +276,7 @@ span{
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
-}
+} */
 
 .AddSale.modal .modal-content {
     background-color: #fefefe;

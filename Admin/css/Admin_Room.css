@@ -188,7 +188,7 @@ input[type = "checkbox"]:checked + label::before{
 .MiniForm{
      margin-top: 100px;
      width: 600px;
-     height: 500px;
+     height: 420px;
      background: var(--white);
      display: flex;
      flex-direction: column;

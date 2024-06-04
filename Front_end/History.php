@@ -149,7 +149,7 @@
                                         ?>
                                         <h3><a href="index.php?page=Room&id=<?= $roomtypeInfo['IDLoaiphong']?><?php if($change == 1) echo '&go=1'?>"><?= $roomtypeInfo['Tenloaiphong']?></a></h3>
                                         <?php
-                                            if(isset($r['Trangthai']) && $r['Trangthai']=="1"){echo "<span class='order-status pending'>Đang chờ xử l</span>";}
+                                            if(isset($r['Trangthai']) && $r['Trangthai']=="1"){echo "<span class='order-status pending'>Đang chờ xử lý</span>";}
                                             elseif($r['Trangthai']=="2"){echo "<span class='order-status success'>Thành công</span>";}
                                             elseif($r['Trangthai']== "0"){echo "<span class='order-status failed'>Không thành công</span>";}
                                         ?>

@@ -45,6 +45,18 @@ include "../php_func/Utilities_func.php";
                     <p class="title_16"><b>Thời gian:</b> <span class="lighter"><?= $ngaybatdau ?></span> - <span class="lighter"><?= $ngayketthuc ?></span></p>
                 </div>
                 <div class="absolute_text status<?=$r['Trangthai']?>">
+                    <?php  
+                        if(isset($ngayketthuc)){
+                            $sql = "UPDATE uudai SET Trangthai = 0 WHERE ngayketthuc <= CURDATE()";
+    
+                            // Thực thi câu lệnh SQL
+                            if ($conn->query($sql) === TRUE) {
+                                $alert = "Cập nhật trạng thái thành công";
+                            } else {
+                                $alert = "Lỗi khi cập nhật trạng thái: " . $conn->error;
+                            }
+                        }
+                    ?>
                     <?= $status ?>
                 </div>
                 <div class="offer-actions">

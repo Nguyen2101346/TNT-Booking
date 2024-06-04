@@ -1,6 +1,13 @@
 <body>
     <div class="Sale_Container">
         <?php
+        if($_GET['start_date'] == '' || $_GET['end_date'] == ''){
+            $start_date = '0/0/0000';
+            $end_date = '0/0/0000';
+            $room_num = 1;
+            $adults_num = 0;
+            $discount_code ='';
+        }
             include "./php/Searchbar.php";
         ?>
         <div class="body">
@@ -25,8 +32,8 @@
                                 </div>
                                 <div class="Room_container">
                                     <?php
-                                        $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '';
-                                        $end_date = isset($_GET['end_date']) ? $_GET['end_date'] : '';
+                                        $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '0/0/0000';
+                                        $end_date = isset($_GET['end_date']) ? $_GET['end_date'] : '0/0/0000';
                                         $room_num = isset($_GET['room_num']) ? $_GET['room_num'] : 1;
                                         $adults_num = isset($_GET['qua-adults']) ? $_GET['qua-adults'] : 1;
                                         $discount_code = isset($_GET['discount_code']) ? $_GET['discount_code'] : '';
@@ -52,9 +59,9 @@
                                                     AND loaiphong.Trangthai = '1'
                                                     AND loaiphong.Songuoi >= '$min_adults'";
                                             if($discount_code == '1'){
-                                                $sql .=" AND loaiud.IDLoaiUD = '1' AND uudai.Trangthai = '1'";
+                                                $sql .=" AND loaiud.IDLoaiUD = '1' AND uudai.Trangthai = '1' AND CURRENT_DATE() < uudai.Ngayketthuc";
                                             }else if($discount_code == '2'){
-                                                $sql .=" AND loaiud.IDLoaiUD = '2' AND uudai.Trangthai = '1'";
+                                                $sql .=" AND loaiud.IDLoaiUD = '2' AND uudai.Trangthai = '1' AND CURRENT_DATE() < uudai.Ngayketthuc ";
                                             }
                                             $sql .="GROUP BY 
                                                     loaiphong.IDLoaiphong";

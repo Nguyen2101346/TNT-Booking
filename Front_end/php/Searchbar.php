@@ -1,12 +1,12 @@
 <?php
 // sale.php
 if(isset($_GET['start_date']) || isset($_GET['start_date']) || isset($_GET['end_date']) || isset($_GET['room_num']) || isset($_GET['qua_adults']) || isset($_GET['discount_code'])){
-    $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '';
-    $end_date = isset($_GET['end_date']) ? $_GET['end_date'] : '';
-    $room_num = isset($_GET['room_num']) ? $_GET['room_num'] : '';
-    $adults_num = isset($_GET['qua_adults']) ? $_GET['qua_adults'] : '';
-    $discount_code = isset($_GET['discount_code']) ? $_GET['discount_code'] : '';
-}else{
+    $start_date = isset($_GET['start_date']);
+    $end_date = isset($_GET['end_date']);
+    $room_num = isset($_GET['room_num']);
+    $adults_num = isset($_GET['qua_adults']);
+    $discount_code = isset($_GET['discount_code']);
+}else {
     $start_date = '0/0/0000';
     $end_date = '0/0/0000';
     $room_num = 1;

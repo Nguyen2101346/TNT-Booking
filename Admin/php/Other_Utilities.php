@@ -26,7 +26,7 @@ include "../php_func/Utilities_func.php";
     <div class="modal" id="modal">
         <div class="modal-content">
             <h2 class="title_20">Thêm tiện ích</h2>
-            <form id="addForm" method="post" action="Utilities.php">
+            <form id="addForm" method="post" action="Other_Utilities.php">
                 <div class="input-group">
                     <label for="itemName" class="title_16">Tên tiện ích</label>
                     <input type="text" id="itemName" name="itemName" class="input-text">
@@ -66,7 +66,7 @@ include "../php_func/Utilities_func.php";
                 function DeleteUtilites(itemId) {
                     $.ajax({
                     type: 'POST',
-                    url: './php/Utilities.php',
+                    url: './php/Other_Utilities.php',
                     data: {
                         deleteItemId: itemId,
                         action: 'delete' // Thêm action vào dữ liệu gửi đi
@@ -86,7 +86,7 @@ include "../php_func/Utilities_func.php";
                 var itemName = $('#itemName').val();
                 $.ajax({
                     type: 'POST',
-                    url: './php/Utilities.php',
+                    url: './php/Other_Utilities.php',
                     data: {
                         itemName: itemName,
                         action: 'add' // Thêm action vào dữ liệu gửi đi

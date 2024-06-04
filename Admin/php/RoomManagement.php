@@ -99,10 +99,10 @@ include "../php_func/conn.php";
                     <label for="Sotang">Số tầng</label>
                     <input type="number" name="Sotang" id="Sotang" required>
                </div>
-               <div class="miniroom Day">
+               <!-- <div class="miniroom Day">
                     <label for="Ngaytao">Ngày tạo</label>
                     <input type="date" name="Ngaytao" id="Ngaytao" value="<?= date('Y-m-d') ?>" required>
-               </div>
+               </div> -->
                <input type="hidden" name="IDLoaiphong" id="IDLoaiphong" value="">
                <div class="Type Alert">
                     <div class="er-text"></div>
@@ -131,10 +131,10 @@ include "../php_func/conn.php";
                     <label for="Sotang">Số tầng</label>
                     <input type="number" name="Sotang_Upd" id="Sotang_Upd" required value="">
                </div>
-               <div class="miniroom Day">
+               <!-- <div class="miniroom Day">
                     <label for="Ngaytao">Ngày tạo</label>
                     <input type="date" name="Ngaytao_Upd" id="Ngaytao_Upd" value="<?= date('Y-m-d') ?>" required>
-               </div>
+               </div> -->
                <input type="hidden" name="IDLoaiphong_Upd" id="IDLoaiphong_Upd" value="">
                <input type="hidden" name="IDPhong_Upd" id="IDPhong_Upd" value="">
                <div class="Type Alert">

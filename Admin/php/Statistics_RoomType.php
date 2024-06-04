@@ -10,7 +10,8 @@
             <option data-search-value1="Soluongdat">Số lượng đặt</option>
             <!-- Other options can be added here -->
         </select>
-        <input class="filter-select" id="myID" value="Tìm theo tháng">
+        <input class="filter-select" id="StartDate" value="Khoảng đầu">
+        <input class="filter-select" id="EndDate" value="Khoảng cuối">
             <!-- <option data-search-value2="all">Tất cả</option>
             <option data-search-value2="day">Hằng ngày</option>
             <option data-search-value2="month">Hằng tháng</option>
@@ -18,26 +19,11 @@
             <!-- Other options can be added here -->
         </input>
         <select class="filter-select">
-            <option data-search-value3="all">Tất cả</option>
-            <option data-search-value3="asc">Tăng dần</option>
             <option data-search-value3="desc">Giảm dần</option>
+            <option data-search-value3="asc">Tăng dần</option>
             <!-- Other options can be added here -->
         </select>
         <button type="submit" class="filter-button">Lọc</button>
-        <span class="total-rooms">
-            <?php
-                $sql = "SELECT COUNT(*) FROM phong";
-                $result = mysqli_query($conn, $sql);
-                $row = mysqli_fetch_row($result);
-                echo "<p class='total-room'>Tổng số phòng: $row[0]</p>";
-            ?>
-            <?php
-                $sql = "SELECT COUNT(*) FROM loaiphong";
-                $result = mysqli_query($conn, $sql);
-                $row = mysqli_fetch_row($result);
-                echo "<p class='total-room'>Tổng số loại phòng: $row[0]</p>";
-            ?>
-        </span>
     </form>
 
     <div class="room-listing">
@@ -59,6 +45,20 @@
                 echo "<p class='total-quantity'>Số lượng đặt: $row[0] lượt</p>";
             ?>
         </div>
+        <span class="total-rooms absolute">
+            <?php
+                $sql = "SELECT COUNT(*) FROM phong";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_row($result);
+                echo "<p class='total-room'>Tổng số phòng: $row[0]</p>";
+            ?>
+            <?php
+                $sql = "SELECT COUNT(*) FROM loaiphong";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_row($result);
+                echo "<p class='total-room'>Tổng số loại phòng: $row[0]</p>";
+            ?>
+        </span>
         <div class="rooms">
             <?php
                 $sql = "WITH FilteredDatphong AS (
@@ -78,7 +78,7 @@
                     SELECT 
                     loaiphong.Tenloaiphong,
                     loaiphong.AnhDD,
-                    danhgia.Sosao,
+                    ROUND(AVG(danhgia.Sosao)) AS Sosao,
                     COALESCE(RevenueAndCount.Doanhthu, 0) AS Doanhthu,
                     COALESCE(RevenueAndCount.Soluongdat, 0) AS Soluongdat
                 FROM loaiphong
@@ -121,8 +121,25 @@
 </div>
 
 <script>
-flatpickr("#myID", {
-            // minDate: "today",
+        flatpickr("#StartDate", {
+            dateFormat: "Y-m-d",
+            locale: "vn",
+            onChange: function(selectedDates, dateStr, instance) {
+                // Lấy ngày đã chọn trên thành phần thứ nhất
+                var selectedDate = selectedDates[0];
+
+                // Cập nhật giá trị minDate của thành phần thứ hai
+                flatpickr("#EndDate", {
+                    minDate: selectedDate,
+                    dateFormat: "Y-m-d",
+                    locale: "vn"
+                    
+                });
+            }
+        });
+
+        // Khởi tạo thành phần thứ hai
+        flatpickr("#EndDate", {
             dateFormat: "Y-m-d",
             locale: "vn"
         });
@@ -131,16 +148,35 @@ document.querySelector('.filter-container').addEventListener('submit', function(
     // Ngăn chặn việc gửi form mặc định
     event.preventDefault();
 
+    function isValidDate(dateString) {
+    var regex = /^\d{4}-\d{2}-\d{2}$/; // Định dạng ngày tháng yyyy-mm-dd
+    if(!regex.test(dateString)) {
+        return false;
+    }
+    var date = new Date(dateString);
+    return date instanceof Date && !isNaN(date);
+}
     // Lấy giá trị lọc từ các thẻ select
     var filter1 = document.querySelector('.filter-select:nth-of-type(1) option:checked').getAttribute('data-search-value1');
-    var filter2 = document.querySelector('#myID').value;
+    var StartDate = document.querySelector('#StartDate').value;
+    var EndDate = document.querySelector('#EndDate').value;
     var filter3 = document.querySelector('.filter-select:nth-of-type(2) option:checked').getAttribute('data-search-value3');
 
+        if(!isValidDate(StartDate)) {
+        StartDate = 0;
+        }
+
+        if(!isValidDate(EndDate)) {
+            EndDate = 0;
+        }
+
+    console.log(StartDate)
+    console.log(EndDate)
     // Gửi yêu cầu AJAX
     $.ajax({
         url: './php_func/StatisticRoom_Filter.php',
         method: 'POST',
-        data: {filter1: filter1, filter2: filter2, filter3: filter3},
+        data: {filter1: filter1, start_date: StartDate,end_date: EndDate , filter3: filter3},
         dataType: 'json',
         success: function(response){
             // Kiểm tra xem response có phải là một mảng không
@@ -169,10 +205,10 @@ document.querySelector('.filter-container').addEventListener('submit', function(
                     document.querySelector('.rooms').innerHTML += roomHTML;
                     counter++;
                 });
-            } else {
-                document.querySelector('.rooms').innerHTML = '<p class="title">Không có thống kê nào</p>';
-                console.log('Response is not an array:', response);
-            }
+                } else {
+                    document.querySelector('.rooms').innerHTML = '<p class="title">Không có thống kê nào</p>';
+                    console.log('Response is not an array:', response);
+                }
         },
         error: function(xhr, status, error) {
             // Xử lý lỗi trong yêu cầu AJAX

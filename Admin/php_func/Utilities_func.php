@@ -25,7 +25,7 @@ function deleteUtility($conn, $id) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["itemName"])) {
         addUtility($conn, $_POST["itemName"]);
-        header("Location: Utilities.php");
+        header("Location: Other_Utilities.php");
         exit;
     }
 

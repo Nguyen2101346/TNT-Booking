@@ -141,10 +141,10 @@ include "../php_func/conn.php";
             <label for="Type-name">Tên loại phòng</label>
             <input type="text" name="CreType_Tenloaiphong" id="Type-name" required>
         </div>
-        <div class="Type Day">
+        <!-- <div class="Type Day">
             <label for="Type-day">Ngày tạo</label>
             <input type="date" name="CreType_Ngaytao" id="Type-day" value="<?= date('Y-m-d') ?>" required>
-        </div>
+        </div> -->
         <div class="Type Alert">
             <div class="er-text"></div>
             <div class="cor-text"></div>
