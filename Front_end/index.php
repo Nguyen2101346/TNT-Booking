@@ -61,8 +61,8 @@
         ?>
     </div>
     <script src="./js/Main.js"></script>
-    <script src="./js/slider.js"></script>
-    <script src="./js/eat.js"></script>
+    <!-- <script src="./js/slider.js"></script>
+    <script src="./js/eat.js"></script> -->
     <script src="./js/ultils.js"></script>
     <script src="./js/Searchbar.js"></script>
     <script src="./js/searchbar_get.js"></script>
@@ -74,36 +74,62 @@
     <!-- <script src="./js/MiniBill.js"></script> -->
     <script>
 
-        flatpickr("#myID", {
-            minDate: "today",
+        // flatpickr("#myID", {
+        //     minDate: "today",
+        //     dateFormat: "d/m/Y",
+        //     locale: "vn"
+        // });
+        // Khởi tạo thành phần thứ nhất
+        flatpickr("#startDate", {
+            dateFormat: "d/m/Y",
+            locale: "vn",
+            onChange: function(selectedDates, dateStr, instance) {
+                // Lấy ngày đã chọn trên thành phần thứ nhất
+                var selectedDate = selectedDates[0];
+
+                // Cập nhật giá trị minDate của thành phần thứ hai
+                flatpickr("#endDate", {
+                    minDate: selectedDate,
+                    dateFormat: "d/m/Y",
+                    locale: "vn"
+                    
+                });
+            }
+        });
+
+        // Khởi tạo thành phần thứ hai
+        flatpickr("#endDate", {
             dateFormat: "d/m/Y",
             locale: "vn"
         });
         // flatpickr(myElement, {
         //     "locale": "vn"  // locale for this instance only
         // });
-        const change = <?= $change?>;
-        const elementSearch1 = document.querySelector('#searchButton')
-        if(elementSearch1){
-        document.getElementById("searchButton").addEventListener("click", function(event) {
-         const searchButton = document.getElementById("searchButton");
-         if (searchButton.classList.contains('disabled')) {
-             event.preventDefault();
-             return;
-         }
-         
-         const startDate = document.getElementById("start").textContent.trim();
-         const endDate = document.getElementById("end").textContent.trim();
-         const roomNum = document.getElementById("room_num").textContent.trim();
-         const adultsNum = document.getElementById("adults_num").textContent.trim();
-         const discountCode = document.querySelector('#discountSelect').value;
-         
-         let url = `index.php?page=sale&start_date=${encodeURIComponent(startDate)}&end_date=${encodeURIComponent(endDate)}&rooms=${encodeURIComponent(roomNum)}&qua-adults=${encodeURIComponent(adultsNum)}&discount_code=${encodeURIComponent(discountCode)}`;
-         
-         if (change == 1) {
-             url += '&go=1';
-         }
-         
+        const change = <?= $change ?>;
+        const searchButton = document.querySelector('#searchButton');
+
+    if (searchButton) {
+        searchButton.addEventListener("click", function(event) {
+            if (searchButton.classList.contains('disabled')) {
+                event.preventDefault();
+                return;
+            }
+
+            const startDate = document.getElementById("start").textContent.trim();
+            const endDate = document.getElementById("end").textContent.trim();
+            const roomNum = document.getElementById("room_num").textContent.trim();
+            const adultsNum = document.getElementById("adults_num").textContent.trim();
+            const discountCode = document.querySelector('#discountSelect').value;
+            const minAdults = document.querySelector('label[data-min-num]').dataset.minNum;
+
+            console.log(minAdults);
+            
+            let url = `index.php?page=sale&start_date=${encodeURIComponent(startDate)}&end_date=${encodeURIComponent(endDate)}&rooms=${encodeURIComponent(roomNum)}&qua-adults=${encodeURIComponent(adultsNum)}&min_adults=${encodeURIComponent(minAdults)}&discount_code=${encodeURIComponent(discountCode)}`;
+            
+            if (change == 1) {
+                url += '&go=1';
+            }
+
             window.location.href = url;
         });
     } else {

@@ -616,8 +616,13 @@ color: rgb(252, 210, 75);
      color:red;
 }
 .prices_absolute .content{
-     font-size: 1.3em;
+     padding: 0;
+     font-size: 20px;
      font-weight: bold;
+     display: flex;
+}
+.prices_absolute p.content{
+     padding: 0 5px;
 }
 /* Nút chọn */
 .Choose_btn{

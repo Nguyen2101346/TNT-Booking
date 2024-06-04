@@ -117,7 +117,7 @@ include "../php_func/conn.php";
         </div>
         <div class="Confirm">
             <div class="cancel_btn">
-                <input type="submit" name="cancel" value="Huỷ bỏ" class="btn"> 
+                <input name="cancel" value="Huỷ bỏ" class="btn"> 
             </div>
             <div class="confirm_btn">
                 <input type="submit" name="confirm" value="Xác nhận" class="btn"> 

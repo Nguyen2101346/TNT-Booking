@@ -31,8 +31,10 @@ function setSearchValues(params) {
         updateRooms();
     }
     if (params.min_adults) {
-        document.getElementById('adults_Minnum').textContent = params.min_adults;
-    }
+                document.querySelectorAll('label[data-min-num]').forEach(label => {
+                    minAdults = label.setAttribute('data-min-num', params.min_adults);
+                });
+            }
     if (params.adults) {
         document.getElementById('adults_num').textContent = params.adults;
         const quantityElements = document.querySelectorAll('.quantity[data-type="adults"]');
@@ -71,7 +73,7 @@ function updateRooms() {
         roomDiv.className = "room-container";
         roomDiv.innerHTML = '<h3>Phòng ' + i + '</h3>' +
                             '<div class="content">' +
-                            '<label>Số lượng người:</label>' +
+                            '<label data-min-num="'+ minAdults +'">Số lượng người:</label>' +
                             '<div class="quantity_contain">' +
                             '<button class="quantity-control" onclick="decrementQuantity(this)">-</button>' +
                             '<span class="quantity adults" data-type="adults">1</span>' +
@@ -101,6 +103,64 @@ function updateRooms() {
 document.addEventListener('DOMContentLoaded', function() {
     const params = getQueryParams();
     setSearchValues(params);
-    createRoomElements(params.rooms ? parseInt(params.rooms) : 1, params.adults ? parseInt(params.adults) : 1, params.min_adults ? parseInt(params.min_adults) : 1);
+    updateRooms();
+    // createRoomElements(params.rooms ? parseInt(params.rooms) : 1, params.adults ? parseInt(params.adults) : 1, params.min_adults ? parseInt(params.min_adults) : 1);
 }); 
 
+// let room_quantity = 1;
+// // let minAdults = Infinity;
+
+// // Function to get query parameters from URL
+// function getQueryParams() {
+//     const params = new URLSearchParams(window.location.search);
+//     return {
+//         start_date: params.get('start_date'),
+//         end_date: params.get('end_date'),
+//         rooms: params.get('rooms'),
+//         adults: params.get('adults'),
+//         min_adults: params.get('min_adults'),
+//         discount_code: params.get('discount_code')
+//     };
+// }
+
+// // Function to set the values in the search bar
+// function setSearchValues(params) {
+//     if (params.start_date) {
+//         document.getElementById('start').textContent = params.start_date;
+//         document.getElementById('start_date').value = params.start_date;
+//     }
+//     if (params.end_date) {
+//         document.getElementById('end').textContent = params.end_date;
+//         document.getElementById('end_date').value = params.end_date;
+//     }
+//     if (params.rooms) {
+//         room_quantity = parseInt(params.rooms);
+//         document.getElementById('room_num').textContent = room_quantity;
+//         document.getElementById('room-quantity').textContent = room_quantity;
+//         document.getElementById('limit_room').textContent = room_quantity; // Cập nhật limit_room
+//         updateRooms();
+//     }
+//     if (params.min_adults) {
+//         document.querySelectorAll('label[data-min-num]').forEach(label => {
+//             label.setAttribute('data-min-num', params.min_adults);
+//         });
+//     }
+//     if (params.adults) {
+//         document.getElementById('adults_num').textContent = params.adults;
+//         const quantityElements = document.querySelectorAll('.quantity[data-type="adults"]');
+//         quantityElements.forEach(function (element, index) {
+//             if (index < room_quantitys) {
+//                 element.textContent = params.adults;
+//             } else {
+//                 element.textContent = 0;
+//             }
+//         });
+//         updateAdults();
+//     }
+// }
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     const params = getQueryParams();
+//     setSearchValues(params);
+//     updateRooms();
+// });

@@ -2,11 +2,38 @@
      if(isset($_GET['id'])){
           $idroomtype = $_GET['id'];
      }
-     $sql = "SELECT * FROM Loaiphong WHERE IDLoaiphong = $idroomtype";
+     $sql = "SELECT * 
+     FROM Loaiphong 
+     LEFT JOIN
+     uudai ON loaiphong.IDLoaiphong = uudai.IDLoaiphong
+     WHERE loaiphong.IDLoaiphong = $idroomtype";
      $re = mysqli_query($conn,$sql);
      $r = mysqli_fetch_array($re);
      $gia = $r['Gia'];
      $changenumber = number_format($gia, 0, ',', '.');
+     // $changeColor = '';
+     if($r['Nhangiam'] > 0){
+          if($r['Donvi'] == 1){
+               //$changeColor = 'red';
+               $originPrice = "<p class='originPrice' data-originPrice='".$gia."'>".$changenumber." VNĐ</p>";
+               $discount = "<p data-discount='".$r['Nhangiam'].":%'>Giảm: ".$r['Nhangiam']." %</p>";
+               $total = $gia - ($gia * $r['Nhangiam'] / 100);
+               $Totalformat = number_format($total, 0, ',', '.');
+               $TotalformatText = "<p class='content'> ".$Totalformat." </p>";
+          }else{
+               //$changColor = 'red';
+               $originPrice = "<p class='originPrice' data-originPrice='".$gia."'>".$changenumber."</p>";
+               $discount = "<p data-discount='".$r['Nhangiam'].":VNĐ'>Giảm: ".$r['Nhangiam']." VNĐ</p>";
+               $total = $gia - $r['Nhangiam'];
+               $Totalformat= number_format($total, 0, ',', '.');
+               $TotalformatText = "<p class='content'> ".$Totalformat." </p>";
+          }
+     }else{
+     $discount = $r['Tieude'];
+     $total = $gia;
+     $Totalformat = $changenumber;
+     $TotalformatText = "<p class='content'> ".$Totalformat." </p>";
+     }
 ?>
      <div class="Payment_Container">
           <div class="headRoom_container">
@@ -32,6 +59,7 @@
                                                        if(mysqli_num_rows($re1) > 0){
                                                             $r1 = mysqli_fetch_array($re1);
                                                             $average_rating = number_format(floor($r1['Trungbinh']),1);
+                                                          
                                                   ?>
                                              <div class="rating">
                                              <?php
@@ -76,14 +104,15 @@
                               </div>
                               <div class="absolute">
                                    <div class="prices">
-                                        <?php
-                                             $discount = mysqli_fetch_array(check_discount($conn, $idroomtype));
-                                        ?>
-                                        <div class="discountsale"> <?php if(isset($discount['Nhangiam']) && $discount['Nhangiam']>0){
-                                             if(isset($discount['Donvi']) && $discount['Donvi']==1){echo "Giảm: ".$discount['Nhangiam']."%";}else{echo "Giảm: ".$discount['Nhangiam']."VNĐ";}
-                                             }else{if(isset($discount['Tieude']) && $discount['Tieude']!=""){echo $discount['Tieude'];}}?> </div>
-                                        <div class="title">Giá: <?= $changenumber?> VND</div>
-                                   </div>
+                                             <div class="discountsale"> 
+                                                  <?php 
+                                                       echo $discount;
+                                                       if(isset($r['Nhangiam']  ) && $r['Nhangiam'] > 0){
+                                                       echo $originPrice;
+                                                       }
+                                                  ?> </div>
+                                             <div class="title">Giá: <?= $TotalformatText ?> VND</div>
+                                        </div>
                                    <div class="Get_btn">
                                         <a href="#" class="medium_btn" onclick="chooseRoom(0)">Đặt ngay</a>
                                    </div>
@@ -157,4 +186,63 @@
                }
                });
           });
+
+
+          let initSlider = function() {
+          const imageList = document.querySelector(".slider_wrapper .img_list");
+          const sliderButtons = document.querySelectorAll(".slider_wrapper .slide-button");
+          const sliderScrollbar = document.querySelector(".container .slider_scrollbar");
+          const scrollbarThumb = sliderScrollbar.querySelector(".scrollbar_thumb");
+          const maxScrollLeft = imageList.scrollWidth - imageList.clientWidth;
+
+
+          scrollbarThumb.addEventListener("mousedown",(e)=>{
+               const startX= e.clientX;
+               const thumbPosition= scrollbarThumb.offsetLeft;
+
+               // update position
+               const handleMouseMove = (e)=>{
+                    const deltaX= e.clientX - startX;
+                    const newThumbPosition = thumbPosition + deltaX;
+                    const maxThumbPosition = sliderScrollbar.getBoundingClientRect().width -scrollbarThumb.offsetWidth;
+
+                    const boundedPosition =Math.max(0,Math.min(maxThumbPosition,newThumbPosition))
+                    const scrollPosition=(boundedPosition/maxThumbPosition) * maxScrollLeft;
+                    scrollbarThumb.style.left=`${boundedPosition}px`;
+                    imageList.scrollLeft=scrollPosition;
+               }
+               //remove event
+               const handleMouseup =()=>{
+                    document.removeEventListener("mousemove", handleMouseMove);
+                    document.removeEventListener("mouseup", handleMouseup);
+               }
+               document.addEventListener("mousemove", handleMouseMove);
+               document.addEventListener("mouseup", handleMouseup);
+          })
+          if (imageList.length === 0) {
+               console.error("No image list found");
+               return;
+          }
+
+          sliderButtons.forEach(button => {
+               button.addEventListener("click", () => {
+                    console.log(button);
+                    const direction = button.id === "prev-slide" ? -1 : 1;
+                    const scrollAmount = imageList.clientWidth * direction; // Change 'imageList' to 'imageList[0]'
+                    imageList.scrollBy({ left: scrollAmount, behavior: "smooth" });
+               })
+          })
+
+          const updateScrollThumPosition = () =>{
+               const scrollPosition = imageList.scrollLeft;
+               const thumbPosition = (scrollPosition/ maxScrollLeft) * (sliderScrollbar.clientWidth- scrollbarThumb.offsetWidth);
+               scrollbarThumb.style.left= `${thumbPosition}px`;
+          }
+          imageList.addEventListener("scroll",()=>{
+               updateScrollThumPosition();
+          }
+          )
+          }
+
+          window.addEventListener("load", initSlider);
      </script>

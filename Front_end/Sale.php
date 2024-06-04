@@ -31,7 +31,7 @@
                                         $adults_num = isset($_GET['qua-adults']) ? $_GET['qua-adults'] : 1;
                                         $discount_code = isset($_GET['discount_code']) ? $_GET['discount_code'] : '';
                                         $min_adults = isset($_GET['min_adults']) ? $_GET['min_adults'] : 1;
-                                    if(isset($discount_code)){
+                                    if(isset($discount_code)){ 
                                             $sql = "SELECT 
                                                     loaiphong.*, 
                                                     phong.*, 
@@ -48,12 +48,13 @@
                                                 LEFT JOIN 
                                                     loaiud ON uudai.IDLoaiUD = loaiud.IDLoaiUD
                                                 WHERE 
-                                                    phong.TrangThai = '0' 
+                                                     phong.TrangThai = '0' 
+                                                    AND loaiphong.Trangthai = '1'
                                                     AND loaiphong.Songuoi >= '$min_adults'";
                                             if($discount_code == '1'){
-                                                $sql .=" AND loaiud.IDLoaiUD = '1'";
+                                                $sql .=" AND loaiud.IDLoaiUD = '1' AND uudai.Trangthai = '1'";
                                             }else if($discount_code == '2'){
-                                                $sql .=" AND loaiud.IDLoaiUD = '2'";
+                                                $sql .=" AND loaiud.IDLoaiUD = '2' AND uudai.Trangthai = '1'";
                                             }
                                             $sql .="GROUP BY 
                                                     loaiphong.IDLoaiphong";
@@ -63,22 +64,28 @@
                                             while ($r = mysqli_fetch_array($re)) {
                                                 $gia = $r['Gia'];
                                                 $changenumber = number_format($gia, 0, ',', '.');
+                                                $changeColor = '';
                                                 if($r['Nhangiam'] > 0){
                                                     if($r['Donvi'] == 1){
-                                                        $originPrice = "<p data-originPrice='".$gia."'>".$changenumber." VNĐ</p>";
+                                                        $changeColor = 'red';
+                                                        $originPrice = "<p class='originPrice' data-originPrice='".$gia."'>".$changenumber." VNĐ</p>";
                                                         $discount = "<p data-discount='".$r['Nhangiam'].":%'>Giảm: ".$r['Nhangiam']." %</p>";
                                                         $total = $gia - ($gia * $r['Nhangiam'] / 100);
                                                         $Totalformat = number_format($total, 0, ',', '.');
+                                                        $TotalformatText = "<p class='content ".$changeColor."'> ".$Totalformat." </p>";
                                                     }else{
-                                                        $originPrice = "<p data-originPrice='".$gia."'>".$changenumber."</p>";
+                                                        $changColor = 'red';
+                                                        $originPrice = "<p class='originPrice' data-originPrice='".$gia."'>".$changenumber."</p>";
                                                         $discount = "<p data-discount='".$r['Nhangiam'].":VNĐ'>Giảm: ".$r['Nhangiam']." VNĐ</p>";
                                                         $total = $gia - $r['Nhangiam'];
                                                         $Totalformat= number_format($total, 0, ',', '.');
+                                                        $TotalformatText = "<p class='content ".$changeColor."'> ".$Totalformat." </p>";
                                                     }
                                                 }else{
                                                     $discount = $r['Tieude'];
                                                     $total = $gia;
                                                     $Totalformat = $changenumber;
+                                                    $TotalformatText = "<p class='content ".$changeColor."'> ".$Totalformat." </p>";
                                                 }
                                                 echo '     
                                                 <div class="room" data-idroom="'.$r['IDPhong'].'" data-id="'.$r['IDLoaiphong'].'" data-title="'.$r['Tenloaiphong'].'" data-price="'.$total.'" data-priceFormatted="'.$changenumber.'">
@@ -133,14 +140,14 @@
                                                                 <div class="discountsale">'?>
                                                                 <?php
                                                                    echo $discount;
-                                                                   if(isset($r['Nhangiam']) && $r['Nhangiam'] > 0){
+                                                                   if(isset($r['Nhangiam']  ) && $r['Nhangiam'] > 0){
                                                                     echo $originPrice;
                                                                    }
                                                                 ?>     
                                                                 <?php
                                                                 echo'</div>
-                                                                <div class="content" id="totalPrice">
-                                                                    '.$Totalformat.' VND
+                                                                <div class="TotalPrice content" id="totalPrice">
+                                                                   Giá: '.$TotalformatText.' VND
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -176,6 +183,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     let selectedRooms = [];
     const limitRoom = <?php echo $_GET['rooms']; ?>;
+    // console.log(limitRoom)
     const numRoomElement = document.getElementById('Numroom');
     const totalPriceElement = document.getElementById('TotalPrice');
     const continueButton = document.getElementById('continueButton');
@@ -214,11 +222,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const roomMini = document.createElement('div');
             roomMini.classList.add('roomMini');
             roomMini.innerHTML = `
-                <div class="RoomNum title">Phòng ${index + 1}</div>
-                <div class="RoomTitle">${room.title}</div>
+                <div class="RoomNum title_18">Phòng ${index + 1}</div>
+                <div class="RoomTitle title_18 lighter">${room.title}</div>
                 <input type="hidden" name="room${index}" value='${room.idroom}'>
                 <input type="hidden" name="discount${index}" value='${room.discount}'>
-                <div class="RoomPrice">${room.priceFormatted}</div>
+                <div class="RoomPrice title_18 lighter">${room.priceFormatted}</div>
                 <div class="RoomFix_btn">
                     <a href="#" class="mini_btn" onclick="removeRoom(${index})">Chỉnh sửa</a>
                 </div>

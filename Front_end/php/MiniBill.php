@@ -14,8 +14,8 @@
                <div class="title">Thời gian</div>
                <input type="hidden" name="start_date" id="start_date" value="<?php echo $_GET['start_date']; ?>">
                <input type="hidden" name="end_date" id="end_date" value="<?php echo $_GET['end_date']; ?>">
-               <input class="timeShow_Start note" id="myID" name="timeStart" value="Ngày đặt">
-               <input class="timeShow_End note" id="myID" name="timeEnd" value="Ngày đi">
+               <input class="timeShow_Start note" id="startDate" name="timeStart" value="Ngày đặt">
+               <input class="timeShow_End note" id="endDate" name="timeEnd" value="Ngày đi">
           </div>
           <div class="room_container">
                <!-- <div class="roomMini">
