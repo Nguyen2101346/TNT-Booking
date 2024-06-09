@@ -45,7 +45,7 @@
                          ?>
                          " alt=""></span> 
                          <ul class="miniAdmin-menu">
-                              <li class="mini-more"><a href="#">Thông tin</a></li>
+                              <!-- <li class="mini-more"><a href="#">Thông tin</a></li> -->
                               <li class="mini-more"><a href="../Front_end/php_function/logout.php">Đăng xuất</a></li>
                          </ul>
                     </li>

@@ -301,7 +301,7 @@ include "../php_func/Utilities_func.php";
                 console.log(data);
                 alert('Cập nhật ưu đãi thành công!');
                 $('#UpdSale_modal').css('display', 'none');
-                location.reload();      
+                location.reload();    
             },
             error: function(xhr, status, error) {
                 console.log(error);

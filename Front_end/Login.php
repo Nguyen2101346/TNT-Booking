@@ -38,7 +38,8 @@
                                              // Lấy thông tin của người dùng từ kết quả truy vấn
                                              $user = mysqli_fetch_assoc($re);
                                              // Xác thực mật khẩu
-                                             if ($user["Matkhau"] == md5($p)) { 
+                                             // if($user["Trangthai"] == 1){
+                                                  if($user["Matkhau"] == md5($p) &&  $user["Trangthai"] == 1) { 
                                                  // Mật khẩu hợp lệ, đăng nhập thành công
                                                  $txt_cor = "Đăng nhập thành công!";
                                                  $_SESSION["username"] = $user["Tendangnhap"];
@@ -54,6 +55,9 @@
                                                  // Mật khẩu không hợp lệ
                                                  $txt_err = "Mật khẩu hoặc tài khoản không đúng!";
                                              }
+                                        // }else{
+                                        //      $txt_err = "Tài khoản không còn tồn tại";
+                                        // }
                                         } else {
                                              // Người dùng không tồn tại
                                              $txt_err = "Mật khẩu hoặc tài khoản không đúng!";

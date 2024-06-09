@@ -1,10 +1,10 @@
 <?php
-   function add_TypeRoom($conn, $roomname, $DayCre){
-    $sql = "INSERT INTO loaiphong(Tenloaiphong, Ngaytao) VALUES ('".$roomname."','".$DayCre."')";
+   function add_TypeRoom($conn, $roomname){
+    $sql = "INSERT INTO loaiphong(Tenloaiphong) VALUES ('".$roomname."')";
     mysqli_query($conn, $sql);
     }
-    function add_MiniRoom($conn, $IDLoaiphong, $roomname, $DayCre, $sotang){
-        $sql = "INSERT INTO phong(IDLoaiphong,Tenphong, Ngaytao, Sotang) VALUES ('".$IDLoaiphong."','".$roomname."','".$DayCre."','".$sotang."')";
+    function add_MiniRoom($conn, $IDLoaiphong, $roomname, $sotang){
+        $sql = "INSERT INTO phong(IDLoaiphong,Tenphong , Sotang) VALUES ('".$IDLoaiphong."','".$roomname."','".$sotang."')";
         mysqli_query($conn, $sql);
     }
 ?>

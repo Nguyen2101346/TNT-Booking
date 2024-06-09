@@ -66,7 +66,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $dayOfWeekInVietnamese = $daysOfWeek[$date->format('l')];
     $Ngaydat = $dayOfWeekInVietnamese . ', ' . $date->format('d/m/Y');
 
-    $status = $row['Trangthai'] == '1' ? 'Đang chờ' : ($row['Trangthai'] == '2' ? 'Đã xác nhận' : 'Đã Hủy bỏ');
+    $status = $row['Trangthai'] == '1' ? 'Đang chờ xử lý' : ($row['Trangthai'] == '2' ? 'Đã xác nhận' : 'Đã Hủy bỏ');
 
     $Tonggia = number_format($row['Tonggia'], 0, ',', '.');
     $PhuongthucTT = $row['PhuongthucTT'] == '0' ? 'Trực tiếp' : 'Trực tuyến';

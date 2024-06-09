@@ -58,16 +58,16 @@
                                                      phong.TrangThai = '0' 
                                                     AND loaiphong.Trangthai = '1'
                                                     AND loaiphong.Songuoi >= '$min_adults'";
-                                            if($discount_code == '1'){
-                                                $sql .=" AND loaiud.IDLoaiUD = '1' AND uudai.Trangthai = '1' AND CURRENT_DATE() < uudai.Ngayketthuc";
-                                            }else if($discount_code == '2'){
-                                                $sql .=" AND loaiud.IDLoaiUD = '2' AND uudai.Trangthai = '1' AND CURRENT_DATE() < uudai.Ngayketthuc ";
+                                            if($discount_code == 1){
+                                                $sql .=" AND loaiud.IDLoaiUD = '1' AND uudai.Trangthai = '1'";
+                                            }else if($discount_code == 2){
+                                                $sql .=" AND loaiud.IDLoaiUD = '2' AND uudai.Trangthai = '1'";
                                             }
                                             $sql .="GROUP BY 
                                                     loaiphong.IDLoaiphong";
-                                        $re = mysqli_query($conn, $sql);
-                                        $row = mysqli_num_rows($re);
-                                        if ($row > 0) {
+                                            $re = mysqli_query($conn, $sql);
+                                            $row = mysqli_num_rows($re);
+                                            if ($row > 0) {
                                             while ($r = mysqli_fetch_array($re)) {
                                                 $gia = $r['Gia'];
                                                 $changenumber = number_format($gia, 0, ',', '.');

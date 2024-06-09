@@ -32,7 +32,7 @@ $result = mysqli_query($conn, $sql);
 $output = '';
 
 while ($row = mysqli_fetch_assoc($result)) {
-    $status = $row['Trangthai'] == '1' ? 'Đang chờ' : ($row['Trangthai'] == '2' ? 'Đã xác nhận' : 'Đã Hủy bỏ');
+    $status = $row['Trangthai'] == '1' ? 'Đang chờ xử lý' : ($row['Trangthai'] == '2' ? 'Đã xác nhận' : 'Đã Hủy bỏ');
 
     // Set CSS classes based on status
     $detailDisabled = '';

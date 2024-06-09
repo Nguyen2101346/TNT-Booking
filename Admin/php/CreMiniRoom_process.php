@@ -8,16 +8,13 @@ include '../php_func/Room_func.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Kiểm tra xem có dữ liệu được gửi từ form không
-    if (isset($_POST["IDLoaiphong"]) && isset($_POST["Tenphong"]) && isset($_POST["Ngaytao"]) && isset($_POST["Sotang"])) {
+    if (isset($_POST["IDLoaiphong"]) && isset($_POST["Tenphong"]) && isset($_POST["Sotang"])) {
         $IDLoaiphong = $_POST["IDLoaiphong"];
         $roomname = $_POST["Tenphong"];
         $sotang = $_POST["Sotang"];
-        $DayCre = $_POST["Ngaytao"];
         
         if (empty($roomname)) { 
             $response['message'] = "Name_nothing";
-        } else if (empty($DayCre)) {
-            $response['message'] = "Date_nothing";
         } else if (empty($sotang)) {
             $response['message'] = "Sotang_nothing";
         } else {
@@ -30,12 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($re->num_rows > 0) {
                 $response['message'] = "Loại phòng này đã tồn tại!";
-            } elseif ($DayCre != $today) {
-                $response['message'] = "Ngày tạo phải là hôm nay!";
             } elseif ($sotang < 1 || $sotang > 5) {
                 $response['message'] = "Khách sạn nhỏ lắm bớt chọn tầng cao !";
             } else {
-                add_MiniRoom($conn, $IDLoaiphong, $roomname, $DayCre, $sotang);
+                add_MiniRoom($conn, $IDLoaiphong, $roomname, $sotang);
                     $response['success'] = true;
                     $response['message'] = 'Success';
             }

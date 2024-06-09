@@ -203,7 +203,7 @@ include "../php_func/conn.php";
      <script src="../js/Admin.js"></script>
      <script>
      $(document).ready(function(){
-          $('.request.Detail_btn').click(function(){
+          $(document).on('click','.request.Detail_btn',function(){
                $('.CheckRoom.MiniContainer').addClass('visible');
                event.preventDefault();
 
@@ -346,7 +346,7 @@ include "../php_func/conn.php";
                     data: { type: searchType },
                     dataType: 'html', // Định dạng dữ liệu trả về có thể là JSON hoặc HTML
                     success: function(response) {
-                         console.log(response);
+                         // console.log(response);
                          // Đặt nội dung trả về vào container
                          $('.Request_Component').html(response);
                     },

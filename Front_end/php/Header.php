@@ -18,7 +18,7 @@ if ($change == 1 && session_status() == PHP_SESSION_NONE){
          </div>
          <div class="head_right">
               <ul>
-                   <li><a href="#" class="title">Ưu đãi khuyến mãi</a></li>
+                   <li><a href="index.php?page=Sale&start_date=&end_date=&rooms=1&qua-adults=1&min_adults=1&discount_code=1<?php if($change == 1) echo '&go=1'?>" class="title">Ưu đãi khuyến mãi</a></li>
                    <?php 
                     if (!isset($_SESSION['userID'])){
                     ?>

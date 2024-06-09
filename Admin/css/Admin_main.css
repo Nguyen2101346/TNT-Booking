@@ -321,7 +321,6 @@ input[type = 'submit']{
      top:160px;
      right:0;
      grid-template-columns: 1fr;
-     grid-template-rows: 1fr 1fr;
      z-index: 9;
      background:#fff;
      border:2px solid var(--blue3);

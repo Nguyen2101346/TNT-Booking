@@ -125,11 +125,6 @@ include "../php_func/conn.php";
         </div>
     </form>
 </div>
-<!-- Phần Chi tiết hình ảnh mô tả sản phẩm  -->
-<div class="ImgDetail-small-Container">
-<div class="swiper-slide-large">    
-</div>
-</div>
 <div class="CreType MiniContainer" id="CreTypeFormContainer">
     <form class="CreType MiniForm" action="CreTypeForm_process.php" method="POST" id="CreType_form">
         <h2>Thêm loại phòng mới</h2>
@@ -176,8 +171,14 @@ include "../php_func/conn.php";
     </form>
 </div>
 
-
-    <script>
+<div class="ImgDetail MiniContainer" id="ImgDetailContainer">
+    <form action="" method="" id="ImgDetailForm" data-id-detail-img = "">
+        <div class="imgDetail_large">
+            <img src="" alt="">
+        </div>
+    </form>
+</div>
+<script>
 $(document).ready(function() {
     // Mở form tạo loại phòng mới
     $('#openCreTypeForm').on('click', function(event) {
@@ -207,9 +208,10 @@ $(document).ready(function() {
                         const errormessage = response.message;
                         if (errormessage === 'TypeRoomname_exists') {
                         $('.er-text').text("Loại phòng này đã tồn tại!");
-                        } else if (errormessage === 'Date-not-today') {
-                        $('.er-text').text("Ngày tạo phải là hôm nay!");
-                        }
+                        }   
+                        // } else if (errormessage === 'Date-not-today') {
+                        // $('.er-text').text("Ngày tạo phải là hôm nay!");
+                        // }
                     }
             },
             error: function() {
@@ -308,7 +310,7 @@ $(document).ready(function() {
                         if (Array.isArray(imageData)) {
                             imageData.forEach(function(img) {
                                 var ImgDetailContainer = 
-                                '<div class="swiper-slide"><a href="#"><img src="./img/detail/' + img.Hinh + '" alt=""></a></div>'
+                                '<div class="swiper-slide"><img class="detail-img" data-iddetailimg = "'+ img.IDHinh +'" src="./img/detail/' + img.Hinh + '" alt=""></div>'
                                 imageContainer.append(ImgDetailContainer);
                                 // if(img.id > 0){
                                 // var ImgDetailLarge = $('.swiper-slide-large');
@@ -371,13 +373,6 @@ $(document).ready(function() {
             }
         });
         
-    });
-    $('.swiper-slide a').on('click', function(event) {
-        event.preventDefault();
-        var id = $(this).data('img-id');
-        console.log('ID của Ảnh:', id);
-
-        $('.ImgDetail-small-Container').addClass('visible');
     });
     // Thêm Ảnh
     $('#ImgDetail').on('change', function(event) {
@@ -481,10 +476,79 @@ $(document).ready(function() {
         $('.MiniConvenience.MiniContainer').addClass('visible');
     });
 
+    $(document).on('click', '.detail-img', function(event) {
+        event.preventDefault();
+        console.log('detailimg clicked');
+        $('.ImgDetail.MiniContainer').addClass('visible');
+        var idimage = $(this).data('iddetailimg');
+        console.log(idimage);
+
+        $('.top_hover').addClass('visible');
+
+        $.ajax({
+            url: "./php_func/Room_Get_DetailImg.php",
+            method: 'GET',
+            data:{idimg: idimage},
+            dataType: 'json',
+            success: function(response) {
+                if(response.success) {
+                    var img = response.data;
+                    var imageDetailContainer = $('.imgDetail_large');
+                    imageDetailContainer.empty(); // Clear previous image if any
+                    imageDetailContainer.append('<img class="detail-img" data-iddetailimg="' + img.IDHinh + '" src="./img/detail/' + img.Hinh + '" alt="">'
+                    + '<div class="top_hover"><span class="exit_img"><i class="fas fa-x"></i></span><span class="del_img" type="submit" data-iddetailimg="' + img.IDHinh + '"><i class="fas fa-trash-can fa-beat"></i></span></div>');
+                } else {
+                    console.error("Failed to fetch image details");
+                    alert('Failed to fetch room images. Please try again.');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+                alert('Failed to fetch room images. Please try again.');
+            }
+        })
+    });
+    $(document).on('click', '.del_img', function(event) {
+        event.preventDefault();
+        var comfirm  =confirm("Bạn có thật sự muốn xóa ảnh này không ?")
+        if(confirm){
+            var idimage = $(this).data('iddetailimg');
+            console.log(idimage);
+            DeleteImgDetail(idimage);
+        }
+
+
+        function DeleteImgDetail(idimage) {
+                    $.ajax({
+                    url: "../Admin/php_func/Room_Del_DetailImg.php",
+                    method: "POST",
+                    data: { idimage: idimage },
+                    // dataType: "json",
+                    success: function(response) {
+                         console.log(response);
+                              // Xử l phản hồi từ máy chủ nếu cần
+                              // Ví dụ: hiển thị thông báo thành công, làm mới trang, vv.
+                              alert('Hinh đã được hủy bỏ.'); // Làm mới trang sau khi xóa
+                    },
+                    error: function(xhr, status, error) {
+                         // Xử lý lỗi nếu có
+                         console.error("Error details:", xhr, status, error);
+                         alert('Có lỗi xảy ra khi duyệt đơn: ' + xhr.status + ' ' + xhr.statusText + ' - ' + error);
+                    }
+                    });
+               }
+    });
+    $(document).on('click','.exit_img', function(e){
+        event.preventDefault();
+        console.log('exitimg clicked');
+        $('.ImgDetail.MiniContainer').removeClass('visible');
+    })
+
     $('.Cancel_btn').on('click', function(event) {
         event.preventDefault();
         console.log("Cancel_btn clicked"); // Check if ConFinish click event is being triggered
         $('.MiniConvenience.MiniContainer').removeClass('visible');
+        $('.top_hover').removeClass('visible');
         updateRoomConvenienceTextarea();
     });
     // Lắng nghe sự kiện thay đổi của các checkbox tiện ích
