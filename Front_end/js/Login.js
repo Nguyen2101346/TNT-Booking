@@ -139,6 +139,7 @@
                     })
                     .catch(error => {
                          console.error('Error:', error);
+                         document.getElementById('signup-error').textContent = "Có lỗi xảy ra khi gửi dữ liệu. Vui lòng thử lại.";
                     });
                });
                });

@@ -160,6 +160,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const formType = urlParams.get('form');
+    const eventType = formType ? formType.charAt(0).toUpperCase() + formType.slice(1) : 'Meeting';
+
     setUpEventHandlers();
     loadContent('Meeting'); // Load initial content
 });

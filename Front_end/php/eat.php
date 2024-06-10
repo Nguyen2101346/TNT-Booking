@@ -9,7 +9,21 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
   <script src="../js/eat.js" defer></script>
 </head>
-
+<?php
+            $change = 0;
+            if(isset($_GET['go']) == 1){
+                $change = 1;
+            }
+            include "./conn.php";
+            include "./func.php";
+            include "./php/Header.php";
+            if(isset($_GET['page'])){
+                $page = $_GET['page'];
+                include ''. $page .'.php';
+            }else{
+                include 'Home.php';
+            }
+        ?>
 <body> -->
   <div class="container_eat">
     <div class="eat_wrapper">
@@ -22,9 +36,18 @@
           $sql = "SELECT * FROM sukien";
           $re = mysqli_query($conn,$sql);
           while($r = mysqli_fetch_array($re)){
+            if($r['IDSukien'] == 1 ){
+              $sukien = 'Meeting';
+            }elseif($r['IDSukien'] == 2){
+              $sukien = 'Wedding';
+            }
+            elseif($r['IDSukien'] == 3){
+              $sukien = 'Comunity';
+            }
         ?>
-        <div class="img_item"><img src="./img/<?= $r['AnhDD']?>" alt="img-1"> 
-          <a href="" > 
+        <div class="img_item" data-id = "<?=$r['IDSukien']?>">
+          <img src="./img/<?= $r['AnhDD']?>" alt="img-1"> 
+          <a href="index.php?page=Event<?php if($change == 1) echo '&go=1'?>&form=<?=$sukien?>"> 
             <h1 class="title"><?= $r['Tensukien']?></h1>
           </a>
           <p><?= $r['Mota']?></p>

@@ -5,7 +5,7 @@ include '../conn.php'; // Đảm bảo rằng bạn đã kết nối đến cơ 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_SESSION['userID'])) {
-        echo "User chưa đăng nhập.";
+        echo "Phải đăng nhập để thực hiện chức năng này.";
         exit;
     }
     $userID = $_SESSION['userID'];
