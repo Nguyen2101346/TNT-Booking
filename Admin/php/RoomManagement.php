@@ -131,10 +131,6 @@ include "../php_func/conn.php";
                     <label for="Sotang">Số tầng</label>
                     <input type="number" name="Sotang_Upd" id="Sotang_Upd" required value="">
                </div>
-               <!-- <div class="miniroom Day">
-                    <label for="Ngaytao">Ngày tạo</label>
-                    <input type="date" name="Ngaytao_Upd" id="Ngaytao_Upd" value="<?= date('Y-m-d') ?>" required>
-               </div> -->
                <input type="hidden" name="IDLoaiphong_Upd" id="IDLoaiphong_Upd" value="">
                <input type="hidden" name="IDPhong_Upd" id="IDPhong_Upd" value="">
                <div class="Type Alert">
@@ -195,6 +191,7 @@ include "../php_func/conn.php";
                          $('.Updminiroom.MiniContainer').removeClass('visible');
                     },
                     error: function(xhr, status, error) {
+                         console.error();
                          alert('Có lỗi xảy ra: ' + xhr.status + ' ' + xhr.statusText + ' - ' + error);
                     }
                });
@@ -312,7 +309,7 @@ include "../php_func/conn.php";
                                    location.reload();
                               } 
                               else {
-                              $('.er-text').text(response.message);
+                              $('.er-text').text(response.message);   
                               }
                          },
                          error: function(xhr, status, error) {

@@ -2,8 +2,8 @@
     <div class="Sale_Container">
         <?php
         if($_GET['start_date'] == '' || $_GET['end_date'] == ''){
-            $start_date = '0/0/0000';
-            $end_date = '0/0/0000';
+            $start_date = '0-0-0000';
+            $end_date = '0-0-0000';
             $room_num = 1;
             $adults_num = 0;
             $discount_code ='';
@@ -32,8 +32,8 @@
                                 </div>
                                 <div class="Room_container">
                                     <?php
-                                        $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '0/0/0000';
-                                        $end_date = isset($_GET['end_date']) ? $_GET['end_date'] : '0/0/0000';
+                                        $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : '';
+                                        $end_date = isset($_GET['end_date']) ? $_GET['end_date'] : '';
                                         $room_num = isset($_GET['room_num']) ? $_GET['room_num'] : 1;
                                         $adults_num = isset($_GET['qua-adults']) ? $_GET['qua-adults'] : 1;
                                         $discount_code = isset($_GET['discount_code']) ? $_GET['discount_code'] : '';
@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
         form.method = 'POST';
         var start_date = document.getElementById('start_date').value;
         var end_date = document.getElementById('end_date').value;
-        if (start_date != "" && end_date != "") {
+        if (start_date != "1" && end_date != "1 ") {
             if (change == 1) {
                  form.action = 'index.php?page=Payment&start_date=' + start_date + '&end_date=' + end_date + '&go=1';
             } else {
@@ -289,8 +289,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
         } else{
-               var start_date = $('input[name="timeStart"]').val();
-               var end_date = $('input[name="timeEnd"]').val();
+               var start_date = $('#startDate').val();
+               var end_date = $('#endDate').val();
             if (change == 1) {
                 form.action = 'index.php?page=Payment&start_date=' + start_date + '&end_date=' + end_date + '&go=1';
             } else {

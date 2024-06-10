@@ -14,9 +14,6 @@
             if(isset($_GET['go']) == 1){
                 $change = 1;
             }
-            include "./conn.php";
-            include "./func.php";
-            include "./php/Header.php";
             if(isset($_GET['page'])){
                 $page = $_GET['page'];
                 include ''. $page .'.php';

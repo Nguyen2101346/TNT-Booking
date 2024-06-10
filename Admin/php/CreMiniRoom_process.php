@@ -14,9 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sotang = $_POST["Sotang"];
         
         if (empty($roomname)) { 
-            $response['message'] = "Name_nothing";
+            $response['message'] = "Chưa có tên phòng";
         } else if (empty($sotang)) {
-            $response['message'] = "Sotang_nothing";
+            $response['message'] = "Chưa có số tầng";
         } else {
             $today = date("Y-m-d");
             $sql = "SELECT * FROM phong WHERE Tenphong = ?";

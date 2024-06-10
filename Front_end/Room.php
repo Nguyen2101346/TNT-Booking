@@ -59,11 +59,11 @@
                                                        // if(mysqli_num_rows($re1) > 0){
                                                        //      $r1 = mysqli_fetch_array($re1);
                                                        //      $average_rating = number_format(floor($r1['Trungbinh']),1);
-                                                       $sql = "SELECT ROUND(AVG(Sosao)) AS Sosao FORM danhgia WHERE IDLoaiphong = $idroomtype";
+                                                       $sql = "SELECT ROUND(AVG(Sosao)) AS Sosao FROM danhgia WHERE IDLoaiphong = $idroomtype";
                                                        $result = mysqli_query($conn,$sql);
                                                        if(mysqli_num_rows($result) > 0){
                                                             $re = mysqli_fetch_array($result);
-                                                            $average_rating = number_format(floor($re['Sosao'],1))
+                                                            $average_rating = number_format(floor($re['Sosao']))
                                                   ?>
                                              <div class="rating">
                                              <?php
@@ -78,7 +78,7 @@
                                                   <span class="star">&#9733;</span>
                                                   <span class="star">&#9733;</span> -->
                                              </div>
-                                             <p class="sale-display"><?= $average_rating ?> / 5.0</p>
+                                             <p class="sale-display"><?= $average_rating ?>.0 / 5.0</p>
                                              <?php
                                                   }
                                              ?>

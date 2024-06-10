@@ -6,8 +6,13 @@
       <div class="comment">
         <?php
           $userInfo = mysqli_fetch_array(check_account2($conn, $_SESSION['userID']));
+          if($userInfo['Avatar'] == ""){
+            $userAvatar = "person.png";
+          }else{
+            $userAvatar = $userInfo['Avatar'];
+          }
         ?>
-        <div class="avatar"><img src="./img_members/<?=$userInfo['Avatar']?>" alt=""></div>
+        <div class="avatar"><img src="./img_members/<?=$userAvatar?>" alt=""></div>
         <div class="cmt_content">
           <!-- đánh giá -->
           <div class="rating">
@@ -51,9 +56,14 @@
       if($comments){
       if(mysqli_num_rows($comments) > 0){
           while($re = mysqli_fetch_array($comments)){
+            if($re['Avatar'] == ""){
+              $Avatar = "person.png" ;
+            }else{
+              $Avatar = $re['Avatar'];
+            }
       ?>
       <div class="comment_items">
-          <div class="avatar"><img src="./img_members/<?=$re['Avatar']?>" alt=""></div>
+          <div class="avatar"><img src="./img_members/<?=$Avatar?>" alt=""></div>
           <div class="cmt_content">
               <!-- Rating -->
               <div class="rating">
